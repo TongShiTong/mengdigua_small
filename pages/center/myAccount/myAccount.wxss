@@ -1,0 +1,97 @@
+/* pages/center/myAccount/myAccount.wxss */
+/* pages/center/welfareCard/welfareCard.wxss */
+
+.top-wrap {
+  position: relative;
+}
+
+.rest-wrap {
+  position: absolute;
+  top: 60rpx;
+  left: 80rpx;
+}
+
+.rest-title {
+  height: 28rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  line-height: 28rpx;
+}
+
+.rest-num {
+  height: 60rpx;
+  font-size: 60rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  line-height: 60rpx;
+  margin-top: 32rpx;
+}
+
+.list-wrap {
+  margin-top: 10rpx;
+  background: white;
+}
+
+.bottom-btn {
+  width: 750rpx;
+  height: 98rpx;
+  background: rgba(248, 218, 13, 1);
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(52, 52, 48, 1);
+  line-height: 98rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+.list-inner{
+  padding: 32rpx;
+}
+.item-title{
+  height:42rpx;
+  font-size:30rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(29,30,31,1);
+  line-height:42rpx;
+}
+.item-time{
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+  line-height:34rpx;
+  margin-top: 8rpx;
+}
+.item-num{
+  height:50rpx;
+  font-size:36rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(255,38,18,1);
+  line-height:50rpx;
+}
+.btn-inner{
+  width:374rpx;
+  height:98rpx;
+  background:rgba(248,218,13,1);
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(52,52,48,1);
+  line-height:98rpx;
+}
+.rest-cur{
+  height:28rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  line-height:28rpx;
+  margin-top: 36rpx;
+}

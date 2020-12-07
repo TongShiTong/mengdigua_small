@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "楼层",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "serch": "/components/serch/serch",
+    "advert": "/components/advert/advert",
+    "floor-good": "/components/floorGood/floorGood",
+    "floor-shop": "/components/floorShop/shop",
+    "navbar": "/components/navbar3/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "floor-total": "/components/floorTotal/floorTotal"
+    
+  }
+}

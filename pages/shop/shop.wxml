@@ -1,0 +1,27 @@
+<!--pages/shop/shop.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<serch placeholder="搜索商品或店铺" num="{{ noticeList.read_data.all_no_readnum }}"></serch>
+<scroll-view class='scroll-load-panel wrap-shop' bindscrolltolower="loadMore" scroll-y="true">
+  <view class='list' wx:for="{{ shopData.list }}" wx:key="{{ index }}">
+    <view class='header flex-row-s' bindtap='jumpShopDetail' data-id='{{ item.id }}'>
+      <view class='flex-row-f'>
+        <image src="{{ item.logo_url }}" lazy-load='true' class='logo-img' mode="aspectFill"></image>
+        <view class='shop-info flex-column-s'>
+          <view class='shop-name'>{{ item.name }}</view>
+          <view class='shop-num'>{{ item.sum_item }}件商品</view>
+        </view>
+      </view>
+      <view class='jindian'>进入</view>
+    </view>
+    <view class='flex-row-f'>
+      <view class='bottom-wrap' bindtap='jumpDetail' data-id='{{ imgItem.item_id }}' wx:for="{{ item.itemList }}" wx:for-item="imgItem"  wx:for-index="imgIndex" wx:key="{{ imgIndex }}">
+        <image src="{{ imgItem.img_url }}" class='good-img' mode="aspectFill"></image>
+        <view class='bottom-price'>
+          <text class='yuan'>￥</text>
+          <text class='good-price'>{{ imgItem.price }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>

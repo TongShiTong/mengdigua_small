@@ -1,0 +1,7 @@
+{
+  "backgroundColor":"#FF0000",
+  "usingComponents": {
+      "navbar": "/components/navbar/index",
+      "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

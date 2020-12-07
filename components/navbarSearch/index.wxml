@@ -1,0 +1,17 @@
+<!--components/navbar/index.wxml-->
+<!-- 由于导航fixed，脱离文档流，该元素用于填补塌陷 -->
+<view style="width:100vw; height:{{height}}px;" wx:if="{{!isTransparent}}"></view>
+<view class='nav-wrap' style='padding-top:{{barHeight}}px;height: {{height}}px;}}; '>
+  <!-- 导航栏 中间的标题 -->
+  <view class='content-body'>
+    <view class="nav-search-wrap">
+      <image class="icon-back" src="/images/icon-back.png"  mode="aspectFill" bindtap="_navback" />
+      <view class='nav-search'>
+        <image class="search-img" src="/images/icon-search.png" mode="aspectFill" />
+        <input class="search-input" type="text" value="{{serchValue}}" confirm-type="search" data-value='{{ value }}' placeholder="{{hotpos}}" bindconfirm='selectLabel' bindinput='getInputValue' />
+        <!-- <image class="icon-clear" src="/images/icon-search-clear.png" mode="aspectFill" /> -->
+      </view>
+    </view>
+  </view>
+  
+</view>

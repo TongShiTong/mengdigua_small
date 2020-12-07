@@ -1,0 +1,19 @@
+<!--pages/center/userInfo/setPayPassword/mainItem.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="支付密码设置" />
+  <view class='flex-row-s inof-item' bindtap="updatePassword">
+    <view class='left-text'>修改支付密码</view>
+    <view class='flex-row-f'>
+      <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+    </view>
+  </view>
+  <view class='flex-row-s inof-item'  bindtap="forgetPassword">
+    <view class='left-text'>忘记支付密码</view>
+    <view class='flex-row-f'>
+      <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <page-loding></page-loding>
+</block>

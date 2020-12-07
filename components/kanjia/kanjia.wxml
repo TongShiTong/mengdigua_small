@@ -1,0 +1,29 @@
+<!--components/kanjia/kanjia.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<view class="goods">
+  <view class='good' wx:for="{{ list }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+    <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+    <view class='good-info'>
+      <view class='good-name'>{{ S1.substr(item.title, 32) }}</view>
+      <view class='ys-price flex-row-f'>
+        <view class='ys-type'>5人团</view>
+        <view>
+          <text class='yuan theme-font-A-{{theme}}'>¥</text>
+          <text class='good-price theme-font-A-{{theme}}'>{{ item.price }}</text>
+        </view>
+      </view>
+      <view class='flex-row-s' style='width:100%;'>
+        <view class='good-num'>
+          <text class="old-price">¥{{ item.price }}</text>
+          <text class="goode-num">{{ 0 }}人已拼团</text>
+        </view>
+        <view class='flex-row-f'>
+          <!-- <view class="list-btn buy theme-border-A-{{theme}} theme-color-A-{{theme}}">拼团</view>
+          <view class="list-btn buy theme-lg-A-{{theme}}" style='border:none'>推广</view> -->
+          <!-- <view class='list-btn extend theme-lg-A-{{theme}}' data-id='{{ item.item_id }}'>提醒我</view> -->
+          <view class='list-btn extend theme-lg-A-{{theme}} opacity' data-id='{{ item.item_id }}'>已预约</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

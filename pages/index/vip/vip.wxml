@@ -1,0 +1,50 @@
+<!--pages/index/vip/vip.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1"/>
+<block wx:if="{{theme || theme===0}}">
+<navbar title="VIP专享区" />
+<view class='back main-color' wx:if="{{ shareCode }}" bindtap='jumpBack'>返回</view>
+<view class='share-wrap flex-row' bindtap='shareView'>
+  <image class='vip-share' src='/images/index/share.png'></image>
+</view>
+  <view class='bg-wrap'>
+    <!-- banner -->
+    <view class='banner-wrap'>
+      <swiper class='swiper'>
+        <block wx:for="{{ banner.list }}" wx:key="{{ index }}">
+          <swiper-item bindtap="tapBanner" data-item="{{ item }}">
+            <image src="{{ item.img_url }}" class="slide-image" mode="aspectFill"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class='list-wrap'>
+    <view class='list flex-row-s' wx:for="{{ listData.list }}" wx:key="{{ index }}" bindtap='jumpDetail' data-shop_id="{{item.shop_id}}" data-id='{{ item.item_id }}'>
+    <view class="good-img-total"> 
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class="earn-money" wx:if="{{userInfo.role==1}}">赚¥ {{F1.moneyFormatTwo(item.share)}}</view>
+    </view>
+      <view class='right-list flex-column-s'>
+        <view class='text-item'>{{ F1.substr(item.title,24) }}</view>
+        <view class='text-reark'>{{ item.remark }}</view>
+        <view class='flex-row-f'>
+          <view class='text-strong yuan theme-font-A-{{theme}}'>¥</view>
+          <view class='text-strong new-price theme-font-A-{{theme}}'>{{ F1.moneyFormatTwo(item.price) }}</view>
+        </view>
+        <view class='flex-row-s' style='width:100%;'>
+          <view class='text-one deal-num'>销量{{ F1.numberDeal(item.deal_num) }}件</view>
+            <view class='flex-row-f'>
+              <view class="list-btn  theme-border-c-A-{{theme}}" wx:if="{{userInfo.role == 1}}">抢购</view>
+              <view class="list-btn  theme-border-c-A-{{theme}}" style='border:none' wx:else>抢购</view>
+              <view class='list-btn extend theme-lg-A-{{theme}}' wx:if="{{ userInfo.role == 1 }}" data-id='{{ item.item_id }}' catchtap='share'>推广</view>
+            </view>
+        </view>
+      </view>
+    </view>
+  </view>
+<share showShare="{{ showShare }}" shareImg="{{ shareData.img_url }}"></share>
+<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,19 @@
+<!--pages/center/userInfo/setPayPassword/update.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="修改支付密码" />
+  <view class='flied-wrapper'>
+    <view class='flied-item'>
+      <input placeholder='请输入原密码' password="{{true}}" value="{{password_old}}" data-type="password_old" bindinput="getVal"></input>
+    </view>
+    <view class='flied-item'>
+      <input placeholder='请输入新密码（6位数字密码）' password="{{true}}" type="number" value="{{password}}" data-type="password" bindinput="getVal"></input>
+    </view>
+    <view class='flied-item'>
+      <input placeholder='请再次输入新密码' password="{{true}}" type="number" value="{{password_copy}}" data-type="password_copy" bindinput="getVal"></input>
+    </view>
+  </view>
+  <view class='confirm-btn theme-lg-A-{{theme}}' bindtap='submit'>提交</view>
+</block>
+<block wx:else>
+  <page-loding></page-loding>
+</block>

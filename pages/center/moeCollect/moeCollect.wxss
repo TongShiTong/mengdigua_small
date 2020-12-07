@@ -1,0 +1,101 @@
+/* pages/center/moeCollect/moeCollect.wxss */
+.tab-item{
+  flex:50%;
+  border-right: 2rpx solid #f2f2f2;
+  background: white;
+  height:98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(85,85,85,1);
+  border-bottom: 6rpx solid white;
+}
+.tab-active{
+  color:rgba(229,10,53,1);
+  border-bottom: 6rpx solid rgba(229,10,53,1);
+}
+.good-wrap{
+  flex:0 0 50%;
+  height: 626rpx;
+  background: white;
+}
+.good-total{
+  flex-wrap: wrap;
+}
+.item-img{
+  width:326rpx;
+  height:368rpx;
+  border-radius:8rpx;
+  /* background: #a2a2a2; */
+}
+.good-title{
+  width:326rpx;
+  height:120rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(29,30,31,1);
+  line-height:40rpx;
+  margin: 0 auto;
+  margin-top: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.now-price{
+  height:32rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(255,38,18,1);
+  line-height:32rpx;
+}
+.old-price{
+  height:32rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(192,192,192,1);
+  line-height:32rpx;
+}
+.minus-btn{
+  width:38rpx;
+  height:38rpx;
+  background:rgba(229,10,53,1);
+  border-radius: 50%;
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 32rpx;
+  color: white;
+}
+.shop-wrap{
+  background: white;
+  border-bottom: 2rpx solid #a2a2a2;
+  padding:32rpx;
+}
+.shop-head{
+  width:88rpx;
+  height:88rpx;
+  border-radius: 12rpx;
+}
+.follow-btn{
+  width:194rpx;
+  height:72rpx;
+  background:rgba(153,153,153,1);
+  border-radius:36rpx;
+  text-align: center;
+  line-height: 72rpx;
+  font-size: 24rpx;
+  color: white;
+}
+.shop-name{
+
+}
+.shop-items{
+  margin-top: 10rpx;
+}

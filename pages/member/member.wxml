@@ -1,0 +1,263 @@
+<!--pages/member/member.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<wxs src="../../utils/rich.wxs" module="R1" />
+<wxs src="../../utils/filters.wxs" module="F1" />
+<view wx:if="{{theme || theme===0}}">
+  <!-- ||is_stuck==1 -->
+  <!-- <view class="cover-bg"></view> -->
+  <navbar  bgColor="#fff" isTransparent="{{userInfo.role == 0?true:false}}"  />
+
+  <!-- 不是会员 -->
+  <view class=" {{bgImg?'':'bg-white'}}" wx:if="{{ userInfo.role == 0}}">
+    <!-- 撑高元素 -->
+      <view class='role0-total'>
+        <view class='float' catchtap='jumpPromote'>如何升级VIP</view>
+        <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/default/ABFWZMNK01245789_1559038467.png" mode="aspectFill" class='bg-img'></image>
+        <image src="{{ userInfo.head_url }}" class='head-img' style='top:40%' mode="aspectFill"></image>
+        <view class='user-name user-name2'>{{ F1.substr(userInfo.nickname,10)  }}</view>
+        <view class='bottom-number'>
+          <view class='flex-r-b'>
+            <view class='invite-data'>我的成长值:{{growth.growth}}</view>
+            <view class='invite-number'>还需{{growth.less_growth}}成为VIP</view>
+          </view>
+          <progress class='progress progress2' percent="{{ percent }}" stroke-width="8" border-radius="10" activeColor="#EBC77F" backgroundColor="rgba(235,199,127,0.2)" active />
+        </view>
+
+
+      </view>
+
+
+
+    <view class='member-bg'>
+
+      <!-- vip权益 -->
+      <view class='vip-wrap theme-color-D-{{theme}}'>
+        <view class='flex-r' style='margin-left:30rpx;'>
+          <view class='vip-power'>VIP权益</view>
+          <image src="/images/member/vip.png" class='vip-img' mode="aspectFill"></image>
+        </view>
+        <view style='margin:10rpx 0 0 24rpx;'>
+          <view class='vip-subtitle'>为生活日常消费节省大额消费支出</view>
+          <!-- <view class='vip-subtitle2'>已节省¥1000.00</view> -->
+          <!-- <view class='flex-row-f' style='margin-right:30rpx;'>
+            <view class='{{ index == scrollIndex?"circel-active":"circel-benner" }}' wx:for="{{ bannerList }}" wx:key="{{ index }}"></view>
+          </view> -->
+        </view>
+
+
+
+        <view class='flex-r-a show-center'>
+          <block wx:for="{{bannerList}}" wx:key="index">
+            <view class=''>
+              <image id="group{{item.id}}" bindtap='showExplain' data-item='{{item}}' src="{{item.img_url}}" class='group-img' mode="aspectFill"></image>
+              <!-- <view>{{item.name}}</view> -->
+            </view>
+
+          </block>
+        </view>
+        <view class='bg2'></view>
+
+      </view>
+      <!-- 代理商礼包 -->
+      <view>
+
+        <view class='text-subtitle'>购买任何一款礼包，即可升级为会员</view>
+      </view>
+      <view class='like-list' style='padding: 0 30rpx;'>
+        <gift listData="{{ giftData }}">
+        </gift>
+      </view>
+
+
+
+      <!-- <view class='float-img flex-column theme-lg-A-{{theme}}' bindtap='jumpPromote'>
+        <view>一键</view>
+        <view>升级</view>
+      </view> -->
+      <!-- <image src="/images/member/float.png" class='float-img ' bindtap='jumpPromote' mode="aspectFill"></image> -->
+
+    </view>
+  </view>
+  <!-- 会员界面 -->
+  <view wx:elif="{{ userInfo.role == 1 }}" class='member-view'>
+    <view class="cover-bg {{bgImg2?'':'bg-white'}}" >
+      <!-- 撑高元素 -->
+      <view class="height-up" style="height:{{height}}px" wx:if="{{bgImg2}}" />
+      <view class='is-member-bg '>
+        <!-- <view class='float flex-row' bindtap='shareShop'>
+          <image src="/images/member/shop.png" class='shop-img' mode="aspectFill"></image>
+          <view>分享店铺</view>
+        </view> -->
+        <view class='float2 flex-row theme-lg-A-{{theme}}' style='top' catchtap='jumpRule' style='z-index:{{step2?"10000":"555"}}'>
+          <image src="/images/member/new-vip.png" class='new-vip-img' mode="aspectFill"></image>
+          <view>{{ F1.toUp(userInfo.level_name) }}</view>
+        </view>
+        <image src="/images/center/vip.png" class="vip-h-img" mode="aspectFill"></image>
+        <view class='vip-user-info'>
+          <view class='flex-row-f'>
+            <image src="{{ userInfo.head_url }}" class='head-img2' mode="aspectFill"></image>
+            <view class='user-info-right flex-column-s'>
+              <view class='user-name'>{{F1.substr(userInfo.nickname,10) }}</view>
+              <view class='user-svip theme-bg-B-{{theme}} theme-color-D-{{theme}}'>邀请码：{{ handInfo.share_code }} |
+                <text bindtap='copyInfo'>复制</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='hand-fans'>
+          <view class='flex-column hand-fans-item theme-border-D-{{theme}}' bindtap='jumpFans' data-index='0' style='border-right:1px solid #E6E6E6;'>
+            <view class='hand-fans-num theme-color-A-{{theme}}'>{{ handInfo.first_vip }}</view>
+            <view class='hand-fans-text '>我的会员</view>
+          </view>
+          <view class='flex-column hand-fans-item theme-border-D-{{theme}}' bindtap='jumpFans' data-index='1' style='border-right:1px solid #E6E6E6;'>
+            <view class='hand-fans-num theme-color-A-{{theme}}'>{{ handInfo.fans }}</view>
+            <view class='hand-fans-text '>我的粉丝</view>
+          </view>
+          <view class='flex-column hand-fans-item' bindtap='jumpIncome' style='border-right:1px solid #E6E6E6;'>
+            <view class='hand-fans-num theme-color-A-{{theme}}'>{{ handInfo.order_num }}</view>
+            <view class='hand-fans-text '>订单管理</view>
+          </view>
+          <view class='flex-column hand-fans-item' style='height:100rpx'  bindtap='goDetailTwo' data-url="/pages/personShop/personShop">
+            <view class='hand-fans-num' >
+              <image class='shop-name' src='person.png' src='/images/member/shopicon{{theme}}.png'></image>
+            </view>
+            <view class='hand-fans-text '>店铺装修</view>
+          </view>
+        </view>
+        <view>
+          <image src="/images/member/bottom-bg{{theme}}.png" class="bottom-bg-img" mode="aspectFill"></image>
+          <view class='flex-row-s draw-wrap ' style='z-index:{{step2?"10000":"555"}}' >
+            <view class='flex-row-f'>
+              <image src="/images/member/draw.png" class='draw-img' mode="aspectFill"></image>
+              <view class='flex-column-s' style='margin-left:32rpx;'>
+                <view class='draw-text'>可提现金额(元)</view>
+                <view class='draw-num'>{{ handInfo.balance }}</view>
+              </view>
+            </view>
+            <view class='deaw-btn theme-bg-B-{{theme}}' bindtap='jumpCash'>提现</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='flex-row-s card-wrap'>
+      <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/ABWXZMNTK0124589_1568197659.png" bindtap='jumpPromote' class='card-img' mode="aspectFill"></image>
+      <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/BFWXMNTHK0134567_1568197702.png" bindtap='jumpInvite' class='card-img' mode="aspectFill"></image>
+    </view>
+    <!-- 收入表格 -->
+    <view class='income-wrap'>
+      <view class='income-content'>
+        <view class='income-head flex-row-s theme-lg-B-{{theme}}' bindtap='jumpIncome'>
+          <view style='color:#fff; '>预计收入(元)</view>
+          <image src="/images/member/w-right.png" class='w-right-img' mode="aspectFill"></image>
+        </view>
+        <view class='income-tabel'>
+          <view class='income-item' bindtap='jumpIncomeTwo' data-index="0" style='border-bottom: 1px solid #EEEEEE;border-right: 1px solid #EEEEEE'>
+            <view class='income-text'>今日预计收入（元）</view>
+            <view class='income-num'>{{ income.today.income }}</view>
+          </view>
+          <view class='right-income-item' bindtap='jumpIncomeTwo' data-index="1" style='border-bottom: 1px solid #EEEEEE'>
+            <view class='income-text'>本周预计收入（元）</view>
+            <view class='income-num'>{{ income.week.income }}</view>
+          </view>
+          <view class='income-item' bindtap='jumpIncomeTwo' data-index="2" style='border-right: 1px solid #EEEEEE'>
+            <view class='income-text'>今月预计收入（元）</view>
+            <view class='income-num'>{{ income.month.income }}</view>
+          </view>
+          <view class='right-income-item' bindtap='jumpIncomeTwo' data-index="3">
+            <view class='income-text'>累计预计收入（元）</view>
+            <view class='income-num'>{{ income.total.income }}</view>
+          </view>
+        </view>
+        <view class='income-share theme-lg-A-{{theme}}' bindtap='jumpShareIncome'>立即分享</view>
+      </view>
+    </view>
+    <!-- 商学院 -->
+    <view class='school-model'>
+      <view class='school-title'>商学院</view>
+      <view class='flex-row-s-a '>
+        <block wx:for="{{schoolList}}" wx:key="index">
+          <view class='school-each-attr flex-column-s-b' data-name="{{item.name}}" catchtap='goSchoolDeatil' id="{{item.id}}">
+            <image src="{{item.img_url}}" class='school-img-center' mode="aspectFit"></image>
+            <view class='each-school-text'>{{item.name}}</view>
+          </view>
+        </block>
+      </view>
+      <!-- <view class='school-each-attr flex-column-s-b' catchtap='goSchoolDeatil' id="1">
+        <image src="/images/member/guide.png" class='school-img-guide' mode="aspectFill"></image>
+        <view class='each-school-text'>新手指引</view>
+      </view>
+      <view class='school-each-attr flex-column-s-b' catchtap='goSchoolDeatil' id="2">
+        <image src="/images/member/class.png" class='school-img-class' mode="aspectFill"></image>
+        <view class='each-school-text'>大咖讲堂</view>
+      </view>
+      <view class='school-each-attr flex-column-s-b' catchtap='goSchoolDeatil' id="3">
+        <image src="/images/member/news.png" class='school-img-news' mode="aspectFill"></image>
+        <view class='each-school-text'>最新资讯</view>
+      </view> -->
+    </view>
+
+    <view class='line16'></view>
+
+    <!-- 公告 -->
+    <view>
+      <view class='flex-row-s ad-wrap' bindtap='jumpMessage'>
+        <view class='ad-title'>公告</view>
+        <image src="/images/small-right.png" class='small-right-img' mode="aspectFill"></image>
+      </view>
+      <view wx:for='{{adData.list}}' wx:key='{{index}}' wx:for-item="i">
+        <view class='card-bottom' wx:for='{{i.list}}' wx:for-item="j" wx:key="j{{index}}" data-j='{{j}}' bindtap='jumpMessageDetail'>
+          <view style='padding:30rpx 0'>
+            <view>{{S1.substr(j.title,16)}}</view>
+            <view class='ad-title flex-row-s'>
+              <view class='ad-sub-title text-one text-line1'>{{ j.create_time }}</view>
+              <view class='ad-time'>{{j.notice.read_num}}已读</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+   
+  </view>
+  <view class='mask ' wx:if="{{ explainMask }}" bindtap='closeExplain'></view>
+  <view class='explain-modal' wx:if="{{ explainMask }}">
+    <view class='explain-content'>
+      <view class='flex-row-s explain-title'>
+        <view>{{ vipTitle }}</view>
+        <image src="/images/message-cancel.png" class='message-cancel-img' bindtap='closeExplain' mode="aspectFill"></image>
+      </view>
+      <view class='explain-subtitle '>{{ vipText }}</view>
+    </view>
+    <view class='close-btn main-color theme-lg-A-{{theme}}' bindtap='closeExplain'>我知道了</view>
+  </view>
+
+  <view class='mask2' catchtouchmove="true" wx:if="{{showInfo!=false&&!step2&&handInfo.is_stuck==1}}">
+      <view class='my-shop' style="top:{{(50*(_ratio/0.5)+barHeight)}}px" wx:if="{{showInfo==1}}">
+        <view class='background-white' style='top:{{ 5*(_ratio/0.5)+barHeight}}px'></view>
+        <view class="zegai-item1-1" wx:if="{{showInfo==1}}" style='font-size:24rpx'>
+          恭喜成为临时分销员，任务进度在里面查看噢
+          <view class="to-top-triangle"></view>
+        </view>
+      </view>
+      <view class='my-shop2' style="top:{{(170*(_ratio/0.5)+barHeight)}}px" wx:if="{{showInfo==2}}">
+        <view class='background-white2'>
+        
+        </view>
+        <view class="zegai-item1-1 item-2-top">
+          期间获得的收入均在里面哦，但得正式转正后
+          <view class="to-top-triangle2"></view>
+        </view>
+      </view>
+      <button class='show-button theme-lg-A-{{theme}}' catchtap='nextStep'>{{showInfo==2?'进入':'下一步'}}</button>
+    </view>
+
+
+
+  <!-- <bind-phone wx:if="{{ isBindPhone }}"></bind-phone> -->
+  <!-- <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" bind:authorization="authorization"></modal> -->
+  <share showShare="{{ showShare }}" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.img_url }}" showHeader="9"></share>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+</view>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

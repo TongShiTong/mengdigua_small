@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "申请退款",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

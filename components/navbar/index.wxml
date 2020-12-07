@@ -1,0 +1,33 @@
+<!--components/navbar/index.wxml-->
+<!-- 由于导航fixed，脱离文档流，该元素用于填补塌陷 -->
+<view style="width:100vw; height:128rpx;" wx:if="{{!isTransparent}}"></view>
+<view class='nav-wrap' style="padding-top:{{barHeight}}px;height:170rpx; background-color:{{bgColor}}; {{ !image ? '':'background-image:url(' + image +')'}}">
+  <!-- 导航栏 中间的标题 -->
+  <view class='content-body'>
+    
+    <view class='nav-capsule-wrapper'>
+      <!-- 返回首页 + 返回键 -->
+      <view class="nav-capsule {{bgColor==='#fff' || bgColor==='#ffffff'?'light':'dark'}}" wx:if='{{backIcon && !isIndex}}'>
+        <view bindtap='_navback' wx:if='{{backIcon}}'>
+          <image src='./image/nav_icon_pre{{bgColor==="#fff" || bgColor==="#ffffff"?2:1}}.png' mode='aspectFill' class='back-pre' />
+        </view>
+        <!-- <view bindtap='_backhome'>
+          <image src='./image/nav_icon_home{{bgColor==="#fff" || bgColor==="#ffffff"?2:1}}.png' mode='aspectFill' class='back-home'></image>
+        </view> -->
+      </view>
+      <!-- 不是tabbar页面，页面栈为1，只有返回首页按钮 -->
+      <view wx:if="{{!backIcon && !isIndex}}">
+        <view class='home-box'>
+          <view bindtap='_backhome'>
+            <image src='./image/nav_icon_home{{bgColor==="#fff" || bgColor==="#ffffff"?2:1}}.png' mode='aspectFill' class='back-home'></image>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{isIndex1}}" style="width: 750rpx;text-align: center;">
+        <image style="width:152rpx;height:46rpx" src="./image/logo-mdg.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view wx:if="{{!image}}" class='nav-title' style='line-height:{{lineHeight}}px;color:#000;'>{{title}}</view>
+  </view>
+  <!-- <image src="../../images/header-bg.png" mode="aspectFit" /> -->
+</view>

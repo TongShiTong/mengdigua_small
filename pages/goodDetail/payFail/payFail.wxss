@@ -1,0 +1,86 @@
+/* pages/goodDetail/payFail/payFail.wxss */
+.empty {
+  height: 320rpx;
+  background-color: #fff;
+  width: 100%;
+}
+.fail-img {
+  width: 130rpx;
+  height: 130rpx;
+  padding-bottom: 30rpx;
+}
+.fail-text {
+  font-size: 40rpx;
+  color: #333333;
+}
+.order {
+  background-color: #fff;
+  padding: 30rpx;
+}
+.order-title {
+  padding-bottom: 40rpx;
+}
+.btn {
+  width:686rpx;
+  height:100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  margin: 60rpx auto 0;
+}
+.look {
+  color: #fff;
+  background-color: #3E4042;
+}
+.back-home {
+  background-color: #fff;
+  color: #1D1E1F;
+}
+.wanner {
+  margin-top: 20rpx;
+  padding: 30rpx;
+}
+.order-detail {
+  padding: 24rpx;
+}
+.good-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 10rpx;
+}
+.right-order {
+  margin-left: 24rpx;
+  height: 144rpx;
+  flex: 1;
+}
+.tip-img {
+  width: 21rpx;
+  height: 21rpx;
+}
+.red-text {
+  color: #999999;
+}
+.bottom-text {
+  margin-left: 31rpx;
+  padding-top: 24rpx;
+}
+.other-text {
+  color: #555555;
+  font-size: 24rpx;
+}
+.order-price {
+  color: #B52902;
+}
+.order-num {
+  font-size: 24rpx;
+  color: #999999;
+}
+.order-value {
+  font-size: 24rpx;
+  color: #999999;
+}
+.shop-name{
+  margin-right:16px;
+  
+}

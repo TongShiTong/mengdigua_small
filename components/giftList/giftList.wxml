@@ -1,0 +1,27 @@
+<!--components/giftList/giftList.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<scroll-view class="scroll-load-panel" scroll-y="true" bindscrolltolower="loadMore">
+  <view class='good' wx:for="{{ listData.list }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+    <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+    <view class='good-info'>
+      <view class='good-name'>{{ F1.substr(item.title,12) }}</view>
+      <view class='sub-title'>{{ F1.substr(item.remark,16) }}</view>
+      <view class='ys-price flex-row-s' style='width:100%;'>
+
+        <!-- <view class='share-price theme-lg-C-{{theme}}' wx:if="{{ userInfo.role == 0 }}">
+            <view class='earn-price theme-color-A-{{theme}}'>¥{{ item.growth }}</view>
+            <view class='earn theme-BG-A-{{theme}}'>赚</view>
+          </view> -->
+      </view>
+      <view class='flex-row-s' style='width:100%;'>
+        <view>
+          <text class='yuan theme-font-A-{{theme}}'>¥</text>
+          <text class='good-price theme-font-A-{{theme}}'>{{ F1.moneyFormatTwo(item.price) }}</text>
+        </view>
+        <view class='flex-row-f'>
+          <view class='list-btn buy theme-lg-B-{{theme}}' wx:if="{{ userInfo.role == 0 || (handInfo.level < item.gift_level&&handInfo.is_stuck==0)||handInfo.is_stuck==1}}">购买成为{{ item.gift_name }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

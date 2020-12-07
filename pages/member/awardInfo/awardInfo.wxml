@@ -1,0 +1,68 @@
+<!--pages/member/awardInfo/awardInfo.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="商品信息" />
+  <view class='user flex-row-f bg-white'>
+    <image src="{{ order.head_url }}" class='head-img' mode="aspectFill"></image>
+    <view class='user-right flex-column-s'>
+      <view class='text-one'>下单用户</view>
+      <view>{{ order.nickname }}</view>
+    </view>
+  </view>
+  <!-- <view class='wrap-all'>商品信息</view> -->
+  <view class='wrap-all flex-row-s' catchtap='jumpShopDetail' id="{{order.shop.id}}">
+    <view class='shop-name'>{{order.shop.name}}</view>
+    <image src='/images/small-right.png' class='small-right-img' mode="aspectFill"></image>
+  </view>
+
+  <view class='info flex-row-s' wx:for="{{ order.list }}" wx:key="{{ index }}">
+    <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+    <view class='info-right flex-column-s'>
+      <view>{{ S1.substr(item.spu_name,18) }}</view>
+      <view class='text-one'>{{ S1.substr(item.skus,20) }}</view>
+      <view class='flex-row-s' style='width:100%;'>
+        <view class='good-price'>¥{{ item.sku_price }}</view>
+        <view class='text-one'>×{{ item.num }}</view>
+      </view>
+    </view>
+  </view>
+  <view class='flex-row-s inof-item' style='margin-top:16rpx;'>
+    <view>共{{ order.total_item_num }}件商品</view>
+    <view class='text-right'>实际共计：¥{{ order.total_item_price }}</view>
+  </view>
+  <view class='flex-row-s inof-item'>
+    <view>预估返利</view>
+    <view class='text-right'>¥{{ order.total_price }}</view>
+  </view>
+  <view class='flex-row-s inof-item'>
+    <view>退货商品返利</view>
+    <view class='text-right'>¥{{ order.refund_price }}</view>
+  </view>
+  <view class='bottom'>
+    <view>预估结算返利：</view>
+    <view class='total'>¥{{ order.expected_price }}</view>
+  </view>
+  <view class='order-info'>
+    <view class='flex-row-f'>
+      <view class='order-text'>订单编号：{{ order.order_no }}</view>
+      <view class='flex-row copy-wrap' bindtap='copyInfo'>
+        <image src="/images/copy.png" class='copy-img' mode="aspectFill"></image>
+        <view class='coyp'>复制</view>
+      </view>
+    </view>
+    <view class='order-text'>下单时间：{{ order.create_time }}</view>
+    <view class='order-text' wx:if="{{ order.pay_time != null || order.pay_time != '' }}">订单支付：{{ order.pay_time }}</view>
+    <view class='order-text' wx:if="{{ order.settlement_time != null || order.settlement_time != '' }}">结算时间：{{ order.settlement_time }}</view>
+    <view class='order-text'>支付方式：
+      <text wx:if="{{ order.pay_channel == 0 }}">微信支付</text>
+      <text wx:elif="{{ order.pay_channel == 1 }}">支付宝支付</text>
+      <text wx:elif="{{ order.pay_channel == 2 }}">Apple Pay</text>
+      <text wx:elif="{{ order.pay_channel == 3 }}">积分支付</text>
+      <text wx:elif="{{ order.pay_channel == 4 }}">ETH</text>
+      <text wx:elif="{{ order.pay_channel == 10 }}">余额支付等直接完成支付</text>
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

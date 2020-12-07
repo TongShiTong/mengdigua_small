@@ -1,0 +1,58 @@
+<view  class='pop_view'>
+  <view class='outer'>
+    <movable-area class="move_area">
+      <block wx:for="{{list}}" wx:key="{{index}}">
+        <view class='item' id="v_{{index}}" data-index="{{index}}" data-url="{{item.img_url}}" bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm'>
+          <image src="{{item}}" class='item_img'></image>
+          <view class='close'>
+            <view data-index="{{index}}" bindtap='rmImg'>x</view>
+          </view>
+          <!-- <view class='shop-list-1 pt30' style='padding-right:30rpx;'>
+            <view class='flex-r-s'>
+              <view style='padding:40rpx 20rpx ' wx:if="{{showManage}}" catchtap='choiceDelate' data-index="{{index}}" id="{{item_id}}" data-select="{{item.select}}">
+                <view class="shop-list-choice-1 {{item.select?'shop-list-choiced-1  theme-lg-A-'+theme:''}}">
+                  <view class='center-circle-1' wx:if="{{item.select}}"></view>
+                </view>
+              </view>
+              <image src="{{ item.img_url }}" class='shop-list-pic-1' mode="aspectFill"></image>
+              <view class='flex-b flex-1 shop-list-right-1'>
+                <view class='flex-r-b' style='width:100%'>
+                  <view class='shop-list-title-1 text-line2 flex-1'>{{item.select}}</view>
+                  <image src="/images/personShop/drap.png" class='shop-list-drap-1' mode="aspectFill" lazy-load='true'></image>
+                </view>
+                <view class='shop-list-remark-1 text-line1 '>{{item.select}}</view>
+                <view class='flex-r-b' style='width:100%'>
+                  <view class='flex-r-s'>
+                    <view class='shop-list-price-1  theme-font-A-{{theme}}'>
+                      <text class='yuan'>￥</text>{{item.select}}</view>
+                    <view class='share-price'>
+                      <view class='earn-price theme-bgo-A-{{theme}} theme-color-A-{{theme}}'>¥{{(item.share)}}</view>
+                      <view class='earn theme-bg-A-{{theme}}'>赚</view>
+                    </view>
+                  </view>
+                  <block wx:if="{{!showManage}}">
+                    <view class='shop-list-function-1' catchtap='showFunction' data-sort="{{sort}}" id="{{item_id}}" data-index="{{index}}">
+                      <text class='text-word-1'>...</text>
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view> -->
+        </view>
+
+      </block>
+
+      <movable-view x="{{x}}" y="{{y}}" direction="all" damping="{{5000}}" friction="{{1}}" disabled="{{disabled}}">
+        <view class='item-move' >
+          <view class='view'>
+          </view>
+          <block wx:if="{{movingUrl}}">
+            <image src="{{movingUrl}}" class='item_img'></image>
+          </block>
+        </view>
+      </movable-view>
+    </movable-area>
+  </view>
+</view>
+

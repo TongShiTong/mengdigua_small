@@ -1,0 +1,57 @@
+/* components/groupInfo/groupInfo.wxss */
+@import '../../utils/public.wxss';
+@import "../../theme/theme-0.wxss";
+@import "../../theme/theme-1.wxss";
+@import "../../theme/theme-2.wxss";
+@import "../../theme/theme-3.wxss";
+@import "../../theme/theme-4.wxss";
+@import "../../theme/theme-5.wxss";
+.member {
+  margin-top: 16rpx;
+  padding: 30rpx;
+}
+
+.member-left {
+  color: #707070;
+  line-height: 40rpx;
+}
+
+.member-right {
+  width: 288rpx;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-top: -24rpx;
+}
+
+.member-right .member-person:nth-child(3n-1) {
+  margin: 24rpx 24rpx 0 24rpx;
+}
+
+.member-person {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 24rpx;
+}
+
+.member-image {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #eaeaea;
+  border-radius: 50%;
+}
+.crown {
+  position: absolute;
+  top: -24rpx;
+  left: -10rpx;
+  width: 52rpx;
+  height: 44rpx;
+  z-index: 1;
+}
+.bg-white{
+  background: #fff;
+}

@@ -1,0 +1,17 @@
+<!--pages/member/shcoolList/shcoolList.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="{{title}}" />
+  <view class='content-total'>
+    <block wx:for="{{listData.list}}" wx:key="index">
+      <view class='each-content' catchtap='goDeatil' id="{{item.id}}" data-title="{{item.title}}" data-time="{{item.create_time}}">
+        <view class='content-title text-line1'>{{item.title}}</view>
+        <view class='content-time'>{{item.create_time}}</view>
+        <image src="{{item.img_url}}" wx:if="{{item.img_url!=''}}" class='content-img' mode="aspectFill"></image>
+        <view class='content-des text-line2'>{{item.remark}}</view>
+      </view>
+    </block>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "分类",
+  "usingComponents": {
+    "serch": "/components/serch/serch",
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "tabbar": "/tabbarComponent/tabbar"
+  }  
+}

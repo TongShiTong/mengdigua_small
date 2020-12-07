@@ -1,0 +1,24 @@
+<!--pages/index/signIn/signInRecord/signInRecord.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="签到记录" />
+  <view class="list-wrap">
+    <view 
+      class="list-inner"
+      wx:for="{{recordInfo}}"
+      wx:key="{{index}}">
+      <view 
+        class="list-block flex-r-b">
+        <view >
+          {{item.create_time}}
+        </view>
+        <view>
+          签到
+        </view>
+      </view> 
+    </view>
+  </view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

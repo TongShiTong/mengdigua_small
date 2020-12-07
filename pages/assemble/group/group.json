@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "shop-format": "/components/shopFormat/shopFormat",
+    "ingroup": "/components/ingroup/ingroup"
+  }
+}

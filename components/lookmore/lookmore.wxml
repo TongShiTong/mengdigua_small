@@ -1,0 +1,47 @@
+<!--components/lookmore/lookmore.wxml-->
+
+<view class='p30 flex-r-b notability-top' style='background:{{bgColor}}' bindtap='masterLlookMore' wx:if="{{showType==1}}">
+  <view class='notability-title'>
+    <view class='notability-title-content'>{{title}}</view>
+  </view>
+  <view class='look-more flex-r'>
+    <view>{{word}}</view>
+    <image class='right-icon' src='/images/small-right.png'></image>
+  </view>
+</view>
+
+<!-- 秒杀等 -->
+<view class='flex-r-b more-total p40' style='background:{{bgColor}}' bindtap='masterLlookMore' wx:if="{{showType==2}}">
+  <view class='flex-r-s'>
+    <view class='title mr16'>{{title}}</view>
+    <image class='title-image' mode="widthFix" src='/images/{{showIcon==="bargain"?"bargain":showIcon==="group"?"group":"skill"}}.png'></image>
+  </view>
+  <view class='look-more-Two flex-r'>
+    <view>{{word}}</view>
+    <image class='right-icon' src='/images/small-right.png'></image>
+  </view>
+</view>
+<!-- 秒杀等 -->
+<view class='flex-r-b more-total p40' style='background:{{bgColor}}' bindtap='masterLlookMore' wx:if="{{showType==3}}">
+  <view class='flex-r' style='width:100%'>
+    <view class='title mr16'>{{title}}</view>
+    <image class='title-image' mode="widthFix" src='/images/{{showIcon==="bargain"?"bargain":showIcon==="group"?"group":"skill"}}.png'></image>
+  </view>
+</view>
+
+<view class='flex-r-b more-total3 ' style='background:{{bgColor}}' bindtap='masterLlookMore' wx:if="{{showType==4}}">
+  <view class='title3'>{{title}}</view>
+  <!-- <image class='notability-title-bg' src='/images/index/titlebg.png'></image> -->
+</view>
+
+<!-- 详情拼团查看更多 -->
+<view class='flex-r-b more-total p40' style='background:{{bgColor}}' bindtap='masterLlookMore' wx:if="{{showType==5}}">
+  <view class='flex-r-s'>
+    <view class='title mr16'>{{title}}</view>
+    <!-- <view class='title-number-group'>{{number}}</view> -->
+  </view>
+  <view class='look-more flex-r'>
+    <view>{{word}}</view>
+    <image class='right-icon' src='/images/small-right.png'></image>
+  </view>
+</view>

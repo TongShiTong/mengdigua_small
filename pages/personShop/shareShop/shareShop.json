@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "navbar": "/components/navbar/index",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "row-scroll": "/components/rowscroll/rowscroll",
+    "banner": "/components/banner/banner",
+    "for-list": "/components/forList/forList"
+  }
+}

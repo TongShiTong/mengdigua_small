@@ -1,0 +1,104 @@
+<!--components/floorGood/floorGood.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<view class='flex-row-s bg-white'>
+	<view 
+    class="title {{title==''?'title-none':''}} "
+    wx:if="{{title!='砍价专区'}}">{{ title }}</view>
+	<view
+	 class='flex-row-f'
+	 style='padding-right:28rpx;'
+	 catchtap='jumpSerch'
+	 wx:if="{{goType}}"
+	>
+		<view class='look-more-word'>查看全部</view>
+		<image
+		 src="/images/confirm/confirm-right.png"
+		 lazy-load="true"
+		 class='look-more'
+		 mode="aspectFill"
+		/>
+	</view>
+</view>
+<block wx:if="{{showList == 1}}">
+	<view>
+		<view
+		 class='good'
+		 wx:for="{{ listData.list }}"
+		 wx:key="{{ index }}"
+		 data-id='{{ item.item_id }}'
+		 bindtap='jumpDetail'
+		 data-type="{{item.item_type}}"
+		 data-shop_id="{{item.shop_id}}"
+		>
+			<view class="image-total">
+				<image
+				 src="{{ item.img_url }}"
+				 class='good-img'
+				 mode="aspectFill"
+				 lazy-load="true"
+				/>
+				<view class="earn-money" wx:if="{{role == 1&&showType==2}}">赚¥{{F1.moneyFormatTwo(item.share) }}</view>
+			</view>
+			<view class='good-info'>
+				<view class='good-name'>
+					<text class='theme-font-A-{{theme}}' wx:if="{{item.is_abroad==1}}">【跨境购】</text>
+					{{ F1.substr(item.title,16) }}</view>
+				<view class='sub-title'>{{ F1.substr(item.remark,16) }}</view>
+				<view class='ys-price flex-row-f'>
+					<!-- <view class='yp-price'>秒杀价</view> -->
+					<view style='padding-right:20rpx;' class="flex-r-s">
+						<view wx:if="{{showType==2}}" class="min-price" style="border:2rpx solid #E50A35;color:#E50A35!important;">最低砍至</view>
+						<text class='yuan theme-font-A-{{theme}}' style="color:#E50A35!important;">¥</text>
+						<text class='good-price theme-font-A-{{theme}}' style="color:#E50A35!important;">{{ F1.moneyFormatTwo(showType==1?item.price:item.end_price ) }}</text>
+					</view>
+					<view class='share-price' wx:if="{{ role == 1&&showType==1 }}">
+						<view class='earn-price theme-bgo-A-{{theme}} theme-color-A-{{theme}}'>¥{{F1.moneyFormatTwo(item.share) }}</view>
+						<view class='earn theme-bg-A-{{theme}}'>赚</view>
+					</view>
+				</view>
+				<view class='flex-row-s' style='width:100%;'>
+					<view class='good-num'>已售{{ F1.numberDeal(item.deal_num) }}件</view>
+					<view class='flex-row-f'>
+
+						<view class="list-btn buy theme-border-A-{{theme}} theme-color-A-{{theme}}" style="border:2rpx solid #F8DA0D !important;">{{showType==1?'抢购':'砍价'}}</view>
+
+						<view
+						 class='list-btn extend theme-lg-A-{{theme}}'
+						 wx:if="{{ role == 1 }}"
+						 data-id='{{ item.item_id }}'
+						 catchtap='share'
+						>推广
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</block>
+<block wx:if="{{showList == 2}}">
+	<view class='wrap' style="margin:0;padding:30rpx;">
+  <!-- <view class='flex-row'>
+    <view class='flex-row-f'>
+      <image src="/images/gooddetail/team1.png" class="team-img" mode="aspectFill"/>
+      <view class='pay-title'>{{ title }}</view>
+      <image src="/images/gooddetail/team2.png" class="team-img" mode="aspectFill"/>
+    </view>
+  </view> -->
+  <!-- <view wx:if="{{ pay == 1 }}" class='sub-title'>{{ subTitle }}</view>
+  <view wx:else class='title'>{{ title }}</view> -->
+  <view class='list'>
+    <view class='good2' wx:for="{{ listData.list }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img2' mode="aspectFill"></image>
+      <view class='good-title'>{{ S1.substr(item.title,10) }}</view>
+      <view class='good-bottom'>  
+        <view class='price'>
+          <view class='red-price theme-font-A-{{theme}}' style="color:#E50A35 !important;">￥</view>
+          <view class='red-big-price theme-font-A-{{theme}}' style="color:#E50A35 !important;">{{ item.price }}</view>
+        </view>
+        <view class='price-th' wx:if="{{ item.old_price != null }}">¥{{ item.old_price }}</view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+

@@ -1,0 +1,239 @@
+<!--pages/center/refund/refundDetail/refundDetail.wxml-->
+<wxs src="../../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="退款详情" />
+  <view class='super' style="margin-top:40rpx;">
+    <view class='order-detail-header flex-row-f' style="justify-content:flex-start;background:#f4f4f4;padding:0 30rpx;">
+      <view>
+        <image class='waite-img' wx:if="{{ detailData.refund_status == 1 || detailData.refund_status == 3 }}" src="/images/order/waite.png" mode="aspectFill"></image>
+        <image class='waite-img' wx:elif="{{ detailData.refund_status == 2 }}" src="/images/order/fill-log.png" mode="aspectFill"></image>
+        <image class='waite-img' wx:elif="{{ detailData.refund_status == 4 || detailData.status == 5 }}" src="/images/order/refuse.png" mode="aspectFill"></image>
+        <image class='waite-img' wx:elif="{{ detailData.refund_status == 5 }}" src="/images/order/refund-success.png" mode="aspectFill"></image>
+      </view>
+      <view>
+        <text class='order-detail-text' wx:if="{{ detailData.refund_status == 0 }}">已取消退款退货</text>
+        <text class='order-detail-text' wx:elif="{{ detailData.status == 5 }}">退款失败</text>
+        <view class='order-detail-text' wx:elif="{{ detailData.refund_status == 1  }}">
+            <view>等待商家处理</view>
+            <view class="countdown">{{refundTime>0?'还剩'+F1.dealTimeFour(refundTime):''}}</view>
+        </view>
+        
+        <text class='order-detail-text' wx:elif="{{ detailData.refund_status == 2 }}">填写物流单号</text>
+        <view class='order-detail-text' wx:elif="{{ detailData.refund_status == 3  }}">
+            <view>等待商家处理</view>
+            <view class="countdown">还剩{{F1.dealTimeFour(refundTime)}}</view>
+        </view>
+        <text class='order-detail-text' wx:elif="{{ detailData.refund_status == 4 }}">商家拒绝退款</text>
+        <text class='order-detail-text' wx:elif="{{ detailData.refund_status == 5 }}">退款成功</text>
+        
+      </view>
+      <view class="header-right" style="">
+        <view style="padding:0 auto;width:80rpx">
+          <image src="../../../../images/gooddetail/message.png" style="width:36rpx;height:34rpx;margin-left:88rpx;"></image>
+        </view>
+        
+        <button 
+          class='contact-service'
+          session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{params}}|transferAction={{transferAction}}"
+          open-type="contact">
+          <view class="contact-service">
+          联系卖家
+        </view>
+        </button>
+      </view>
+    </view>
+    <!-- 退款进度 -->
+    <view class='refund-box'>
+      <!-- 发起退款 -->
+      <view class='refund-title-wrap' wx:if="{{ detailData.refund_status == 1 }}">
+        <view class='refund-title'>您已成功发起退款申请，请耐心等待商家处理</view>
+      </view>
+      <!-- 发起退款 商家同意 -->
+      <view class='refund-title-wrap' wx:elif="{{ detailData.refund_status == 2 }}">
+        <view class='refund-title'>商家已同意您的退货退款申请，请填写物流单号</view>
+      </view>
+      <!-- 发起退款 已填写物流信息 -->
+      <view class='refund-title-wrap' wx:elif="{{ detailData.refund_status == 3 }}">
+        <view class='refund-title'>您已填写物流信息，请耐心等待商家处理</view>
+      </view>
+       <!-- <view class='refund-title-wrap' wx:elif="{{ detailData.refund_status == 4 }}">
+        <view class='refund-title' wx:if="{{detailData.second != 0}}">您已撤销本次退款申请，如问题仍未解决，您可以重新发起申请</view>
+        <view class='refund-title' wx:else>您未进行确认操作，系统默认撤销本次退款申请，如问题仍未解决，您可以重新发起申请</view>
+      </view> -->
+     
+      <!-- 拒绝 成功 失败 -->
+      <view class='wrap-all flex-row-s' wx:elif="{{ detailData.refund_status == 4 || detailData.refund_status == 5 || detailData.status == 5 }}">
+        <view class='refund-subtitle'>退款总金额</view>
+        <!-- <view class='refund-amount theme-font-A-{{theme}}'>￥{{ detailData.price_total }}</view> -->
+        <view class='refund-amount'>￥{{ detailData.price_total }}</view>
+      </view>
+      <view class='refund-tip text-one' wx:if="{{ detailData.refund_status == 1 || detailData.refund_status == 3 }}">·商家同意，系统将退款给您</view>
+      <view class='refund-tip text-one' wx:if="{{ detailData.refund_status == 1 || detailData.refund_status == 3 }}">·如果商家拒绝，您可以修改退款申请后再次发起，商家会重新处理</view>
+      <!-- 拒绝 -->
+      <view class='img-wrap' wx:if="{{ detailData.refund_status == 4 }}">
+        <view class='detail-content'>
+          <image class='circel-img' src="/images/order/refund/agree.png" mode="aspectFill"></image>
+          <image class='line-img' src="/images/order/refund/line.png" mode="aspectFill"></image>
+          <image class='refuse-circel-img' src="/images/order/refund/refuse.png" mode="aspectFill"></image>
+        </view>
+        <view style='margin-left:32rpx;'>
+          <view style='margin-bottom:60rpx;'>
+            <view>买家申请</view>
+            <view class='refund-time'>{{ detailData.create_time }}</view>
+          </view>
+          <view>
+            <view>商家拒绝</view>
+            <view class='refund-time'>{{ detailData.no_pass_time }}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 成功 -->
+      <view class='img-wrap' wx:elif="{{ detailData.refund_status == 5}}">
+        <view class='detail-content'>
+          <image class='circel-img' src="/images/order/refund/agree.png" mode="aspectFill"></image>
+          <image class='line-img' src="/images/order/refund/line.png" mode="aspectFill"></image>
+          <image class='circel-img' src="/images/order/refund/agree.png" mode="aspectFill"></image>
+          <image class='line-img' src="/images/order/refund/line.png" mode="aspectFill"></image>
+          <image class='refuse-circel-img' src="/images/order/refund/return-success.png" mode="aspectFill"></image>
+        </view>
+        <view style='margin-left:32rpx;'>
+          <view style='margin-bottom:44rpx;'>
+            <view>买家申请</view>
+            <view class='refund-time'>{{ detailData.create_time }}</view>
+          </view>
+          <view style='margin-bottom:70rpx;'>
+            <view>卖家同意</view>
+            <view class='refund-time'>{{ detailData.success_time }}</view>
+          </view>
+          <view>
+            <view>退款成功</view>
+            <view class='refund-time'>{{ detailData.success_time }}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 失败 -->
+      <view class='img-wrap' wx:elif="{{ detailData.status == 5 }}">
+        <view class='detail-content'>
+          <image class='circel-img' src="/images/order/refund/agree.png" mode="aspectFill"></image>
+          <image class='line-img' src="/images/order/refund/line.png" mode="aspectFill"></image>
+          <image class='circel-img' src="/images/order/refund/agree.png" mode="aspectFill"></image>
+          <image class='line-img' src="/images/order/refund/line.png" mode="aspectFill"></image>
+          <image class='refuse-circel-img' src="/images/order/refund/refuse.png" mode="aspectFill"></image>
+        </view>
+        <view style='margin-left:32rpx;'>
+          <view style='margin-bottom:44rpx;'>
+            <view>买家申请</view>
+            <view class='refund-time'>{{ detailData.create_time }}</view>
+          </view>
+          <view style='margin-bottom:70rpx;'>
+            <view>卖家同意</view>
+            <view class='refund-time'>{{ detailData.success_time }}</view>
+          </view>
+          <view>
+            <view>退款失败</view>
+            <view class='refund-time'>{{ detailData.failed_time }}</view>
+          </view>
+        </view>
+      </view>
+      <view class='refund-reason' wx:if="{{ detailData.refund_status == 4 }}">拒绝原因：{{ detailData.refuse_remark || detailData.platform_refuse_remark}}</view>
+      <view class='refund-reason' wx:elif="{{ detailData.status == 5 }}">退款失败：因外界问题，为确保您的退款金额，请您与卖家线下沟通</view>
+      <!-- 按钮 -->
+      <!-- <view class='refund-btn-wrap' wx:if="{{ detailData.refund_status == 1 || detailData.refund_status == 2 || detailData.refund_status == 3 || detailData.refund_status == 4 }}">
+        <view class='refund-btn' bindtap='showCancelModal' wx:if="{{ detailData.refund_status == 1 || detailData.refund_status == 2 || detailData.refund_status == 3 }}">取消申请</view>
+        <view class='refund-btn' wx:if="{{ detailData.refund_status == 1 }}" bindtap='jumpEditApp'>修改申请</view>
+        <view class='refund-btn' wx:if="{{  detailData.refund_status == 3 }}" bindtap='jumpEditApp'>修改物流</view>
+        <view class='red-btn' wx:elif="{{ detailData.refund_status == 2 }}" bindtap='jumpEditApp'>填写物流</view>
+        <view class='refund-btn' wx:elif="{{ detailData.refund_status == 4 }}" bindtap='jumpEditApp'>重新申请</view>
+      </view> -->
+    </view>
+    <!-- 商品信息 -->
+    <!-- <view class='wrap-all flex-row-s' catchtap='jumpShopDetail' id="{{detailData.shop.id}}">
+      <view class='shop-name'>{{detailData.shop.name}}</view>
+      <image src='/images/small-right.png' class='small-right-img' mode="aspectFill"></image>
+    </view> -->
+    <view class='order-header flex-row-f' wx:for="{{ detailData.orderSku }}" wx:key="{{ index }}">
+      <view class='show-image-total'>
+        <image class='order-img' src="{{ detailData.imgs }}" mode="aspectFill"></image>
+        <view class='small-icon theme-lg-B-{{theme}}' wx:if='{{item.activity_type==1}}'>秒杀</view>
+      </view>
+      <view class='order-content-right flex-column-s'>
+        <view class='order-name' ><text class='theme-font-A-{{theme}}' wx:if="{{item.is_abroad==1}}" >【跨境购】</text>{{ S1.substr(item.spu_name,16) }}</view>
+        <view class='text-one'>{{ item.type }}</view>
+        <view class='price-wrap' style='width:100%;'>
+          <view class='text-one' style="">×{{ item.num }}</view>
+          <view style="color:#000;" class='sku-price'>¥{{ item.sku_price }}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 横线 -->
+    <!-- <view style="height:2rpx;width:100rpx;margin:0 auto;border-bottom:2rpx solid #f4f4f4;"/> -->
+    <!-- 订单信息 -->
+    <view class='return-detail'>
+      <view style="height:2rpx;width:670rpx;margin:0 auto;border-bottom:2rpx solid #f4f4f4;"/>
+      <view class='bottom-item'>
+        <view>退款原因：</view>
+        <view>{{ detailData.bec_type }}</view>
+      </view>
+      <view class='bottom-item'>
+        <view>退款金额：</view>
+        <view class="{{(detailData.status==5||detailData.refund_status==5)?'':'price-type'}}">￥{{ detailData.price_total }}</view>
+      </view>
+      <view class='bottom-item'>
+        <view>申请件数：</view>
+        <view>×{{ detailData.refund_num }}</view>
+      </view>
+      <view class='bottom-item'>
+        <view>申请时间：</view>
+        <view>{{ detailData.create_time}}</view>
+      </view>
+      <view class='bottom-item'>
+        <view>退款编号：</view>
+        <view>{{ detailData.refund_no}}</view>
+      </view>
+    </view>
+    <!-- <view class='service-content' wx:if="{{detailData.refund_status!=4}}"> -->
+    <view class='service-content'>
+    <!-- <button class='zhichi-btn' session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{params}}|transferAction={{transferAction}}" open-type="contact">
+      <view>联系卖家</view>
+    </button> -->
+      <view 
+        class="bottom-button-g" 
+        style="opacity:0.5"
+        wx:if="{{detailData.refund_status == 1 || detailData.refund_status == 2 || detailData.refund_status == 3 }}"
+        catchtap="showCancelModal"
+        >取消申请</view>
+      <view 
+        class="bottom-button-g"
+        wx:if="{{detailData.refund_status == 1}}"
+        catchtap="jumpEditApp">修改申请</view>
+      <view 
+        class="bottom-button-g"
+        wx:if="{{detailData.refund_status == 2}}"
+        catchtap="jumpEditApp">填写物流</view>
+      <view 
+        class="bottom-button-g"
+        wx:if="{{detailData.refund_status == 3}}"
+        catchtap="jumpEditApp">修改物流</view>
+      <view 
+        class="bottom-button-g"
+        wx:if="{{detailData.refund_status == 4}}"
+        catchtap="jumpEditApp">重新申请</view>
+
+      <view
+        class="bottom-button-g" 
+        style="width:750rpx;"
+        wx:if="{{detailData.refund_status == 5}}"
+        catchtap="navBack">返回</view>
+
+  
+    </view>
+  </view>
+  <message wx:if="{{ cancelModal }}" title="温馨提示" subTitle="您是否要取消退款申请" confirmText="确定" bind:colse="closeCancelModal" bind:confirm="confirmCancel"></message>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

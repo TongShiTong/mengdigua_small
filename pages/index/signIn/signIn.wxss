@@ -1,0 +1,260 @@
+/* pages/index/signIn/signIn.wxss */
+.signIn{
+  padding-bottom: 50rpx;
+  background:linear-gradient(180deg,rgba(255,186,47,1) 0%,rgba(255,100,71,1) 100%);
+  position: relative;
+}
+.sign-bg {
+  width: 100%;
+  height: 486rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.sg-coupon-img{
+  width: 504rpx;
+  height: 428rpx;
+}
+.sg-c-t{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 200rpx;
+}
+.sg-ct1{
+  color: #5C0ED2;
+}
+.sg-ct2{
+  font-size: 88rpx;
+  font-weight:bold;
+  display: inline-block;
+  color: #5C0ED2;
+  text-align: center
+}
+.sg-ct3{
+  font-size: 24rpx;
+  color: #555555;
+}
+.sg-c-b{
+  text-align: center;
+  font-size: 26rpx;
+  color: #555555;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 140rpx;
+  width:280rpx;
+}
+.sg-text1{
+  color: #FFFEFA;
+  font-size: 26rpx;
+  position: absolute;
+  top: 390rpx;
+  width: 100%;
+  text-align: center;
+}
+.sg-text2{
+  color: #999999;
+  font-size: 26rpx;
+  margin-top: 36rpx;
+  text-align: center;
+}
+.sign-now-wrap {
+  position: relative;
+  margin-top: 30rpx;
+}
+.sign-now-btn {
+  height: 88rpx;
+  width: 366rpx;
+  color: #fff;
+  font-size: 32rpx;
+  position: absolute;
+  top: 4rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  line-height: 88rpx;
+}
+.sp-text {
+  color: #FF8A40;
+  font-size: 26rpx;
+}
+.sign-now-img {
+  width: 370rpx;
+  height: 160rpx;
+}
+.sg-num{
+  width:590rpx;
+  padding: 0 30rpx;
+  height: 450rpx;
+  background-color: #fff;
+  box-shadow:0px 4rpx 24rpx 0px rgba(107,16,225,0.15);
+  border-radius:16rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+.sg-num-c {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 48rpx;
+}
+.sg-num-v {
+  position: relative;
+  width: 44rpx;
+  height: 68rpx;
+}
+.sign-in-record{
+  text-align: center;
+  color: #777777;
+}
+.sg-num-title {
+  position: absolute;
+  left: 50%;
+  bottom: 4rpx;
+  color: #fff;
+  transform: translateX(-50%);
+}
+.sg-bottom-2{
+  color: #999999;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.sg-task{
+  width: 100%;
+}
+.team1-img {
+  width: 36rpx;
+  height: 40rpx;
+}
+.team2-img {
+  width: 48rpx;
+  height: 36rpx;
+}
+.sg-t-o-img{
+  height: 44rpx;
+  width: 44rpx;
+}
+.list-line {
+  flex: 1;
+  height:1px;
+  background-color: #EEEEEE;
+  margin: 0 24rpx;
+}
+.sg-t-o-v1{
+  margin-left: 16rpx;
+  font-size: 30rpx;
+  color: #555555;
+}
+.sg-t-o-v2{
+  font-size: 40rpx;
+  color: #FF8A40
+}
+.sj-top-tips{
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  height: 44rpx;
+  width: 44rpx;
+  z-index: 88;
+}
+.sj-c-1{
+  height: 68rpx;
+  width: 44rpx;
+}
+.my-sign {
+  width: 650rpx;
+  margin-top: 30rpx;
+}
+.sign-item-img {
+  width: 64rpx;
+  height: 64rpx;
+}
+.sign-item-num {
+  font-size: 40rpx;
+  color: #FF8A40;
+}
+.sign-item {
+  width:248rpx;
+  height:106rpx;
+  padding: 30rpx;
+  background:#fff;
+  box-shadow:0px 4rpx 24rpx 0px rgba(107,16,225,0.15);
+  border-radius:16rpx;
+}
+.help {
+  width: 600rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 9999;
+  background-color: #fff;
+}
+.help-head {
+  position: relative;
+  font-size: 28rpx;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #f4f4f4;
+  border-top-left-radius:10rpx;
+  border-top-right-radius:10rpx;
+}
+.close-help {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+.help-content {
+  border-bottom-left-radius:10rpx;
+  border-bottom-right-radius:10rpx;
+  background-color: #fff;
+  height: 600rpx;
+  padding: 30rpx;
+}
+.sj-content{
+  width: 590rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16rpx;
+  margin-top: 30rpx;
+}
+.sj-c-title{
+  font-size: 32rpx;
+  color: #555555;
+  margin: 0 16rpx;
+}
+.sign-left {
+  width: 36rpx;
+  height: 38rpx;
+}
+.sj-c-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.sj-c-day{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius:50%;
+  text-align: center;
+  line-height: 64rpx;
+  margin: 24rpx 10rpx 0 10rpx;
+  color: #C0C0C0;
+  font-size: 26rpx;
+  position: relative;
+}
+.sj-c-active{
+  color: #fff;
+  background:linear-gradient(180deg,rgba(255,186,47,1) 0%,rgba(255,100,71,1) 100%);
+}
+
+

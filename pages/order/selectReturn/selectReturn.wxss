@@ -1,0 +1,19 @@
+/* pages/order/selectReturn/selectReturn.wxss */
+page {
+  background-color: #fff;
+}
+.title {
+  font-weight: 700;
+  font-size: 28rpx;
+  padding-bottom: 20rpx;
+}
+.refund-type {
+  width: 690rpx;
+  height: 150rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+.return-img {
+  width: 72rpx;
+  height: 72rpx;
+}

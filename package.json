@@ -1,0 +1,20 @@
+{
+  "name": "netmi-shop-min",
+  "version": "1.0.0",
+  "description": "npm包",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@47.98.212.131:mkp/netmi-shop-min.git"
+  },
+  "author": "yj",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.0.0-beta.4",
+    "vant": "^2.2.16",
+    "vant-weapp": "1.0.0-beta5"
+  }
+}

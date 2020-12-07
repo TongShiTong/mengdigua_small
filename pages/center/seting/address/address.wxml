@@ -1,0 +1,46 @@
+<!--pages/center/seting/address/address.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="我的地址" bg_color="#fff"/>
+  <view wx:if="{{ isEmpty === true }}" class='flex-column address-empty'>
+    <image class='empty-img' src="/images/center/address-empty.png"></image>
+    <view class='empty-text'>您还没有录入收货地址~</view>
+  </view>
+  <scroll-view class="scroll-load-panel" scroll-y="true" wx:if="{{ isEmpty === false }}" style='border-top: 1px solid #f4f4f4;'>
+    <view class='address'>
+      <view class='address-box' wx:for="{{ addressList.list }}" wx:key="index" data-address='{{ item }}' bindtap='selectAddress'>
+        <view class='address-top'>
+          <view class='address-top-title flex-row-f'>
+            <view class='address-user'>{{ item.name }}</view>
+            <view class='addres-phone'>{{ item.tel }}</view>
+          </view>
+          <view class='address-full'>{{ item.full_name }}</view>
+        </view>
+        <view class='address-bottom flex-row-s'>
+          <view class='flex-row-f' wx:if="{{ item.is_top == 1 }}" data-id='{{ item.maid }}' data-status='{{ item.is_top }}' bindtap='setDefaultAddress'>
+            <image class='default-img' src="/images/shopcar/selected.png"></image>
+            <view class='default-text'>默认地址</view>
+          </view>
+          <view class='flex-row-f' wx:if="{{ item.is_top == 0 }}" data-id='{{ item.maid }}' data-status='{{ item.is_top }}' bindtap='setDefaultAddress'>
+            <image class='default-img' src="/images/shopcar/unselected.png"></image>
+            <view class='default-text'>设为默认地址</view>
+          </view>
+          <view class='flex-row-f'>
+            <view class='edit-text' data-id='{{ item.maid }}' catchtap='jumpEdit'>编辑</view>
+            <view class='address-line'></view>
+            <view class='delete-text' data-id='{{ item.maid }}' catchtap='showDeleteMask'>删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <message title="删除确认" subTitle="确定要删除该收货地址吗？" confirmText="确认" wx:if="{{ showMask }}" bind:colse="closeModal" bind:confirm="confirmDeleta"></message>
+  </scroll-view>
+  <view class='save-btn flex-row' bindtap='jumpAdd'>
+    <image class='add-img' src="/images/center/add-address.png"></image>
+    <view>添加新地址</view>
+  </view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

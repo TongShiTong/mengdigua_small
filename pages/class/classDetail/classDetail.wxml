@@ -1,0 +1,32 @@
+<!--pages/class/classDetail/classDetail.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="{{title}}" />
+  <!-- <view class='index-head flex-row' style="top:{{barHeight}}px">
+    <view class='serch-wrap flex-row-s'>
+      <view class='serch flex-row-s' bindtap='jumpSerch'>
+        <view class='serch-input'>搜索您想要的商品</view>
+        <image src="/images/serch.png" class='serch-img' mode="aspectFill"></image>
+      </view>
+      <view class='message-wrap' bindtap='jumpClass'>
+        <image src="/images/class/class.png" class='calss-img' mode="aspectFill"></image>
+        <view class='class-text'>分类</view>
+      </view>
+    </view>
+  </view> -->
+  <list 
+    bind:selectSort="selectSort" 
+    listData="{{ listData }}" 
+    role="{{ userInfo.role }}" 
+    isBaseLine='1' 
+    bind:loadMore="loadMore" 
+    isTop="0" 
+    addGoods="{{add}}" 
+    bind:changeList="changelist"
+    addTopHeight="-210"
+    showList="2"></list>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+  <!-- <share showShare="{{ showShare }}" bindshareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}"></share> -->
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

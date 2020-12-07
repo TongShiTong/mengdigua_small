@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "品牌精选",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "share": "/components/share/share",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

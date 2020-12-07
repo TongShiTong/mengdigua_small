@@ -1,0 +1,17 @@
+<!--pages/rich/rich.wxml-->
+<wxs src="../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="{{title}}" />
+  <view style="background:#fff; ">
+    <view wx:if="{{id}}" style='padding:0 30rpx;'>
+      <view class='title'>{{title}}</view>
+      <view class='time'>{{time}}</view>
+    </view>
+    <view wx:if="{{ rich }}" style='padding:80rpx 30rpx 30rpx;'>
+      <rich-text nodes="{{R1.rich(rich)}}"></rich-text>
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

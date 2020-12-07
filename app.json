@@ -1,0 +1,211 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/center/center",
+    "pages/center/userInfo/userInfo",
+    "pages/center/userInfo/changeName/changeName",
+    "pages/center/seting/seting",
+    "pages/center/seting/aboutUs/aboutUs",
+    "pages/center/seting/feedback/feedback",
+    "pages/center/seting/address/address",
+    "pages/center/myCoupon/myCoupon",
+    "pages/center/seting/address/addAddress/addAddress",
+    "pages/center/seting/address/editAddress/editAddress",
+    "pages/center/refund/refund",
+    "pages/center/refund/refundDetail/refundDetail",
+    "pages/center/refund/editRefund/editRefund",
+    "pages/center/message/message",
+    "pages/center/message/notice/notice",
+    "pages/center/message/detail/detail",
+    "pages/center/message/myAssets/myAssets",
+    "pages/center/myGrow/myGrow",
+    "pages/center/myWallet/myWallet",
+    "pages/center/shareCoupon/shareCoupon",
+    "pages/center/seting/privacy/privacy",
+    "pages/center/userInfo/inviteShop/inviteShop",
+    "pages/center/myCollection/myCollection",
+    "pages/center/userInfo/setPayPassword/setPayPassword",
+    "pages/center/userInfo/setPayPassword/mainItem",
+    "pages/center/userInfo/setPayPassword/update",
+    "pages/center/userInfo/visitCard/visitCard",
+    "pages/center/merchantRegister/merchant",
+    "pages/center/exchangeCard/exchangeCard",
+    "pages/center/moeCollect/moeCollect",
+    "pages/center/myPartner/myPartner",
+    "pages/center/welfareCard/welfareCard",
+    "pages/center/myAccount/myAccount",
+    "pages/center/mail/mail",
+    "pages/bindPhone/bindPhone",
+    "pages/center/userInfo/changePhone/changePhone",
+    "pages/index/newPeople/newPeople",
+    "pages/index/bestSelect/bestSelect",
+    "pages/index/signIn/signIn",
+    "pages/index/vip/vip",
+    "pages/index/floor/floor",
+    "pages/bindInviteCode/bindInviteCode",
+    "pages/center/myCoupon/couponCenter/couponCenter",
+    "pages/center/groupOrder/groupOrder",
+    "pages/center/groupOrder/groupDetail/groupDetail",
+    "pages/webView/webView",
+    "pages/center/logiStique/logiStique",
+    "pages/bandInfo/bandInfo",
+    "pages/index/bargain/bargain",
+    "pages/index/certificate/certificate",
+    "pages/index/signIn/signInRecord/signInRecord",
+    "pages/webitem/web",
+    "components/goosList/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationStyle": "custom"
+  },
+  "subPackages": [
+    {
+      "root": "pages/member/",
+      "pages": [
+        "member",
+        "promote/promote",
+        "giftDetail/giftDetail",
+        "invite/invite",
+        "fans/fans",
+        "income/income",
+        "shareIncome/shareIncome",
+        "cash/cash",
+        "cashView/cashView",
+        "awardInfo/awardInfo",
+        "shcoolList/shcoolList",
+        "newguide/newguide",
+        "identityRule/identityRule",
+        "community/community",
+        "fans/fansDetail/fansDetail",
+        "cashRecord/cashRecord",
+        "commissionGood/comissionGood"
+      ]
+    },
+    {
+      "root": "pages/goodDetail/",
+      "pages": [
+        "shopCarCopy/shopCarCopy",
+        "goodDetail",
+        "confirmOrder/confirmOrder",
+        "payView/payView",
+        "invoice/invoice",
+        "payFail/payFail",
+        "share/share",
+        "uploadMaterial/uploadMaterial",
+        "bargainDeatil/bargainDeatil",
+        "bargainHelperList/index",
+        "paySuccess/paySuccess"
+      ]
+    },
+    {
+      "root": "pages/order/",
+      "pages": [
+        "order",
+        "logisticsInfo/logisticsInfo",
+        "orderDetail/orderDetail",
+        "evaluate/evaluate",
+        "applicationReturn/applicationReturn",
+        "selectReturn/selectReturn",
+        "barList/barList"
+      ]
+    },
+    {
+      "root": "pages/shop/",
+      "pages": [
+        "shop",
+        "shopDetail/shopDetail",
+        "goodClass/goodClass",
+        "goodList/goodList"
+      ]
+    },
+    {
+      "root": "pages/assemble/",
+      "pages": [
+        "index",
+        "booking/booking",
+        "group/group",
+        "joinGroup/joinGroup"
+      ]
+    },
+    {
+      "root": "pages/personShop/",
+      "pages": [
+        "personShop",
+        "shopList/shopList",
+        "shareShop/shareShop"
+      ]
+    },
+    {
+      "root": "pages/class/",
+      "pages": [
+        "class",
+        "serch/serch",
+        "classDetail/classDetail"
+      ]
+    },
+    {
+      "root": "pages/shopCar/",
+      "pages": [
+        "shopCar"
+      ]
+    },
+    {
+      "root": "pages/test/",
+      "pages": [
+        "test"
+      ]
+    },
+    {
+      "root": "pages/rich/",
+      "pages": [
+        "rich"
+      ]
+    },
+    {
+      "root": "pages/fq/",
+      "pages": [
+        "fq"
+      ]
+    },
+    {
+      "root": "pages/decorate/",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "pages/goodReviews/",
+      "pages": [
+        "goodReviews"
+      ]
+    },
+    {
+      "root": "pages/sharePoster/",
+      "pages": [
+        "sharePoster"
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#0A0E11",
+    "selectedColor": "#0A0E11",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/1-U.png",
+        "selectedIconPath": "images/1-C.png"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "我的",
+        "iconPath": "images/5-U.png",
+        "selectedIconPath": "images/5-C.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,22 @@
+<!-- components/advert/advert.wxml -->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<block>
+<scroll-view class="category-scroll" scroll-x="true" >
+  <view class="category-tab">
+    <block wx:for='{{ moduleList }}' wx:key="index">
+      <!-- 选中添加 cur -->
+      <view class="tab-item {{item.title == currentItem.title ? 'cur':''}}" bindtap="setCurrentItem" data-item="{{ item }}">
+        <view class="title">{{item.title}}</view>
+        <view class="text">{{item.content}}</view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+  
+  <view class="tabs-pannel" style="min-height: 90vh;">
+    <view class="pannel-content">
+      <water-flow id="water-flow" generic:l-water-flow-item="category-flow-item" />
+      <view wx:if="{{currentItem.reachEnd}}" class="no-more">没有更多了</view>
+    </view>
+  </view>
+</block>

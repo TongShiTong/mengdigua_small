@@ -1,0 +1,363 @@
+<!-- components/advert/advert.wxml -->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<wxs module="ME">
+var floor = function(num){
+  return Math.floor(num * 100);
+}
+module.exports = {
+  floor : floor,
+}
+</wxs>
+<view class='advert-wrap'>
+  <view wx:if="{{advertInfo.isShow === 1}}" class="hot-box  theme-lg-A-{{theme}}" style="background:none!important">
+    <view class='hot-advert theme-bg-C-{{theme}}' style="background:none!important">
+      <image src="../../images/advert.png" mode="aspectFill" />
+    </view>
+    <swiper class='advert-swiper' circular="true" vertical="true" autoplay="{{autoplay}}">
+      <block wx:for="{{advertInfo.floor_data}}" wx:key="index">
+        <swiper-item catchtouchmove="stopTouchMove" class="swiper-item">
+          <view class='advert-content' bindtap="tap" data-type="{{ item.type }}" data-param="{{ item.param }}" data-shop_id="{{item.good_info.shop_id}}">
+            <!-- {{ S1.substr(item.title,23) }} -->
+            {{item.title}}
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="advert-list-wrap advert-list-wrap-other">
+    <view class="advert-list advert-list-other advert-list-img">
+      <block wx:for="{{advertInfo.moduleList}}" wx:key="index">
+        <block wx:if="{{item.type == 2}}">
+          <view class="advert-item" wx:if="{{item.title || item.content}}">
+            <text class="item">{{item.title}}</text>
+            <text class="text">{{item.content}}</text>
+          </view>
+          <scroll-view scroll-x="true" class="scroll-progress">
+            <view class="advert-list">
+              <view class="paths" wx:for="{{item.floor_data}}" wx:for-index="index1" wx:key="index1" wx:for-item="dataItem" bindtap="tap" data-shop_id="{{dataItem.good_info.shop_id}}" data-type="{{ dataItem.type }}" data-param="{{ dataItem.param }}">
+                <view class="img">
+                  <image wx:if="{{dataItem.img_url}}" src="{{dataItem.img_url}}" mode="widthFix" />
+                  <image wx:else src="{{dataItem.good_info.img_url}}" mode="widthFix" />
+                  <progress class="progress" percent="{{ME.floor(dataItem.good_info.deal_num_ratio)}}" border-radius="14rpx" stroke-width="24rpx" activeColor="#FFD300" backgroundColor="#FFF5CB" />
+                  <view class="percent">已抢{{ME.floor(dataItem.good_info.deal_num_ratio)}}%</view>
+                </view>
+                <view class="current-price">
+                  ￥
+                  <text class="price">{{dataItem.good_info.price}}</text>
+                </view>
+                <view class="pass-price">￥{{dataItem.good_info.old_price}}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </block>
+        <block wx:if="{{item.type == 3}}">
+          <view class="advert-item" wx:if="{{item.title || item.content}}">
+            <text class="item">{{item.title}}</text>
+            <text class="text">{{item.content}}</text>
+          </view>
+          <scroll-view scroll-x="true" class="scroll-progress">
+            <view class="advert-list">
+              <view class="paths" wx:for="{{item.floor_data}}" wx:key="index" wx:for-item="dataItem" bindtap="tap" data-shop_id="{{dataItem.good_info.shop_id}}" data-type="{{ dataItem.type }}" data-param="{{ dataItem.param }}">
+                <view class="img">
+                  <image src="{{dataItem.good_info.img_url}}" mode="widthFix" />
+                </view>
+                <view class="current-price">
+                  ￥
+                  <text class="price">{{dataItem.good_info.price}}</text>
+                </view>
+                <view class="pass-price">￥{{dataItem.good_info.old_price}}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </block>
+        <block wx:if="{{item.type == 4}}">
+          <view class="paths paths3">
+            <view class="advert-item" wx:if="{{item.title || item.content}}">
+              <text class="item">{{item.title}}</text>
+              <text class="text">{{item.content}}</text>
+            </view>
+            <view class="advert-list image-box" style="flex-direction:column;">
+              <view class="pic" wx:for="{{item.image_data}}" wx:key="imageIndex" wx:for-item="imageItem">
+                <image src="{{imageItem.img_url}}" mode="widthFix" bindtap="tap" data-shop_id="{{imageItem.good_info.shop_id}}" data-type="{{ imageItem.type }}" data-param="{{ imageItem.param }}" />
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{item.type == 5}}">
+          <view class="paths paths2">
+            <view class="advert-item" wx:if="{{item.title || item.content}}">
+              <text class="item">{{item.title}}</text>
+              <text class="text">{{item.content}}</text>
+            </view>
+            <view class="paths2-box">
+              <view class="box-content" wx:for="{{item.image_data}}" wx:key="index" wx:for-item="dataItem">
+                <view class="img img-width">
+                  <image src="{{dataItem.img_url}}" mode="aspectFill" bindtap="tap" data-type="{{ dataItem.type }}" data-shop_id="{{dataItem.good_info.shop_id}}" data-param="{{ dataItem.param }}"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{item.type == 6}}">
+          <view class="paths paths2">
+            <view class="advert-item" wx:if="{{item.title || item.content}}">
+              <text class="item">{{item.title}}</text>
+              <text class="text">{{item.content}}</text>
+            </view>
+            <view class="paths2-box">
+              <view class="box-content" wx:for="{{item.floor_data}}" wx:key="index" wx:for-item="dataItem">
+                <view class="img">
+                  <image src="{{dataItem.good_info.img_url}}" mode="widthFix" bindtap="tap" data-shop_id="{{dataItem.good_info.shop_id}}" data-type="{{ dataItem.type }}" data-param="{{ dataItem.param }}"></image>
+                </view>
+                <view class="current-price">
+                  ￥
+                  <text class="price">{{dataItem.good_info.price}}</text>
+                </view>
+                <view class="pass-price">￥{{dataItem.good_info.old_price}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{item.type == 7}}">
+          <view class="paths paths1">
+            <view class="advert-item" wx:if="{{item.title || item.content}}">
+              <text class="item">{{item.title}}</text>
+              <text class="text">{{item.content}}</text>
+            </view>
+            <view class="img" wx:for="{{item.image_data}}" wx:key="imageIndex" wx:for-item="imageItem">
+              <image src="{{imageItem.img_url}}" mode="widthFix" bindtap="tap" data-shop_id="{{imageItem.good_info.shop_id}}" data-type="{{ imageItem.type }}" data-param="{{ imageItem.param }}" />
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <!-- 优质精选 -->
+  <!-- <view wx:if="{{module2}}" class="advert-list-wrap">
+    <view class="advert-item">
+      <text class="item">{{module2.title}}</text>
+      <text class="text">{{module2.content}}</text>
+    </view>
+    <scroll-view scroll-x="true" class="scroll-progress">
+      <view class="advert-list">
+        <view class="paths" wx:for="{{module2.floor_data}}" wx:for-item="dataItem" bindtap="tap" data-type="{{ dataItem.type }}" data-param="{{ dataItem.param }}">
+          <view class="img">
+            <image src="{{dataItem.img_url}}" mode="widthFix" />
+            <progress class="progress" percent="{{ME.floor(dataItem.good_info.deal_num_ratio)}}" border-radius="14rpx" stroke-width="16rpx" activeColor="#FFD300" font-size="16" backgroundColor="#fff" />
+            <view class="percent">已抢{{ME.floor(dataItem.good_info.deal_num_ratio)}}%</view>
+          </view>
+          <view class="current-price">
+            ￥
+            <text class="price">{{dataItem.good_info.price}}</text>
+          </view>
+          <view class="pass-price">￥{{dataItem.good_info.old_price}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view> -->
+  <!-- 优质精选--不带进度条 -->
+  <!-- <view wx:if="{{module3}}" class="advert-list-wrap">
+    <view class="advert-item">
+      <text class="item">{{module3.title}}</text>
+      <text class="text">{{module3.content}}</text>
+    </view>
+    <scroll-view scroll-x="true" class="scroll-progress">
+      <view class="advert-list">
+        <view class="paths" wx:for="{{module3.floor_data}}" wx:for-item="dataItem" bindtap="tap" data-type="{{ dataItem.type }}" data-param="{{ dataItem.param }}">
+          <view class="img">
+            <image src="{{dataItem.good_info.img_url}}" mode="widthFix" />
+          </view>
+          <view class="current-price">
+            ￥
+            <text class="price">{{dataItem.good_info.price}}</text>
+          </view>
+          <view class="pass-price">￥{{dataItem.good_info.old_price}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view> -->
+  <!-- 生鲜预告 -->
+  <!-- <view wx:if="{{module4}}" class="advert-list-wrap">
+    <view class="advert-item">
+      <text class="item">{{module4.title}}</text>
+      <text class="text">{{module4.content}}</text>
+    </view>
+    <view class="advert-list">
+      <view class="paths">
+        <view class="pic">
+          <image src="{{module4.image_data[0].img_url}}" mode="widthFix" bindtap="tap" data-type="{{ module4.image_data[0].type }}" data-param="{{ module4.image_data[0].param }}" />
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- 打牌牌首发---只有图片 -->
+  <!-- <view wx:if="{{mudule5s.length > 0}}" class="advert-list-wrap advert-list-wrap-other">
+    <view class="advert-list advert-list-other advert-list-img">
+      isblock=0
+      <view class="paths paths2" wx:for='{{ mudule5s }}' wx:key="{{ index }}">
+        <view class="advert-item">
+          <text class="item">{{item.title}}</text>
+          <text class="text">{{item.content}}</text>
+        </view>
+        <view class="paths2-box">
+          <view class="box-content" wx:for="{{item.image_data}}" wx:for-item="dataItem">
+            <view class="img img-width">
+              <image src="{{dataItem.img_url}}" mode="aspectFill"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="paths paths2">
+        <view class="advert-item">
+          <text class="item">有价钱的</text>
+          <text class="text">aaaa</text>
+        </view>
+        <view class="paths2-box">
+          <view class="box-content">
+            <view class="img">
+              <image src="/images/logo.jpg" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">100.00</text>
+            </view>
+            <view class="pass-price">￥200.00</view>
+          </view>
+          <view class="box-content">
+            <view class="img">
+              <image src="/images/logo.png" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">100.00</text>
+            </view>
+            <view class="pass-price">￥200.00</view>
+          </view>
+          <view class="box-content">
+            <view class="img">
+              <image src="/images/wxin.png" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">100.00</text>
+            </view>
+            <view class="pass-price">￥200.00</view>
+          </view>
+        </view>
+      </view>
+      <view class="paths paths1">
+        <view class="advert-item">
+          <text class="item">打牌首发</text>
+          <text class="text">xxxx</text>
+        </view>
+        <view class="img">
+          <image src="/images/header-bg.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="paths paths1">
+        <view class="advert-item">
+          <text class="item">打牌首发</text>
+          <text class="text">xxxx</text>
+        </view>
+        <view class="img">
+          <image src="/images/header-bg.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="paths paths1">
+        <view class="advert-item">
+          <text class="item">打牌首发</text>
+          <text class="text">xxxx</text>
+        </view>
+        <view class="img">
+          <image src="/images/header-bg.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="paths paths2">
+        <view class="advert-item">
+          <text class="item">有价钱的</text>
+          <text class="text">aaaa</text>
+        </view>
+        <view class="paths2-box">
+          <view class="box-content">
+            <view class="img">
+              <image src="/images/logo.jpg" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">100.00</text>
+            </view>
+            <view class="pass-price">￥200.00</view>
+          </view>
+          <view class="box-content">
+            <view class="img">
+              <image src="/images/logo.png" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">100.00</text>
+            </view>
+            <view class="pass-price">￥200.00</view>
+          </view>
+          <view class="box-content">
+            <view class="img">
+              <image src="/images/wxin.png" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">100.00</text>
+            </view>
+            <view class="pass-price">￥200.00</view>
+          </view>
+        </view>
+      </view>
+      <view class="paths paths3">
+        <view class="advert-item">
+          <text class="item">生鲜预告</text>
+          <text class="text">xxxx</text>
+        </view>
+        <view class="pic">
+          <image src="/images/header-bg.png" mode="widthFix"></image>
+        </view>
+      </view>
+      isblock=0 end
+    </view>
+  </view> -->
+  <!-- 大牌首发--图片+价钱 -->
+  <!-- <view wx:if="{{mudule6s.length > 0}}" class="advert-list-wrap">
+    <view class="advert-list advert-list-other">
+      <view class="paths paths2" wx:for='{{ mudule6s }}' wx:key="{{ index }}">
+        <view class="advert-item">
+          <text class="item">{{item.title}}</text>
+          <text class="text">{{item.content}}</text>
+        </view>
+        <view class="paths2-box">
+          <view class="box-content" wx:for="{{item.floor_data}}" wx:for-item="dataItem">
+            <view class="img">
+              <image src="{{dataItem.good_info.img_url}}" mode="widthFix"></image>
+            </view>
+            <view class="current-price">
+              ￥
+              <text class="price">{{dataItem.good_info.price}}</text>
+            </view>
+            <view class="pass-price">￥{{dataItem.good_info.old_price}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- <view wx:if="{{mudule7s.length > 0}}" class="advert-list-wrap">
+    <view class="advert-list">
+      <block wx:for='{{ mudule7s }}' wx:key="{{ index }}">
+        <view class="paths paths1">
+          <view class="advert-item">
+            <text class="item">{{item.title}}</text>
+            <text class="text">{{item.content}}</text>
+          </view>
+          <view class="img">
+            <image src="{{item.image_data[0].img_url}}" mode="widthFix" bindtap="tap" data-type="{{ item.image_data[0].type }}" data-param="{{ item.image_data[0].param }}" />
+          </view>
+        </view>
+      </block>
+    </view>
+  </view> -->
+</view>

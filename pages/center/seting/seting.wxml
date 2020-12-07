@@ -1,0 +1,26 @@
+<!--pages/center/seting/seting.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="设置" />
+  <view class='flex-row-s inof-item' bindtap='jumpUserInfo'>
+    <view class='nickname'>{{ userInfo.nickname }}</view>
+    <view class='flex-row-f'>
+      <image src="{{ userInfo.head_url }}" class="head-img" mode="aspectFill"></image>
+      <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+    </view>
+  </view>
+  <view class='flex-row-s inof-item' bindtap='jumpPrivacy'>
+    <view>隐私协议</view>
+    <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+  </view>
+  <view class='flex-row-s inof-item' bindtap='jumpFeedback'>
+    <view>意见反馈</view>
+    <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+  </view>
+  <view class='flex-row-s inof-item' bindtap='jumpAboutUs'>
+    <view>关于我们</view>
+    <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

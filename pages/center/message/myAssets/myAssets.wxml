@@ -1,0 +1,32 @@
+<!--pages/center/message/myAssets/myAssets.wxml-->
+<wxs src="../../../../utils/substr.wxs" module="S1" />
+
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="我的资产" />
+  <!-- <view class='read-all' catchtap='read'>全部已读</view> -->
+  <view wx:if="{{ listData.total_pages == 0 }}" class="flex-column empty-view">
+    <image class='empty-img' src="/images/center/address-empty.png"></image>
+    <view class='empty-text'>暂无消息</view>
+  </view>
+  <view >
+    <view wx:for='{{listData.list}}' wx:key='{{index}}' wx:for-item="i">
+      <view class='card-bottom' wx:for='{{i.list}}' wx:for-item="j" wx:key="itemIndex" wx:for-index="itemIndex" data-j='{{j}}' >
+        <view style='padding:30rpx 0'>
+        <!-- catchtap='readEach' data-id="{{j.notice_id}}" data-index="{{index}}" data-index2="{{itemIndex}}" -->
+          <view class='title flex-row-s' >
+            <view class='{{j.is_read==1?"read-gray":""}}'>{{S1.substr(j.title,16)}}</view>
+            <view class='time'>{{i.time}}</view>
+          </view>
+          <view class='sub-title text-one text-line1'>{{S1.substr(j.remark,20)}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

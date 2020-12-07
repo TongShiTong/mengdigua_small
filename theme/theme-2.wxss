@@ -1,0 +1,99 @@
+/* 数码3C*/
+
+/* 字体颜色 */
+
+.theme-color-A-2 {
+  color: #0d7be2 !important;
+}
+
+.theme-color-B-2 {
+  color: #20bafb !important;
+}
+
+.theme-color-C-2 {
+  color: #fed444 !important;
+}
+
+.theme-color-D-2 {
+  color: #fef2b6 !important;
+}
+
+/* 背景色 */
+
+.theme-bg-A-2 {
+  background: #0d7be2 !important;
+}
+
+.theme-bg-B-2 {
+  background: #20bafb !important;
+}
+
+.theme-bg-C-2 {
+  background: #fed444 !important;
+}
+
+.theme-bg-D-2 {
+  background: #fef2b6 !important;
+}
+
+/* 背景渐变 */
+
+.theme-lg-A-2 {
+  background: linear-gradient(270deg, rgba(118, 189, 255, 1) 0%, rgba(70, 161, 247, 1) 100%) !important;
+}
+
+.theme-lg-B-2 {
+  background: linear-gradient(270deg, #ebc77f 0%, #b8a281 100%) !important;
+}
+
+.theme-lg-C-2 {
+  background: linear-gradient(270deg, rgba(70, 200, 255, 1) 0%, rgba(32, 186, 251, 1) 100%) !important;
+}
+
+.theme-lg-D-2 {
+  background: linear-gradient(270deg, #fffafa 0%, #fffa93 100%) !important;
+}
+
+/* 边线颜色 */
+
+.theme-border-A-2 {
+  border-color: #46a1f7 !important;
+}
+
+.theme-border-B-2 {
+  border-color: #20bafb !important;
+}
+
+.theme-border-C-2 {
+  border-color: #fed444 !important;
+}
+
+.theme-border-D-2 {
+  border-color: #fef2b6 !important;
+}
+
+/* 主背景色不透明度40% */
+
+.theme-bgo-A-2 {
+  background: rgba(70, 161, 247, 0.4);
+}
+
+/* 边线颜色+字色 */
+
+.theme-border-c-A-2 {
+  border-color: #0d7be2 !important;
+  color: #0d7be2 !important;
+}
+
+.theme-font-A-2 {
+  color: #0d7be2 !important;
+}
+
+
+.theme2-color-0{
+  color:#E50A35 !important;
+}
+
+.theme2-bg-color{
+  color:#E50A35 !important;
+}

@@ -1,0 +1,81 @@
+<!-- components/shop/shop.wxml -->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<block>
+  <block wx:if="{{shopInfo.show_type === 1}}">
+    <view class="shop-banner" bindtap="tap" data-type="{{ shopInfo.moduleList[0].image_data[0].type }}" data-param="{{ shopInfo.moduleList[0].image_data[0].param }}">
+      <image src="{{shopInfo.moduleList[0].image_data[0].img_url}}" mode="widthFix" class="pic" />
+    </view>
+    <block wx:for="{{shopInfo.moduleList[0].floor_data}}" wx:key="index">
+      <view class="shop-box" bindtap="tap" data-type="{{ item.type }}" data-param="{{ item.param }}" data-shop_id="{{item.good_info.shop_id}}">
+        <view class="shop-pic">
+          <image src="{{item.good_info.img_url}}" mode="widthFix" class="pic" />
+        </view>
+        <view class="shop-info">
+          <view class="tag-list" wx:if="{{item.good_info.shop_label}}">
+            <text>{{item.good_info.shop_label}}</text>
+          </view>
+          <view class="title">{{item.good_info.title}}</view>
+          <view class="des">
+            {{item.good_info.remark}}
+          </view>
+          <view class="price">
+            <text class="red">￥</text>
+            <text class="red new">{{item.good_info.price}}</text>
+            <text class="old">¥{{item.good_info.old_price}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <block wx:if="{{shopInfo.show_type === 2}}">
+    <view class="shop-banner" bindtap="tap" data-type="{{ shopInfo.moduleList[0].image_data[0].type }}" data-param="{{ shopInfo.moduleList[0].image_data[0].param }}">
+      <image src="{{shopInfo.moduleList[0].image_data[0].img_url}}" mode="widthFix" class="pic" />
+    </view>
+    <scroll-view class="shop-scroll" scroll-x="true">
+      <view class="shop-list">
+        <view class="shop-list-box" wx:for="{{shopInfo.moduleList[0].floor_data}}" wx:key="index" bindtap="tap" data-type="{{ item.type }}" data-param="{{ item.param }}" data-shop_id="{{item.good_info.shop_id}}">
+          <view class="list-pic">
+            <image src="{{item.good_info.img_url}}" mode="widthFix" class="pic" />
+          </view>
+          <view class="box-box">
+            <view class="list-title">{{item.good_info.title}}</view>
+            <view class="list-price">
+              <text class="red">￥</text>
+              <text class="red new">{{item.good_info.price}}</text>
+              <text class="old">¥{{item.good_info.old_price}}</text>
+            </view>
+          </view>
+          
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+
+  <view class="water-flow shop3_box" wx:if="{{shopInfo.show_type === 3}}">
+
+    <view wx:for="{{shopInfo.moduleList}}" wx:key="index" class="shop_item">
+      <view class="shop_info_box" bindtap="tap" data-type="{{item.image_data[0].type}}" data-param="{{ item.image_data[0].param }}">
+        <view class="shop_img_box">
+          <image src="{{item.image_data[0].img_url}}" mode="aspectFill"></image>
+        </view>
+        <view>
+         <view>{{item.image_data[0].name}}</view>
+         <view class="star_box">
+            <image src="./image/ty2x.png" wx:for="{{S1.starNum(item.image_data[0].total_level)}}" wx:key="index"></image>
+            <image src="./image/ty22x.png" wx:for="{{S1.sxstarNum(item.image_data[0].total_level)}}" wx:key="index"></image>
+         </view>
+        </view>
+      </view>
+     
+      <view class="shop_good">
+        <view wx:for="{{item.floor_data}}" wx:for-item="dataItem" wx:key="dataindex" class="good_img_box" bindtap="tap" data-type="{{dataItem.type}}" data-param="{{ dataItem.param }}" data-shop_id="{{dataItem.good_info.shop_id}}">
+          <image wx:if="{{dataItem.img_url}}" src="{{dataItem.img_url}}" mode="aspectFill"></image>
+          <image wx:else src="{{dataItem.good_info.img_url}}" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view>
+    
+       <!-- <water-flow id="water-flow" generic:l-water-flow-item="water-flow-item"/> -->
+  </view>
+</block>

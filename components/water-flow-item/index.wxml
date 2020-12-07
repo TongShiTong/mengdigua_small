@@ -1,0 +1,19 @@
+<!-- <image src="{{data.image}}" mode="widthFix" class="pic" /> -->
+<view class="flow-card">
+  <view class="banner">
+    <image src="{{data.image_data[0].img_url}}" mode="widthFix" class="pic" />
+  </view>
+  <view class="half-box">
+    <view class="paths"  wx:for="{{data.floor_data}}" wx:key="param">
+      <view class="paths-pic">
+        <image src="{{item.good_info.img_url}}" mode="widthFix" class="pic" />
+      </view>
+      <view class="des">{{ S1.substr(item.good_info.title,14) }}</view>
+      <view class="price">
+        <text class="red">￥</text>
+        <text class="red new">{{item.good_info.price}}</text>
+        <text class="old">¥{{item.good_info.old_price}}</text>
+      </view>
+    </view>
+  </view>
+</view>

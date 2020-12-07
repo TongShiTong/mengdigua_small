@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "领券中心",
+  "usingComponents": {
+    "banner": "/components/banner/banner",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

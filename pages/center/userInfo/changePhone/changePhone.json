@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "修改登录手机号",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "bind-phone": "/components/bindPhone/bindPhone"
+    
+  }
+}

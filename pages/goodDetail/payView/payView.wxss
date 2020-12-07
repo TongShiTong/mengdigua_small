@@ -1,0 +1,64 @@
+/* pages/goodDetail/payView/payView.wxss */
+.order-info {
+  background-color: #fff;
+  padding: 30rpx 0 60rpx 0;
+  border-top: 1px solid #f4f4f4;
+}
+.title {
+  color: #1D1E1F;
+}
+.time {
+  font-size: 32rpx;
+  color: #A9A9A9;
+  margin-top: 10rpx;
+}
+.pay-amount {
+  color: #B52902;
+  font-size: 40rpx;
+  margin-top: 30rpx;
+}
+.pay {
+  margin-top: 10rpx;
+}
+.pay-img {
+  width: 48rpx;
+  height: 48rpx;
+}
+.select-img {
+  width: 32rpx;
+  height: 32rpx;
+}
+.select-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.pay-text {
+  margin-left: 20rpx;
+  color: #484848;
+}
+.pay-tip {
+  padding: 30rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #878787;
+}
+.buy-btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 98rpx;
+  background-color: #B52902;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 98rpx;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+var rich = function (string) {
+  var C2 = string;
+  var re = getRegExp('<img', 'g');
+  C2 = C2.replace(re, '<img style="width:100%;display:block;"');
+  // var re2 = getRegExp('<p', 'g');
+  // C2 = C2.replace(re2, '<P style="width: 100%;white-space: pre-wrap;word-break: break-all;"');
+  return C2;
+}
+
+module.exports.rich = rich;

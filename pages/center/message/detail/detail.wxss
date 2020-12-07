@@ -1,0 +1,14 @@
+/* pages/center/message/detail/detail.wxss */
+page{
+  background-color: #fff;
+}
+.head {
+  padding: 30rpx;
+}
+.text {
+  color: #999999;
+  font-size: 26rpx;
+}
+.title {
+  font-size: 48rpx;
+}

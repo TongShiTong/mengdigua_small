@@ -1,0 +1,87 @@
+<!--components/customHorizon/index.wxml-->
+
+<!-- 限时购 -->
+<view 
+  class="custom-wrap"
+  wx:if="{{showType==1}}">
+  <!-- 倒计时 -->
+  <view class="count-head">
+    <view>
+      <view class="count-down">
+        限时购
+        <text class="count-element">{{hour}}</text>:<text class="count-element">{{minute}}</text>:<text class="count-element">{{second}}</text>
+      </view>
+      <view class="count-sub">
+        爆款限时{{}}
+      </view>
+    </view>
+    <view class="count-right">
+      查看更多
+      <!-- <image src="" style=""/> -->
+    </view>
+  </view>
+  <view>
+    <scroll-view 
+      scroll-x="true"
+      class="scroll-wrap">
+      <view 
+        class="item-wrap">
+        <view
+          wx:for="{{listData}}"
+          wx:key='index'
+          class="item-inner"
+          style="{{index == 0 ?'padding-left:32rpx;':''}}">
+          <image 
+            src=""
+            style=""
+            class="item-img"></image>
+          <view>
+            <text class="now-price">￥123</text>
+            <text class="old-price">￥123</text>
+          </view>            
+        </view>
+      </view>
+    </scroll-view>
+  </view> 
+</view>
+
+<!-- 自定义横向 -->
+<view 
+  wx:if="{{showType==2}}"
+  class="horizon2"
+  style="border-radius:16rpx;">
+  <!-- 顶部banner -->
+  <!-- <view
+    class="banner-top2"
+    style="border-radius:16rpx 16rpx 0 0;"> 
+
+  </view>-->
+  <!-- 横向 -->
+  <view style="">
+    <scroll-view 
+      scroll-x="true"
+      class="scroll-wrap2">
+      <view 
+        class="item-wrap2">
+        <view
+          wx:for="{{listData}}"
+          wx:key='index'
+          class="item-inner2"
+          bindtap="jumpToDetail"
+          data-id="{{item.item_id}}"
+          data-shop_id="{{item.shop_id}}"
+          style="">
+          <image 
+            src="{{item.img_url}}"
+            style=""
+            class="item-img2"></image>
+          <view class="item-title2">{{item.title}}</view>
+          <view style="text-align:left;margin-top:8rpx;padding-bottom:20rpx;">
+            <text class="now-price">￥{{item.price}}</text>
+          </view>  
+          <view class="vertical-slash"></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view> 
+</view>

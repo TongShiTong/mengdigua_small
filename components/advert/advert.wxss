@@ -1,0 +1,256 @@
+/* components/advert/advert.wxss */
+@import "../../theme/theme-0.wxss";
+@import "../../theme/theme-1.wxss";
+@import "../../theme/theme-2.wxss";
+@import "../../theme/theme-3.wxss";
+@import "../../theme/theme-4.wxss";
+@import "../../theme/theme-5.wxss";
+
+.box-shadow{
+  /* background: yellow; */
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 16rpx 4rpx rgba(17, 17, 17, 0.05);
+  border-radius: 16rpx;
+  margin: 20rpx;
+  padding-bottom: 20rpx;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.advert-item {
+
+}
+.hot-box{
+  height: 76rpx;
+  line-height: 76rpx;
+  width: 100%;
+  position: relative;
+  border-radius: 16rpx 16rpx 0 0;
+  border-bottom: 1rpx solid #EBEBEB;
+  /* margin-bottom: 10rpx; */
+}
+.hot-advert {
+  width: 140rpx;
+  height: 76rpx;
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content:center; 
+  line-height: 76rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.advert-swiper {
+  height: 76rpx;
+  margin-left: 160rpx;
+  width: 100%;
+}
+.hot-advert image{
+  width: 108rpx;
+  height: 36rpx;
+}
+.swiper-item {
+  display: flex;
+  align-items: center;
+}
+.advert-content {
+  color: #222;
+  font-size: 26rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  padding-top: 6rpx;
+  max-width: 540rpx;
+  margin-right: 20rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.advert-time {
+  margin-right: 30rpx;
+  color: #222;
+}
+.advert-list-wrap{
+  margin: 0rpx 0 20rpx 0;
+  padding: 0px 0 12rpx 0rpx;
+}
+.advert-list-wrap .advert-item{
+  margin: 24rpx 0 15rpx 40rpx;
+  /* width: 100%; */
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.advert-list-wrap .advert-item .item{
+  font-size: 32rpx;
+  color: #111;
+  font-weight: bold;
+}
+.advert-list-wrap .advert-item .text{
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 12rpx;
+}
+.advert-list-wrap .advert-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* margin-top: 10rpx; */
+  width: 100%;
+  justify-content:space-around;
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+}
+.advert-list-wrap .image-box .pic{
+  margin-top: 16rpx;
+}
+.advert-list-wrap .image-box .pic:first-child {
+  margin-top: 0;
+}
+.advert-list-wrap .advert-list .paths{
+  /* width: 160rpx; */
+  /* margin: 0 8rpx 0 8rpx; */
+  width: 100%;
+}
+.advert-list-wrap .advert-list .img{
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.advert-list-wrap .advert-list .img image{
+  width: 100%;
+  border-radius: 8rpx;
+}
+.advert-list-wrap .advert-list .pic{
+  width: 680rpx;
+  /* height: 240rpx; */
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.advert-list-wrap .advert-list .pic image{
+  width: 100%;
+  border-radius: 8rpx;
+}
+.advert-list-wrap .advert-list .progress{
+  position: absolute;
+  bottom: 0rpx;
+  left: 4rpx;
+  width: 152rpx;
+  /* border: 1rpx solid #FFD300; */
+  border-radius: 14rpx;
+  background-color: #FFD300;
+  /* border: 1px solid #FFD300; */
+  /* padding: 1rpx; */
+}
+
+.advert-list-wrap .advert-list .percent{
+  position: absolute;
+  width: 160rpx;
+  text-align: center;
+  bottom: 0rpx;
+  left: 0rpx;
+  font-size: 18rpx;
+  color: #222;
+  font-weight: bold;
+}
+.advert-list-wrap .advert-list .current-price{
+  font-size: 20rpx;
+  color: #F43900;
+  font-weight: bold;
+  padding-top: 12rpx;
+  line-height: 36rpx;
+}
+.advert-list-wrap .advert-list .current-price .price{
+  font-size: 28rpx;
+  margin-left: -6rpx;
+}
+.advert-list-wrap .advert-list .pass-price{
+  color: #CECFCF;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  text-decoration:line-through;
+  /* padding: 0 6rpx; */
+}
+.advert-list-wrap .advert-list .paths1 {
+  width: 346rpx;
+}
+.advert-list-wrap .advert-list .paths1 .img{
+  width: 330rpx;
+  height: 200rpx;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+.advert-list-wrap .advert-list .paths2 {
+  width: 345rpx;
+}
+.advert-list-wrap .advert-list .paths2 .advert-item .text{
+  display: inline-block;
+  width:160rpx;
+  overflow: hidden;
+}
+.advert-list-wrap .advert-list .paths2 .paths2-box{
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  /* align-items: baseline; */
+
+  
+}
+.advert-list-wrap .advert-list .paths2 .box-content{
+  width: 160rpx;
+  margin: 0 7rpx 20rpx 7rpx;
+}
+.advert-list-wrap .advert-list .paths2 .img{
+  width: 160rpx;
+  height: 160rpx;
+}
+.advert-list-wrap .advert-list-img .paths2 .paths2-box{
+  justify-content: space-around;
+}
+.advert-list-wrap .advert-list .paths2 .img-width{
+  height:200rpx;
+  width: 160rpx;
+  /* text-align: center; */
+}
+.advert-list-wrap .advert-list .paths2 .img-width image{
+  /* width: 150rpx; */
+  height: 200rpx;
+  width:100%;
+  
+}
+.advert-list-wrap .advert-list .paths2 .img img{
+  width: 100%;
+  border-radius: 8rpx;
+}
+.advert-list-wrap .advert-list-other.advert-list{
+  /* display: block; */
+  align-items: baseline;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap:wrap;
+}
+.advert-list-wrap-other.advert-list-wrap .advert-list-img .paths2 .paths2-box{
+  justify-content: start;
+}
+.scroll-progress{
+  width: 100%;
+  padding: 0 10rpx;
+}
+.scroll-progress .advert-list{
+  justify-content: start;
+  
+}
+.scroll-progress .advert-list .paths{
+  margin:0 15rpx 0 0;
+}
+.scroll-progress .advert-list .paths:last-child {
+  margin:0 0rpx 0 0;
+}
+
+
+
+

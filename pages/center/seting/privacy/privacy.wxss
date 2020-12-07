@@ -1,0 +1,5 @@
+/* pages/center/seting/privacy/privacy.wxss */
+page {
+  background-color: #fff;
+  text-align: center;
+}

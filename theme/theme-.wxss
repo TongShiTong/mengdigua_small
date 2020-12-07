@@ -1,0 +1,74 @@
+/* 服装 */
+
+/* 字体颜色 */
+
+.theme-color-A-0 {
+  color: #222 !important;
+}
+
+.theme-color-B-0 {
+  color: #c7ae8a !important;
+}
+
+.theme-color-C-0 {
+  color: #b6b6b6 !important;
+}
+
+.theme-color-D-0 {
+  color: #fffafa !important;
+}
+
+/* 背景色 */
+
+.theme-bg-A-0 {
+  background: #222 !important;
+}
+
+.theme-bg-B-0 {
+  background: #c7ae8a !important;
+}
+
+.theme-bg-C-0 {
+  background: #b6b6b6 !important;
+}
+
+.theme-bg-D-0 {
+  background: #fffafa !important;
+}
+
+/* 背景渐变 */
+
+.theme-lg-A-0 {
+  background: linear-gradient(270deg,rgba(47,47,47,1) 0%,rgba(34,34,34,1) 100%) !important;
+}
+
+.theme-lg-B-0 {
+  background: linear-gradient(270deg, #ebc77f 0%, #b8a281 100%) !important;
+}
+
+.theme-lg-C-0 {
+  background: linear-gradient(270deg,rgba(214,193,163,1) 0%,rgba(199,174,138,1) 100%) !important;
+}
+
+.theme-lg-D-0 {
+  background: linear-gradient(270deg, #fffafa 0%, #fffa93 100%) !important;
+}
+
+/* 边线颜色+字色 */
+
+.theme-border-c-A-0 {
+  border-color: #222 !important;
+  color: #222 !important;
+}
+
+.theme-font-A-0{
+  color: #222 !important;
+}
+
+.theme2-color-0{
+  color:#E50A35 !important;
+}
+
+.theme2-bg-color{
+  color:#E50A35 !important;
+}

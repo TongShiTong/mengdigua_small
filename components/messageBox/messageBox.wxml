@@ -1,0 +1,15 @@
+<!--components/messageBox/messageBox.wxml-->
+<view class='mask' catchtap='colse'></view>
+<view class='message-box'>
+  <view class='message-top'>
+    <view class='title'>{{ title }}</view>
+  </view>
+  <view class='sub-title' wx:if="{{subTitle}}">{{ subTitle }}</view>
+  <view class='message-bottom'>
+    <view class='message-text cancel' bindtap='colse'>取消</view>
+    <form class='message-text confirm' bindsubmit="confirm" report-submit="true">
+      <button formType="submit" class='button-comfirm'>{{ confirmText }}</button>
+    </form>
+
+  </view>
+</view>

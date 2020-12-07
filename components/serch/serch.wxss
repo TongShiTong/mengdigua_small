@@ -1,0 +1,62 @@
+/* components/serch/serch.wxss */
+@import "../../theme/theme-0.wxss";
+@import "../../theme/theme-1.wxss";
+@import "../../theme/theme-2.wxss";
+@import "../../theme/theme-3.wxss";
+@import "../../theme/theme-4.wxss";
+@import "../../theme/theme-5.wxss";
+.index-head {
+  background-color: #fff;
+  padding: 0 30rpx;
+  width: 690rpx;
+}
+.flex-row-s {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.serch-wrap {
+  width: 690rpx;  
+}
+.serch {
+  height: 60rpx;
+  background: #F6F6F7;
+  border-radius: 30rpx;
+  padding: 0 30rpx;
+  flex: 1;
+}
+.serch-input {
+  margin-left: 20rpx;
+  width: 380rpx;
+  color: #999999;
+  font-size: 24rpx;
+}
+.message-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-left: 10rpx;
+}
+.cilcel {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background-color: #ff0000;
+  position: absolute;
+  right: 0;
+  top: 2rpx;
+}
+.serch-img {
+  width: 34rpx;
+  height: 34rpx;
+}
+.message-img {
+  width: 48rpx;
+  height: 44rpx;
+}

@@ -1,0 +1,17 @@
+<!--pages/personShop/shareShop/shareShop.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="店铺" />
+  <banner bInfos="{{banner}}" bannerHeight="400rpx" />
+  <view class='intro'>{{intro}}</view>
+  <view class='shop-title2 flex-r-b' style='height:rpx'>
+    <text>商品推荐</text>
+  </view>
+  <for-list showAdd="{{showAdd}}"  style="p30" list="{{goodsList.list}}" showType="3" skillType='1' userInfo="{{userInfo}}"></for-list>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+  <!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"></bind-phone> -->
+</block>
+<block wx:else>
+  <page-loding></page-loding>
+</block>

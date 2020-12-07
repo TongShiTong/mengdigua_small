@@ -1,0 +1,9 @@
+{
+  "onReachBottomDistance":100,
+  "usingComponents": {
+    "page-loding": "/components/pageLoding/pageLoding",
+    "navbar": "/components/navbar/index",
+    "row-scroll": "/components/rowscroll/rowscroll",
+    "for-list": "/components/forList/forList"
+  }
+}

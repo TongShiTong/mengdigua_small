@@ -1,0 +1,22 @@
+<!--pages/center/message/detail/detail.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="{{title||'公告详情'}}" />
+  <wxs src="../../../../utils/rich.wxs" module="R1" />
+  <view class='head'>
+    <view class='title'>{{title}}</view>
+    <view class='flex-row-f' style='margin-top:20rpx;'>
+      <view class='flex-row-f'>
+        <view class='text'>{{create_time}} | 阅读：{{read}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ content }}">
+    <rich-text nodes="{{R1.rich(content)}}"></rich-text>
+  </view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

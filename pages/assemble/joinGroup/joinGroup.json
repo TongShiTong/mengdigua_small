@@ -1,0 +1,13 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "look-more": "/components/lookmore/lookmore",
+    "modal": "/components/modal/modal",
+    "groupInfo": "/components/groupInfo/groupInfo",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "forList": "/components/forList/forList",
+    "shop-format": "/components/shopFormat/shopFormat",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "navbar": "/components/navbar/index"
+  }
+}

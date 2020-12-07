@@ -1,0 +1,89 @@
+/* pages/class/class.wxss */
+page{
+  background: #fff;
+}
+.serch {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  height: 100rpx;
+  background-color: #fff;
+}
+.super {
+  position: relative;
+  height: 100%;
+}
+.box {
+  width: 30%;
+  position: fixed;
+  left: 0;
+  top: 100rpx;
+  z-index: 99;
+}
+.category {
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  color: #1B252D;
+  position: relative;
+  background:rgba(246,244,245,0.4);
+}
+.line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6rpx;
+  height: 100%;
+  background-color: #B52902
+}
+.actice {
+  background:#fff;
+  color: #B52902;
+}
+.right-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70%;
+  flex-wrap: wrap;
+  position: fixed;
+  left: 30%;
+  top: 100rpx;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  height: 100%;
+  background-color: #fff;
+}
+.good-img {
+  width: 160rpx;
+  height: 160rpx;
+}
+.detail {
+  margin-left: 50rpx;
+  padding: 50rpx 50rpx 50rpx 0;
+  display: inline-block;
+  border-bottom: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
+}
+.detail-tow {
+  padding: 50rpx 0 50rpx 50rpx;
+  display: inline-block;
+  border-bottom: 1px solid #f4f4f4;
+}
+.detail-one {
+  border-bottom: 1px solid transparent;
+}
+.detail-three {
+  border-bottom: 1px solid transparent;
+}
+.detail-name {
+  margin-top: 10rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #555555;
+}
+.detail-four {
+  border-right: 1px solid transparent;
+}

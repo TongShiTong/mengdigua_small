@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "任务进度",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

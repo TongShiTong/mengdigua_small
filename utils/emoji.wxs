@@ -1,0 +1,13 @@
+var emoji = function (string,long) {
+  var C2 = string;
+  C2 = decodeURIComponent(C2)
+  if ((C2 + "").length > long) {
+    C2 = (C2 + "").substring(0, long) + "...";
+    return C2
+  } else {
+    return C2
+  }
+  return C2;
+}
+
+module.exports.emoji = emoji;

@@ -1,0 +1,16 @@
+<!--components/pay/pay.wxml-->
+<view class='mask' bindtap='closeModal'></view>
+<view class='pay-modal'>
+  <view class='modal-title'>请选择支付方式</view>
+  <view class='select-item' wx:for="{{ pay }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectIndex'>
+    <view class='item-left'>
+      <image src='{{ item.img }}' class='pay-img' mode="aspectFill"></image>
+      <view class='pay-text'>{{ item.title }}</view>
+    </view>
+    <image wx:if="{{ payIndex == index }}" src='/images/shopcar/selected.png' class='select-img' mode="aspectFill"></image>
+    <image wx:else src='/images/shopcar/unselected.png' class='select-img' mode="aspectFill"></image>
+  </view>
+</view>
+<form bindsubmit="goBuy" report-submit="true">
+  <button formType="submit" class='pay-btn'>确认支付￥{{ totalPrice }}</button>
+</form>

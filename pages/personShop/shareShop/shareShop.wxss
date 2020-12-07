@@ -1,0 +1,21 @@
+/* pages/personShop/shareShop/shareShop.wxss */
+page{
+  background: #fff;
+}
+.intro {
+  padding: 40rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(85, 85, 85, 1);
+  line-height: 40rpx;
+}
+.shop-title2 {
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: rgba(1, 0, 1, 1);
+  height: 108rpx;
+  line-height: 108rpx;
+  padding-left: 40rpx;
+}

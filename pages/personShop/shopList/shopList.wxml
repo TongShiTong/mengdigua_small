@@ -1,0 +1,32 @@
+<wxs src="../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="商品篮" />
+  <view class='p30 pt30 adming-title' bindtap='manage' wx:if="{{ showManage === false }}">管理</view>
+  <view class='p30 pt30 adming-title' bindtap='manage' wx:if="{{ showManage === true }}">取消</view>
+  <view style="padding-bottom:100rpx;">
+  <for-list  list="{{goodsList.list}}" showManage="{{showManage}}" showType="4" skillType='1' userInfo="{{userInfo}}" maxValue="{{maxValue}}" bind:changeAll="changeALL" ></for-list>
+  </view>
+  
+
+  <view class='button-bottom flex-r-b'>
+    <block wx:if="{{showManage}}">
+      <view class='flex-r-s choice-left' catchtap='choiceAll'>
+        <view class="shop-list-choice-1 {{selectAll?'shop-list-choiced-1  theme-lg-A-'+theme:''}}">
+          <view class='center-circle-1' wx:if="{{selectAll}}"></view>
+        </view>
+        <view class='choice-all' >全选</view>
+      </view>
+      <view class='delate theme-lg-A-{{theme}}' catchtap='delateAll'>删除</view>
+    </block>
+    <block wx:if="{{!showManage}}">
+    <view class='flex-1 theme-lg-C-{{theme}} button-style' catchtap='goDetail' data-url="/pages/class/class?add=1">添加商品</view>
+    <view class='flex-1 theme-lg-A-{{theme}} button-style' catchtap='routeBack' >完成</view>
+    </block>
+  </view>
+
+
+
+</block>
+<block wx:else>
+  <page-loding></page-loding>
+</block>

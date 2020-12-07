@@ -1,0 +1,31 @@
+<!--pages/center/message/notice/notice.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="{{title}}" />
+  <wxs src="../../../../utils/rich.wxs" module="R1" />
+  <view wx:if="{{ noticePages == 0 }}" class="flex-column empty-view">
+    <image class='empty-img' src="/images/center/address-empty.png"></image>
+    <view class='empty-text'>暂无消息~</view>
+  </view>
+  <scroll-view class="scroll-load-panel" scroll-y="true" wx:else bindscrolltolower="loadMore">
+    <view wx:for='{{noticeData}}' wx:key='i{{index}}' wx:for-item="i">
+      <view class='flex-row' style='margin-top:20rpx;'>
+        <view class='time {{i.is_read==1?"time-read":""}}'>{{i.time}} </view>
+      </view>
+      <view class='card' wx:for='{{i.list}}' wx:for-item="j" wx:key="j{{index}}" bindtap='jumpDetail' data-j='{{j}}'>
+        <image src="{{j.notice.show_img}}" class='card-img' mode="aspectFill" wx:if='{{j.notice.show_img}}'></image>
+        <view class='flex-row-s card-bottom'>
+          <view style='width:540rpx;'>
+            <view class='title text-line1'>{{j.title}}</view>
+            <view class='text-one text-line1'>{{j.remark}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

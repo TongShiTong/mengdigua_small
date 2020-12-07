@@ -1,0 +1,8 @@
+<!--pages/goodDetail/bargainHelperList/index.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<view class="helper-container">
+  <navbar title="砍价列表" />
+  <helper helpList="{{helper.list}}"/>
+</view>

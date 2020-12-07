@@ -1,0 +1,641 @@
+<!-- pages/goodDetail/goodDetail.wxml -->
+<wxs src="../../utils/rich.wxs" module="rich" />
+<wxs src="../../utils/substr.wxs" module="S1" />
+<wxs src="../../utils/filters.wxs" module="F1" />
+
+<wxs module="ME1">
+var getAcceptCoupans = function(array) {
+	return array.filter(function(item){
+		return item.is_accept == 1;
+	});
+}
+var getUnAcceptCoupans = function(array){
+	return array.filter(function(item){
+		return item.is_accept == 0;
+	});
+}
+
+var getCoupanType = function(type){
+	switch(type){
+		case "1":
+			return "平台";
+		case "2":
+			return "店铺";
+		case "3":
+			return "商品";
+		case "4":
+			return "品类";
+		default:
+			return "";
+	}
+}
+
+var getShopTypeText = function(shopType){
+	switch(shopType){
+		case 1:
+			return "品牌";
+		case 2:
+			return "优质果园";
+		case 3:
+			return "萌工厂";
+		case 4:
+			return "萌瓜超市";
+		default:
+			return "";
+	}
+}
+
+var getShopAddress = function(shop){
+	if(!shop || !shop.full_name){
+		return "";
+	}
+	var array = shop.full_name.split("-");
+	return array[0] + array[1];
+}
+
+var getPostage = function(item){
+	if(item.postage == 0){
+		return "包邮";
+	} else{
+		return "快递:" + item.postage;
+	}
+}
+
+var getAddressAndPostage = function(item){
+	var address = getShopAddress(item.shop);
+	var postage = getPostage(item);
+	if(address){
+		return address + " | " + postage;
+	}else{
+		return postage;
+	}
+}
+module.exports.getAcceptCoupans = getAcceptCoupans;
+module.exports.getUnAcceptCoupans = getUnAcceptCoupans;
+module.exports.getCoupanType = getCoupanType;
+module.exports.getShopTypeText = getShopTypeText;
+module.exports.getShopTypeText = getShopTypeText;
+module.exports.getShopAddress = getShopAddress;
+module.exports.getPostage = getPostage;
+module.exports.getAddressAndPostage = getAddressAndPostage;
+</wxs>
+
+<block wx:if="{{theme || theme===0}}">
+	<view class="nav-wrap" isTransparent='true'
+		style='padding-top:{{barHeight}}px;height: {{height}}px;background:{{(bgColor!==""&&!isTransparent)||(!isTransparent)?bgColor:bc}}'>
+		<view class='content-body'>
+			<view class='nav-search' bindtap='jumpSerch'>
+				<image src='../../images/gooddetail/icon-search.png' mode='aspectFill' class="icon-search" />
+				<text class="text">{{hotpos}}</text>
+			</view>
+			<view wx:if="{{back==1}}" class='icon-back' bindtap='jumpBack1'>
+				<image src='../../images/gooddetail/icon-back.png' mode='aspectFill' />
+			</view>
+			<view wx:if="{{back!=1}}" class='icon-back' bindtap='jumpBack'>
+				<image src='../../images/gooddetail/icon-back.png' mode='aspectFill' />
+			</view>
+		</view>
+	</view>
+	<!-- <navbar isTransparent='true' title="商品详情" wx:if="{{showBar}}" />
+	<navbar title="商品详情" wx:if="{{!showBar}}" />
+	<view class='back main-color ' wx:if="{{ shareCode }}" bindtap='jumpBack'>返回</view> -->
+	<!-- 商品 -->
+	<scroll-view class="scroll-load-panel super" style="padding-top:{{!showBar?'0rpx':'0px'}}" bindscroll="scrollTop" scroll-top="{{toView}}"
+		scroll-y="{{ isScroll }}" bindscrolltolower="loadMoreMaterail">
+		<!-- 商品轮播 -->
+		<view class="swiper-wrap">
+			<swiper class='' indicator-dots="{{false}}" autoplay="{{autoplay}}" style='height:750rpx;' bindchange="onImageSwiperChanged">
+				<swiper-item wx:if="{{short_video_url}}">
+					<video id='myVideo' class='video-detail' src="{{detailData.short_video_url}}" custom-cache='false'
+						objectFit="cover" poster="{{detailData.img_url}}" />
+				</swiper-item>
+				<block wx:for="{{detailData.itemImgs }}" wx:key="index">
+					<swiper-item>
+						<image src="{{ item }}" bindtap='previewBanner' data-index="{{ index }}" class="slide-image"
+							mode="aspectFill" />
+					</swiper-item>
+				</block>
+			</swiper>
+			<view class="swiper-num">{{imageSwiperCurrentIndex + 1}}/{{detailData.itemImgs.length}}</view>
+		</view>
+
+		<view class='flex-row-s P30 spike-wrap spike-wrap2 '
+			wx:if="{{detailData.activity_type == 0&&detailData.is_seckill==1}}">
+			<view class='spike-wrap2-title' style="color:rgba(235,199,127,1);">该商品正在参加秒杀</view>
+			<view class='flex-row-f' catchtap='jumpGoodDetail' data-id="{{detailData.meItemActivity.seckill_item_id }}">
+				<view class='spike-wrap2-click' style="color">点击查看</view>
+				<image src="/images/gooddetail/right-icon.png" class='look-more-icon' mode="aspectFix" />
+			</view>
+		</view>
+		<!-- 砍价 -->
+		<view style="position:relative" wx:if="{{detailData.activity_type == 0}}">
+			<view class="box-border" />
+		</view>
+		<block wx:if="{{detailData.activity_type == 1}}">
+			<view class="bargainTotal">
+				<image class="bargain-image" mode="aspectFix"
+					src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/AWXZNTHK01245689_1568196744.png" />
+				<view class="flex-c time-flex">
+					<view class="des-class">
+						{{skillStatus==1?'距离秒杀开始还有':skillStatus==2?'距砍秒杀购结束仅剩':'秒杀已经结束'}}
+					</view>
+					<view class="flex-r-s" wx:if="skillStatus!=3">
+						<view class="time-day">{{time.day}}天</view>
+						<view class="time-box">{{time.hour}}</view>
+						<view class="color-white">:</view>
+						<view class="time-box">{{time.minute}}</view>
+						<view class="color-white">:</view>
+						<view class="time-box">{{time.second}}</view>
+					</view>
+				</view>
+				<view class="box-border" />
+			</view>
+		</block>
+		<!-- 商品名字 价格 介绍 -->
+		<view class='detail-name'>
+			<view class="detail-header-wrap flex-r-s">
+				<view class="new-good-price">
+					<text style="font-size:38rpx; margin-right:-20rpx">￥</text>
+					{{detailData.price}}
+					<!-- {{F1.moneyFormatTwo(detailData.activity_type!=3?detailData.price:detailData.bargainItem.end_price)}} -->
+					
+				</view>
+				<view class="des-word" wx:if="{{detailData.activity_type==3}}">最低砍至</view>
+				<view wx:if="{{detailData.coupon_price <= 0}}" class="old-good-price">
+					￥{{detailData.old_price}}
+					<!-- {{ F1.moneyFormatTwo(detailData.old_price)}} -->
+				</view>
+				<view wx:else class="post-price">
+						<image src="/images/price-tag.png" mode="aspectFit" class="price-tag"></image>
+						<view class="post-price-text">券后价</view>
+						<view class="post-price-num">¥{{detailData.coupon_price}} <text style="font-size:20rpx">起</text></view>
+				</view>
+				<block
+					wx:if="{{detailData.activity_type==3&&detailData.bargainItem.is_commission==1||detailData.activity_type==1}}">
+					<view style="margin:0 6rpx;font-size:34rpx; font-family:DIN;">/</view>
+				</block>
+				<!-- <view style="margin-left:auto;" class="norm" wx:if="{{detailData.scale &&detailData.scale != ''}}">
+					{{detailData.scale}}
+				</view> -->
+			</view>
+			<view class="abroad-box">
+				<!--tag1--优质果园  tag2--超级工厂   tag3--萌瓜超市   tag4---品牌  -->
+				<image wx:if="{{detailData.shop_type === 1}}" class="abroad-title abroad-title4" src="/images/tag4.png" mode="aspectFill" />
+				<image wx:if="{{detailData.shop_type === 2}}" class="abroad-title" src="/images/tag1.png" mode="aspectFill" />
+				<image wx:if="{{detailData.shop_type === 3}}" class="abroad-title" src="/images/tag2.png" mode="aspectFill" />
+				<image wx:if="{{detailData.shop_type === 4}}" class="abroad-title" src="/images/tag3.png" mode="aspectFill" />
+				<text class='abroad-text'>{{detailData.shop.shop_label}}</text>
+			</view>
+			<view class="sub-title">{{detailData.title}}</view>
+			<view class='sub-des'>{{detailData.remark}}</view>
+			<view class='flex-r-s sign-total' wx:if="{{detailData.item_label}}">
+				<block>
+					<view class='each-sigin'>
+						·
+						<text class="tag">{{detailData.item_label}}</text>
+					</view>
+				</block>
+			</view>
+			<!-- <view class="fx-box ">
+				<image src="../../images/gooddetail/icon-share.png" class="icon-share" mode="aspectFill" catchtap='showShare'  />
+			</view> -->
+			
+		</view>
+		<!-- 优惠&活动 -->
+		<view class="coupon-wrap" wx:if="{{couponListData.list.length > 0}}">
+			<view class='shop-coupon'>
+				<!-- 优惠 -->
+				<view class='shop-coupon-box' catchtap='showCoupon'>
+					<view class='coupon-title'>优惠</view>
+					<view class='coupon-box'>
+						<!-- 店铺优惠券 -->
+						<view wx:for="{{couponListData.list}}" wx:key="id" class="coupon-list">
+							<view class="each-coupon">
+								<view class="coupon-name">{{ME1.getCoupanType(item.item_type)}}</view>
+								<!-- 满{{item.condition_num}}减{{item.discount_num}} -->
+								{{item.name}}
+							</view>
+							<image wx:if="{{index == 0}}" src='/images/icon-open.png' class='icon-open' mode="aspectFill" />
+						</view>
+					</view>
+				</view>
+				<!-- 活动 -->
+				<view wx:if="{{activityList.length > 0}}" class='shop-coupon-box activity-box' catchtap="showActivity">
+					<view class='coupon-title'>活动</view>
+					<view class='coupon-box'>
+						<view class="coupon-list">
+							<view class="each-coupon">{{activityList[0].name}}</view>
+							<image src='/images/icon-right.png' class='icon-open' mode="aspectFill" />
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 商品规格 -->
+		<view class="spec-wrap">
+			<view class='shop-coupon-box spec-box'>
+				<view class='coupon-title'>规格</view>
+				<view class='coupon-box'>
+					<view class="coupon-list" bindtap='buyNew'>
+						<view wx:if="{{selectData != ''}}" class="each-coupon">{{selectData.value_names}}</view>
+						<view wx:else class="each-coupon">请选择规格</view>
+						<image src='/images/icon-open.png' class='icon-open' mode="aspectFill" />
+					</view>
+				</view>
+			</view>
+			<view class='shop-coupon-box spec-box'>
+				<view class='coupon-title'>发货</view>
+				<view class='coupon-box' style="border-bottom:0">
+				<view class="each-coupon">
+							<image wx:if="{{ME1.getShopAddress(detailData.shop)}}" src='/images/icon-location.png' class="icon-location" />
+							{{ME1.getAddressAndPostage(detailData)}}
+						</view>
+		
+				</view>
+			</view>
+			<!-- 服务描述 -->
+			<view wx:if="{{detailData.meNatures.length > 0}}" class="serve-wrap" catchtap="showService">
+				<view wx:for="{{ detailData.meNatures }}" wx:key="index" class="serve-list">
+					<image src="{{item.icon}}" class="serve-img" />
+					{{item.name}}
+				</view>
+			</view>
+		</view>
+		<!-- 评论 -->
+		<view class="comment-wrap">
+			<view class="comment-head flex-row-s">
+				<view class="number">评价（{{detailData.meCommentCount}}）</view>
+				<view class="percent" catchtap='jumpGoodReviews'>
+					好评度{{detailData.total_level}}%
+					<image src='/images/icon-right.png' class='icon-more' mode="aspectFill" />
+				</view>
+			</view>
+			<swiper wx:if="{{commentData.list.length > 0}}" class="comment-scroll" next-margin="60rpx">
+				<swiper-item class="scroll-item" wx:for="{{commentData.list}}" wx:key="commet_id">
+					<view class="comment-box">
+						<view class="comment-info">
+							<view class="user-info">
+								<view class="user-img">
+									<image src='{{item.u.head_url}}' />
+								</view>
+								<view class="user-name">
+									{{item.u.nickname}}
+									<view>
+										<stars starVal="{{item.level}}" />
+									</view>
+								</view>
+							</view>
+							<text class="comment-text">{{item.content}}</text>
+						</view>
+						<view class="comment-img" wx:if="{{item.meCommetImgs.length > 0}}">
+							<image wx:for="{{item.meCommetImgs}}" wx:for-item="imageItem" wx:key="index1" src='{{imageItem}}' mode="aspectFill" />
+							<text class="img-num">{{item.meCommetImgs.length}}张</text>
+						</view>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<!-- 店铺信息 -->
+		<view class="shop-info-wrap">
+			<view class="shop-info-box">
+				<view class="shop-img">
+					<image src="{{detailData.shop.logo_url}}" />
+				</view>
+				<view class="shop-info">
+					<view class="shop-name">{{detailData.shop.name}}</view>
+					<view class="like-tag">
+						综合体验
+						<image wx:if="{{detailData.shop.total_level >= 20}}" src='/images/icon-like-cur.png' class="icon-like" />
+						<image wx:else src='/images/icon-like.png' class="icon-like" />
+						<image wx:if="{{detailData.shop.total_level >= 40}}" src='/images/icon-like-cur.png' class="icon-like" />
+						<image wx:else src='/images/icon-like.png' class="icon-like" />
+						<image wx:if="{{detailData.shop.total_level >= 60}}" src='/images/icon-like-cur.png' class="icon-like" />
+						<image wx:else src='/images/icon-like.png' class="icon-like" />
+						<image wx:if="{{detailData.shop.total_level >= 80}}" src='/images/icon-like-cur.png' class="icon-like" />
+						<image wx:else src='/images/icon-like.png' class="icon-like" />
+						<image wx:if="{{detailData.shop.total_level >= 100}}" src='/images/icon-like-cur.png' class="icon-like" />
+						<image wx:else src='/images/icon-like.png' class="icon-like" />
+					</view>
+				</view>
+				<view class="btn-links" catchtap='jumpShopDetail' id="{{detailData.shop.id}}">
+					进入店铺
+				</view>
+			</view>
+		</view>
+		<!-- 商品详情 -->
+		<view class="shop-detail-wrap">
+			<view class="detail-title">
+				<image src='/images/line-left.png' class="line-img line-left" />
+				商品详情
+				<image src='/images/line-right.png' class="line-img line-right" />
+			</view>
+			<!-- <view class="pic-list">
+				<view>
+					<image src='/images/logo.jpg' mode="widthFix" class="pic" />
+				</view>
+			</view> -->
+			<view wx:if="{{shopId==249}}">
+				<image style="width:100%;display: block;" wx:for="{{detailData.phoneDetail}}" wx:key="index1" src="{{item}}" mode="widthFix"></image>
+			</view>
+			<rich-text wx:if="{{shopId!=249}}" class="pic-list" nodes="{{detailData.rich_text}}"></rich-text>
+		</view>
+	</scroll-view>
+	<!-- 底部 -->
+	<block wx:if="{{detailData.activity_type != 2}}">
+		<view class='bottom-box' wx:if="{{ showMoadl === false && currentIndex == 0 }}">
+			<block wx:if="{{detailData.activity_type!=3}}">
+				<view class='bottom-item' catchtap='jumpShopDetail' id="{{detailData.shop.id}}">
+					<image src='/images/gooddetail/shop.png' class='kefu-img' mode="aspectFill" />
+					<text class='bottom-text'>店铺</text>
+				</view>
+				<button class='bottom-item'
+					session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{params}}|transferAction={{transferAction}}"
+					open-type="contact" catchtap='copyInfoTwo'>
+					<image src='/images/gooddetail/kefu.png' class='kefu-img' mode="aspectFill" />
+					<text class='bottom-text'>客服</text>
+				</button>
+				<view class="bottom-item">
+					<!--选中状态  icon-collect-cur.png-->
+					<image wx:if="{{isCollected}}" src="/images/gooddetail/icon-collect-cur.png" class="icon-collect" bindtap="toCollect" />
+					<image wx:else src="/images/gooddetail/icon-collect.png" class="icon-collect" bindtap="toCollect" />
+					<text class="bottom-text">收藏</text>
+				</view>
+				<!-- <view class='bottom-item' bindtap='jumpCar'>
+						<image src='/images/gooddetail/car.png' class='car-img' mode="aspectFill" />
+						<text class='bottom-text'>购物车</text>
+					</view> -->
+				<!-- 其他 -->
+				<view wx:if="{{ skillStatus == 3 }}" class='skill-btn-un'>秒杀已结束</view>
+				<!-- <view wx:if="{{ skillStatus != 3 }}" class='btn add theme-bg-C-{{theme}}' bindtap='addShopCar'>加入购物车</view> -->
+				<view class='flex-column buy-btn ' bindtap='buyNew' data-alone="2"
+					wx:if="{{ userInfo.role == 1 && skillStatus != 3 }}">
+					<view>立即购买</view>
+				</view>
+				<view class='flex-column send-btn spread' bindtap='tuiguang'
+					wx:if="{{ skillStatus != 3 && detailData.is_bonus == 1 && userInfo.is_hand==1}}"
+					style="background:linear-gradient(41deg,rgba(54,54,54,1) 0%,rgba(72,72,72,1) 100%);">
+					<view>我要推广</view>
+				</view>
+				<view wx:if="{{ userInfo.role == 0 && skillStatus != 3 }}" class='common-buy ' bindtap='buyNew' data-alone="2">
+					立即购买
+				</view>
+			</block>
+		</view>
+	</block>
+	<!-- 打开选择后的底部 -->
+	<!-- 选择modal -->
+	<view class='mask' catchtouchmove="true" wx:if="{{ showMoadl }}" catchtap='closeModal' />
+	<!-- 服务描述modal -->
+	<view class='mask' catchtouchmove="true" wx:if="{{ serviceDes }}" bindtap='closeServiceModal' />
+	<view class='service-moadl pop-content' wx:if="{{ serviceDes }}">
+		<view class='coupon-title'>
+			服务
+			<image src='/images/pop-close.png' mode="aspectFill" class="icon-close" catchtap="closeServiceModal" />
+		</view>
+		<view class='service-content flex-column'>
+			<block wx:if="{{!launchGroup}}">
+				<scroll-view class="scroll-load-panel" scroll-y="true" style='max-height:800rpx;margin-top:40rpx;'>
+					<view class='service-text' wx:for="{{ detailData.meNatures }}" wx:key="{{ index }}">
+						<view class='natures'>
+							<image src="{{ item.icon }}" class='icon-img' mode="aspectFill" />
+							<view class='natures-right'>
+								<view style='color:#000000;margin-bottom:20rpx'>
+									{{ item.name }}
+								</view>
+								<view class='text-one'>{{ item.remark }}</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</block>
+			<block wx:else>
+				<view class="flex-row-f" style='width:100%'>
+					<image src="{{ detailData.img_url }}" class='good-img mr20' mode="aspectFill" />
+					<rich hasp="0" rich="{{groupContent}}" style="width:100%" />
+				</view>
+			</block>
+		</view>
+		<view class='service-btn' bindtap='closeServiceModal' wx:if="{{!launchGroup}}">完成</view>
+		<view class='service-btn ' bindtap='spread' wx:else>立即推广</view>
+	</view>
+	<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" haslogin="{{false}}" />
+	<!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"/> -->
+	<share showShare="{{ showShare }}" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}" />
+	<!-- 选择规格 -->
+	<view class='select-moadl' wx:if="{{ showMoadl === true && currentIndex == 0 }}">
+		<view class='detail'>
+			<view class='detail-spec'>
+				<image wx:if="{{ selectData.img_url }}" src="{{ selectData.img_url }}" class='good-img' mode="aspectFill" />
+				<image wx:else src="{{ detailData.img_url }}" class='good-img' mode="aspectFill" />
+				<view class='detail-spec-right'>
+					<view
+						wx:if="{{(detailData.bargainItem.bargain_share!=0&&detailData.activity_type==3)||(detailData.share!=0&&detailData.activity_type!=3)}}">
+						<!-- <text class='select-share-icon'>赚¥</text>
+							<text class='select-share-icon' style="font-size:26rpx;" >{{ F1.moneyFormatTwo(detailData.activity_type!=3?detailData.share:detailData.bargainItem.bargain_share)}}</text> -->
+					</view>
+					<view class='price-stock' wx:if="{{detailData.activity_type!=3}}">
+						<text class='new-price' wx:if="{{ selectData.price }}">
+							<text style="font-size:38rpx;">￥ </text>{{ F1.moneyFormatTwo(selectData.price) }}
+						</text>
+						<block wx:else>
+							<text class='yuan ' style="color:#ff2b2b;">¥</text>
+							<text class='price ' style="color:#ff2b2b;">
+								{{ F1.moneyFormatTwo(detailData.price) }}
+							</text>
+							<text class="old-price">￥{{ F1.moneyFormatTwo(detailData.old_price) }}</text>
+						</block>
+					</view>
+					<view wx:if="{{detailData.activity_type==3}}" class='price-stock flex-row-s'>
+						<text class='price' style="color:black;">
+							￥{{ F1.moneyFormatTwo(detailData.bargainItem.end_price)}}
+						</text>
+					</view>
+					<!-- <view class='selected-subtitle'> {{ S1.substr(selectData.value_names,16) }}</view> -->
+					<view class='selected' wx:if="{{alone==1}}">
+						{{ S1.substr(detailData.title,24) }}
+					</view>
+					<view class='selected' wx:if="{{alone==0||alone==2}}" style="color:#e1e1e1;">
+						库存:{{selectData.stock||detailData.stock }}
+					</view>
+				</view>
+				<image src="/images/gooddetail/close.png" class='good-close-img' mode="aspectFill" bindtap='closeModal' />
+			</view>
+			<scroll-view class="spec-scroll-view scroll-load-panel" scroll-y="true">
+				<!-- <view class='property' wx:for="{{ property }}" wx:key="{{ index }}">
+						<view>{{ item.prop_name }}</view>
+						<view class='specific'>
+							<view class='{{ childrenItem.isSelect===true?"actived theme-border-c-A-"+theme:"specific-item" }}' wx:for="{{ item.children }}" wx:for-item="childrenItem" wx:for-index="childrenIndex" wx:key="{{ childrenIndex }}" bindtap='selectValue' data-index='{{ index }}'
+								data-childrenindex='{{ childrenIndex }}'>{{ childrenItem.value_name }}
+							</view>
+						</view>
+					</view> -->
+				<!-- <view class='property' wx:for="{{ property }}" wx:key="{{ index }}">
+						<view>{{ item.prop_name }}</view>
+						<view class='specific2'>
+							<view
+							class='{{ childrenItem.isSelect === true? "actived2":"specific-item2" }} {{childrenItem.isCanSelect === false ? "select-grey":""}}'
+							wx:for="{{ item.children }}"
+							wx:for-item="childrenItem"
+							wx:for-index="childrenIndex"
+							wx:key="{{ childrenIndex }}"
+							bindtap='{{childrenItem.isCanSelect === true ?"selectValue":""}}'
+							data-index='{{ index }}'
+							data-childrenindex='{{ childrenIndex }}'
+							>{{ childrenItem.value_name }}
+							</view>
+						</view>
+					</view> -->
+				<view class='property' wx:for="{{ property }}" wx:key="index">
+					<view>{{ item.prop_name }}</view>
+					<view class='specific2'>
+						<view
+							wx:if="{{shopId!=249}}"
+							class='{{ childrenItem.isSelect===true?"actived2":"specific-item2" }} {{!childrenItem.has?"specific-item3":""}}'
+							wx:for="{{ item.children }}" wx:for-item="childrenItem" wx:for-index="childrenIndex"
+							wx:key="childrenIndex" bindtap='selectValue' data-has="{{childrenItem.has}}" data-index='{{ index }}'
+							data-isSelect="{{childrenItem.isSelect}}" data-childrenindex='{{ childrenIndex }}'>
+							{{ childrenItem.value_name }}
+						</view>
+						<view
+							wx:if="{{shopId==249}}"
+							class='{{ childrenItem.isSelect===true?"actived2":"specific-item2" }} {{!childrenItem.has?"specific-item3":""}}'
+							wx:for="{{ item.children }}" wx:for-item="childrenItem" wx:for-index="childrenIndex"
+							wx:key="childrenIndex" bindtap='selectValue1' data-has="{{childrenItem.has}}" data-index='{{ index }}'
+							data-isSelect="{{childrenItem.isSelect}}" data-childrenindex='{{ childrenIndex }}'>
+							{{ childrenItem.value_names }}
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+			<view class='flex-row-s buy-num'>
+				<view style="display:flex;">
+					<view style="line-height:36rpx;">购买数量</view>
+					<view wx:if="{{detailData.seckillItem||detailData.groupItem}}" class="limitBuy">
+						<!-- 根据是秒杀或者是拼团商品切换显示限购 -->
+						(限购{{detailData.activity_type==1?detailData.seckillItem.num:detailData.groupItem.num}}件)
+					</view>
+				</view>
+				<view class='flex-row-f'>
+					<block wx:if="{{detailData.activity_type!=3}}">
+						<view class='change-num un-change new-change' wx:if="{{ buyNum == 1 || buyNum == 0 }}">
+							-
+						</view>
+						<view class='change-num new-change' bindtap='reduce' wx:else>-</view>
+					</block>
+					<view class='buy-number'>{{ buyNum }}</view>
+					<block wx:if="{{detailData.activity_type!=3}}">
+						<view class='change-num un-change new-change'
+							wx:if="{{ selectData.stock == 0 || buyNum >= selectData.stock || notAdd }}">
+							+
+						</view>
+						<view class='change-num new-change' bindtap='addNum' wx:else>+</view>
+					</block>
+				</view>
+			</view>
+			<view class="common-buy" bindtap="confirmBuy">立即购买</view>
+		</view>
+	</view>
+	<!-- 优惠券modal -->
+	<view class='mask' catchtouchmove="true" wx:if="{{couponModal}}" catchtap='closeCouponModal' />
+	<view class='pop-content' wx:if="{{couponModal}}" animation="{{animationData}}">
+		<view class='pop-coupon-list'>
+			<view class='coupon-title'>
+				优惠
+				<image src='/images/pop-close.png' mode="aspectFill" class="icon-close" catchtap="closeCouponModal" />
+			</view>
+			<scroll-view class="scroll" scroll-y="true" bindscrolltolower="loadMoreCoupon">
+				
+				<!-- 可领优惠券 -->
+				<block wx:if="{{ME1.getUnAcceptCoupans(couponListData.list).length > 0}}">
+					<view class='coupon-text'>可领优惠券</view>
+					<view class='coupon-item'>
+						<view wx:for="{{ME1.getUnAcceptCoupans(couponListData.list)}}" wx:key="id" class='each-content '>
+							<view class='coupon-info '>
+								<view class='coupon-style'>{{ME1.getCoupanType(item.item_type)}}券</view>
+								<view class='pirce-style'>
+									￥
+									<text class='spe-pirce '>{{item.discount_num}}</text>
+								</view>
+								<view class='price-intro'>
+									<view class="text">满{{item.condition_num}}元使用</view>
+									<view>{{item.string_name}}</view>
+									<view>{{F1.timeSub(item.create_time)}}-{{F1.timeSub(item.update_time)}}</view>
+								</view>
+								<view id="{{item.id}}" class='coupon-btn' bindtap="getShopCoupon">立即领取</view>
+							</view>
+						</view>
+					</view>
+				</block>
+				<!-- 已经领取优惠券 -->
+				<block  wx:if="{{ME1.getAcceptCoupans(couponListData.list).length > 0}}">
+					<view class='coupon-text'>已经领取优惠券（满足条件后可使用）</view>
+					<view class='coupon-item'>
+						<view wx:for="{{ME1.getAcceptCoupans(couponListData.list)}}" wx:key="index" class='each-content each-content-done'>
+							<view class='coupon-info '>
+								<view class='coupon-style'>{{ME1.getCoupanType(item.item_type)}}券</view>
+								<view class='pirce-style'>
+									￥
+									<text class='spe-pirce '>{{item.discount_num}}</text>
+								</view>
+								<view class='price-intro'>
+									<view class="text">满{{item.condition_num}}元使用</view>
+									<view>{{item.string_name}}</view>
+									<view>{{F1.timeSub(item.create_time)}}-{{F1.timeSub(item.update_time)}}</view>
+								</view>
+								<!-- <view class='coupon-btn'>可用商品</view> -->
+								<image src='/images/icon-get.png' mode="aspectFill" class="icon-get" />
+							</view>
+						</view>
+					</view>
+				</block>
+			</scroll-view>
+		</view>
+	</view>
+	<!-- 活动弹窗 -->
+	<view class="mask" catchtouchmove="true" wx:if="{{activityModal}}" catchtap="closeActivityModal">
+		<view class="pop-content" wx:if="{{activityModal}}" animation="{{animationData}}">
+			<scroll-view class="scroll" scroll-y="true">
+				<view class="pop-activity-list">
+					<view class='coupon-title'>
+						活动
+						<image src='/images/pop-close.png' mode="aspectFill" class="icon-close" catchtap="closeActivityModal" />
+					</view>
+					<view wx:for="{{activityList}}" wx:key="id" class="paths">
+						<view class="activity-title">{{item.name}}</view>
+						<view class="pic">
+							<image src='{{item.img_url}}' mode="widthFix" class="pic" />
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+	<!-- 分享 -->
+	<view class='mask' catchtouchmove="true" wx:if="{{shareModal}}" catchtap='closeShareModal' />
+	<view class='pop-content' wx:if="{{shareModal}}" animation="{{animationData}}">
+		<view class='pop-share-list'>
+			<view class='coupon-title'>分享图片到</view>
+			<view class="flex-row-f share-box">
+				<button class="flex-column flex-1" hover-class="none" open-type="share">
+					<view class="pic">
+						<image src='/images/wxin.png' mode="aspectFill" />
+					</view>
+					微信好友
+				</button>
+				<button class="flex-column flex-1" hover-class="none">
+					<view class="pic">
+						<image src='/images/pyq.png' mode="aspectFill" />
+					</view>
+					朋友圈
+				</button>
+			</view>
+			<view class="cancel" catchtap='closeShareModal'>取消</view>
+		</view>
+	</view>
+</block>
+<view wx:else>
+	<page-loding />
+</view>
+<view class="back-to-top">
+<image src="/images/icon-to-top.png" class="icon-to-top" mode="aspectFit" bindtap="scrollToTop"></image>	
+</view>

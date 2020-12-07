@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "tab": "/components/tab/tab",
+    "kanjia": "/components/kanjia/kanjia",
+    "forList": "/components/forList/forList",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "rowscroll": "/components/rowscroll/rowscroll"
+  },
+  "enablePullDownRefresh": true
+}

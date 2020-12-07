@@ -1,0 +1,20 @@
+<!--components/hot/hot.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<scroll-view class='wrap' scroll-y="true" bindscrolltolower="loadMore">
+  <view class='list'>
+    <view class='good' wx:for="{{ listData.list }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class='good-title'>{{S1.substr(item.title,10)}}</view>
+      <view class='label-box' wx:if="{{ item.meLabels != '' }}">
+        <view class='label' wx:for="{{ item.meLabels }}"  wx:for-item="label" wx:for-index="labelIndex" wx:key="{{ labelIndex }}">{{ label.name }}</view>
+      </view>
+      <view class='good-bottom'>  
+        <view class='price'>
+          <view class='red-price'>￥</view>
+          <view class='red-big-price'>{{ item.price }}</view>
+        </view>
+        <view class='sale-num' wx:if="{{ item.deal_num }}">销量{{ item.deal_num }}笔</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

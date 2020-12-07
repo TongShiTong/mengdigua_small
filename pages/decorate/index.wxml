@@ -1,0 +1,56 @@
+<!--pages/decorate/index.wxml-->
+<view class="wrapper">
+  <navbar title="店铺装修"></navbar>
+  <view class="content-panel">
+    <scroll-view scroll-y="{{true}}" class="scroll-panel">
+        <view class="image-select flex-column" bindtap="loadImage">
+        <block wx:if="{{image}}">
+            <image class="fit" src="{{image}}" mode="aspectFill"/>
+        </block>
+        <view wx:else>
+            <text class="theme-font-A-{{theme}}">
+            点击上传图片
+            </text>
+        </view>
+        </view>
+        <view class="title">文案介绍</view>
+        <input class="exit-input" placeholder="点击编辑文字" placeholder-class="input-placeholder" />
+        <view class="showbar flex-row-s" hover-class="none" hover-stop-propagation="false">
+        <view>显示</view>
+        <switch style="zoom: .6;" checked="false" type="switch" bindchange="">
+        </switch>
+        </view>
+        <view class="title">最新商品</view>
+        <view class="good-list">
+        <block wx:for="{{[1, 2, 3]}}">
+            <view class="fl">
+                <view class="img">
+                    <image class="fit"></image>
+                </view>
+                <view class="good-name">
+                    XiaoMi-小米手环 3
+                </view>
+                <view class="flow-row-f">
+                    <text class="theme-color-A-{{theme}}">
+                        <text class="f11">¥</text>
+                        <text class="f16">39.90</text>
+                    </text>
+                    <text class="old-price">¥69.99</text>
+                </view>
+                <view class="btn-group flex-row">
+                    <view class="btn flex-1">分享</view>
+                    <view class="btn flex-1">替换</view>
+                    <view class="btn flex-1">下架</view>
+                </view>
+                  
+            </view>
+        </block>
+        <view class="fl">
+            <view class="img">
+            </view>
+            <view class="add-text">添加商品</view>
+        </view>
+        </view>
+    </scroll-view>
+  </view>
+</view>

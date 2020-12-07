@@ -1,0 +1,13 @@
+<!--components/serch/serch.wxml-->
+<view class='index-head ' >
+  <view class='serch-wrap flex-row-s'>
+    <view class='serch flex-row-s ' bindtap='jumpSerch'>
+      <view class='serch-input'>搜索您想要的商品</view>
+      <!-- <image src="/images/serch.png" class='serch-img' mode="aspectFill"></image> -->
+    </view>
+    <view class='message-wrap' bindtap='jumpMail'>
+      <view class='cilcel' wx:if="{{ isRead }}"></view>
+      <image src="/images/center/message.png" class='message-img' mode="aspectFill"></image>
+    </view>
+  </view>
+</view>

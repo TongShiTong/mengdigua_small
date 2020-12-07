@@ -1,0 +1,4 @@
+/* pages/goodDetail/bargainHelperList/index.wxss */
+page {
+  background-color: #fff;
+} 

@@ -1,0 +1,50 @@
+var dealTime = function (string) {
+  var theTime = parseInt(string);// 秒 
+  var theTime1 = 0;// 分 
+  if (theTime >= 60) {
+    theTime1 = parseInt(theTime / 60);
+    theTime = parseInt(theTime % 60);
+  }
+  if (theTime < 10) {
+    theTime = "0" + theTime
+  }
+  var result = theTime;
+  if (theTime1 <= 0) {
+    theTime1 = "0" + theTime1
+    result = theTime1 + ":" + result;
+  }
+  if (theTime1 > 0 && theTime1 <10) {
+    result = "0" + theTime1 + ":" + result;
+  } else if (theTime1 >= 10){
+    result = theTime1 + ":"+ result
+  }
+  return result;
+}
+var dealTimeTwo = function (string){
+  var theTime = parseInt(string);// 秒 
+  var theTime1 = 0;// 分 
+  var theTime2 = 0;//小时
+  var newTime  = 0;//返回时间
+  if (theTime>=3600){
+    theTime2 = parseInt(theTime / 3600);
+    theTime1 = (theTime % 3600 / 60).toFixed(0);
+    if (theTime1!=0){
+      newTime = theTime2 + "h" + theTime1 + "min"
+    }else{
+      newTime = theTime2 + "h"    
+    }
+  } else if (theTime >= 60){
+    theTime1 = (theTime / 60).toFixed(0);
+    newTime =  theTime1+"min"
+  } else if (theTime>0){
+    newTime =1+"min"
+  }else{
+    newTime =0
+  }
+  return newTime;
+}
+
+module.exports = {
+  dealTime : dealTime,
+  dealTimeTwo:dealTimeTwo
+}

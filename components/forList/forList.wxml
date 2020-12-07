@@ -1,0 +1,152 @@
+<!--components/courselist/courselist.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+
+<view class="flex-r-b p20 f-wrap {{showType==5?'pl40':''}} " >
+  <block wx:if="{{listLength!=0}}">
+    <block wx:for="{{list}}" wx:key="index">
+      <view>
+        <view data-id='{{ item.item_id }}' data-shop_id="{{item.shop_id}}" bindtap='jumpGoodDetail'>
+          <template is="{{showType}}" data="{{...item,index,theme,userInfo,skillType,groupType,showManage,listLength,showAdd}}">
+          </template>
+        </view>
+      </view>
+
+    </block>
+  </block>
+  <block wx:if="{{listLength==0&&showType==3}}">
+    <template is="{{showType}}" data="{{theme,userInfo,skillType,groupType,showManage,listLength,showAdd}}">
+    </template>
+  </block>
+</view>
+
+<!-- <view class="drap-fiexd" wx:if="{{showType==4}}">
+    <movesort list="{{list}}" packup="{{!showSort}}" bindsorted="onSorted" bindpackup="onPackup"></movesort>
+</view> -->
+
+<!-- 没有 -->
+<view wx:if="{{listLength==0}}" style='text-align:center;margin-top:144rpx;'>
+  <!-- <image class='no-list-pic' src="/images/college/nolist.png" mode="aspectFill" lazy-load='true'></image> -->
+</view>
+<!-- 首页秒杀列表 -->
+<template name="1">
+  <view class='each-item-style-1'>
+    <view class='flex-r-s  box-sizing'>
+      <view class='left-pic-1 mr24'>
+        <image src="{{ seckill_img||group_img }}" lazy-load='true' class="skill-img-1" mode="aspectFill" />
+        <!-- <view class='top-earn-1 theme-lg-B-{{theme}}' wx:if="{{userInfo.role==1}}">赚{{F1.moneyFormat(groupType==1?share:group_share)}}</view> -->
+      </view>
+      <view class='right-content-1 flex-b'>
+        <view class='text-line2 title-style-1'>
+          <text class='theme-font-A-{{theme}}' wx:if="{{is_abroad==1}}">【跨境购】</text>{{title}}</view>
+        <view class='remark1 text-line1'>{{groupType==1?remark:''}}</view>
+        <view class='sign-icon-1 flex-r-s'>
+          <view class='sign-word-1 theme-border-c-A-{{theme}} mr16'>{{groupType==1?'秒杀价':number+"人团"}}</view>
+          <view class='theme-font-A-{{theme}} price-font-1' style="color:#E50A35!important;">
+            <text style='font-size:22rpx;color:#E50A35!important;'>￥</text>{{F1.moneyFormatTwo(price)}}</view>
+        </view>
+        <view class='flex-r-b bottom-style1'>
+          <view class='number1' wx:if="{{groupType==1}}">已售{{F1.numberDeal(deal_num)}}件</view>
+          <view class='number1 theme-color-B-{{theme}}' wx:else>{{F1.numberDeal(item_buy_item)}}人已拼团</view>
+          <view class='flex-r-b' wx:if="{{skillType==2||F1.compareTime(start_time,end_time)==1}}">
+            <view class="list-btn1 mr16   theme-color-A-{{theme}}" style="border:2rpx solid #E50A35 !important;color:#E50A35!important;">{{groupType==1?'抢购':'拼团'}}</view>
+            <!-- <view class="list-btn1 mr16  theme-border-A-{{theme}} theme-color-A-{{theme}}" wx:else>{{groupType==1?'抢购':'拼团'}}</view> -->
+            <!-- <view class='list-btn1 extend1 theme-lg-A-{{theme}}' data-id='{{ item_id }}' catchtap='shareSkillGood' wx:if="{{ userInfo.role == 1  }}">推广</view> -->
+          </view>
+          <view wx:if="{{skillType==-1 && F1.compareTime(start_time,end_time)==0}}">
+            <!-- <form catchtap="showModel" data-index="{{index}}" data-id='{{item_id}}' catchtap='' wx:if="{{ push_status ==null }}" data-id='{{ item_id }}' data-status='0' report-submit="true">
+              <button formType="submit" data-status='0' class='list-btn1 extend1 theme-lg-A-{{theme}} remind'>提醒我</button>
+            </form> -->
+            <view class='list-btn1 extend1 theme-lg-A-{{theme}} remind' data-id='{{ item_id }}' catchtap='showModel' wx:if="{{ push_status ==null }}" data-id='{{ item_id }}' data-index="{{index}}" data-status='0'>提醒我</view>
+            <view class='list-btn1 extend1 theme-lg-C-{{theme}} remind' data-id='{{ item_id }}' catchtap='changeRemind' wx:else data-id='{{ item_id }}' data-index="{{index}}" data-status='1'>已预约</view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+
+
+<template name="2">
+  <view style='padding-bottom:30rpx'>
+    <image src="{{ group_img }}" class='good-img' mode="aspectFill"  lazy-load="true"></image>
+    <view class='good-title text-line2'>{{ title }}</view>
+    <view class='good-bottom flex-r-s'>
+      <view class='price mr16'>
+        <view class='red-price theme-font-A-{{theme}}'>￥</view>
+        <view class='red-big-price theme-font-A-{{theme}}'>{{ F1.moneyFormatTwo(price) }}</view>
+      </view>
+      <view class='group-number theme-border-A-{{theme}} theme-color-A-{{theme}}'>{{number}}人团</view>
+    </view>
+  </view>
+</template>
+<!-- 店铺装修 商品 -->
+<template name="3">
+  <view class="flex-r-s">
+    <block wx:if="{{(listLength==0||index==0)&&showAdd}}">
+      <view class='person-shop-box-1' catchtap='goDetail' data-url="/pages/class/class?add=1">
+        <view class='box-shadow-1'>
+          <image src="/images/personShop/add.png"  lazy-load="true" class='person-shop-add-1' mode="aspectFill"></image>
+        </view>
+        <view class='shop-add-word-1'>添加商品</view>
+      </view>
+    </block>
+    <view class='person-shop-box-1' wx:if="{{listLength!=0}}">
+      <view class='box-shadow-1' >
+        <image src="{{ img_url }}" class='shop-pic-1' mode="aspectFill"  lazy-load="true"></image>
+        <view class='shoo-earn-1 theme-lg-B-{{theme}}' wx:if="{{userInfo.role==1}}">赚¥{{share}}</view>
+      </view>
+      <view class='shop-add-word-1 flex-c'>
+        <view class='text-line1 shop-title-1'><text class='theme-font-A-{{theme}}' wx:if="{{is_abroad==1}}">【跨境购】</text>{{title}}</view>
+        <view class='flex-r-s'>
+          <view class='theme-font-A-{{theme}} shop-price-1'>
+            <text class='yuan'>￥</text>{{F1.moneyFormatTwo(price)}}</view>
+          <view class='shop-price-old-1'>{{F1.moneyFormat(old_price)}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!-- shoplist -->
+<template name="4">
+  <view class='shop-list-1 pt30' style='padding-right:30rpx;'>
+    <view class='flex-r-s'>
+      <view style='padding:40rpx 20rpx ' wx:if="{{showManage}}" catchtap='choiceDelate' data-index="{{index}}" id="{{item_id}}" data-select="{{select}}">
+        <view class="shop-list-choice-1 {{select?'shop-list-choiced-1  theme-lg-A-'+theme:''}}">
+          <view class='center-circle-1' wx:if="{{select}}"></view>
+        </view>
+      </view>
+      <image src="{{ img_url }}" class='shop-list-pic-1' mode="aspectFill"  lazy-load="true"></image>
+      <view class='flex-b flex-1 shop-list-right-1'>
+        <view class='flex-r-b' style='width:100%'>
+          <view class='shop-list-title-1 text-line2 flex-1'> <text class='theme-font-A-{{theme}}' wx:if="{{is_abroad==1}}">【跨境购】</text> {{title}}</view>
+          <image src="/images/personShop/drap.png" class='shop-list-drap-1' mode="aspectFill" lazy-load='true'></image>
+        </view>
+        <view class='shop-list-remark-1 text-line1 '>{{remark}}</view>
+        <view class='flex-r-b' style='width:100%'>
+          <view class='flex-r-s'>
+            <view class='shop-list-price-1  theme-font-A-{{theme}}'>
+              <text class='yuan'>￥</text>{{F1.moneyFormatTwo(price)}}</view>
+            <view class='share-price' wx:if="{{userInfo.role==1}}">
+              <view class='earn-price theme-bgo-A-{{theme}} theme-color-A-{{theme}}'>¥{{F1.moneyFormatTwo(share)}}</view>
+              <view class='earn theme-bg-A-{{theme}}'>赚</view>
+            </view>
+          </view>
+          <block wx:if="{{!showManage}}">
+            <view class='shop-list-function-1' catchtap='showFunction' data-sort="{{sort}}" id="{{item_id}}" data-index="{{index}}">
+              <text class='text-word-1'>...</text>
+            </view>
+          </block>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <view class='line1' style='width:750rpx;margin-left:-20rpx'></view>
+</template>
+
+
+
+<message wx:if="{{ cancelModal }}" title="是否推送" subTitle="是否确定？" confirmText="确定" bind:colse="cancle" bind:confirm="changeRemind"></message>

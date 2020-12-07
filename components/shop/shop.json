@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "water-flow": "/components/water-flow/index",
+    "water-flow-item": "/components/water-flow-item/index"
+  }
+}

@@ -1,0 +1,38 @@
+<!--pages/goodDetail/share/share.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="分享" />
+
+  <view class='super'>
+    <view class='flex-row-f wrap-all header'>
+      <image src='/images/shopcar/selected.png' class='select-img' mode="aspectFill"></image>
+      <view class='share-tip'>分享图文</view>
+      <view class='text-one'>长按保存图片至相册</view>
+    </view>
+    <view class='flex-row wrap-all poster-wrap'>
+      <image src='{{ shareImg.share_img }}' bindtap='preview' bindlongtap='preeSave' class='poster-img' mode="aspectFill"></image>
+    </view>
+    <view class='wrap-all good-name'>{{ shareImg.title }}</view>
+  </view>
+  <!-- <view class='share-box'>
+  <view class='tab'>
+    <button open-type='share' class='share-btn' bindtap='shareSuccess'>
+      <image src='/images/share-wechat.png' class='share-wechat-img' mode="aspectFill"></image>
+      <view class='share-btn-text'>分享给好友</view>
+    </button>
+  </view>
+  <view class='tab' bindtap='shareSave'>
+    <image src='/images/share-pyq.png' class='share-pyq-img' mode="aspectFill"></image>
+    <view class='share-text'>分享朋友圈</view>
+  </view>
+  <view class='tab' bindtap='shareSave'>
+    <image src='/images/share-save.png' class='share-save-img' mode="aspectFill"></image>
+    <view class='share-text'>保存图片</view>
+  </view>
+</view> -->
+<setting bind:onchange="shareSave" isShowModal="{{showsetModel}}" />
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

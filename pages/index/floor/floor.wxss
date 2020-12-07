@@ -1,0 +1,241 @@
+/* pages/index/floor/floor.wxss */
+page {
+  background-color: #fff;
+}
+.user-head {
+  padding: 0 30rpx 15rpx 30rpx;
+  width: 690rpx;
+  background-color: #fff;
+}
+.user-nickname {
+  color: #C7C7C7;
+  margin-left: 16rpx;
+}
+.user-serch {
+  width: 440rpx;
+  height:60rpx;
+  padding: 0 30rpx;
+  background:rgba(246,244,245,1);
+  border-radius:30rpx;
+}
+.serch-text {
+  color: #C2C2C2;
+}
+.head-img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.serch-wrap {
+  height: 70rpx;
+  background-color: #fff;
+}
+.banner-wrap {
+  width: 690rpx;
+  padding: 15rpx 30rpx;
+}
+.swiper {
+  height: 380rpx;
+}
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+.refresh {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #484445;
+}
+/* tab */
+.tab-wrap {
+  top: 70rpx;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+  height: 66rpx;
+  background-color: #fff;
+}
+.tab {
+  border-right: 1px solid #f4f4f4;
+  width: 132rpx;
+  text-align: center;
+  line-height: 66rpx;
+  font-size: 24rpx;
+  display: inline-block;
+  color: #666666;
+  position: relative;
+}
+.floor-content {
+  margin-top: 0;
+}
+/* 秒杀 */
+.skill-scroll {
+  padding: 0 30rpx;
+  height: 90rpx;
+}
+.skill {
+  width: 690rpx;
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+.skill-tab {
+  width: 132rpx;
+  text-align: center;
+  font-size: 24rpx;
+  display: inline-block;
+  color: #666666;
+  position: relative;
+}
+.skill-time {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.skill-time-active {
+  color: #C6A87B;
+}
+.skill-title {
+  font-size: 24rpx;
+  padding-bottom: 20rpx;
+}
+.skill-title-active {
+  color: #C6A87B;
+}
+.skill-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rpx;
+  border-radius: 3rpx;
+  background-color: #BA8D49;
+}
+.skill-img {
+  width: 690rpx;
+  border-radius:10rpx;
+}
+.skill-good-name {
+  font-size: 28rpx;
+  color: #333333;
+  margin-top: 10rpx;
+}
+.skill-good-remark {
+  color: #CCCCCC;
+  font-size: 24rpx;
+  padding: 20rpx 0;
+}
+.is-skill {
+  width: 96rpx;
+  height: 31rpx;
+  text-align: center;
+  line-height: 31rpx;
+  background:rgba(32,31,30,0);
+  border:1px solid rgba(204,0,0,1);
+  border-radius:6px;
+  font-size: 24rpx;
+  color: rgba(204,0,0,1);
+}
+.seckill-price {
+  font-size: 30rpx;
+  color: #CC0000;
+}
+.share-price {
+  position: relative;
+  height: 29rpx;
+  background:rgba(223,199,129,1);
+  border-radius: 15rpx;
+  text-align: right;
+  font-size: 24rpx;
+}
+.earn {
+  position: absolute;
+  width: 34rpx;
+  height: 34rpx;
+  color: #fff;
+  background-color: #C80000;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.earn-price {
+  margin-left: 26rpx;
+  height: 29rpx;
+  line-height: 29rpx;
+  padding: 0 10rpx 0 20rpx;
+}
+.skill-deal-num {
+  font-size: 24rpx;
+  color: #CCCCCC;
+}
+.list-btn {
+  width:105rpx;
+  height:43rpx;
+  line-height: 43rpx;
+  text-align: center;
+  border-radius:6rpx;
+  font-weight: 700;
+}
+.buy {
+  border: 1px solid #C6A87B;
+  color: #C6A87B;
+  margin-right: 10rpx;
+}
+.extend {
+  color: #fff;
+  background-color: #BA8D49;
+}
+.class-wrap {
+  width: 90rpx;
+  height: 60rpx;
+}
+.class-img {
+  width: 32rpx;
+  height: 32rpx;
+}
+.tab-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #BA8D49;
+}
+.nav {
+  flex-wrap: wrap;
+  padding: 40rpx 30rpx 0 30rpx;
+}
+.column {
+  position: relative;
+  width: 20%;
+  margin-bottom: 40rpx;
+}
+.nav-img {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+}
+.nav-title {
+  font-size: 24rpx;
+  color: #1F1F1E;
+  margin-top: 8rpx;
+}
+.good-img {
+  width: 100%;
+  height: 100%;
+}
+.floor-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+.floor {
+  width: 100%;
+  height: 100%;
+}

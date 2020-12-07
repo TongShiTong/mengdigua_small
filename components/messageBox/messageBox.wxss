@@ -1,0 +1,84 @@
+/* components/messageBox/messageBox.wxss */
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 11111;
+}
+.message-box {
+  width: 606rpx;
+  /* height: 350rpx; */
+  background:rgba(252,252,252,1);
+  border-radius: 20rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 11111;
+  padding-bottom: 40rpx;
+}
+.message-top {
+  /* height: 100rpx; */
+  text-align: center;
+  color: #030303;
+  position: relative;
+}
+.title {
+  font-size: 34rpx;
+  color: #222222;
+  font-weight: 700;
+  /* height: 100rpx;
+  line-height: 100rpx; */
+  padding: 48rpx 0 0;
+}
+.sub-title {
+  color: #555555;
+  text-align: center;
+  margin-top: 48rpx;
+}
+.message-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48rpx;
+  /* position: absolute;
+  left: 0;
+  bottom: 0; */
+  /* width: 100%;
+  height: 100rpx;
+  border-top: 1px solid #EEEEEE; */
+}
+.message-text {
+  /* flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center; */
+  
+}
+.button-comfirm{
+  width: 246rpx;
+  height: 72rpx;
+  background: #FFD301;
+  /* padding: 0; */
+  color: #222222;
+  /* line-height: 100rpx; */
+  font-size: 28rpx;
+  border-radius: 38rpx;
+}
+.confirm {
+  font-size: 32rpx;
+  color: #C40E02;
+}
+.cancel {
+  font-size: 28rpx;
+  color: #222222;
+  padding: 16rpx 96rpx;
+  background: #F3F3F3;
+  border-radius: 38rpx;
+  margin-right: 36rpx;
+  /* border-right: 1px solid #EEEEEE; */
+}

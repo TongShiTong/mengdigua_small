@@ -1,0 +1,66 @@
+/* components/bargainHelperList/index.wxss */
+@import "../../app.wxss";
+
+.helper-wrap {
+  border-top: 2rpx solid rgba(236, 236, 236, 1);
+  width: 750rpx;
+  background: white;
+  padding-bottom: 40rpx;
+  margin-bottom: 8rpx;
+}
+.helper-header-left{
+  font-size:28rpx;
+  font-family:PingFangSC;
+  font-weight:500;
+  color:rgba(57,57,57,1);
+  line-height:40rpx;
+}
+.helper-header-right{
+  font-size:28rpx;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+  line-height:40rpx;
+}
+.helper-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40rpx 24rpx;
+  padding-top: 32rpx;
+}
+
+.helper-body {
+  width: 670rpx;
+  border-radius: 16rpx;
+  background: rgba(246, 246, 246, 1);
+  margin: 0 auto;
+}
+
+.help-price {
+  margin-top: 42rpx;
+  margin-left: auto;
+}
+
+.bargain-price {
+  color: #e50a35;
+}
+
+.helper-name {
+  margin-top: 42rpx;
+  margin-left: 24rpx;
+}
+
+.helper-icon {
+  width: 64rpx;
+  height: 64rpx;
+  margin-top: 24rpx;
+  border-radius: 50%;
+  border: 2rpx solid #eee;
+}
+
+.helper-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 40rpx;
+  height: 112rpx;
+}

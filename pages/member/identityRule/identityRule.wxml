@@ -1,0 +1,264 @@
+<!--pages/member/identityRule/identityRule.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<!--头部  -->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="任务进度" isTransparent="{{handInfo.is_stuck == 1?true:false}}" />
+  <view class='rule-top  theme-lg-A-{{theme}}' wx:if="{{handInfo.is_stuck==0}}">
+    <view class='rule' bindtap='goRich'>会员规则</view>
+    <image src="/images/member/rulePic.png" class='rule-top-pic' mode="aspectFill" lazy-load='true'></image>
+    <view class='level-name'>{{level_name}}</view>
+    <!-- 不滚动 -->
+    <view class='list-one' wx:if="{{handListLength<=4}}">
+      <view class='flex-row-s'>
+        <view class='tab' wx:for="{{handList}}" wx:key="{{index}}">
+          <image src="/images/member/level.png" class='level-pic-gray' mode="aspectFill" lazy-load='true' wx:if="{{level<item.level}}"></image>
+          <image wx:else src="/images/member/leveled.png" class='level-pic-gray' mode="aspectFill" lazy-load='true'></image>
+          <view class="push-name {{level<item.level?'':'push-name-active'}}">{{item.name}}</view>
+          <view class="circle-small {{level<item.level?'':'circle-small-active'}}"></view>
+
+        </view>
+      </view>
+
+      <view class='progress-style-total'>
+        <view class='progress-style'>
+          <progress activeColor="#FEC951" percent="{{endProgress}}" stroke-width="4" active />
+          <view class='show-persent'>
+            <view class='show-message-total' style='padding-left:{{endProgress}}%'>
+              <view style='position:relative;width:58rpx;transform:translate(-50%)'>
+                <image src="/images/member/show-persent.png" class='show-persent-pic' mode="aspectFill" lazy-load='true'></image>
+                <view class='show-message'>{{F1.toFixedTwo(endProgress)}}%</view>
+              </view>
+
+            </view>
+
+
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <scroll-view class='scroll-identity flex-row-s' scroll-x="true" wx:if="{{handListLength>4}}">
+      <view class='tab' wx:for="{{handList}}" wx:key="{{index}}">
+        <image src="/images/member/level.png" class='level-pic-gray' mode="aspectFill" lazy-load='true' wx:if="{{level<item.level}}"></image>
+        <image wx:else src="/images/member/leveled.png" class='level-pic-gray' mode="aspectFill" lazy-load='true'></image>
+        <view class="push-name {{level<item.level?'':'push-name-active'}}">{{item.name}}</view>
+        <view class="circle-small {{level<item.level?'':'circle-small-active'}}"></view>
+
+      </view>
+
+      <view class='progress-style-two' style='width:{{progreeWidth}}'>
+        <progress activeColor="#FEC951" percent="{{endProgress}}" stroke-width="4" active />
+        <view class='show-persent-two'>
+          <view class='show-message-total-two'>
+            <view class='show-message-total-two-pistion' style='left:{{endProgress}}%'>
+              <image src="/images/member/show-persent.png" class='show-persent-pic-two' mode="aspectFill" lazy-load='true' style='left:{{endProgress}}%'></image>
+              <view class='show-message'>{{F1.toFixedTwo(endProgress)}}%</view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </view>
+
+  <view wx:if="{{handInfo.is_stuck==1}}">
+    <view class='role0-total'>
+      <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/default/ABFWZMNK01245789_1559038467.png" mode="aspectFill" class='bg-img'></image>
+      <image src="{{ userInfo.head_url }}" class='head-img' style='top:40%' mode="aspectFill"></image>
+      <view class='user-name user-name2'>{{ userInfo.nickname }}</view>
+      <view class='bottom-number'>
+        <view class='flex-r-b'>
+          <view class='invite-data'>距到期{{F1.dealTimeFour(second)}}</view>
+          <view class='invite-number'>已邀请{{handInfo.first_vip}}位{{level_name}}</view>
+        </view>
+        <progress class='progress progress2' percent="{{ percent }}" stroke-width="8" border-radius="10" activeColor="#EBC77F" backgroundColor="rgba(235,199,127,0.2)" active />
+      </view>
+
+
+    </view>
+  </view>
+
+  <!-- 任务 -->
+  <!--  -->
+  <view wx:if="{{handInfo!=''}}">
+    <view class='task' wx:if="{{handInfo.is_stuck==0}}">
+      <view class='task-title'>升级任务完成度</view>
+      <view class='task-des'>完成后可提升{{level_name}}级</view>
+    </view>
+    <!-- wx:if="{{handInfo.is_stuck==1}}" -->
+    <view class='task' wx:if="{{handInfo.is_stuck==1}}">
+      <view class='flex-r' style='margin-left:30rpx;'>
+        <view class='vip-power'>VIP权益</view>
+        <image src="/images/member/vip.png" class='vip-img' mode="aspectFill"></image>
+      </view>
+      <view style='margin:10rpx 0 0 24rpx;'>
+        <view class='vip-subtitle'>为生活日常消费节省大额消费支出</view>
+        <view class='vip-subtitle2'>已节省¥{{handInfo.total_income}}</view>
+        <view class='flex-r-a show-center'>
+          <block wx:for="{{bannerList}}" wx:key="index">
+            <view class=''>
+              <image id="group{{item.id}}" bindtap='showExplain' data-item='{{item}}' src="{{item.img_url}}" class='group-img' mode="aspectFill"></image>
+              <!-- <view>{{item.name}}</view> -->
+            </view>
+
+          </block>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+  <view wx:if='{{handInfo.is_stuck==0&&handInfo!=""}}'>
+    <view wx:if="{{top_level==0}}">
+      <view class='circle-tast-total'>
+        <block>
+          <view class="wrap">
+            <view class="circle-box flex-row-f">
+              <!-- <canvas class="circle" style="z-index: -99; width:200px; height:200px;" canvas-id="canvasCircle">
+        </canvas> -->
+              <view class="canvas-total {{taskList.length>3?'canvas-total-two':''}}" wx:for="{{taskList}}" wx:key="{{index}}">
+                <view class='circle-canvas-total'>
+                  <canvas class="circle-canvas" style="width:168rpx; height:168rpx;" canvas-id="canvasArcCir{{index}}">
+                  </canvas>
+                  <view class='circle-message'>
+                    <view>({{item.num||0}}/</view>
+                    <view>{{item.total_num||0}})</view>
+                  </view>
+                </view>
+                <view class='tast-name'>{{item.title }}</view>
+                <view class='vietical-line'></view>
+              </view>
+
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <block wx:for="{{taskList}}" wx:key="{{index}}">
+        <view class='flex-row-s each-task' catchtap='goDetail' data-type="{{item.type}}">
+          <view class='flex-row-f flex-1'>
+            <image src="/images/member/type1.png" class='btoom-pic-one' mode="aspectFill" lazy-load='true' wx:if="{{item.type==1}}"></image>
+            <image wx:if="{{item.type==2}}" src="/images/member/type2.png" class='btoom-pic-two' mode="aspectFill" lazy-load='true'></image>
+            <image wx:if="{{item.type==3}}" src="/images/member/type3.png" class='btoom-pic-three' mode="aspectFill" lazy-load='true'></image>
+            <image wx:if="{{item.type==4}}" src="/images/member/type4.png" class='btoom-pic-four' mode="aspectFill" lazy-load='true'></image>
+            <view class='bottom-task-name'>{{item.task_name}}</view>
+            <view class='boder-line2 flex-1'></view>
+          </view>
+          <view class="go-finish {{F1.compareSize(item.num,item.total_num)?'finished':''}}">{{F1.compareSize(item.num,item.total_num)?'已完成':'去完成'}}</view>
+        </view>
+      </block>
+    </view>
+    <view wx:else class='top-level-total'>
+      <image src="/images/member/levelTop.png" class='top-level' mode="aspectFill" lazy-load='true'></image>
+      <view class='top-level-text1'>恭喜您成功购买大礼包</view>
+      <view class='top-level-text2'>升级为</view>
+      <view class='top-level-text3'>{{level_name}}</view>
+    </view>
+  </view>
+  <!--卡位  -->
+  <view wx:if='{{handInfo.is_stuck==1}}'>
+    <view class='text-subtitle'>升级永久「{{level_name}}」攻略</view>
+    <view class='flex-r each-model-total'>
+      <view class='flex-c each-model '>
+        <view>方式一</view>
+        <view>完成指定任务</view>
+      </view>
+      <view class='flex-c each-model' bindtap='jumpPromote'>
+        <view style='color:#474747;'>方式二</view>
+        <view style='color:#999999'>自购{{level_name}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{level==1}}">
+      <view class='circle-canvas-total'>
+        <canvas class="circle-canvas" style="width:168rpx; height:168rpx;" canvas-id="canvasArcCirD">
+        </canvas>
+        <view class='circle-message'>
+          <view>{{growth.growth||0}}</view>
+        </view>
+      </view>
+      <view class='bottom-class'>
+        <view>当前{{growth.growth}}</view>
+        <view class='flex-r bottom-level' catchtap='showModelquesion'>
+          <view>成长值获取方法</view>
+          <!-- <image src="/images/member/question.png" class='question' mode="aspectFill"></image> -->
+        </view>
+      </view>
+      <view wx:if="{{ content }}" class='text-one' style='padding:0 30rpx 50rpx;'>
+        <rich-text nodes="{{F1.rich(content)}}"></rich-text>
+      </view>
+    </view>
+
+    <view wx:if="{{level!=1}}">
+      <view wx:if="{{top_level==0}}">
+        <view class='circle-tast-total'>
+          <block>
+            <view class="wrap">
+              <view class="circle-box flex-row-f">
+                <!-- <canvas class="circle" style="z-index: -99; width:200px; height:200px;" canvas-id="canvasCircle">
+        </canvas> -->
+                <view class="canvas-total {{taskList.length>3?'canvas-total-two':''}}" wx:for="{{taskList}}" wx:key="{{index}}">
+                  <view class='circle-canvas-total'>
+                    <canvas class="circle-canvas" style="width:168rpx; height:168rpx;" canvas-id="canvasArcCir{{index}}">
+                    </canvas>
+                    <view class='circle-message'>
+                      <view>({{item.num||0}}/</view>
+                      <view>{{item.total_num||0}})</view>
+                    </view>
+                  </view>
+                  <view class='tast-name'>{{item.title }}</view>
+                  <view class='vietical-line'></view>
+                </view>
+
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <block wx:for="{{taskList}}" wx:key="{{index}}">
+          <view class='flex-row-s each-task' catchtap='goDetail' data-type="{{item.type}}">
+            <view class='flex-row-f flex-1'>
+              <image src="/images/member/type1.png" class='btoom-pic-one' mode="aspectFill" lazy-load='true' wx:if="{{item.type==1}}"></image>
+              <image wx:if="{{item.type==2}}" src="/images/member/type2.png" class='btoom-pic-two' mode="aspectFill" lazy-load='true'></image>
+              <image wx:if="{{item.type==3}}" src="/images/member/type3.png" class='btoom-pic-three' mode="aspectFill" lazy-load='true'></image>
+              <image wx:if="{{item.type==4}}" src="/images/member/type4.png" class='btoom-pic-four' mode="aspectFill" lazy-load='true'></image>
+              <view class='bottom-task-name'>{{item.task_name}}</view>
+              <view class='boder-line2 flex-1'></view>
+            </view>
+            <view class="go-finish {{F1.compareSize(item.num,item.total_num)?'finished':''}}">{{F1.compareSize(item.num,item.total_num)?'已完成':'去完成'}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+
+  </view>
+
+  <!-- <view class='mask ' wx:if="{{ isHelp }}" bindtap='closeQuesion'></view>
+  <view class='help' wx:if="{{ isHelp }}">
+    <view class='wrap-all help-head'>
+      <view>{{helpTitle}}</view>
+      <image src="/images/message-cancel.png" class='close-help' mode="aspectFill" bindtap='closeQuesion'></image>
+    </view>
+    <scroll-view class="scroll-load-panel help-content" scroll-y="true">
+
+    </scroll-view>
+  </view> -->
+
+  <cover-view class='fixed-model' wx:if="{{posterImage&&modelStatus}}" catchtap='close'>
+    <cover-view class='poster-image-total'>
+      <cover-image src="{{posterImage}}" class='poster-image' mode="aspectFill" lazy-load='true'></cover-image>
+      <cover-view class='flex-row-s-a bottom-pic-button'>
+        <cover-view catchtap='goback' class='poster-button goback'>返回首页</cover-view>
+        <cover-view catchtap='save' class='poster-button save'>保存图片</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view></cover-view>
+  </cover-view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

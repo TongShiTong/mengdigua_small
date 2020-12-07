@@ -1,0 +1,171 @@
+/* pages/member/promote/promote.wxss */
+
+page {
+  background-color: #fff;
+  height: auto;
+}
+
+.promote-bg {
+  height: 435rpx;
+  background-color: #fee4a8;
+}
+
+/* top-style' */
+
+.top-style {
+  width: 100%;
+  padding-left: 32rpx;
+  box-sizing: border-box;
+}
+
+.update-level {
+  width: 264rpx;
+  height: 362rpx;
+}
+
+.buy-word {
+  font-size: 44rpx;
+  font-family: PingFangSC-Light;
+  font-weight: 300;
+  color: rgba(86, 58, 2, 1);
+  line-height: 60rpx;
+}
+
+/* vip权益 */
+
+.vip-wrap {
+  width: 100%;
+}
+
+.vip-scroll {
+  margin-top: 32rpx;
+}
+
+.vip-img {
+  width: 40rpx;
+  height: 32rpx;
+}
+
+.vip-power {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(29, 30, 31, 1);
+  margin-right: 16rpx;
+}
+
+.vip-subtitle {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #1D1E1F;
+  line-height: 34px;
+}
+
+.group-img {
+  width: 560rpx;
+  height: 180rpx;
+}
+
+.circel-active {
+  width: 12rpx;
+  height: 12rpx;
+  background: rgba(239, 209, 167, 1);
+  border-radius: 50%;
+  margin-left: 10rpx;
+}
+
+.circel-benner {
+  width: 8rpx;
+  height: 8rpx;
+  background: rgba(239, 209, 167, 1);
+  opacity: 0.3;
+  border-radius: 50%;
+  margin-left: 10rpx;
+}
+
+/* 代理商礼包 */
+
+.vip-title {
+  margin-top: 10rpx;
+  padding-left: 30rpx;
+}
+
+.vip-text {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: 700;
+}
+
+.s-line {
+  margin-top: -20rpx;
+  width: 418rpx;
+  height: 16rpx;
+  background: rgba(239, 209, 167, 1);
+}
+
+.gift-list {
+  margin-top: -20rpx;
+  box-shadow:0 -16rpx 24rpx 0 rgba(211,211,211,0.43);
+  border-top-left-radius:24rpx; 
+  border-top-right-radius:24rpx; 
+  background: #fff;
+}
+
+.vip-list {
+  padding-bottom: 98rpx;
+}
+
+.share-btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 87;
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  background: linear-gradient(41deg, rgba(215, 43, 24, 1) 0%, rgba(215, 24, 87, 1) 100%);
+}
+
+/* 弹窗 */
+
+.explain-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.explain-content {
+  width: 590rpx;
+  height: 264rpx;
+  background: rgba(255, 255, 255, 1);
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
+
+.close-btn {
+  height: 100rpx;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.explain-title {
+  padding: 30rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.explain-subtitle {
+  padding: 0 30rpx;
+  color: #555;
+  font-size: 30rpx;
+}

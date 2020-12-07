@@ -1,0 +1,37 @@
+<!--pages/center/shareCoupon/shareCoupon.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="领取优惠券" />
+  <view class='back main-color theme-lg-A-{{theme}}' bindtap='jumpBack'>返回</view>
+  <scroll-view class="scroll-load-panel scroll" scroll-y="truec" style='height:{{pageHeight}}px'>
+    <view class='user flex-column-s'>
+      <view>{{ listData.nickname }}</view>
+      <view class='text-one'>给您赠送了{{ listData.coupon_num }}张优惠券，赶紧来领取吧！</view>
+    </view>
+    <view wx:for="{{ listData.list }}" wx:key="{{ index }}" class='flex-column-s {{ item.status == 4?"coupon-other-item":"coupon-item" }}' bindtap='selectCoupon' data-index='{{ index }}' data-status='{{ item.status }}' data-select='{{ item.isSelect }}'>
+      <view class='img-wrap'>
+        <image src="/images/center/coupon.png" class='coupon-img' mode="aspectFill"></image>
+        <view class='coupon-title'>{{ item.name }}</view>
+        <image src="/images/center/coupon-reve.png" class='coupon-share-img' wx:if="{{ item.status == 4 }}" mode="aspectFill"></image>
+        <view class='flex-row-f coupon-content'>
+          <view>
+            <text class='coupon-yuan'>￥</text>
+            <text class='coupon-amount'>{{ item.discount_num }}</text>
+          </view>
+          <view style='margin-left:48rpx'>
+            <view class='{{ item.status == 1?"condition-num":"condition-un-num" }}'>满{{ item.condition_num }}元可用</view>
+            <view class='text-one'>有效期：{{ item.expire }}</view>
+          </view>
+        </view>
+        <view class='invitor flex-row-s' wx:if="{{ item.invite_name != '' && item.invite_name != null }}">
+          <view style='color:#555555'>邀请人：{{ item.invite_name }}</view>
+          <view style='color:#C0C0C0'>{{ item.invite_time }}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='main-color btn theme-lg-A-{{theme}}' bindtap='receive'>立即领取</view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,7 @@
+<view class='swipedelete-wrapper' bindtouchmove='touchMoveHandler' bindtouchstart='touchStartHandler' style="transform:translateX({{translateX}}px)">
+  <slot></slot>
+  <view class='flex-column swipedelete-btn' bindtap='deleteItem'>
+    <image src='/images/shopcar/delete.png' class='delete-img' mode="aspectFill"></image>
+    <view>删除</view>
+  </view>
+</view>

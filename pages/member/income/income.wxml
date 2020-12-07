@@ -1,0 +1,125 @@
+<!--pages/member/income/income.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="业绩管理" bgColor="#D1BC9D" />
+
+  <view class='income-head'>
+    <view class='flex-row-s income-content'>
+      <view>预计收入</view>
+      <view class='flex-row-f' bindtap='showTab'>
+        <view wx:if="{{ tabIndex == 0 }}">当日</view>
+        <view wx:elif="{{ tabIndex == 1 }}">当周</view>
+        <view wx:elif="{{ tabIndex == 2 }}">当月</view>
+        <view wx:elif="{{ tabIndex == 3 }}">累计</view>
+        <image src="/images/member/select-down.png" class='select-down-img' mode="aspectFill"></image>
+      </view>
+    </view>
+    <view class='flex-row-s'>
+      <view class='income-num'>{{ nowIncome }}</view>
+      <view class='income-time'>{{ nowTime }}</view>
+    </view>
+  </view>
+  <view class='income'>
+    <view class='flex-row-f'>
+      <view class='income-tab' wx:for="{{ incomeTab }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selctIncomeTab'>
+        <view class='{{ index==incomeIndex?"active-income":"unactive-income" }}'>{{ item.title }}</view>
+        <view class='income-line' wx:if="{{ index==incomeIndex }}"></view>
+      </view>
+    </view>
+    <!-- 时间选择 搜索 -->
+    <view class='flex-row-s time-serch'>
+      <view class='flex-row time-select' bindtap='selectTime' wx:if="{{ (orderStartTime == '' || orderEndTime == '') && tabIndex == 3 }}">
+        <image src="/images/member/select-time.png" class='select-time-img' mode="aspectFill"></image>
+        <view style='font-size:24rpx;'>时间筛选</view>
+      </view>
+      <view class='flex-row red-time' wx:elif="{{ orderStartTime != '' && orderEndTime != '' && tabIndex == 3 }}">
+        <!-- <image src="/images/message-cancel.png" class='message-img' bindtap='closeTime' mode="aspectFill"></image> -->
+        <view 
+          style="font-size:34rpx;color:red;margin-right:10rpx;"
+          bindtap='closeTime'>×</view>
+        <view>{{ orderStartTime }}至</view>
+        <view>{{ orderEndTime }}</view>
+      </view>
+      <view class='flex-row-f serch-wrap' wx:if="{{ incomeIndex != 4 }}">
+        <image src="/images/serch.png" class='select-serch-img' mode="aspectFill"></image>
+        <input class='input {{ tabIndex == 3?"is-time-input":"more-inut" }}' type='text' bindinput='getOrderNo' placeholder-class="input-place" placeholder='请输入订单号' confirm-type="搜索" bindconfirm="serchOrder"></input>
+      </view>
+      <view bindtap='serchOrder' wx:if="{{ incomeIndex != 4 }}">搜索</view>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class='order-list' wx:if="{{ incomeIndex != 4 }}">
+    <view 
+      class='order-view' 
+      wx:for="{{ listData.list }}" 
+      wx:key="{{ index }}" 
+      bindtap='jumoDetail' 
+      data-id='{{ item.hand_log_id }}'>
+ 
+      <view class='list-head flex-row-s'>
+        <view class='flex-row-f'>
+          <image src="/images/member/icon2.png" class='icon2-img' mode="aspectFill"></image>
+          <view class='list-time'>{{ item.create_time }}</view>
+        </view>
+        <view class='list-text-status' wx:if="{{ item.status == 0 }}">待付款</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 1 }}">等待发货</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 2 }}">待收货</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 3 }}">待评价</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 4 }}">退货申请</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 5 }}">退货申请驳回</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 6 }}">退款中...</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 7 }}">已退货</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 8 }}">取消交易</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 9 }}">交易完成</view>
+        <view class='list-text-status' wx:elif="{{ item.status == 10 }}">支付失败</view>
+      </view>
+      <view class='list-content flex-row-f'>
+        <view class='show-image-total'>
+          <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+          <view class='small-icon theme-lg-B-{{theme}}' wx:if="{{item.activity_type==1}}">秒杀</view>
+        </view>
+        <view class='good-right flex-column-s'>
+          <view class='good-name text-line1'>{{ S1.substr(item.spu_name,18) }}</view>
+          <view class='text-one'>{{ S1.substr(item.skus,20) }}</view>
+          <view class='flex-row-s' style='width:100%;'>
+            <view class='good-price'>¥{{ item.sku_price }}</view>
+            <view class='text-one'>x{{ item.total_num }}</view>
+          </view>
+        </view>
+      </view>
+      <view class='list-bottom'>
+        <view>共{{ item.total_num }}件商品</view>
+        <view>
+          <text class='total-text'>总计赚：</text>
+          <text class='total-amount'>¥{{ item.total_price }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 福利金 -->
+  <view style='margin-top:16rpx;' wx:elif="{{ incomeIndex == 4 }}">
+    <view class='weflare-view flex-row-s' wx:for="{{ weflareData.list }}" wx:key="{{ index }}">
+      <view>
+        <view class='weflare-name'>{{ item.title }}</view>
+        <view class='text-one'>{{ item.create_time }}</view>
+      </view>
+      <view>
+        <text class='weflare-price'>{{ item.price }}</text>
+        <text class='text-one'>返利</text>
+      </view>
+    </view>
+  </view>
+  <view class='mask' wx:if="{{ showTime }}" bindtap='closeTopTime'></view>
+  <view class='select-modal' wx:if="{{ showTime }}">
+    <view class='select-item flex-row' wx:for="{{ tab }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selctTab'>
+      <view class='{{ index==tabIndex?"active":"" }}'>{{ item }}</view>
+    </view>
+    <view class='btn close-btn' bindtap='closeTopTime'>取消</view>
+  </view>
+  <time-select show="{{showStartTime}}" bind:closeTime="closeTime" bind:getTime='getFirstTime'></time-select>
+  <time-select show="{{showStartEnd}}" bind:closeTime="closeTime" bind:getTime='getSecondTime'></time-select>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

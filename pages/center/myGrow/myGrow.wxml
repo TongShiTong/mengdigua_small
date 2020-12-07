@@ -1,0 +1,67 @@
+<!--pages/center/myGrow/myGrow.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="我的成长值" bgColor="#fff" />
+  <scroll-view class='mg' scroll-y='true' bindscrolltolower="loadMore">
+    <view class='bg '>
+      <view class='flex-row-f bg-t'>
+        <image src="/images/center/other/vip-img1.png" class='vip-img' mode="aspectFill"></image>
+        <view class='vip-text'>{{userInfo.level_name}}</view>
+      </view>
+      <progress class='progress' percent="{{ deg }}" stroke-width="8" border-radius="10" activeColor="#EBC77F" backgroundColor="rgba(235,199,127,0.2)" active="true" />
+      <view class='flex-row-s wrapper' style='font-size:26rpx;'>当前V值{{ growth.growth }}
+        <view class='role-less'>
+        <text>距离获得</text>
+        <text wx:if='{{ growth.role == 1 }}'>VIP会员</text>
+        <text wx:elif='{{ growth.role == 2 }}'>经理</text>
+        <text wx:elif='{{ growth.role == 3 }}'>总裁</text>
+        <text>资格还差 </text>
+        <text>{{ growth.less_growth }}</text>
+      </view>
+      </view>
+      <image src="/images/center/other/tip1.png" class='tip-img' mode="aspectFill" bindtap='showHelp'></image>
+    </view>
+    <view class='share'>
+      <view class='share-text'>分享任务</view>
+      <view class='text-one'>快速增加成长值</view>
+    </view>
+    <view style='margin-top:118rpx;'>
+      <view class='wrap-all flex-row-s list-share' wx:for='{{taskData}}' wx:key='{{index}}'>
+        <view class='flex-row-f'>
+          <image src="{{item.img}}" class='task-img' mode="aspectFill"></image>
+          <view class='share-title'>{{item.type}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='share-num'>+{{item.growth}}</view>
+      </view>
+    </view>
+    <view class='ms'>
+      <text class='ms-text'>成长明细</text>
+      <view class='msr' wx:for='{{detailed}}' wx:key='{{index}}'>
+        <view class='msr-l'>
+          <view class='msr-lt'>{{item.type}}</view>
+          <view class='text-one'>{{item.create_time}}</view>
+        </view>
+        <view class='msr-r '>+{{item.growth}}</view>
+      </view>
+    </view>
+    <view class='mask' bindtap='close' wx:if="{{ isHelp }}"></view>
+    <view class='help' wx:if="{{ isHelp }}">
+      <view class='wrap-all help-head'>
+        <view>{{helpTitle}}</view>
+        <image src="/images/message-cancel.png" class='close-help' mode="aspectFill" bindtap='close'></image>
+      </view>
+      <scroll-view class="scroll-load-panel help-content" scroll-y="true">
+        <view wx:if="{{ content }}" class='text-one'>
+          <rich-text nodes="{{R1.rich(content)}}"></rich-text>
+        </view>
+      </scroll-view>
+    </view>
+    <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+  </scroll-view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

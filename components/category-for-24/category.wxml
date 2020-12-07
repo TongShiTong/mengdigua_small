@@ -1,0 +1,27 @@
+<!--components/category-for-24/category.wxml-->
+<block>
+  <scroll-view scroll-x="true" class="tab-scroll shop-tab" style="background:{{bgcolor === ''? '':bgcolor}}; ">
+    <view class="tab {{item.title === currentModule.title}}" wx:for="{{categoryInfo.moduleList}}" bindtap="switchCurrentModule" data-item="{{ item }}">
+      {{item.title}}
+    </view>
+  </scroll-view>
+  <view class="shop-panel">
+      <view class="shop-type box-shadow" wx:for="{{currentModule.list}}" bindtap="tapGood" data-id="{{item.item_id}}" data-shop_id="{{item.shop_id}}">
+        <view class="goods-info-box">
+          <image src="{{item.img_url}}" class="goods-logo" mode="widthFit"></image>
+          <view class="goods-info">
+            <view class="goods-tags" wx:if="{{item.shop_label}}">
+              <text>{{item.shop_label}}</text>
+            </view>
+            <view class="goods-item">{{item.title}}</view>
+            <view class="goods-text">{{item.remark}}</view>
+            <view class="price">
+              ￥
+                <text class="new">{{item.price}}</text>
+                <text class="old">￥{{item.old_price}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</block>

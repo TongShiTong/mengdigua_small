@@ -1,0 +1,30 @@
+<!--pages/order/selectReturn/selectReturn.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="申请售后" />
+  <view class='super' style="margin-top:40rpx;">
+    <view class='flex-row-s refund-type' bindtap='jumpRetrun' data-index='0' data-refunstatus='1'>
+      <view class='flex-row-f'>
+        <image src="/images/order/refund-money.png" class="return-img" mode="aspectFill"></image>
+        <view style='margin-left:24rpx;'>
+          <view class='title'>仅退款</view>
+          <view class='text-one'>未收到货(包含未签收),或商家协商提前同意下</view>
+        </view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <view class='flex-row-s refund-type' bindtap='jumpRetrun' wx:if="{{ orderData.status == 2 }}" data-index='1' data-refunstatus='2'>
+      <view class='flex-row-f'>
+        <image src="/images/order/return-goods.png" class="return-img" mode="aspectFill"></image>
+        <view style='margin-left:24rpx;'>
+          <view class='title'>退款退货</view>
+          <view class='text-one'>已收到货，需要更换已收到的货物</view>
+        </view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

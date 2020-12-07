@@ -1,0 +1,16 @@
+<!--pages/member/newguide/newguide.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="新手指引" />
+  <image src="{{topPic}}" class='school-img-center' mode="aspectFill"></image>
+  <view class='flex-row-f each-attr' wx:for="{{listData.list}}" wx:key="index" catchtap='goDeatil' id="{{item.id}}" data-name="{{item.name}}" data-pid="{{item.pid}}" data-index="{{index}}">
+    <image src="{{item.img_url}}" class='newinfo-icon' mode="aspectFill"></image>
+    <view class='title'>{{item.name}}</view>
+  </view>
+  <!-- <view class='flex-row-f each-attr'>
+  <image src="/images/member/newquestion.png" class='newquestion-icon' mode="aspectFill"></image>
+  <view class='title'>常见问题解答</view>
+</view> -->
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

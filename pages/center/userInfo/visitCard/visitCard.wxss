@@ -1,0 +1,71 @@
+/* pages/center/userInfo/visitCard/visitCard.wxss */
+
+.total {
+  background: #fff;
+}
+
+.title {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(29, 30, 31, 1);
+  line-height: 44px;
+  margin: 20rpx auto;
+}
+
+.input-width {
+  width: 100%;
+}
+
+.gray-word {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(192, 192, 192, 1);
+  line-height: 34rpx;
+  padding: 24rpx 0;
+}
+
+.user-evaluate {
+  background: #fff;
+  margin: 48rpx 18rpx;
+}
+
+.upload-img {
+  width: 654rpx;
+  height: 654rpx;
+}
+
+.img-wrap {
+  position: relative;
+}
+
+.cancel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 600;
+}
+
+.show-word {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 40rpx;
+  padding-bottom: 100rpx;
+  text-align: center;
+}
+.share-btn {
+  height: 100rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+  font-size: 32rpx;
+  background: #fff;
+}

@@ -1,0 +1,46 @@
+/* pages/center/userInfo/userInfo.wxss */
+.inof-item:first-child {
+  height: 140rpx;
+  /* border-top: 1px solid #f4f4f4; */
+}
+.inof-item {
+  height: 158rpx;
+  border-bottom: 1rpx solid rgba(61, 61, 61, 0.1);
+  color: #111111;
+  font-size: 28rpx;
+  margin: 0 32rpx;
+  /* background-color: #fff; */
+}
+.right-text {
+  color: #222222;
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+.common-right-img1 {
+  width: 44rpx;
+  height: 46rpx;
+}
+.head-img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  border: 2px solid rgba(204, 204, 204, 0.5);
+}
+.right-item {
+  margin-right: 16rpx;
+}
+/* switch */
+.wx-switch-input{
+  width: 66rpx !important;
+  height: 28rpx !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+  width: 66rpx !important;
+  height: 28rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+  width: 22rpx !important;
+  height: 22rpx !important;
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "新增地址",
+  "usingComponents": {
+    "area-select": "/components/areaSelect/area-select",
+    "message": "/components/messageBox/messageBox",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

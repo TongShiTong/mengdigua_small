@@ -1,0 +1,122 @@
+<!--pages/center/myCoupon/myCoupon.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+<view class="yhq">
+	<navbar title="优惠券" bgColor="linear-gradient(90deg,rgba(254,201,81,1) 0%,rgba(244,225,114,1) 100%)" />
+</view>
+	
+	<view class='head'>
+		<tab tab="{{ tab }}" bind:selectTab="selectTab" />
+	</view>
+	<scroll-view class="scroll-load-panel scroll" scroll-y="true" bindscrolltolower="loadMore">
+		<view
+		 wx:if="{{ listData.list != '' }}"
+		 wx:for="{{ listData.list }}"
+		 wx:key="{{ index }}"
+		 class='flex-column-s {{ item.status == 4?"coupon-other-item":"coupon-item" }}'
+		 bindtap='selectCoupon'
+		 data-index='{{ index }}'
+		 data-status='{{ item.status }}'
+		 data-select='{{ item.isSelect }}'
+		>
+			<view class='img-wrap'>
+				<image src="/images/center/coupon.png" class='coupon-img' mode="aspectFill" />
+				<!-- <image
+				 src="/images/shopcar/selected.png"
+				 class='select-img'
+				 wx:if="{{ item.status == 1 && item.isSelect === true }}"
+				 mode="aspectFill"
+				/>
+				<image
+				 src="/images/shopcar/unselected.png"
+				 class='select-img'
+				 wx:elif="{{ item.status == 1 && item.isSelect === false }}"
+				 mode="aspectFill"
+				/> -->
+				<!-- 分享中 -->
+				<image
+				 src="/images/center/coupon-share.png"
+				 class='coupon-share-img'
+				 wx:if="{{ item.status == 5 }}"
+				 mode="aspectFill"
+				/>
+				<image
+				 src="/images/center/coupon-later.png"
+				 class='coupon-share-img'
+				 wx:elif="{{ item.status == 2 }}"
+				 mode="aspectFill"
+				/>
+				<image
+				 src="/images/center/coupon-use.png"
+				 class='coupon-share-img'
+				 wx:elif="{{ item.status == 3 }}"
+				 mode="aspectFill"
+				/>
+				<image
+				 src="/images/center/coupon-reve.png"
+				 class='coupon-share-img'
+				 wx:elif="{{ item.status == 4 }}"
+				 mode="aspectFill"
+				/>
+				<view class='flex-row-f coupon-content'>
+					<view style="min-width: 100rpx;">
+						<text class='{{ item.status == 1?"coupon-yuan theme-color-A-"+theme:"coupon-un-yuan" }}'>￥</text>
+						<text class='{{ item.status == 1?"coupon-amount theme-color-A-"+theme:"coupon-un-amount" }}'>{{ item.discount_num }}</text>
+					</view>
+					<view style='margin-left:48rpx'>
+						<view class='coupon-title'>{{ item.name }}</view>
+						<view class='flex-r-s {{ item.status == 1?"condition-num":"condition-un-num" }}'>
+							<view style="margin-right:8rpx;"> 满{{ item.condition_num }}元可用</view>
+							<view class='coupon-type  {{item.status == 1?" theme-border-c-A-"+theme:"gray" }}'>
+								{{item.item_type==1?'平台券':item.item_type==2?'店铺券':item.item_type==3?'商品券':'品类券'}}
+							</view>
+						</view>
+						<view class='text-one'>有效期：{{ item.expire }}</view>
+					</view>
+				</view>
+				<view class='invitor flex-row-s'>
+					<view style='color:#555555'>
+						<view wx:if="{{ item.invite_name != '' && item.invite_name != null }}">分享人：{{ item.invite_name }}</view>
+					</view>
+					<view style="padding:15rpx" catchtap="" wx:if="{{item.status == 1}}">
+						<view
+						 class="use theme-border-c-A-{{theme}}"
+						 data-id="{{item.coupon_id}}"
+						 data-type="{{item.item_type}}"
+						 catchtap="goHome"
+						>立即使用
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class='receiver-wrap flex-row-s' wx:if="{{ item.status == 4 }}">
+				<view style='margin-top:5rpx;'>
+					<text>领取人：</text>
+					<text>{{ item.receive_name }}</text>
+				</view>
+				<view style='margin-top:5rpx;'>{{ item.receive_time }}</view>
+			</view>
+		</view>
+		<view wx:if="{{ listData.list == '' }}" class='flex-column coupon-empty'>
+			<image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/ABFWXZMHK0245678_1568102896.png" class='coupon-empty-img' mode="aspectFill" />
+			<view class='text-one'>暂无优惠券</view>
+		</view>
+	</scroll-view>
+	<!-- <button open-type='share' wx:if="{{ activeIndex == 0 }}" class='share-btn main-color' >分享优惠券</button> -->
+	<view class='share-btn  flex-row-f' wx:if="{{ activeIndex == 0 }}">
+		<view class='flex-1 main-color theme-lg-A-{{theme}}' catchtap='goCouponCenter'>领券中心</view>
+		<!-- <view class='flex-1 main-color theme-lg-A-{{theme}}' bindtap='shareCoupon'>分享优惠券</view> -->
+	</view>
+	<share
+	 showShare="{{ showShare }}"
+	 bind:close='closeShare'
+	 bind:shareSuccess="shareSuccess"
+	 shareImg="{{ shareData.post_url }}"
+	/>
+	<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" />
+</block>
+
+<view wx:else>
+	<page-loding/>
+</view>
+

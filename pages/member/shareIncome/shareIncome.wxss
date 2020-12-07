@@ -1,0 +1,4 @@
+/* pages/member/shareIncome/shareIncome.wxss */
+page {
+  background-color: #3E4042;
+}

@@ -1,0 +1,97 @@
+/* 医疗 */
+
+/* 字体颜色 */
+
+.theme-color-A-4 {
+  color: #0dcdb1 !important;
+}
+
+.theme-color-B-4 {
+  color: #04bde3 !important;
+}
+
+.theme-color-C-4 {
+  color: #84d37b !important;
+}
+
+.theme-color-D-4 {
+  color: #f8a800 !important;
+}
+
+/* 背景色 */
+
+.theme-bg-A-4 {
+  background: #0dcdb1 !important;
+}
+
+.theme-bg-B-4 {
+  background: #04bde3 !important;
+}
+
+.theme-bg-C-4 {
+  background: #84d37b !important;
+}
+
+.theme-bg-D-4 {
+  background: #f8a800 !important;
+}
+
+/* 背景渐变 */
+
+.theme-lg-A-4 {
+  background: linear-gradient(270deg, rgba(52, 229, 203, 1) 0%, rgba(13, 205, 177, 1) 100%) !important;
+}
+
+.theme-lg-B-4 {
+  background: linear-gradient(270deg, #ebc77f 0%, #b8a281 100%) !important;
+}
+
+.theme-lg-C-4 {
+  background: linear-gradient(270deg, rgba(41, 218, 255, 1) 0%, rgba(4, 189, 227, 1) 100%) !important;
+}
+
+.theme-lg-D-4 {
+  background: linear-gradient(270deg, #fffafa 0%, #fffa93 100%) !important;
+}
+
+/* 边线颜色 */
+
+.theme-border-A-4 {
+  border-color: #0dcdb1 !important;
+}
+
+.theme-border-B-4 {
+  border-color: #04bde3 !important;
+}
+
+.theme-border-C-4 {
+  border-color: #84d37b !important;
+}
+
+.theme-border-D-4 {
+  border-color: #f8a800 !important;
+}
+
+/* 主背景色不透明度40% */
+
+.theme-bgo-A-4 {
+  background: rgba(13, 205, 177, 0.4);
+}
+
+/* 边线颜色+字色 */
+
+.theme-border-c-A-4 {
+  border-color: #0dcdb1 !important;
+  color: #0dcdb1 !important;
+}
+
+.theme-font-A-4 {
+  color: #0dcdb1 !important;
+}
+
+.theme2-color{
+  color:#E50A35 !important;
+}
+.theme2-bg-color{
+  color:#E50A35 !important;
+}

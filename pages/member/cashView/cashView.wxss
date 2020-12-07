@@ -1,0 +1,34 @@
+/* pages/member/cashView/cashView.wxss */
+.view {
+  padding-top: 50rpx;
+  height: 85vh;
+  background-color: #fff;
+  text-align: center;
+}
+.title {
+  margin: 32rpx 0 16rpx 0;
+  font-size: 40rpx;
+  color: #333333;
+}
+.sub-title {
+  color: #999999;
+}
+.success-img {
+  width: 130rpx;
+  height: 130rpx;
+}
+.btn {
+  text-align: center;
+  width:750rpx;
+  height:98rpx;
+  background:rgba(248,218,13,1);
+  opacity:0.5;
+  position: fixed;
+  bottom: 0;
+  line-height: 98rpx;
+
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(52,52,48,1);
+}

@@ -1,0 +1,82 @@
+/* pages/member/invite/invite.wxss */
+page {
+  background-color: #F6F6F7;
+}
+.intive-head {
+  height: 90rpx;
+  width: 690rpx;
+  padding: 0 30rpx;
+  background:#EAEAEC;
+}
+.text {
+  font-size: 26rpx;
+  color: #555555;
+}
+.copy-img {
+  width: 22rpx;
+  height: 26rpx;
+}
+.coyp {
+  font-size: 24rpx;
+  color: #777777;
+}
+.copy-wrap {
+  width:114rpx;
+  height:50rpx;
+  border-radius:6rpx;
+  margin-left: 16rpx;
+  border:1px solid rgba(187,187,187,1);
+}
+.share-box {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 140rpx;
+}
+.share-wechat-img {
+  width: 44rpx;
+  height: 36rpx;
+}
+.share-pyq-img {
+  width: 50rpx;
+  height: 50rpx;
+}
+.share-save-img {
+  width: 34rpx;
+  height: 34rpx;
+}
+.tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  height: 100rpx
+}
+.share-text {
+  color: #666666;
+}
+.share-btn-text {
+  color: #666666;
+  font-size: 24rpx;
+}
+.share-btn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1.5;
+}
+.invite-img {
+  width: 588rpx;
+  height: 850rpx;
+}

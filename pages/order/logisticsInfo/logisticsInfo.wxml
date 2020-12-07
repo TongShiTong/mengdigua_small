@@ -1,0 +1,32 @@
+<!--pages/order/logisticsInfo/logisticsInfo.wxml-->
+<wxs src="../../../utils/substr.wxs" module="T1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="物流详情" />
+  <view style="height:40rpx;"></view>
+  <view class='logistics-title flex-row-s'>
+    <view>物流单号 {{ logData.code }}</view>
+    <view class='copy theme-color-A-{{theme}}' catchtap='copyInfo'>复制单号</view>
+  </view>
+  <view class='logistics-title flex-row-s logistics-company'>
+    <view>物流公司 {{ logData.company }}</view>
+  </view>
+  <view class='logistics-info' wx:for="{{ logData.info }}" wx:key="{{ index }}">
+    <view class='log-item'>
+      <view class='log-day'>{{ T1.substrTwo(item.time,10) }}</view>
+      <view class='img-box'>
+        <image class='log-img' wx:if="{{ index == 0 }}" src="/images/log.png"></image>
+        <image class='log-img' wx:else src="/images/un-log.png"></image>
+        <view wx:if="{{ index == 0 }}" class='line-item line-red'></view>
+        <view wx:elif="{{ index > 0 && index != logData.info.length - 1 }}" class='line-item'></view>
+      </view>
+      <view class='log-title'>{{ item.status }}</view>
+    </view>
+    <view class='log-item'>
+      <view class='log-time'>{{ T1.substrThree(item.time,10) }}</view>
+    </view>
+  </view>
+<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

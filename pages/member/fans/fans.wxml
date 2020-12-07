@@ -1,0 +1,110 @@
+<!--pages/member/fans/fans.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="粉丝管理" />
+  <view class='flex-r-e intive-head' wx:if="{{F1.parseInt(handInfo.hand_team)<=F1.parseInt(handInfo.level)}}">
+    <view>
+      <navigator url="/pages/member/community/community">我的社群用户 </navigator>
+    </view>
+
+  </view>
+  <view class='tab flex-row'>
+    <view class='flex-row tab-wrap {{ index == tabIndex?"tab-active theme-color-A-"+theme:"un-active" }}' wx:for="{{tab}}" wx:key="{{ index }}" bindtap='selectTab' data-index='{{ index }}'>
+      <view>{{ item.title }}</view>
+      <view class='ver-line'>|</view>
+      <view>{{ item.num }}</view>
+      <view class='line theme-lg-A-{{theme}}' wx:if="{{ index == tabIndex }}"></view>
+    </view>
+  </view>
+
+  <view class='flex-r-a word-total' wx:if="{{ tabIndex == 1 }}">
+    <view class=''>
+      <view class='count-number'>{{fansList.fans_num}}</view>
+      <view class='count-word'>我的粉丝</view>
+    </view>
+    <view>=</view>
+    <view>
+      <view class='count-number'>{{fansList.fans_order_num}}</view>
+      <view class='flex-r-s' catchtap='showfansShadow'>
+        <view class='count-word'>已开单粉丝</view>
+        <image src="/images/member/question.png" class='question' mode="aspectFill"></image>
+      </view>
+    </view>
+    <view>+</view>
+    <view>
+      <view class='count-number'>{{fansList.fans_no_order_num}}</view>
+      <view class='flex-r-s' catchtap='showfansShadowTwo'>
+        <view class='count-word'>未开单粉丝</view>
+        <image src="/images/member/question.png" class='question' mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='{{ memberList.total_pages == 0?"fans-content":"content" }}' wx:if="{{ tabIndex == 0 }}">
+    <view class='list' wx:for="{{ memberList.list }}" wx:key="{{ index }}">
+      <image src="{{ item.head_url }}" class='head-img' mode="aspectFill"></image>
+      <view class='list-right flex-column-s'>
+        <view class='flex-row-s' style='width:100%;'>
+          <view class='list-name'>{{ item.nickname }}</view>
+          <view class='list-num theme-font-A-{{theme}}'>已购买{{ item.order_num }}单</view>
+        </view>
+        <view class='text-one'>累计贡献返利：{{ item.income }}</view>
+        <view class='text-one'>推荐绑定时间：{{ item.create_time }}</view>
+        <view class='text-one'>成为会员时间：{{ item.become_vip_time }}</view>
+      </view>
+    </view>
+
+     
+  </view>
+  <view class='fans-content' wx:elif="{{ tabIndex == 1 }}">
+    <view wx:for="{{ fansList.list }}" wx:key="{{ index }}">
+      <navigator url="/pages/member/fans/fansDetail/fansDetail?id={{item.uid}}&item={{F1.stringifyArr(item)}}">
+        <view class='list'>
+          <image src="{{ item.head_url }}" class='head-img' mode="aspectFill"></image>
+          <view class='list-right flex-b flex-1' style='height:100%;'>
+            <view class='flex-r-s' style='width:100%;'>
+              <view class='list-name'>{{ item.nickname }}</view>
+              <view class='{{item.order_num==0?"ready-open2":""}} ready-open'>{{item.order_num==0?"未开单":"已开单"}}</view>
+              <!-- <view class='list-num'>已购买{{ item.order_num }}单</view> -->
+            </view>
+            <!-- <view class='text-one'>累计贡献返利：{{ item.income }}</view> -->
+            <view class='text-one' style='margin-top:18rpx;'>推荐绑定时间：{{ item.create_time }}</view>
+          </view>
+        </view>
+        <view class='flex-r-a earn-word-total'>
+          <view class='earn-word'>贡献返利：{{item.income}}</view>
+          <view>|</view>
+          <view class='earn-word'>下单次数：{{item.order_num}}</view>
+        </view>
+      </navigator>
+      <view wx:if="{{fansList.list.length==0}}" style='text-align:center'>
+        <image src="/images/member/noList.png" class='no-list' mode="aspectFill"></image>
+      </view>
+
+    </view>
+     <view wx:if="{{fansList.list.length==0}}" style='text-align:center'>
+        <image src="/images/member/noList.png" class='no-list' mode="aspectFill"></image>
+      </view>
+  </view>
+  <!-- <view class='flex-row-s main-color income theme-lg-A-{{theme}}' wx:if="{{ tabIndex == 0 }}">
+    <view>我的会员累计收益</view>
+    <view>¥{{ memberList.income }}</view>
+  </view> -->
+
+  <view class='mask' wx:if="{{showFans||showFansTwo}}" catchtap='closeFans'>
+    <view class='center-word' wx:if="{{showFans}}">
+      <view class='top-memer'>已开单粉丝</view>
+      <view class='remark-word'>已开单粉丝：成为粉丝后完成第一单购买，即为已下单粉丝。</view>
+    </view>
+    <view class='center-word' wx:if="{{showFansTwo}}">
+      <view class='top-memer'>未开单粉丝</view>
+      <view class='remark-word'>未开单粉丝：成为粉丝后完成第一单购买，即为已下单粉丝。</view>
+    </view>
+  </view>
+
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

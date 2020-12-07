@@ -1,0 +1,18 @@
+<!--pages/goodDetail/paySuccess/paySuccess.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="支付成功" />
+  <view class='pay-success flex-column theme-lg-A-{{theme}}' style="margin-top:40rpx;">
+    <image src="/images/gooddetail/pay-success.png" class="success-img" mode="aspectFill" />
+    <view class='success-text'>支付成功</view>
+    <view class='price '>实付￥{{price}}</view>
+    <view class='flex-row-f'>
+      <view class='btn back-home' bindtap='jumpHome'>返回首页</view>
+      <view class='btn' bindtap='jumpOrder'>查看订单</view>
+    </view>
+  </view>
+  <like title='猜你喜欢' pay='1' subTitle='' listData="{{ likeData }}"></like>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

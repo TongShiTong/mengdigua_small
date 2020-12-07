@@ -1,0 +1,307 @@
+/* pages/center/refund/refundDetail/refundDetail.wxss */
+
+page {
+  background: white;
+}
+.contact-icon{
+
+}
+.contact-service{
+  width:160rpx;
+  height:28rpx;
+  font-size:20rpx;
+  font-family:PingFangSC;
+  font-weight:500;
+  color:rgba(57,57,57,1);
+  line-height:28rpx;
+  background: #f4f4f4;
+}
+.super {
+  padding-bottom: 120rpx;
+}
+
+.order-detail-header {
+  height: 136rpx;
+  /* margin: 0 30rpx; */
+}
+
+.order-detail-text {
+  font-size: 32rpx;
+  margin-left: 24rpx;
+}
+
+.waite-img {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.refund-reason {
+  padding: 30rpx;
+  background-color: #fff;
+  border-top: 1px dashed #f3f3f3;
+  color: #1d1e1f;
+  font-weight: 700;
+  font-size: 32rpx;
+}
+
+.refund-progress {
+  background-color: #f4f4f4;
+  padding: 0 30rpx 30rpx 30rpx;
+}
+
+/* 退款内容 */
+
+.refund-box {
+  /* margin-bottom: 16rpx; */
+  background-color: #fff;
+}
+
+.refund-title-wrap {
+  background-color: #fff;
+  padding: 30rpx 30rpx 10rpx 30rpx;
+}
+
+.refund-tip {
+  background-color: #fff;
+  padding: 10rpx 30rpx;
+}
+
+.refund-btn-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #fff;
+  padding: 10rpx 30rpx 30rpx 30rpx;
+}
+
+.refund-btn {
+  width: 156rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 30rpx;
+  margin-right: 12rpx;
+  color: #555;
+}
+
+.red-btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: linear-gradient(41deg, rgba(215, 43, 24, 1) 0%, rgba(215, 24, 87, 1) 100%);
+  border-radius: 30rpx;
+  margin-right: 12rpx;
+  color: #fff;
+}
+
+.refund-amount {
+  color: #c40d00;
+  font-size: 32rpx;
+}
+
+.refund-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.bottom-item {
+  padding: 20rpx 40rpx;
+  /* margin: 20rpx 0 ; */
+  color: #555;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-content {
+  display: flex;
+  /* justify-content: space-evenly; */
+  flex-direction: row;
+  /* align-items: center; *//* padding: 0 30rpx; *//* margin: 0 2rpx;
+  margin-top: 60rpx; */
+  background-color: #fff;
+  width: 750rpx;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+}
+
+.bottom-btn {
+  width: 164rpx;
+  height: 40rpx;
+  background: #f6f6f6;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12rpx;
+}
+
+.zhichi-btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border: 1px solid rgba(153, 153, 153, 1);
+  border-radius: 30rpx;
+  padding: 0;
+  color: #555;
+  font-size: 28rpx;
+  background-color: #fff;
+  margin: 0;
+}
+
+/* 图片 */
+
+.circel-img {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.line-img {
+  width: 4rpx;
+  height: 80rpx;
+}
+
+.img-wrap {
+  position: relative;
+  padding: 30rpx;
+  width: 690rpx;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #f4f4f4;
+}
+
+.refuse-circel-img {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.refund-success-img {
+  width: 84rpx;
+  height: 84rpx;
+}
+
+.pstion {
+  position: absolute;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+}
+
+.service-img {
+  width: 19rpx;
+  height: 17rpx;
+  padding-right: 6rpx;
+}
+
+/* 商品 */
+
+.order-header {
+  /* border-bottom: 1px solid #f4f4f4; */
+  padding: 30rpx;
+  background: #fff;
+}
+
+.order-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 6rpx;
+}
+
+.order-content-right {
+  width: 520rpx;
+  margin-left: 30rpx;
+  height: 144rpx;
+}
+
+.return-detail {
+  background-color: #fff;
+  /* margin-top: 16rpx; */
+  margin-bottom: 70px;
+  border-bottom: 2rpx solid #f4f4f4;
+}
+
+.shop-name {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(29, 30, 31, 1);
+}
+
+.show-image-total {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.small-icon {
+  position: absolute;
+  width: 72rpx;
+  height: 36rpx;
+  left: 0;
+  bottom: 0;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #fff;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 0 8rpx;
+}
+
+.sku-price {
+  font-size: 24rpx;
+  font-family: DIN;
+  font-weight: bold;
+  color: rgba(54, 54, 54, 1);
+  line-height: 28rpx;
+}
+
+.price-wrap {
+  text-align: right;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.countdown {
+  font-size: 24rpx;
+  font-family: PingFangSC;
+  font-weight: 400;
+  color: rgba(110, 110, 110, 1);
+  line-height: 34rpx;
+}
+
+.bottom-button-g {
+  width: 374rpx;
+  height: 98rpx;
+  text-align: center;
+  line-height: 98rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin: 0 auto;
+  background: rgba(229, 10, 53, 1);
+}
+
+.price-type {
+  font-size: 28rpx;
+  font-family: DIN;
+  font-weight: bold;
+  color: rgba(229, 10, 53, 1);
+  line-height: 24rpx;
+}

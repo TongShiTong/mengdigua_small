@@ -1,0 +1,32 @@
+<!--pages/center/userInfo/visitCard/visitCard.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="编辑微信名片" />
+  <view class='p30 total' style="margin-top:40rpx">
+    <view class='title'>微信号</view>
+    <input class='input-width' placeholder="请输入微信号" bindinput="handleInput" data-type="userName" type="text" value='{{userName}}'></input>
+    <view class='gray-word'>微信号不能超过20个字符，支持字母，数字，下划线和减号，必须以字母开头。</view>
+  </view>
+  <view class='p30'>
+    <view class='user-evaluate'>
+      <view class='img-list'>
+        <view class='img-wrap' wx:if="{{image!=''}}">
+          <image class='evaluate-img' mode="aspectFill" src="{{ image }}"></image>
+          <view class='cancel' bindtap='deleteImg' data-index='{{ index }}'>X</view>
+        </view>
+        <view class='upload' wx:else bindtap='uploadImg'>
+          <image class='upload-img' src="/images/center/uploadTwo.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='show-word'>上传二维码能够方便您的客户主动联系您！</view>
+  <view class='share-btn  flex-row-f' bindtap='save'>
+    <view class='flex-1 main-color theme-lg-A-{{theme}}' >保存</view>
+  </view>
+
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

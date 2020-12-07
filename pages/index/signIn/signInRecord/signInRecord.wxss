@@ -1,0 +1,10 @@
+/* pages/index/signIn/signInRecord/signInRecord.wxss */
+.list-wrap{
+  padding: 32rpx;
+  background: white;
+}
+.list-block{
+  border-bottom: 2rpx solid #f2f2f2;
+  height: 110rpx;
+
+}

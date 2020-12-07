@@ -1,0 +1,515 @@
+/* pages/shop/shopDetail/shopDetail.wxss */
+
+.serch-back {
+  width: 20rpx;
+  height: 30rpx;
+  padding: 16rpx 28rpx;
+}
+
+.top-pic {
+  width: 750rpx;
+  height: 174px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  filter: blur(10rpx);
+  -webkit-filter: blur(10rpx);
+  border-bottom: 4rpx solid #fff;
+}
+
+.shadow {
+  width: 750rpx;
+  height: 174px;
+  position: absolute;
+  z-index: 50;
+  background:rgba(0,0,0,0.3) 
+}
+
+.shop-total {
+  position: absolute;
+  width: 750rpx;
+  /* height: 352rpx; */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.super {
+  /* background-color: #fff; */
+  padding: 80rpx 0 30rpx;
+  /* position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99; */
+  width: 512rpx;
+  box-sizing: border-box;
+  /* background: rgba(0, 0, 0, 0.1); *//* box-shadow: 0rpx 2rpx 20rpx 0rpx rgba(202, 213, 222, 0.3); */
+}
+
+.index-img {
+  width: 100%;
+  height: 100%;
+}
+
+.message-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.serch-wrap {
+  border-radius: 44rpx;
+  background-color: #f2f2f2;
+  height: 68rpx;
+  margin-right: 30rpx;
+}
+
+.serch {
+  height: 64rpx;
+}
+
+.serch-cancel {
+  font-size: 24rpx;
+  color: #1f1f1e;
+}
+
+.input {
+  color: #1f1f1e;
+  margin-left: 20rpx;
+}
+
+.serch-img {
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 30rpx;
+}
+
+.input-place {
+  color: #a6b8c7;
+}
+
+.right-icon {
+  text-align: center;
+}
+
+.class-img {
+  width: 28rpx;
+  height: 24rpx;
+  margin: 0 auto;
+}
+
+.sort-name {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(246, 246, 247, 1);
+  line-height: 34rpx;
+  white-space: nowrap;
+}
+
+/* 店铺信息 */
+
+.shop-detail {
+  /* margin-top: 138rpx; *//* border-bottom: 1px solid #f4f4f4; */
+  padding: 30rpx;
+}
+
+.collect-img {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.collect-num {
+  color: #878787;
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+
+.shop-detail-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid #fff;
+}
+
+.shop-detail-right {
+  height: 120rpx;
+  margin-left: 20rpx;
+  max-width: 320rpx;
+}
+
+.shop-detail-name {
+  font-size: 34rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: 48rpx;
+  width: 100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.shop-detail-num {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  line-height: 36rpx;
+}
+
+.shop-detail-time {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  line-height: 34rpx;
+}
+
+/* tab*/
+
+.tab {
+  background-color: #fff;
+  margin-top: 352rpx;
+  position: relative;
+  width: 100%;
+  z-index: 555555;
+}
+
+.tab-title {
+  text-align: center;
+  color: #cad5de;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+}
+
+.active-tab {
+  text-align: center;
+  color: #1f1f1e;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+}
+
+.tab-view {
+  position: relative;
+  padding: 30rpx 0;
+  flex: 1;
+}
+
+.line {
+  width: 100%;
+  height: 1rpx;
+  background-color: #1f1f1e;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+/* 首页 */
+
+.index-view {
+  position: relative;
+  background: #fff;
+}
+
+.index-head {
+  height: 120rpx;
+  background-color: #fff;
+}
+
+.bg-image {
+  height: 120rpx;
+  width: 100%;
+}
+
+.serch-wrap-index {
+  width: 690rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 24rpx;
+  z-index: 999;
+}
+
+.serch-index {
+  width: 552rpx;
+  height: 68rpx;
+  background-color: #f2f2f2;
+  border-radius: 36rpx;
+  padding: 0 30rpx;
+}
+
+.serch-input {
+  margin-left: 20rpx;
+}
+
+.message-wrap {
+  position: relative;
+}
+
+.cilcel {
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 50%;
+  background-color: #fc5b6b;
+  position: absolute;
+  right: 0;
+  top: -6rpx;
+}
+
+.swiper {
+  height: 370rpx;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.nav {
+  flex-wrap: wrap;
+}
+
+.column {
+  margin: 0 12rpx 12rpx 0;
+  width: 160rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  background-color: #ebeef5;
+  position: relative;
+}
+
+.nav-img {
+  width: 100%;
+  height: 100%;
+}
+
+.good-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx 8rpx 0 0;
+}
+
+.floor-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.floor {
+  width: 100%;
+  height: 100%;
+}
+
+/* 商品 */
+
+.view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-flow: wrap;
+  padding: 20rpx 26rpx 0 26rpx;
+}
+
+.good-info {
+  padding: 16rpx;
+}
+
+.good {
+  width: 340rpx;
+  background-color: #fff;
+  margin-bottom: 12rpx;
+  position: relative;
+  border-radius: 8rpx;
+}
+
+.good-img {
+  width: 340rpx;
+  height: 340rpx;
+}
+
+.right-good {
+  margin-left: 12rpx;
+}
+
+.good-name {
+  color: #1f1f1e;
+  margin-bottom: 40rpx;
+}
+
+.good-price {
+  font-size: 32rpx;
+  color: #ff3700;
+}
+
+.good-num {
+  color: #878787;
+  font-size: 20rpx;
+}
+
+.circel {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  z-index: 9;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background-color: #db4239;
+}
+
+.un-circel {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  z-index: 9;
+  width: 30rpx;
+  height: 30rpx;
+  border: 1px solid #b4b4b4;
+  border-radius: 50%;
+}
+
+/* 店铺 */
+
+.shop {
+  margin: 20rpx 30rpx;
+}
+
+.shop-list {
+  width: 630rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+}
+
+.shop-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.shop-right {
+  margin-left: 10rpx;
+}
+
+/* 1.6.0 */
+
+.button-style {
+  width: 194rpx;
+  height: 72rpx;
+  background: linear-gradient(41deg, rgba(215, 43, 24, 1) 0%, rgba(215, 24, 87, 1) 100%);
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.button-style2 {
+  background: rgba(153, 153, 153, 1);
+}
+
+.icon-img {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 16rpx;
+}
+
+.yuan-old {
+  color: rgba(192, 192, 192, 1);
+  text-decoration: line-through;
+}
+
+.good-price-old {
+  color: rgba(192, 192, 192, 1);
+  text-decoration: line-through;
+}
+
+.coupon-bg {
+  box-sizing: border-box;
+  width: 696rpx;
+  height: 84rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.shop-coupon {
+  position: relative;
+  width: 696rpx;
+  z-index: 5;
+  margin: 18rpx auto;
+  height: 84rpx;
+}
+
+.shop-coupon-attr {
+  box-sizing: border-box;
+  width: 696rpx;
+  height: 84rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.coupon-title {
+  font-size: 20rpx;
+  font-family: JLinXin;
+  color: rgba(255, 255, 255, 1);
+  line-height: 20rpx;
+  margin: 0 28rpx;
+}
+
+.get-shop-coupon {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: 40rpx;
+}
+
+.each-coupon {
+  border-radius: 8rpx;
+  border: 2rpx solid #fff;
+  padding: 10rpx 14rpx;
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #fff;
+  line-height: 28rpx;
+  margin-right: 10rpx;
+}
+
+.input-place {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.all-good {
+  margin-bottom: 10rpx;
+}
+
+.left-text {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(29, 30, 31, 1);
+}
+
+.enter-img {
+  width: 17rpx;
+  height: 17rpx;
+}
+
+.detail-good {
+  border-bottom: 1px solid #f4f4f4;
+}

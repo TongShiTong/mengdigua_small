@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "会员",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "gift": "/components/gift/gift",
+    "share": "/components/share/share",
+    "tabbar": "/tabbarComponent/tabbar",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "navbar":"/components/navbar/index"
+  }
+}

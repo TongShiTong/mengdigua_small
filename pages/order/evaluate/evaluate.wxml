@@ -1,0 +1,45 @@
+<!--pages/order/evaluate/evaluate.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="评价" />
+  <view>
+    <view class='evalute-wrap' wx:for="{{ goodData.orderSkus }}" wx:key="{{ index }}" wx:if="{{ item.status == 3 }}">
+      <view class='evalute-hedaer flex-row-f'>
+        <image class='good-img' src="{{ item.img_url }}"></image>
+        <view class="good-title">{{item.spu_name}}</view>
+        
+      </view>
+      <view class='user-evaluate'>
+        <view class='right-evaluate flex-column-s' style="margin-bottom:50rpx;">
+          <view class='flex-r-b' style="width:100%;">
+            <view>
+              <image class='stat-img' bindtap='selectEvalute' wx:for="{{ item.stars }}" wx:for-index="starsIndex" wx:for-item="starsItem" wx:key="{{ starsIndex }}" src="{{ starsItem.selected }}" data-index='{{ index }}' data-starsindex='{{ starsIndex }}'></image>
+            </view>
+            <view>
+              <view class='evalute-text' wx:if="{{ item.starLevel == 1 }}">很差</view>
+              <view class='evalute-text' wx:elif="{{ item.starLevel == 2 }}">较差</view>
+              <view class='evalute-text' wx:elif="{{ item.starLevel == 3 }}">一般</view>
+              <view class='evalute-text' wx:elif="{{ item.starLevel == 4 }}">很好</view>
+              <view class='evalute-text' wx:elif="{{ item.starLevel == 5 }}">非常好</view>
+              <view class='evalute-text' wx:else></view>
+            </view>
+          </view>
+          
+        </view>
+        <textarea class='textarea' placeholder="宝贝满足你的期待吗？说说你的使用心得，分享给想买的他们吧" data-index='{{ index }}' bindinput='getMessage' />
+        <view class='img-list'>
+          <view wx:for="{{ item.images }}" wx:for-index="imgIndex" wx:for-item="imgItem" wx:key="{{ imgIndex }}" class='img-wrap'>
+            <image class='evaluate-img' src="{{ imgItem }}"></image>
+            <view class='cancel theme-lg-A-{{theme}}' bindtap='deleteImg' data-index='{{ index }}' data-imgindex='{{ imgIndex }}'>X</view>
+          </view>
+          <view class='upload' bindtap='uploadImg' data-img='{{ item.images }}' data-index='{{ index }}'>
+            <image class='upload-img' src="/images/center/upload.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='evaluate-btn theme-lg-A-{{theme}}' bindtap='goEvaluate'>发 布</view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

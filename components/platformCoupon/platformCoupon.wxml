@@ -1,0 +1,32 @@
+<!--components/platformCoupon/platformCoupon.wxml-->
+<view class='fixed-model' wx:if="{{showModel}}" catchtap='close'> 
+  <view class='content'>
+    <view class='bg-color'>
+      <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/default/AWXZMHK012345789_1557888168.png" lazy-load='true' class='coupon-pic' mode="aspectFill"></image>
+      <scroll-view class='each-coupon' scroll-y="true" bindscrolltolower="loadMore">
+        <block wx:for="{{couponList}}" wx:key="index">
+          <view class='each-content flex-r-b'>
+            <view class='coupon-info '>
+              <view class='coupon-info-top flex-r-s-b'>
+                <view class='flex-r-s-b pirce-style'>
+                  <view>￥</view>
+                  <view class='spe-pirce'>{{item.discount_num}}</view>
+                </view>
+                <view class='use-price'>满{{item.condition_num}}元可用</view>
+              </view>
+              <view class='coupon-info-time'>有效期:{{item.create_time}} - {{item.update_time}}</view>
+            </view>
+            <view class='coupon-type' wx:if="{{item.coupon_type==1}}">vip礼包</view>
+            <view class='coupon-type' wx:if="{{item.coupon_type==2}}">签到</view>
+            <view class='coupon-type' wx:if="{{item.coupon_type==3}}">新用户注册</view>
+            <view class='coupon-type' wx:if="{{item.coupon_type==4}}">新用户下单</view>
+            <view class='coupon-type' wx:if="{{item.coupon_type==5}}">平台发放</view>
+          </view>
+        </block>
+        
+      </scroll-view>
+    </view>
+
+    <view class='OneClick'>一键领取</view>
+  </view>
+</view>

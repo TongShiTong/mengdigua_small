@@ -1,0 +1,61 @@
+<!--pages/center/myWallet/myWallet.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="我的积分" bgColor="#D1BC9D" />
+  <scroll-view scroll-y='true' class='scroll-load-panel'>
+    <view class='flex-column '>
+      <image class='t-img' src='/images/center/wallet.png'></image>
+      <image bindtap="showHelp" class="tip-img" mode="aspectFill" src="/images/center/other/tip.png"></image>
+      <view class='t-circular-text'>我的积分</view>
+      <view class='wallet-wrap flex-column'>
+        <view>可用积分</view>
+        <view class='wallet-num'>{{coin}}</view>
+      </view>
+      <view class='wallet-list'>
+        <view class='wallet-list-title'>— 如何赚积分 —</view>
+        <view class='flex-row-s list-item' wx:for="{{mslData}}" wx:key='{{index}}'>
+          <view class='flex-row-f'>
+            <image src='{{item.img}}' class='msl-img' mode="aspectFill"></image>
+            <view class='msl-text'>{{item.name}}</view>
+          </view>
+          <view class='line'></view>
+          <view class='msl-r'>+{{item.coin}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='mask' bindtap='close' wx:if="{{ isHelp }}"></view>
+    <view class='help' wx:if="{{ isHelp }}">
+      <view class='wrap-all help-head'>
+        <view>{{helpTitle}}</view>
+        <image src="/images/message-cancel.png" class='close-help' mode="aspectFill" bindtap='close'></image>
+      </view>
+      <scroll-view class="scroll-load-panel help-content" scroll-y="true">
+        <view wx:if="{{ helpContent }}" class='text-one'>
+          <rich-text nodes="{{R1.rich(helpContent)}}"></rich-text>
+        </view>
+      </scroll-view>
+    </view>
+  </scroll-view>
+  <view class='mask-wallet' bindtap='closeDetail' wx:if="{{ showDetail }}"></view>
+  <view class='wallet-detail' animation="{{animation}}" bindtap='lookDetail'>
+    <view class='wallet-detail-title flex-r-b'>
+      <view>积分明细</view>
+      <image  class="icon-moore" src='/images/member/{{showDetail?"down":"up"}}.png' ></image>
+      
+    </view>
+    <scroll-view scroll-y='true' class='scroll-load-panel list-scroll' bindscrolltolower="loadMore" wx:if="{{ showDetail }}">
+      <view class='msr flex-row-s' wx:for='{{detailed.list}}' wx:key='{{index}}'>
+        <view class='msr-l flex-column-s'>
+          <view class='msr-lt'>{{item.type}}</view>
+          <view class='msr-title'>{{item.create_time}}</view>
+        </view>
+        <view class='msr-r'>{{item.coin}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,13 @@
+var percentage = function (string1, string2) {
+  var C1 = string1;
+  var C2 = string2;
+  var C3;
+  if (string2!=0){
+    C3 = ((string1 / string2) * 100).toFixed(0);
+  }else{
+    C3 =0
+  }
+  return C3;
+}
+
+module.exports.percentage = percentage;

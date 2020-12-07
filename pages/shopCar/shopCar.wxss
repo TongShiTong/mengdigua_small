@@ -1,0 +1,229 @@
+/* pages/shopCar/shopCar.wxss */
+.mov-wrap{
+  width:750rpx;
+  height:100vh;
+}
+.mov-area{
+  width:750rpx;
+  height:100vh;
+}
+.scroll {
+  padding-top: 0;
+}
+.head-wrap {
+  position: relative;
+  padding: 0 30rpx;
+  height: 100%;
+}
+.title {
+  text-align: left;
+  font-size: 30rpx;
+  padding: 15rpx ; 
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+}
+.cilcel {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background-color: #B52902;
+  position: absolute;
+  right: 24rpx;
+  top: -4rpx;
+}
+.empty {
+  height: 650rpx;
+}
+.empty-car-img {
+  width: 260rpx;
+  height: 160rpx;
+  margin-top: 112rpx;
+}
+.empty-text {
+  margin-top: 50rpx;
+}
+.go-look {
+  width:330rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius:4rpx;
+  border:1px solid #1D1E1F;
+  margin-top: 80rpx;
+  font-size: 30rpx;
+}
+.bottom-box {
+  position: fixed;
+  left: 0;
+  bottom: 98rpx;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+  z-index: 99;
+  box-shadow:0px 0px 8px 0px rgba(137,137,137,0.5);
+}
+.iphone-x {
+  bottom: 138rpx;
+}
+
+.good-price {
+  color: #B52902;
+}
+.good-price-th {
+  font-size: 24rpx;
+  color: #C0C0C0;
+  margin-left: 10rpx;
+  text-decoration: line-through;
+}
+.shop-head {
+  border-bottom: 1px solid #f4f4f4;
+}
+.selected-img {
+  width: 32rpx;
+  height: 32rpx;
+  padding: 5rpx;
+
+}
+.selected-img-first{
+  margin-right: 30rpx;
+}
+.gray-circle{
+  text-align: center;
+  width: 26rpx;
+  line-height: 26rpx;
+  color: #999;
+  height: 26rpx;
+  border-radius: 50%;
+  border: 1px solid #999;
+}
+.shop-name {
+  margin-right: 16rpx;
+}
+.good-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 8rpx;
+}
+.good-right {
+  width: 446rpx;
+  margin-left: 20rpx;
+  align-items: flex-start;
+  height: 144rpx;
+}
+.good-title{
+  width: 446rpx;
+}
+.good-format{
+  margin-top: 10rpx;
+  max-width: 446rpx;  
+}
+.good-bottom {
+  width: 450rpx;
+  margin-top: 10rpx;
+}
+.select-img {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 30rpx;
+}
+.all-text {
+  color: #8A8A8A;
+  margin-left: 20rpx;
+}
+.middle-left {
+  color: #000000;
+}
+.total-price {
+  font-size: 36rpx;
+  color: #B52902;
+}
+.bottom-btn {
+  color: #fff;
+  background:linear-gradient(41deg,rgba(215,43,24,1) 0%,rgba(215,24,87,1) 100%);
+  width: 212rpx;
+  height: 100%;
+  line-height: 100rpx;
+  text-align: center;
+}
+.good-item {
+  position: relative;
+}
+.shadow-box-total{
+  position: relative;
+}
+.shadow-box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 555;
+  background:linear-gradient(90deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
+}
+.word-des{
+  margin: 76rpx auto 0;
+  width: 188rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  border-radius: 43rpx;
+
+}
+.buy-num {
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+}
+.change-num {
+  padding: 0 30rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  background-color: #F6F6F7;
+  border-radius: 8rpx;
+  margin: 0 10rpx;
+}
+.middle-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  flex: 1;
+}
+.reduce-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+.add-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+.like-list {
+  padding-bottom: 200rpx;
+}
+.show-image-total {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+  margin-left: 30rpx;
+}
+
+.small-icon {
+  position: absolute;
+  width: 72rpx;
+  height: 36rpx;
+  left: 0;
+  bottom: 0;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #fff;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 0 8rpx;
+}
+.change-img{
+  padding: 10rpx;
+}

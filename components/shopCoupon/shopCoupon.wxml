@@ -1,0 +1,106 @@
+<!--components/shopCoupon/shopCoupon.wxml-->
+<!--  -->
+
+<wxs src="../../utils/filters.wxs" module="F1" />
+
+
+<!-- 优惠券 new -->
+
+<view wx:if="{{couponInfo.show_type == 1}}" class="coupon-wrap">
+	<view wx:for="{{couponListData}}" wx:key="id" class="coupon-list {{item.is_accept == 0? '':'done'}}">
+		<view class="tag">满{{item.condition_num}}可用</view>
+			<view wx:if="{{item.is_accept == 0}}" class="btn" data-coupon="{{item}}" bindtap="receiveCoupon">立即领取</view>
+			<view wx:else class="btn">已领取</view>
+			<view class="price">￥<text>{{item.discount_num}}</text></view>
+			<view class="info">
+				<view wx:if="{{item.string_name}}" class="info-name">
+					{{item.string_name}}
+				</view>
+				<view class="time">{{F1.timeSub(item.create_time)}}-{{F1.timeSub(item.update_time)}}</view>
+			</view>
+	</view>
+</view>
+
+<view wx:if="{{couponInfo.show_type == 2}}" class="coupon-wrap1">
+	<view wx:for="{{couponListData}}" wx:key="id" class="coupon-list1 {{item.is_accept == 0? '':'done'}}">
+		<view class="left-coupon">
+			<image class="bg" src="./img/coupon1.png"></image>
+			<view class="cont">
+				<view class="good-title" wx:if="{{item.string_name}}">{{item.name}}</view>
+				<view class="goods-box">
+					<view class="goods-coupon" wx:for="{{item.item_data}}" wx:key="{{dataIndex}}" wx:for-item="dataItem">
+						<view class="good-img" wx:if="{{dataItem.item_id}}" bindtap="tapGood" data-id="{{dataItem.item_id}}" data-shop_id="{{dataItem.shop_id}}">
+							<image src="{{dataItem.img_url}}" mode="aspectFit"></image>
+						</view>
+						<view wx:else class="good-img">
+							<image src="{{dataItem.img_url}}" mode="aspectFit"></image>
+						</view>
+						<view wx:if="{{dataItem.price}}">￥{{dataItem.price}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="right-coupon">
+			<image class="bg" src="./img/coupon2.png" wx:if="{{item.is_accept == 0}}"></image>
+			<image class="bg" src="./img/coupon3.png" wx:else></image>
+			<view class="cont">
+				<view class="price1">￥<text>{{item.discount_num}}</text></view>
+				<view class="tag1">满{{item.condition_num}}可用</view>
+				<view wx:if="{{item.is_accept == 0}}" class="btn1" data-coupon="{{item}}" bindtap="receiveCoupon">立即领取</view>
+				<view wx:else class="btn2">已领取</view>
+				
+			</view>
+			
+			<!-- <view class="info">
+				<view wx:if="{{item.string_name}}" class="info-name">
+					{{item.string_name}}
+				</view>
+				<view class="time">{{F1.timeSub(item.create_time)}}-{{F1.timeSub(item.update_time)}}</view>
+			</view> -->
+		</view>
+
+		
+	</view>
+</view>
+
+<view wx:if="{{couponInfo.show_type == 0}}" class="coupon-wrap coupon-wrap-scroll">
+	<scroll-view scroll-x="true" class="scroll-view">
+		<view wx:for="{{couponListData}}" wx:key="id" class="coupon-list {{item.is_accept == 0? '':'done'}}">
+			<view class="tag">满{{item.condition_num}}可用</view>
+			<view wx:if="{{item.is_accept == 0}}" class="btn" data-coupon="{{item}}" bindtap="receiveCoupon">立即领取</view>
+			<view wx:else class="btn">已领取</view>
+			<view class="price">￥<text>{{item.discount_num}}</text></view>
+			<view class="info1">
+				<view class="info-name">
+					{{item.string_name}}
+				</view>
+				<view class="time">{{F1.timeSub(item.create_time)}}-{{F1.timeSub(item.update_time)}}</view>
+			</view>
+		</view>
+	</scroll-view>
+</view>
+
+<view wx:if="{{tu_coupon == 1}}" class="coupon-wrap2">
+	<view wx:for="{{couponListData}}" wx:key="id" class="coupon-list2 {{item.is_accept == 0? '':'done'}}">
+		<view class="left-coupon2">
+			<image class="bg" src="./img/coupon01.png"></image>
+			<view class="con-box">
+				<view class="price2">￥<text>{{item.discount_num}}</text></view>
+				<view class="tag1">满{{item.condition_num}}可用</view>
+				<view wx:if="{{item.string_name}}" class="info-name1">
+					{{item.string_name}}
+				</view>
+			</view>
+		</view>
+		<view class="right-coupon2">
+			<image class="bg" src="./img/coupon02.png" wx:if="{{item.is_accept == 0}}"></image>
+			<image class="bg" src="./img/coupon03.png" wx:else></image>
+			<view class="cont">
+				<view wx:if="{{item.is_accept == 0}}" data-coupon="{{item}}" bindtap="receiveCoupon">立即领取</view>
+				<view wx:else style="margin-top:10rpx">已领取</view>
+			</view>
+		</view>
+
+		
+	</view>
+</view>

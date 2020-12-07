@@ -1,0 +1,340 @@
+<!--pages/center/center.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<!-- <view 
+    style="z-index:9999;position:fixed;width:100vw;height:120vh;top:0;left:0;background:transparent;"
+    wx:if="{{isAuth}}" />  -->
+<block wx:if="{{theme || theme===0}}">
+  
+	<navbar title="" isTransparent="false"/>
+	<view style='padding-bottom:138rpx;'>
+		<view 
+      class="center-head-wrapper" 
+      style="{{userBg?'background-image:url('+userBg+')':''}};padding-top:{{!userBg?totalHeight:'0'}}px;  background-image:url({{backgroundImg}})">
+			<view 
+        class='height-up-view' 
+        style='height:{{height}}px'
+        wx:if="{{userBg}}" />
+			<view class='center-head'>
+			
+				<block wx:if="{{isAuth}}">
+          <view class='user'>
+					<view class='head-img-wrap'>
+						<image
+						 bindtap=''
+						 src="/images/center/default-avatar.png"
+						 class="head-img"
+						 mode="aspectFill"
+						/>
+					</view>
+					<view 
+            class='user-name'
+            style="z-index:100000;"
+            bindtap="toAuth">
+            点击登录
+          </view>
+				  </view>
+        </block>
+        <block wx:else>
+          <view class='user'>
+					<view class='head-img-wrap'>
+						<image
+						 bindtap='jumpUserInfo'
+						 src="{{ userInfo.head_url }}"
+						 class="head-img"
+						 mode="aspectFill"
+						/>
+					</view>
+					<view class='user-name'>
+						<view style="color:black;">{{S1.substr(userInfo.nickname,15)}}</view>
+						<!-- <view class="invite-code-bar">
+							邀请码：{{handInfo.share_code}}
+							<text
+                class="copy-btn"
+                bindtap="copy">复制</text>
+						</view> -->
+					  </view>
+				  </view>
+        </block>
+
+        <!-- 收藏夹&关注店&优惠券 -->
+        <view class="head-tab">
+          <view class="tab-item" bindtap="tabs" data-item="1">
+            <view class="number">{{noticeData.item_collection_num}}</view>
+            <view class="title">收藏夹</view>
+          </view>
+          <view class="tab-item" bindtap="tabs" data-item="2">
+            <view class="number">{{noticeData.shop_collection_num}}</view>
+            <view class="title">关注店</view>
+          </view>
+          <view class="tab-item" bindtap="tabs" data-item="3">
+            <view class="number {{noticeData.coupon_num==0?'' : 'on'}}">{{noticeData.coupon_num}}</view>
+            <view class="title">优惠券</view>
+          </view>
+        </view>
+
+				<!-- <image
+				 src="/images/center/vip.png"
+				 class="vip-img"
+				 mode="aspectFill"
+				 wx:if="{{ userInfo.role == 1 }}"
+				/> -->
+				<!-- <view class='vip-grow theme-bg-B-{{theme}}' bindtap='jumpGrow' wx:if="{{isDistr==1}}">
+          <view class='flex-row vip-grow-wrap'>
+            <image src="/images/center/vip-white1.png" class="vip-w-img theme-bg-B-{{theme}}" mode="aspectFill"></image>
+            <view class='role-box' >
+              <view class='role-text'>{{ userInfo.level_name }}</view>
+              <view style='font-size:24rpx;'>成长值：{{ growData.growth }}</view>
+            </view>
+          </view>
+        </view> -->
+			</view>
+		</view>
+		<view 
+      wx:if="{{userInfo.is_hand==1}}"
+      class="account-wrap theme-lg-A-{{theme}}">
+			<view class="account-info">
+				<view class="account-left">账户余额</view>
+				<view class="account-num">{{handInfo.balance}}</view>
+			</view>
+			<view class="account-lookmore" bindtap="jumpAccount">查看</view>
+			<image src="/images/center/account-bak.png" style="" class="account-bak" />
+		</view>
+    
+		<view class='show-band-secret' catchtap='goSerect' wx:if="{{userInfo.role==1&&userInfo.is_set_paypassword==0&&isDistr==1&&userInfo.is_invited == 1}}">
+			<text>为保证账户安全，请设置余额支付密码！</text>
+			<text class='theme-color-A-{{theme}}'>立即设置</text>
+		</view>
+   
+  <!-- 我的订单 -->
+		<view class='box-shadow order-wrap'>
+			<view class='box-head flex-row-s' bindtap='jumpAll'>
+				<view class='box-title'>我的订单</view>
+				<view class='flex-row-f box-text'>					
+          <text>查看全部订单</text>
+					<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+				</view>
+			</view>
+      <view class='list-box'>
+        <view class='list-box-item' bindtap='jumpOrder' data-id='0'>
+          <image src="/images/center/group1.png" class="center-img" mode="aspectFill" />
+          <view class='list-box-text'>待付款</view>
+          <!-- <view class='item-number'>99+</view> -->
+          <view class='item-number' wx:if="{{ orderNum.obligation_num > 0 && orderNum.obligation_num < 99 }}">{{ orderNum.obligation_num }}</view>
+          <view class='item-number' wx:elif="{{ orderNum.obligation_num > 99 }}">99+</view>
+        </view>
+        <view class='list-box-item' bindtap='jumpOrder' data-id='1'>
+          <image src="/images/center/group2.png" class="center-img" mode="aspectFill" />
+          <view class='list-box-text'>待发货</view>
+          <view class='item-number' wx:if="{{ orderNum.sendgoods_num > 0 && orderNum.sendgoods_num < 99 }}">{{ orderNum.sendgoods_num }}</view>
+          <view class='item-number' wx:elif="{{ orderNum.sendgoods_num > 99 }}">99+</view>
+        </view>
+        <view class='list-box-item' bindtap='jumpOrder' data-id='2'>
+          <image src="/images/center/group3.png" class="center-img" mode="aspectFill" />
+          <view class='list-box-text'>待收货</view>
+          <view class='item-number' wx:if="{{ orderNum.getgoods_num > 0 && orderNum.getgoods_num < 99 }}">{{ orderNum.getgoods_num }}</view>
+          <view class='oitem-number' wx:elif="{{ orderNum.getgoods_num > 99 }}">99+</view>
+        </view>
+        <view class='list-box-item' bindtap='jumpOrder' data-id='3'>
+          <image src="/images/center/group4.png" class="center-img" mode="aspectFill" />
+          <view class='list-box-text'>待评价</view>
+          <view class='item-number' wx:if="{{ orderNum.assess_num > 0 && orderNum.assess_num < 99 }}">{{ orderNum.assess_num }}</view>
+          <view class='item-number' wx:elif="{{ orderNum.assess_num > 99 }}">99+</view>
+        </view>
+        <view class='list-box-item' bindtap='jumpRefund'>
+          <image src="/images/center/group5.png" class="center-img" mode="aspectFill" />
+          <view class='list-box-text'>售后/退款</view>
+          <view class='item-number' wx:if="{{ orderNum.refund_num > 0 && orderNum.refund_num < 99 }}">{{ orderNum.refund_num }}</view>
+          <view class='item-number' wx:elif="{{ orderNum.refund_num > 99 }}">99+</view>
+        </view>
+        
+      </view>      
+		</view>
+
+    <!-- 服务 -->
+    <view class="box-shadow service-wrap">
+      <view class="box-head">
+				<view class='box-title'>服务</view>				
+			</view>
+   
+        <view 
+         class="basic-service">
+				<view
+				 wx:for="{{serveList.basicService}}"
+				 wx:key="index"
+				 class="service-block"
+				 bindtap="{{item.icon!='icon-service'?'goDetail':''}}"
+				 data-url="{{item.url}}"
+				>
+					<view
+            wx:if='{{item.icon != "icon-service"}}'>
+            <image src="/images/center/moe-center/{{item.icon}}.png" style="" class="service-icon" />
+            <view>
+              {{item.name}}
+            </view>
+          </view>
+          <view
+            wx:else>
+            <button
+              session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{params}}|transferAction={{transferAction}}" open-type="contact"
+              class="service-btn">
+              <image src="/images/center/moe-center/{{item.icon}}.png" style="" class="service-icon" />
+              <view>
+                {{item.name}}
+              </view>
+            </button>
+          </view>
+          
+				</view>
+
+        <view wx:for="{{serveList1}}" wx:key="index" class="service-block" bindtap="tap" data-type="{{ item.type }}" data-param="{{ item.param }}">
+          <view>
+            <image src="{{item.img_url}}" class="service-icon" />
+            <view class="imgtit">
+              {{item.imgtit}}
+            </view>
+          </view>
+        </view>
+			
+      </view>
+    </view>
+
+		
+		<view wx:if="{{false}}" class="" style="background:white;border-top:2rpx solid #f2f2f2;">
+			<view class="basic-service">
+				<block
+          wx:for="{{serveList.advanceService}}"
+          wx:key="index">
+          <!-- <view
+            class="service-block"
+            bindtap="goDetail"
+            data-url="{{item.url}}"
+            wx:if="{{(item.role <= userInfo.is_hand) && (item.icon !='merchant')}}"
+            >
+              <image src="/images/center/moe-center/{{item.icon}}.png" style="" class="service-icon" />
+              <view>
+                {{item.name}}
+              </view>
+          </view>
+          <block
+            wx:else>
+            <view
+              class="service-block"
+              bindtap="goDetail"
+              data-url="{{item.url}}"
+              wx:if="{{(is_show_shop != 0)&& (item.role <= userInfo.is_hand) }}"
+              >
+                <image src="/images/center/moe-center/{{item.icon}}.png" style="" class="service-icon" />
+                <view>
+                  {{item.name}}
+                </view>
+            </view>
+          </block> -->
+           <view
+            class="service-block"
+            bindtap="goDetail"
+            data-url="{{item.url}}"
+            wx:if="{{(item.role <= userInfo.is_hand)}}"
+            >
+              <image src="/images/center/moe-center/{{item.icon}}.png" style="" class="service-icon" />
+              <view>
+                {{item.name}}
+              </view>
+          </view>
+        
+        </block>
+			</view>
+		</view>
+		<!-- <view class='flex-row-s inof-item' style='margin-top:16rpx;' bindtap='jumpMycoupon'>
+    <view class='flex-row-f'>
+      <image src="/images/center/center-img1.png" class="center-img1" mode="aspectFill"></image>
+      <view class='left-text'>优惠券</view>
+    </view>
+    <view class='flex-row-f'>
+      <view wx:if="{{ yuCouponNum.coupon > 0 }}" class='right-other {{ yuCouponNum.coupon < 10?"right-circel":"right-more" }}'>{{ yuCouponNum.coupon }}</view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+  </view>
+    <view class='flex-row-s inof-item'  bindtap='goDetail' data-url="/pages/order/barList/barList" style='margin-top:16rpx;' >
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img-1.png" class="center-img0" mode="aspectFill"></image>
+        <view class='left-text'>我的砍价</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <view class='flex-row-s inof-item'  bindtap='goDetail' data-url="/pages/center/groupOrder/groupOrder?type=1" >
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img0.png" class="center-img0" mode="aspectFill"></image>
+        <view class='left-text'>我的拼团</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <view class='flex-row-s inof-item' bindtap='goDetail' data-url="/pages/center/groupOrder/groupOrder?type=2" wx:if="{{userInfo.role==1&&isDistr==1}}" >
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img11.png" class="center-img0" mode="aspectFill"></image>
+        <view class='left-text'>我的推广团</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+
+
+    <view class='flex-row-s inof-item' bindtap='jumpWallet'>
+    <view class='flex-row-f'>
+      <image src="/images/center/center-img2.png" class="center-img2" mode="aspectFill"></image>
+      <view class='left-text'>我的积分</view>
+    </view>
+    <view class='flex-row-f'>
+      <view wx:if="{{ yuCouponNum.coin > 0 }}" class='right-other {{ yuCouponNum.coin < 10?"right-circel":"right-more" }}'>{{ yuCouponNum.coin }}</view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+  </view>
+    <view class='flex-row-s inof-item' bindtap='jumpMycoupon'>
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img1.png" class="center-img1" mode="aspectFill"></image>
+        <view class='left-text'>优惠券</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <view class='flex-row-s inof-item' bindtap='jumpWallet'>
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img2.png" class="center-img2" mode="aspectFill"></image>
+        <view class='left-text'>我的积分</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <view class='flex-row-s inof-item' bindtap='jumpAddress'>
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img3.png" class="center-img3" mode="aspectFill"></image>
+        <view class='left-text'>我的地址</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <view class='flex-row-s inof-item' bindtap='makePhone'>
+      <view class='flex-row-f'>
+        <image src="/images/center/center-img4.png" class="center-img5" mode="aspectFill"></image>
+        <view class='left-text'>在线客服</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+    <button class='flex-row-s inof-item' session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{params}}|transferAction={{transferAction}}" open-type="contact">
+      <view class='flex-row-f' >
+        <image src="/images/center/center-img4.png" class="center-img5" mode="aspectFill"></image>
+        <view class='left-text'>客服</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </button>
+    <view class='flex-row-s inof-item' bindtap='jumpCollection'>
+      <view class='flex-row-f'>
+        <image src="/images/center/collect.png" class="center-img7" mode="aspectFill"></image>
+        <view class='left-text'>我的关注</view>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>-->
+	</view>
+	<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" bind:authorization="authorization" />
+	<!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"></bind-phone> -->
+	<!-- <tabbar tabbar="{{tabbar}}" /> -->
+</block>
+<view wx:else>
+	<page-loding/>
+</view>
+

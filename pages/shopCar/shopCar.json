@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "我的购物车",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "like": "/components/like/like",
+    "swipe-delete": "/components/swipedelete/swipedelete",
+    "tabbar": "/tabbarComponent/tabbar",
+    "navbar": "/components/navbar/index"
+  }
+}

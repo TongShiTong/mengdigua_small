@@ -1,0 +1,5 @@
+<!--components/rich/rich.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1"/>
+<view style='padding:0 {{hasp}}rpx;word-break:break-all;background:{{bgColor}}' class='font-style'>
+  <rich-text  nodes="{{F1.rich(rich)}}"></rich-text>  
+</view>

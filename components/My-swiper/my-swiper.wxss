@@ -1,0 +1,101 @@
+.my-swiper{
+  width:100%;
+  height: 664rpx;
+  /* border: 1px solid red; */
+  position: relative;
+}
+
+.child-base{
+  /* transition: all 0.5s; 用js异步设置了，因为同步设置初始化也有动画*/
+  border-radius: 8rpx;
+  position: absolute;
+  overflow: hidden;
+}
+.child-base image{
+  width:100%;
+  height: 100%;
+}
+
+.after{
+  width:59%;
+  height: 552rpx;
+  position: absolute;
+  top:8.8%;
+  left:41%;
+  /* margin-top:2.5%; */
+  z-index:2;
+  /* background: grey; */
+}
+.after1{
+  width:59%;
+  height: 552rpx;
+  position: absolute;
+  top:8.8%;
+  left:41%;
+  /* margin-top:2.5%; */
+  z-index:3;
+  /* background: grey; */
+}
+
+.left{
+  width:59%;
+  height: 552rpx;
+  top:8.8%;
+  /* margin-top:2.5%; */
+  left:41%;
+  z-index:4;
+  /* background: pink; */
+}
+
+.right{
+  width:70%;
+  height: 608rpx;
+  left:24%;
+  top:4.2%;
+  /* margin-top:2.5%; */
+  z-index:5;
+  /* background: orange; */
+}
+
+.center{
+  width:84%;
+  height: 664rpx;
+  top:0;
+  left:0;
+  /* background: green; */
+  z-index:6;
+  /* box-shadow: 0px 0px 20px rgba(0,0,0,0.5); */
+}
+
+
+
+/* 焦点指示器 */
+.focus-box{
+  /* height: 6px; */
+  /* width:100px;background: #fff; */
+  /* display: flex;
+  justify-content: space-between; */
+  position: absolute;
+  left:20rpx;
+  bottom:16rpx;
+  z-index:8;
+}
+.focus-box .child{
+  /* height:6px;
+  width: 6px; */
+  /* border-radius:6px;
+  margin-left:6px;
+  background:rgba(255,255,255,1);
+  transition: all 0.5s; */
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 18rpx;
+  padding: 4rpx 18rpx;
+  font-size: 26rpx;
+  color: #fff;
+  font-weight: 400;
+}
+
+.focus-box .active{
+  background: #fff;
+  width:24px;
+}

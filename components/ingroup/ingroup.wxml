@@ -1,0 +1,32 @@
+<!--components/ingroup/ingroup.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<wxs src="../../utils/filters.wxs" module="F1" />
+<block wx:for="{{listData}}" wx:key="{{index}}">
+  <view class="group flex-box" wx:key="id">
+    <view class="flex-box">
+      <image class="avatar" src="{{item.head_url}}" mode="aspectFill"/>
+      <view class="title">
+        <view>{{S1.substr(item.nickname, 8)}}的团</view>
+        <view class="fn1">
+          还差{{item.left_number}}人
+        </view>
+        <!-- <view class="fn1">
+          还差<text class="theme-font-A-{{theme}}">{{item.left_number}}</text>人成团
+        </view> -->
+        
+      </view>
+
+    </view>
+    <view class="flex-box">
+      <view class="align-right">
+        
+        <view class="fn2" wx:if="{{item.second}}">
+          {{F1.dealTimeFive(item.second)}}
+          <!-- 剩余时间{{item.second}} -->
+        </view>
+      </view>
+      <!-- <view class="add-btn theme-lg-A-{{theme}}" data-uid="{{item.uid}}"  catchtap='goCatch' data-id="{{item.group_team_id}}">去参团</view> -->
+      <view class="add-btn" data-uid="{{item.uid}}"  catchtap='goCatch' data-id="{{item.group_team_id}}">+</view>
+    </view>
+  </view>
+</block>

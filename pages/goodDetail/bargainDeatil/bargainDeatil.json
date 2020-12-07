@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "商品结算",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "like": "/components/like/like",
+    "share": "/components/share/share",
+    "cell-group": "/miniprogram_npm/vant-weapp/dist/cell-group/index",
+    "helper-list":"/components/bargainHelperList/index",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "modal": "/components/modal/modal"
+  }
+}

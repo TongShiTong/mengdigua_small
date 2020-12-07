@@ -1,0 +1,124 @@
+<!--pages/shopCar/shopCar.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="我的购物车" />
+
+  <!-- <view class='title'>
+  <view class='head-wrap'>
+    <image src="/images/center/message.png" class='message-img' mode="aspectFill" bindtap='jumpMessage'></image>
+    <view class='cilcel' wx:if="{{ showMessage === true }}"></view>
+  </view>
+</view> -->
+
+  <!-- 管理 -->
+  <view class='padding title' bindtap='manage' wx:if="{{ showManage === false }}">管理</view>
+  <view class='padding title' bindtap='manage' wx:if="{{ showManage === true }}">取消</view>
+
+  <!-- 只有商品 -->
+  <view class='empty' wx:if="{{ isEmpty }}">
+    <view class='flex-column'>
+      <image src="/images/order/empty.png" class='empty-car-img' mode="aspectFill"></image>
+      <view class='empty-text text-one'>购物车空空如也，快来挑好货呗~</view>
+      <view class='go-look' bindtap='jumpHome'>逛逛今日特卖</view>
+    </view>
+  </view>
+  <scroll-view class='scroll' wx:else>
+    <!-- 带店铺 -->
+    <view wx:for="{{ shopcarData.list }}" wx:key="{{ index }}" class='good-list'>
+      <view class='flex-row-f wrap-all shop-head'>
+        <image src='/images/shopcar/unselected.png' wx:if="{{ item.isSelect === false }}" data-index='{{ index }}' data-isselect='{{ item.isSelect }}' bindtap='selectShop' class='selected-img selected-img-first' mode="aspectFill"></image>
+        <image src='/images/shopcar/selected.png' data-index='{{ index }}' data-isselect='{{ item.isSelect }}' bindtap='selectShop' wx:else class='selected-img selected-img-first' mode="aspectFill"></image>
+        <view class='flex-row-f' catchtap='godetail' id="{{item.shop.id}}">
+          <view class='shop-name spe-shop-name-two'>{{ item.shop.name }}</view>
+          <image src='/images/small-right.png' class='small-right-img' mode="aspectFill"></image>
+        </view>
+
+      </view>
+      <blcok wx:for="{{ item.list }}" wx:for-item="goodItem" wx:for-index="goodIndex" wx:key="{{ goodIndex }}">
+        <swipe-delete 
+          translateX="{{ translateX }}" 
+          bind:deleteChatItem="deleteCar" 
+          data-goodindex='{{ goodIndex }}' 
+          data-index='{{ index }}'>
+          <view class='shadow-box-total'>
+            <view class='shadow-box' wx:if="{{goodItem.goodStatus2==2}}">
+              <view class='word-des theme-lg-B-{{theme}}'>该活动已结束</view>
+            </view>
+            <view class='shadow-box' wx:if="{{goodItem.stock==0}}">
+              <view class='word-des theme-lg-B-{{theme}}'>该商品已售罄</view>
+            </view>
+            <view class='shadow-box' wx:if="{{goodItem.status==7}}">
+              <view class='word-des theme-lg-B-{{theme}}'>该商品已下架</view>
+            </view>
+            <view class='flex-row-f wrap-all good-item'>
+              <block wx:if="{{goodItem.goodStatus2==0||goodItem.goodStatus2==2||goodItem.stock==0||goodItem.status==7}}">
+                <!-- <view class='gray-circle'>x</view> -->
+                <image src='/images/shopcar/error.png' class='selected-img' mode="aspectFill"></image>
+              </block>
+              <block wx:else>
+                <image src='/images/shopcar/unselected.png' wx:if="{{ goodItem.isSelect === false }}" class='selected-img' mode="aspectFill" data-goodindex='{{ goodIndex }}' data-index='{{ index }}' data-isselect='{{ goodItem.isSelect }}' data-item='{{ goodItem }}' bindtap='selectGood'></image>
+                <image src='/images/shopcar/selected.png' wx:else class='selected-img' mode="aspectFill" data-goodindex='{{ goodIndex }}' data-index='{{ index }}' data-isselect='{{ goodItem.isSelect }}' bindtap='selectGood'></image>
+              </block>
+
+              <view class='show-image-total'>
+                <image src='{{ goodItem.img_url }}' class='good-img' mode="aspectFill" catchtap='jumpDetail' data-id='{{ goodItem.item_id }}'></image>
+                <view class='small-icon theme-lg-B-{{theme}}' wx:if="{{goodItem.activity_type==1}}">秒杀</view>
+              </view>
+              <view class='flex-column good-right flex-1' catchtap='jumpDetail' data-id='{{ goodItem.item_id }}'>
+                <view class='good-title text-line1'>
+                  <text class='theme-font-A-{{theme}}' wx:if="{{goodItem.is_abroad==1}}">【跨境购】</text> {{ S1.substr(goodItem.title,14)}}</view>
+                <view class='good-format text-one'>{{ S1.substr(goodItem.value_names,16)}}</view>
+                <view class='good-bottom'>
+                  <text class='good-price theme-font-A-{{theme}}'>￥{{ goodItem.price }}</text>
+                  <text class='good-price-th ' wx:if="{{ goodItem.old_price != null }}">￥{{ goodItem.old_price }}</text>
+                </view>
+              </view>
+              <view class='buy-num flex-row-f'>
+                <image class='change-img' src='/images/shopcar/reduce.png' bindtap='reduce' data-id='{{ goodItem.cart_id }}' data-num='{{ goodItem.num }}' data-goodindex='{{ goodIndex }}' data-index='{{ index }}' data-stock='{{ goodItem.stock }}' mode="aspectFill" wx:if="{{goodItem.num!=1}}"></image>
+                <image class='change-img' src='/images/shopcar/reduce1.png' mode="aspectFill" wx:if="{{goodItem.num==1}}"></image>
+                <view class='change-num'>{{ goodItem.num }}</view>
+                <!-- <input type='number' class='change-num' bindblur='blurInput' data-id='{{ goodItem.cart_id }}' bindinput="changeNum" data-num='{{ goodItem.num }}' data-goodindex='{{ goodIndex }}' data-index='{{ index }}' data-stock='{{ goodItem.stock }}' value='{{ goodItem.num }}'></input> -->
+                <image class='change-img' src='/images/shopcar/add.png' bindtap='addNum' data-id='{{ goodItem.cart_id }}' data-num='{{ goodItem.num }}' data-goodindex='{{ goodIndex }}' data-index='{{ index }}' data-stock='{{ goodItem.stock }}' wx:if="{{goodItem.num<goodItem.stock}}"></image>
+                <image class='change-img' src='/images/shopcar/add1.png' wx:if="{{goodItem.num==goodItem.stock}}"></image>
+              </view>
+            </view>
+
+          </view>
+
+        </swipe-delete>
+      </blcok>
+    </view>
+    </scroll-view>
+      <view class='like-list'>
+    <like title='— 猜你喜欢 —' listData="{{ likeData }}">
+    </like>
+    <view class='base-line'>- 我是有底线的 -</view>
+  </view>
+   
+   <!-- 猜你喜欢 -->
+
+
+  <view class='bottom-box {{ isIphoneX?"iphone-x":"" }} flex-row-s'>
+    <view class='flex-row-f' wx:if="{{ shopcarData.total_pages > 0 }}" bindtap='selectAll'>
+      <image src='/images/shopcar/unselected.png' wx:if="{{ checkAll === false }}" class='select-img' mode="aspectFill"></image>
+      <image src='/images/shopcar/selected.png' wx:if="{{ checkAll === true }}" class='select-img' mode="aspectFill"></image>
+      <view class='all-text'>全选</view>
+    </view>
+    <view class='middle-price'>
+      <view style='margin-right:30rpx;' wx:if="{{ showManage === false }}">
+        <text class='middle-left'>合计</text>
+        <text class='yuan theme-font-A-{{theme}}'>￥</text>
+        <text class='total-price theme-font-A-{{theme}}'>{{ totalPrice }}</text>
+      </view>
+      <view class='bottom-btn theme-lg-A-{{theme}}' bindtap='jumpConfirmOrder' wx:if="{{ showManage === false }}">去下单</view>
+      <view class='bottom-btn theme-lg-A-{{theme}}' bindtap='deleteCarSelect' wx:if="{{ showManage === true }}">删除</view>
+    </view>
+  </view>
+
+  <!-- <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal> -->
+  <!-- <bind-phone wx:if="{{ isBindPhone }}"></bind-phone> -->
+    <tabbar tabbar="{{tabbar}}"></tabbar>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,111 @@
+<!--pages/member/giftDetail/giftDetail.wxml-->
+<wxs src="../../../utils/rich.wxs" module="rich" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="VIP礼包" />
+  <view class='back main-color' wx:if="{{ shareCode }}" bindtap='jumpBack'>返回</view>
+  <view class='super'>
+    <swiper indicator-dots="{{indicatorDots}}" class="swiper" bindtap='previewBanner' autoplay="{{autoplay}}">
+      <block wx:for="{{ detailData.itemImgs }}" wx:key="{{ index }}">
+        <swiper-item>
+          <image src="{{ item }}" class="slide-image" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 商品名字 价格 销量 -->
+    <view class='wrap-all'>
+      <view>{{ detailData.title }}</view>
+      <view class='sub-title'>{{ detailData.remark }}</view>
+      <view class='ys-price flex-row-f'>
+        <view class='flex-row-f'>
+          <view>
+            <text class='yuan theme-font-A-{{theme}}'>¥</text>
+            <text class='all-price theme-font-A-{{theme}}' style='font-size:36rpx;'>{{ F1.moneyFormatTwo(detailData.price) }}</text>
+          </view>
+        </view>
+      </view>
+      <view class='detail-bottom flex-row-s'>
+        <view class='flex-row'>
+          <view class='flex-row'>
+            <image src="/images/gooddetail/postage.png" class="postage-img" mode="aspectFill" />
+            <text class='postage' wx:if="{{ detailData.postage == null||detailData.postage == 0 }}">包邮</text>
+            <text class='postage' wx:else>运费{{ F1.moneyFormatTwo(detailData.postage) }}</text>
+          </view>
+        </view>
+         <view class='flex-row' >
+            <image src="/images/gooddetail/buy.png" class="buy-img" mode="aspectFill" />
+            <view class='postage' wx:if="{{ detailData.deal_num == null }}">0人购买</view>
+            <view class='postage' wx:else>{{ detailData.deal_num }}人购买</view>
+          </view>
+        <view class='flex-row'>
+          <image src="/images/gooddetail/address.png" class="address-img" mode="aspectFill" />
+          <view class='postage' wx:if="{{ detailData.shop.show_addr }}">{{F1.cityFilterTwo(detailData.shop.show_addr)  }}</view>
+          <view class='postage' wx:else>暂无</view>
+        </view>
+      </view>
+    </view>
+    <!-- 商品详情 -->
+    <view class='wrap-all detail-title'>— 商品详情 —</view>
+    <view class='rich' wx:if="{{ detailData.rich_text }}">
+      <rich-text nodes="{{rich.rich(detailData.rich_text)}}"></rich-text>
+    </view>
+  </view>
+  <view class='gift-btn flex-row' wx:if="{{ userInfo.role == 0 ||(handInfo.level < detailData.gift_level&&handInfo.is_stuck==0)||handInfo.is_stuck==1 }}">
+    <view class='flex-row gift-left' bindtap='jumpGift'>
+      <image src="/images/member/gift.png" class="gift-img" mode="aspectFill" />
+      <view class='more-gift'>更多礼包</view>
+    </view>
+    <view class='buy-btn main-color theme-lg-A-{{theme}}' bindtap='buyGift'>立即购买</view>
+  </view>
+  <view class='share-btn main-color theme-lg-A-{{theme}}' bindtap='shareGift' wx:else>立即分享</view>
+  <!-- 选择modal -->
+  <view class='mask' catchtouchmove="true" wx:if="{{ showMoadl }}" bindtap='closeModal'></view>
+  <!-- 打开选择后的底部 -->
+  <view class='select-moadl' wx:if="{{ showMoadl }}">
+    <view class='detail'>
+      <view class='detail-spec'>
+        <image wx:if="{{ selectData.img_url }}" src="{{ selectData.img_url }}" class='good-img' mode="aspectFill"></image>
+        <image wx:else src="{{ detailData.img_url }}" class='good-img' mode="aspectFill"></image>
+        <view class='detail-spec-right'>
+          <view class='price-stock flex-row-s'>
+            <view>
+              <text class='yuan theme-font-A-{{theme}}'>¥</text>
+              <text class='price theme-font-A-{{theme}}' wx:if="{{ selectData.price }}">{{ F1.moneyFormatTwo(selectData.price) }}</text>
+              <text class='price theme-font-A-{{theme}}' wx:else>{{F1.moneyFormatTwo(detailData.price) }}</text>
+            </view>
+          </view>
+          <view class='selected-subtitle'>{{ selectData.value_names }}</view>
+          <view class='selected'>{{ detailData.title }}</view>
+        </view>
+        <image src="/images/gooddetail/close.png" class='good-close-img' mode="aspectFill" bindtap='closeModal'></image>
+      </view>
+      <scroll-view class="spec-scroll-view scroll-load-panel" scroll-y="true">
+        <view class='property' wx:for="{{ property }}" wx:key="{{ index }}">
+          <view>{{ item.prop_name }}</view>
+          <view class='specific'>
+            <view class='{{ childrenItem.isSelect===true?"actived theme-border-c-A-"+theme:"specific-item" }}' wx:for="{{ item.children }}" wx:for-item="childrenItem" wx:for-index="childrenIndex" wx:key="{{ childrenIndex }}" bindtap='selectValue' data-index='{{ index }}' data-childrenindex='{{ childrenIndex }}'>{{ childrenItem.value_name }}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class='flex-row-s buy-num'>
+        <view>购买数量</view>
+        <view class='flex-row-f'>
+          <view class='change-num un-change' wx:if="{{ buyNum == 1 || buyNum == 0 }}">-</view>
+          <view class='change-num' bindtap='reduce' wx:else>-</view>
+          <view class='buy-number'>{{ buyNum }}</view>
+          <view class='change-num un-change' wx:if="{{ selectData.stock == 0 || buyNum >= selectData.stock }}">+</view>
+          <view class='change-num' bindtap='addNum' wx:else>+</view>
+        </view>
+      </view>
+    </view>
+    <view class='service-btn main-color theme-lg-A-{{theme}}' bindtap='confirmBuy'>立即支付</view>
+  </view>
+  <!-- 分享 -->
+  <share showShare="{{ showShare }}" showHeader="9" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}"></share>
+    <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+  <!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"></bind-phone> -->
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

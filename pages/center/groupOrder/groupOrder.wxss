@@ -1,0 +1,266 @@
+/* pages/order/order.wxss */
+
+.like-title {
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #999;
+}
+
+.tab-wrap {
+  justify-content: space-around;
+  background-color: #1d1e1f;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  font-size: 30rpx;
+}
+
+.content-wrap {
+  padding-top: 100rpx;
+}
+
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.go-look {
+  width: 330rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 4rpx;
+  border: 1px solid #1d1e1f;
+  margin-top: 80rpx;
+  font-size: 30rpx;
+}
+
+.empty-img {
+  width: 260rpx;
+  height: 160rpx;
+  margin-top: 180rpx;
+}
+
+.empty-text {
+  color: #999;
+  margin-top: 32rpx;
+}
+
+.tab {
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: relative;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+}
+.tag-abroad {
+  width: 68rpx;
+  height: 26rpx;
+  background: rgba(54, 54, 54, 1);
+  border-radius: 13rpx;
+  border: 2rpx solid rgba(54, 54, 54, 1);
+  font-size: 16rpx;
+  font-family: PingFangSC;
+  font-weight: 600;
+  color: rgba(235, 199, 127, 1);
+  line-height: 26rpx;
+  text-align: center;
+  margin-right: 8rpx;
+}
+
+.tag-seckill {
+  width: 52rpx;
+  height: 26rpx;
+  background: rgba(229, 10, 53, 0.1);
+  border-radius: 13rpx;
+  border: 2rpx solid rgba(229, 10, 53, 0.3);
+  font-size: 16rpx;
+  font-family: PingFangSC;
+  font-weight: 600;
+  color: rgba(229, 10, 53, 1);
+  line-height: 22rpx;
+  text-align: center;
+  margin-right: 8rpx;
+}
+
+.tag-group {
+  width: 52rpx;
+  height: 26rpx;
+  background: rgba(0, 84, 255, 0.1);
+  border-radius: 13rpx;
+  border: 2rpx solid rgba(0, 84, 255, 0.3);
+  font-size: 16rpx;
+  font-family: PingFangSC;
+  font-weight: 600;
+  color: rgba(0, 84, 255, 1);
+  line-height: 22rpx;
+  text-align: center;
+  margin-right: 8rpx;
+}
+.line {
+  position: absolute;
+  bottom: 2rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 6rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 3rpx;
+}
+
+.tab-active {
+  border-bottom: 4rpx solid #b52902;
+  font-weight: 600;
+  font-size: 30rpx;
+}
+
+.order-content {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.order-top {
+  border-bottom: 1px solid #f2f2f2;
+  padding: 30rpx;
+}
+
+.order-header {
+  border-bottom: 1px solid #f2f2f2;
+  padding: 30rpx;
+}
+
+.order-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 6rpx;
+}
+
+.order-content-right {
+  width: 540rpx;
+  margin-left: 30rpx;
+  /* padding-right: 30rpx; */
+  box-sizing: border-box;
+  height: 144rpx;
+}
+
+.order-no {
+  color: #555;
+}
+
+.order-price {
+  color: #b52902;
+}
+
+.order-price-th {
+  color: #999;
+  margin-left: 20rpx;
+  text-decoration: line-through;
+}
+
+.status-one {
+  /* color: #b52902; */
+}
+
+.status-three {
+  color: #999;
+}
+
+.shop-name {
+  color: #999;
+  margin-right: 18rpx;
+  /* padding: 28rpx 30rpx; */
+}
+
+.order-num {
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+.num-price {
+  text-align: right;
+  color: #999;
+}
+
+.status-btn {
+  padding: 30rpx;
+}
+
+.order-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.border-btn-item {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+}
+
+.delete-btn {
+  margin-right: 10rpx;
+  border: 1px solid rgba(153, 153, 153, 1);
+  color: #333;
+  font-size: 28rpx;
+  padding: 0;
+}
+
+.buy-btn {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.shop-name {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(29, 30, 31, 1);
+  line-height: 40rpx;
+}
+
+.show-image-total {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.small-icon {
+  position: absolute;
+  width: 72rpx;
+  height: 36rpx;
+  left: 0;
+  bottom: 0;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #fff;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 0 8rpx;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+}
+
+.status-name {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(29, 30, 31, 1);
+}
+
+.order-name {
+  width: 100%;
+}

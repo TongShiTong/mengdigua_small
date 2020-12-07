@@ -1,0 +1,15 @@
+<!--components/setting /setting.wxml-->
+<view wx:if="{{isShowModal}}">
+  <view class='mask'></view>
+  <view class='message-box'>
+    <view class='message-top'>
+      <view class='title'>提示</view>
+      <view class='sub-title'>请到设置进行授权</view>
+    </view>
+    <view class='line'></view>
+    <view class='message-bottom' catchtap="hiddenValue">
+      <button class='button-style' open-type="openSetting" bindopensetting="callbackValue">打开设置页</button>
+    </view>
+  </view>
+
+</view>

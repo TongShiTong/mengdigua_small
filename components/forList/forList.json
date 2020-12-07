@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message": "/components/messageBox/messageBox",
+    "movesort": "/components/movesort/index",
+    "modal": "/components/modal/modal"
+  }
+}

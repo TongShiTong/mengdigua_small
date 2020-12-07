@@ -1,0 +1,32 @@
+/* pages/center/userInfo/changeName/changeName.wxss */
+page {
+  background-color: #F9FAFB;
+}
+.nickname {
+  /* background-color: #fff; */
+  padding: 80rpx;
+}
+.input {
+  border-bottom: 1px solid #EBEBEB;
+  padding-bottom: 20rpx;
+  font-size: 32rpx;
+  color: #262626;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 300rpx;
+}
+.input-place {
+  color: #999999;
+}
+.btn {
+  margin: 78rpx auto 0;
+  width:686rpx;
+  height:82rpx;
+  line-height: 82rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #000000;
+  font-weight: bold;
+  background: linear-gradient(90deg, #FFD300 0%, #FFD300 100%);
+  border-radius: 41rpx;
+}

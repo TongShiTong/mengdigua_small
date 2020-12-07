@@ -1,0 +1,129 @@
+<!--pages/center/refund/editRefund/editRefund.wxml-->
+<wxs src="../../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="申请退款" />
+  <view wx:if="{{ submit }}">
+    <view class='apply flex-column'>
+      <image class='refund-img' src="/images/order/refund/refund.png"></image>
+      <view class='apply-title'>申请已提交给商家</view>
+      <view class='text-one'>请耐心等待商家处理</view>
+    </view>
+    <view class='main-color sub-btn theme-lg-A-{{theme}}' bindtap='jumpReturnList'>完成</view>
+  </view>
+  <view wx:else class='refund-content'>
+    <view class='flex-row-s wrap-all' style='border-bottom:1px solid #EEEEEE;'>
+      <view class="flex-1">退款总金额</view>
+      <input class='order-price theme-font-A-{{theme}}' value='￥{{maxPrice}}' type='digit' data-value="{{maxPrice}}" bindblur='getPrcie'></input>
+    </view>
+    <view class='wrap-all' style='border-bottom:1px solid #EEEEEE;'>
+      <view>商品信息</view>
+    </view>
+    <view class='content-wrap'>
+      <view class='order-header flex-row-f'>
+        <image class='order-img' src="{{ orderData.imgs }}"></image>
+        <view class='order-content-right flex-column-s'>
+          <view>{{ S1.substr(orderData.orderSku[0].spu_name,16) }}</view>
+          <view class='texe-one'>{{ orderData.orderSku[0].type }}</view>
+          <view class='flex-row-s' style='width:100%;'>
+            <view class='sku-price theme-font-A-{{theme}}'>×{{ orderData.orderSku[0].sku_price }}</view>
+            <view class='text-one'>×{{ orderData.orderSku[0].num }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='return-tip flex-row-f' wx:if="{{ orderData.refund_status == 1 || orderData.refund_status == 4 }}">
+      <view class='flex-row-f'>
+        <image class='cancel-img' src="/images/order/refund/wanner.png"></image>
+        <view class='return-amount' wx:if="{{refundInfo.is_postage==1}}">最多￥{{ F1.addNumber(refundInfo.refund_price,refundInfo.postage)}}，含发货邮费￥{{refundInfo.postage}}</view>
+        <view class='return-amount' wx:else>最多￥{{ refundInfo.refund_price }}，不含发货邮费￥{{refundInfo.postage}}</view>
+      </view>
+      <!-- <view class='flex-row-f' wx:if="{{orderData.status == 2}}">
+        <image class='cancel-img' src="/images/order/refund/wanner.png"></image>
+        <view class='return-amount' wx:if="{{refundInfo.send_out_conf == 1}}">最多￥{{ refundInfo.refund_price }}，含发货邮费￥{{refundInfo.postage}}</view>
+        <view class='return-amount' wx:else>最多￥{{ refundInfo.refund_price }}，不含发货邮费￥{{refundInfo.postage}}</view>
+      </view>      -->
+    </view>
+    <!-- 理由 -->
+    <view wx:if="{{ orderData.refund_status == 1 || orderData.refund_status == 4 }}">
+      <view class='flex-row-s' style='background:#fff' bindtap='showGoodModal' wx:if="{{ orderData.type == 2 }}">
+        <!-- 货物状态 -->
+        <view class='re-item flex-row-s' style='width:100%;'>
+          <view class='left-text' wx:if="{{ statusText == '' }}">请选择货物状态</view>
+          <view wx:else>{{ statusText }}</view>
+          <image class='small-right-img' src="/images/small-right.png"></image>
+        </view>
+      </view>
+      <!-- 退款原因 -->
+      <view bindtap='showReturnModal' style='background:#fff'>
+        <view class='flex-row-s re-item'>
+          <view>{{ orderData.bec_type }}</view>
+          <image class='small-right-img' src="/images/small-right.png"></image>
+        </view>
+      </view>
+      <!-- 退款说明 -->
+      <view style='padding-bottom:30rpx;background:#fff'>
+        <input class='re-item' value='{{ orderData.remark }}' placeholder='请输入退款说明' bindinput='getRemark' placeholder-class='left-text'></input>
+      </view>
+    </view>
+    <!-- 填写物流 -->
+    <view class='log-content' wx:if="{{ orderData.refund_status == 2 || orderData.refund_status == 3 }}" style='background:#fff'>
+      <view class='flex-row-s' bindtap='showLogSelect'>
+        <view class='re-item flex-row-s' style='width:100%;'>
+          <view class='left-text' wx:if="{{ company == '' || company == null }}">请选择物流公司</view>
+          <view wx:else>{{ company }}</view>
+          <image class='small-right-img' src="/images/small-right.png"></image>
+        </view>
+      </view>
+      <view class='flex-row-f' style='background:#fff'>
+        <input class='re-item' style='width:100%' placeholder='填写物流单号' value='{{ logNo }}' bindinput='getLogNo'></input>
+      </view>
+    </view>
+    <!-- 上传图片 -->
+    <view class='user-evaluate'>
+      <view>上传凭证</view>
+      <view class='img-list'>
+        <view wx:for="{{ imgList }}" wx:key="{{ index }}" class='img-wrap'>
+          <image class='evaluate-img' mode="aspectFill" src="{{ item }}"></image>
+          <view class='cancel' bindtap='deleteImg' data-index='{{ index }}'>X</view>
+        </view>
+        <view class='upload' bindtap='uploadImg'>
+          <image class='upload-img' src="/images/center/upload.png"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 确定 -->
+    <view class='confirm-btn btn theme-lg-A-{{theme}}' bindtap='confirmSubmit'>提交</view>
+    <!-- 货物状态 -->
+    <view class='mask' wx:if="{{ showGood }}" bindtap='closeGood'></view>
+    <view class='select-modal' wx:if="{{ showGood }}">
+      <view class='select-item flex-row' wx:for="{{ goodStatus }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectStatus'>
+        <view>{{ item.title }}</view>
+      </view>
+      <view class='btn close-btn' bindtap='closeGood'>关闭</view>
+    </view>
+    <!-- 退款原因 -->
+    <view class='mask' wx:if="{{ showReturn }}" bindtap='closeRerurn'></view>
+    <view class='select-modal' wx:if="{{ showReturn }}">
+      <view class='select-item flex-row' wx:for="{{ reasonList }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectReason'>
+        <view>{{ item.name }}</view>
+      </view>
+      <view class='btn close-btn' bindtap='closeRerurn'>关闭</view>
+    </view>
+    <!-- 选择物流 -->
+    <view class='mask' wx:if="{{ showLog }}" bindtap='closeLog'></view>
+    <view class='select-modal' wx:if="{{ showLog }}">
+      <scroll-view class="scroll-load-panel company-scroll" scroll-y="true">
+        <view class='flex-row select-item' wx:for="{{ companyList }}" wx:key="{{ index }}" data-index='{{ index }}' data-id='{{ item.id }}' bindtap='selectCompany'>
+          <view>{{ item.name }}</view>
+        </view>
+      </scroll-view>
+      <view class='btn close-btn' bindtap='closeLog'>关闭</view>
+    </view>
+  </view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

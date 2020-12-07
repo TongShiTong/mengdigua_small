@@ -1,0 +1,38 @@
+<!--pages/member/invite/invite.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="邀请好友" />
+  <view class='flex-row-s intive-head'>
+    <view class='text'>您的邀请码</view>
+    <view class='flex-row-f'>
+      <view>{{ inviteData.invite_code }}</view>
+      <view class='flex-row copy-wrap' bindtap='copyInfo'>
+        <image src="/images/copy.png" class='copy-img' mode="aspectFill"></image>
+        <view class='coyp'>复制</view>
+      </view>
+    </view>
+  </view>
+  <view class='flex-row' style='margin-top:60rpx;'>
+    <image src="{{ inviteData.img_url }}" class='invite-img' mode="aspectFill"></image>
+  </view>
+  <view class='share-box'>
+    <view class='tab'>
+      <button open-type='share' class='share-btn' bindtap='shareSuccess'>
+        <image src='/images/share-wechat.png' class='share-wechat-img' mode="aspectFill"></image>
+        <view class='share-btn-text'>分享给好友</view>
+      </button>
+    </view>
+    <!-- <view class='tab' bindtap='shareSave'>
+      <image src='/images/share-pyq.png' class='share-pyq-img' mode="aspectFill"></image>
+      <view class='share-text'>分享朋友圈</view>
+    </view> -->
+    <view class='tab' bindtap='preeSave'>
+      <image src='/images/share-save.png' class='share-save-img' mode="aspectFill"></image>
+      <view class='share-text'>保存图片</view>
+    </view>
+  </view>
+
+  <setting bind:onchange="shareSave" isShowModal="{{showsetModel}}" />
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

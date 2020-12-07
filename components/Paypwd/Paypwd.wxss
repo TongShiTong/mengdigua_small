@@ -1,0 +1,163 @@
+/* 支付密码框 */
+
+.title {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(29, 30, 31, 1);
+  line-height: 94rpx;
+  height: 94rpx;
+  position: relative;
+  width: 100%;
+}
+.close-pay{
+  position: absolute;
+  left: 32rpx;
+  top: 28rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.number {
+  font-size: 88rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  line-height: 124rpx;
+  margin: 48rpx auto;
+}
+
+.content {
+  text-align: center;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650rpx;
+  height: 490rpx;
+  background: #fff;
+  border-radius: 4rpx;
+}
+
+.pay_number {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #cfd4d3;
+  /* border-radius:10rpx; */
+}
+
+.pay_number_interval {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  border-left: 1px solid #cfd4d3;
+  /* border:none; */
+}
+
+/* 第一个格子输入框 */
+
+.content .noBorder {
+  border-left: none;
+}
+
+/* 支付密码框聚焦的时候 */
+
+.get_focus {
+  border-color: #000;
+}
+
+/* 单个格式样式 */
+
+.password_dot {
+  flex: 1;
+  border-left: 1px solid #cfd4d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password_dot_interval {
+  flex: 1;
+  border: 1px solid #cfd4d3;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 单个格式样式（聚焦的时候） */
+
+.get_focus_dot {
+  flex: 1;
+  border-left: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.get_focus_dot_interval {
+  flex: 1;
+  border: 1px solid orange;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 模拟光标 */
+
+.cursor {
+  width: 1px;
+  height: 15px;
+  background-color: #000;
+  animation: focus 0.7s infinite;
+}
+
+/* 光标动画 */
+
+@keyframes focus {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* 格式中的点 */
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+/* 输入框 */
+
+.input_container {
+  height: 10rpx;
+  width: 10rpx;
+  min-height: 0;
+  position: relative;
+  text-indent: -999em;
+  /* left: -100%; */
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  left: 0;
+  top: 0;
+}
+
+.line1 {
+  width: 590rpx;
+  height: 1rpx;
+  background: rgba(238, 238, 238, 1);
+}

@@ -1,0 +1,459 @@
+<!--pages/order/orderDetail/orderDetail.wxml-->
+<wxs src="../../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+	<navbar title="拼团详情" />
+	<view class="order-detail-total">
+		<view class='order-detail-head flex-row-f'>
+			<block wx:if="{{team_info.status==0||team_info.status==1}}">
+				<image
+				 class='item1-img'
+				 wx:if="{{ detailData.status == 0 }}"
+				 src="/images/order/item1.png"
+				 mode="aspectFill"
+				/>
+				<image
+				 class='item1-img'
+				 wx:elif="{{ detailData.status == 1 }}"
+				 src="/images/order/item2.png"
+				 mode="aspectFill"
+				/>
+				<image
+				 class='item1-img'
+				 wx:elif="{{ detailData.status == 2 }}"
+				 src="/images/order/item3.png"
+				 mode="aspectFill"
+				/>
+				<image
+				 class='item1-img'
+				 wx:elif="{{ detailData.status == 3 }}"
+				 src="/images/order/item4.png"
+				 mode="aspectFill"
+				/>
+				<image
+				 class='item1-img'
+				 wx:elif="{{ detailData.status == 9 }}"
+				 src="/images/order/item5.png"
+				 mode="aspectFill"
+				/>
+				<image
+				 class='item1-img'
+				 wx:elif="{{ detailData.status == 8 || detailData.status == 10 }}"
+				 src="/images/order/item6.png"
+				 mode="aspectFill"
+				/>
+			</block>
+			<block wx:if="{{team_info.status==2}}">
+				<image class='item1-img' src="/images/order/item12.png" mode="aspectFill" />
+			</block>
+			<block wx:if="{{team_info.status==0||team_info.status==1}}">
+				<text class='order-detail-text' wx:if="{{ detailData.status == 0 }}">拼团中 等待付款</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 1 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 待发货</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 2 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 待收货</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 3 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 待评价</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 4 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 退货申请</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 5 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 退货申请驳回</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 6 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 退款退货中</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 7 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 已退货</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 8 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 取消交易</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 9 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 交易完成</text>
+				<text class='order-detail-text' wx:if="{{ detailData.status == 10 }}">{{team_info.status ==0?'拼团中':'拼团成功'}} 支付失败</text>
+			</block>
+			<block wx:if="{{team_info.status==2}}">
+				<text class='order-detail-text'>拼团失败</text>
+			</block>
+		</view>
+		<!-- 物流信息 -->
+		<view class='detail-item flex-row-s' wx:if="{{ logData.info.length > 0 }}" catchtap='jumpLog'>
+			<image class='item1-img' src="/images/order/item1.png" mode="aspectFill" />
+			<view class='flex-row-s'>
+				<view>
+					<view class='log-info'>{{ logData.info[0].status }}</view>
+					<view class='user-detail-address'>{{ logData.info[0].time }}</view>
+				</view>
+			</view>
+			<image class='small-right-img' src="/images/small-right.png" />
+		</view>
+		<view class='detail-item flex-row-s log-no' wx:elif="{{ logData.info.length == 0 && (detailData.status == 2 || detailData.status == 3 || detailData.status == 9) }}">暂无物流</view>
+		<!-- 拼团详情 -->
+		<view wx:hidden='{{groupSecond!=false}}' class='bg-white group-total'>
+			<block wx:if="{{detailData.status != 0}}">
+				<groupInfo
+				 showType="2"
+				 team_info="{{team_info}}"
+				 user_list="{{user_list}}"
+				 bind:show='openModel'
+				 showStatus="{{detailData.status}}"
+				 showTime="{{groupSecond}}"
+				/>
+			</block>
+			<button
+			 class='theme-lg-A-{{theme}} gruop-button'
+			 wx:if="{{team_info.status==2}}"
+			 data-id="{{team_info.item_id}}"
+			 catchtap='jumpDetail'
+			>重开一团
+			</button>
+			<button class='theme-lg-A-{{theme}} gruop-button' wx:if="{{team_info.status==0&&detailData.status!=0}}" catchtap='openModel'>邀请好友</button>
+		</view>
+		<!-- 地址 -->
+		<view class='wrap-all address-detault' style="border-bottom:2rpx solid #f2f2f2;">
+			<view class='left-address'>
+				<view>
+					<text style='font-size:36rpx;font-weight:700'>{{ detailData.to_name }}（{{ detailData.to_tel }}）</text>
+					<text class='address-tel'/>
+
+        </view>
+				<view class='user-detailaddress'>地址：{{ address }}{{ detailAddress }}</view>
+			</view>
+		</view>
+		<!-- <image class='line-img' src="/images/confirm/line.png" style='display:block;'></image> -->
+
+		<!-- 商品信息 -->
+		<view>
+			<view
+			 wx:for="{{ detailData.MainOrders }}"
+			 wx:for-index="{{ mainIndex }}"
+			 wx:for-item="mainItem"
+			 wx:key="{{ mainIndex }}"
+			>
+				<view class='flex-row-s wrap-all order-head' catchtap='jumpShopDetail' id="{{mainItem.shop.id}}">
+					<view class='spe-shop-name'>{{mainItem.shop.name}}</view>
+					<image src='/images/small-right.png' class='small-right-img' mode="aspectFill" />
+				</view>
+				<view
+				 class='flex-row-f wrap-all good-content'
+				 wx:for="{{ mainItem.orderSkus }}"
+				 wx:for-index="{{ skuIndex }}"
+				 wx:for-item="skuItem"
+				 wx:key="{{ skuIndex }}"
+				 bindtap='jumpDetail'
+				 data-id='{{ skuItem.item_id }}'
+				>
+					<view class='show-image-total'>
+						<image src="{{ skuItem.img_url }}" class="good-img" mode="aspectFill" />
+						<view class='small-icon theme-lg-B-{{theme}}' wx:if="{{skuItem.activity_type==1}}">秒杀</view>
+					</view>
+					<view class='good-info flex-column-s'>
+						<view class='good-name'>
+							<!-- <text class='theme-font-A-{{theme}}'>【拼团】</text>
+              <text class='theme-font-A-{{theme}}' wx:if="{{skuItem.is_abroad==1}}">【跨境购】</text>-->
+							{{S1.substr(skuItem.spu_name,16)}}</view>
+						<view class='guige'>{{ S1.substr(skuItem.value_names,16) }}</view>
+            <view class='bottom-num' style="width:100%;text-align:right;">×{{ skuItem.num }}</view>
+						<view class='flex-row-s good-price' style="text-align:right;">
+							<!-- <form catchsubmit="jumpSelectReturn" report-submit="true" wx:if="{{ detailData.status == 1 && (skuItem.status != 6 && skuItem.status != 7) }}" data-id='{{ skuItem.id }}'>
+                <button formType="submit" class='form-button-style refund'>申请退款</button>
+              </form> -->
+							<view
+							 class='refund'
+							 wx:if="{{ team_info.status==1 && detailData.status == 1 && (skuItem.status != 6 && skuItem.status != 7) }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpSelectReturn'
+							 data-shop="{{mainItem.shop}}"
+							>申请退款
+							</view>
+							<!-- <form catchsubmit="jumpSelectReturn" report-submit="true" wx:elif="{{ detailData.status == 2 && (skuItem.status != 6 && skuItem.status != 7) }}" data-shop="{{mainItem.shop}}" data-id='{{ skuItem.id }}' >
+                <button formType="submit" class='form-button-style refund'>退款退货</button>
+              </form> -->
+							<view
+							 class='refund'
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpSelectReturn'
+							 wx:elif="{{ detailData.status == 2 && (skuItem.status != 6 && skuItem.status != 7) }}"
+							 data-shop="{{mainItem.shop}}"
+							>退款退货
+							</view>
+							<view
+							 class='refund'
+							 wx:elif="{{ detailData.status == 1 && skuItem.status == 5 }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpRefundDetail'
+							 data-shop="{{mainItem.shop}}"
+							>退款拒绝
+							</view>
+							<view
+							 class='refund'
+							 wx:elif="{{ detailData.status == 1 && skuItem.status == 6 }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpRefundDetail'
+							 data-shop="{{mainItem.shop}}"
+							>退款中
+							</view>
+							<view
+							 class='refund'
+							 wx:elif="{{ detailData.status == 1 && skuItem.status == 7 }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpRefundDetail'
+							 data-shop="{{mainItem.shop}}"
+							>已退款
+							</view>
+							<view
+							 class='refund'
+							 wx:elif="{{ detailData.status == 2 && skuItem.status == 5 }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpRefundDetail'
+							 data-shop="{{mainItem.shop}}"
+							>退款拒绝
+							</view>
+							<view
+							 class='refund'
+							 wx:elif="{{ detailData.status == 2 && skuItem.status == 6 }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpRefundDetail'
+							 data-shop="{{mainItem.shop}}"
+							>退款退货中
+							</view>
+							<view
+							 class='refund data-shop="{{mainItem.shop}}"'
+							 wx:elif="{{ detailData.status == 2 && skuItem.status == 7 }}"
+							 data-id='{{ skuItem.id }}'
+							 catchtap='jumpRefundDetail'
+							>已退货
+							</view>
+							<view class='bottom-price' style="text-align:right;flex:1;">￥{{ skuItem.sku_price }}</view>
+							
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 小记 -->
+		<!-- <view class='flex-row-s count-price'>
+      <view>共{{ detailData.goods_num }}件商品</view>
+      <view>
+        <text>小计：</text>
+        <text class='bottom-price theme-font-A-{{theme}}'>￥{{ detailData.goods_amount }}</text>
+      </view>
+    </view> -->
+		<!-- 备注 留言 -->
+		<!-- <view class='wrap-all'>
+      <view class='live-message'>
+        <view class='order-right'>买家留言</view>
+        <view class='text-line1' style='color="#333333";'>{{ detailData.MainOrders[0].remark }}</view>
+      </view>
+    </view> -->
+		<!-- 订单信息 -->
+		<view class='order-info'>
+			<!-- <view class='wrap-all flex-row-s detail-list'>
+        <view>不希望看到带有价格的发货</view>
+        <view class='order-right'>{{ detailData.display_price==1?"是":"否" }}</view>
+      </view> -->
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>买家留言</view>
+				<view class='order-left'>{{ detailData.MainOrders[0].remark }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>运费</view>
+				<view class='order-left'>{{ detailData.order_logistics_freight==0?"包邮": "￥"+detailData.order_logistics_freight }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>优惠券</view>
+				<view class='order-left'>- ￥{{ item.order_coupon_amount }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>积分</view>
+				<view class='order-left'>- ￥{{ item.order_pay_score }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>购物卡抵扣</view>
+				<view class='order-left'>- ￥{{ item.order_pay_amount }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>余额抵扣</view>
+				<view class='order-left'>- ￥{{ item.order_pay_amount }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<view>实付款:</view>
+				<view class='order-left theme-font-A-{{theme}}'>￥{{ detailData.order_amount }}</view>
+			</view>
+			<!-- <view class='flex-row-s count-price' style="margin-bottom:16rpx;  ">
+        <view>共{{ detailData.goods_num }}件商品</view>
+        <view>
+          <text>小计：</text>
+          <text class='bottom-price theme-font-A-{{theme}}'>￥{{ detailData.goods_amount }}</text>
+        </view>
+      </view> -->
+
+			<!-- <block wx:if="{{ detailData.orderInvoice != null }}">
+        <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.orderInvoice }}">
+          <text>发票类型</text>
+          <text class='order-right'>{{ detailData.orderInvoice.invoice_type }}</text>
+        </view>
+        <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.orderInvoice }}">
+          <text>发票抬头</text>
+          <text class='order-right' wx:if="{{ detailData.orderInvoice.type == 1 }}">个人</text>
+          <text class='order-right' wx:elif="{{ detailData.orderInvoice.type == 2 }}">单位</text>
+        </view>
+        <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.orderInvoice }}">
+          <text>发票内容</text>
+          <text class='order-right'>{{ detailData.orderInvoice.invoice_content }}</text>
+        </view>
+      </block>
+      <view wx:else>
+        <view class='wrap-all flex-row-s detail-list' style="margin-bottom:16rpx;" style="margin-bottom:16rpx;" wx:if="{{ detailData.order_no }}">
+          <text>发票类型：</text>
+          <text class='order-right'>不开发票</text>
+        </view>
+      </view> -->
+			<view style="height:2rpx;border-top:2rpx solid #f2f2f2;" />
+			<view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.order_no }}">
+				<view>订单编号</view>
+				<view class='order-right'>{{ detailData.order_no }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.order_no }}">
+				<view>下单时间</view>
+				<view class='order-right'>{{ detailData.create_time }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.pay_time }}">
+				<view>付款时间</view>
+				<view class='order-right'>{{ detailData.pay_time }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.deliver_time }}">
+				<view>发货时间</view>
+				<view class='order-right'>{{ detailData.deliver_time }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.finish_time!=null }}">
+				<view>成交时间</view>
+				<view class='order-right'>{{ detailData.finish_time }}</view>
+			</view>
+			<view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.status != 0 }}">
+				<text>支付方式：</text>
+				<text class='order-right' wx:if="{{ detailData.pay_channel == 0 }}">微信支付</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 1 }}">支付宝支付</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 2 }}">Apple Pay</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 3 }}">积分支付</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 4 }}">ETH</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 5 }}">公众号支付</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 6 }}">微信支付</text>
+				<text class='order-right' wx:elif="{{ detailData.pay_channel == 10 }}">余额支付</text>
+			</view>
+			<view class='wrap-all flex-row-s detail-list'>
+				<text>配送方式：</text>
+				<text class='order-right'>普通配送</text>
+			</view>
+			<!-- <view style='margin-top:10rpx;'>
+        <view wx:if="{{ detailData.orderInvoice != null }}">
+          <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.order_no }}">
+            <text>发票类型：</text>
+            <text class='order-right'>{{ detailData.orderInvoice.invoice_type }}</text>
+          </view>
+          <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.order_no }}">
+            <text>发票抬头：</text>
+            <text class='order-right' wx:if="{{ detailData.orderInvoice.type == 1 }}">个人</text>
+            <text class='order-right' wx:elif="{{ detailData.orderInvoice.type == 2 }}">单位</text>
+          </view>
+          <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.order_no }}">
+            <text>发票内容：</text>
+            <text class='order-right'>{{ detailData.orderInvoice.invoice_content }}</text>
+          </view>
+        </view>
+        <view wx:else>
+          <view class='wrap-all flex-row-s detail-list' wx:if="{{ detailData.order_no }}">
+            <text>发票类型：</text>
+            <text class='order-right'>不开发票</text>
+          </view>
+        </view>
+      </view> -->
+		</view>
+		<!-- 订单价格优惠等 -->
+		<view>
+
+			<block wx:if="{{detailData.is_abroad==1}}">
+				<view class='wrap-all flex-row-s detail-list'>
+					<view>姓名:</view>
+					<view class='order-left t'>{{ F1.becomeSecrtName(detailData.card_name) }}</view>
+				</view>
+				<view class='wrap-all flex-row-s detail-list'>
+					<view>身份证:</view>
+					<view class='order-left '>{{ F1.becomeSecrt(detailData.card_no)}}</view>
+				</view>
+			</block>
+			<view class='bottom-btn flex-r-b' wx:if="{{ detailData.status == 0 || detailData.status == 1 || detailData.status == 2 || detailData.status == 3 || detailData.status == 8 || detailData.status == 9 || detailData.status == 10 }}">
+				<!-- <view wx:if="{{ detailData.status == 0 }}" class="flex-r-s">
+					<view class='left-text'>需支付：</view>
+					<view class='need-price theme-font-A-{{theme}}'>￥{{ detailData.order_amount }}</view>
+				</view> -->
+				<view>
+					<button session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{item.params}}|transferAction={{item.transferAction}}" open-type="contact" class='moe-service-btn'>
+						<view class="flex-c" style="display:flex;padding-top:20rpx;">
+              <image src="/images/gooddetail/message.png" style="width:36rpx;height:34rpx;"></image>
+              <view style="font-size:20rpx;">联系客服</view>
+            </view>
+					</button>
+				</view>
+				<!-- <view class="flex-r-s">
+					<view wx:if="{{ detailData.status == 0 || detailData.status == 10 }}" class='border-btn-item border-btn-item-two delete-btn' bindtap='showCancel'>取消订单</view>
+					<view wx:if="{{ detailData.status == 0 || detailData.status == 10 }}" class='border-btn-item buy-btn theme-lg-A-{{theme}}' bindtap='goBuy'>立即付款</view>
+
+					<form wx:if="{{ detailData.status == 1 }}" catchsubmit="remindDeliver" report-submit="true">
+						<button formType="submit" class='form-button-style border-btn-item buy-btn theme-lg-A-{{theme}}'>提醒发货</button>
+					</form>
+
+					<view wx:if="{{ detailData.status == 2 }}" class='border-btn-item delete-btn' bindtap='jumpLog'>查看物流</view>
+
+					<form wx:if="{{ detailData.status == 2 }}" catchsubmit="showRemindModal" report-submit="true">
+						<button formType="submit" class='form-button-style border-btn-item buy-btn theme-lg-A-{{theme}}'>确定收货</button>
+					</form>
+
+					<view wx:if="{{ detailData.status == 3 }}" class='border-btn-item buy-btn' bindtap='jumpEvaluate'>我要评价</view>
+					<view wx:if="{{ detailData.status == 9 || detailData.status == 8 }}" class='border-btn-item delete-btn' bindtap='showDelete'>删除订单</view>
+				</view> -->
+        
+        <view class="flex-r-s">
+					<view wx:if="{{ detailData.status == 0 || detailData.status == 10 }}" class='moe-bottom-btn' bindtap='showCancel'>取消订单</view>
+					<view wx:if="{{ detailData.status == 0 || detailData.status == 10 }}" class='moe-bottom-btn' bindtap='goBuy'>立即付款</view>
+
+					<form wx:if="{{ detailData.status == 1 }}" catchsubmit="remindDeliver" report-submit="true">
+						<button formType="submit" class='moe-bottom-btn'>提醒发货</button>
+					</form>
+
+					<view wx:if="{{ detailData.status == 2 }}" class='moe-bottom-btn' bindtap='jumpLog'>查看物流</view>
+
+					<form wx:if="{{ detailData.status == 2 }}" catchsubmit="showRemindModal" report-submit="true">
+						<button formType="submit" class='moe-bottom-btn'>确定收货</button>
+					</form>
+
+					<view wx:if="{{ detailData.status == 3 }}" class='moe-bottom-btn' bindtap='jumpEvaluate'>我要评价</view>
+					<view wx:if="{{ detailData.status == 9 || detailData.status == 8 }}" class='moe-bottom-btn' bindtap='showDelete'>删除订单</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModalTwo }}" />
+	<message
+	 wx:if="{{ cancelModal }}"
+	 title="取消提醒"
+	 subTitle="是否确定？"
+	 confirmText="确定"
+	 bind:colse="closeModal"
+	 bind:confirm="confirmCancel"
+	/>
+	<message
+	 wx:if="{{ deleteModal }}"
+	 title="删除提醒"
+	 subTitle="是否确定？"
+	 confirmText="确定"
+	 bind:colse="closeDeleteModal"
+	 bind:confirm="confirmDelete"
+	/>
+	<message
+	 wx:if="{{ remindModal }}"
+	 title="收货提醒"
+	 subTitle="是否确认收货？"
+	 confirmText="确定"
+	 bind:colse="closeRemindModal"
+	 bind:confirm="confirmDelivery"
+	/>
+
+	<modal
+	 showType="2"
+	 img_url="{{share_img}}"
+	 isShowModal='{{isShowModal}}'
+	 bind:change="close"
+	/>
+
+</block>
+<view wx:else>
+	<page-loding/>
+</view>
+

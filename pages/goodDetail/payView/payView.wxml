@@ -1,0 +1,31 @@
+<!--pages/goodDetail/payView/payView.wxml-->
+
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="确认订单" />
+  <view style="height:40rpx;"></view>
+  <view class='order-info flex-column'>
+    <view class='title'>支付剩余时间</view>
+    <view class='time'>{{ Time||'0小时0分0秒' }}</view>
+    <view class='pay-amount theme-font-A-{{theme}}'>￥{{ orderInfo.pay_amount }}</view>
+  </view>
+  <view class='pay'>
+    <view class='select-item wrap-all' wx:for="{{ pay }}" wx:key="index" data-index='{{ index }}' bindtap='selectIndex'>
+      <view class='item-left'>
+        <image src='{{ item.img }}' class='pay-img' mode="aspectFill"></image>
+        <view class='pay-text'>{{ item.title }}</view>
+      </view>
+      <image wx:if="{{ payIndex == index }}" src='/images/shopcar/selected.png' class='select-img' mode="aspectFill"></image>
+      <image wx:else src='/images/shopcar/unselected.png' class='select-img' mode="aspectFill"></image>
+    </view>
+  </view>
+  <view class='pay-tip'></view>
+  <form bindsubmit="getPay" report-submit="true">
+    <button formType="submit" class='buy-btn theme-lg-A-{{theme}}'>确认支付￥{{ orderInfo.pay_amount }}</button>
+  </form>
+
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

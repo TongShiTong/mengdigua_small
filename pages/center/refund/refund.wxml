@@ -1,0 +1,109 @@
+<!--pages/center/refund/refund.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="退款退货" bg_color="#fff" />
+
+  <view wx:if="{{ isEmpty }}" class='flex-column'>
+    <image class='empty-img' src="/images/order/refund/empty.png" mode="aspectFill"></image>
+    <view class='order-status-text empty-text'>暂无售后记录</view>
+    <view class='text-one'>如果需要，售后入口在订单详情中哦！</view>
+  </view>
+  <view wx:else>
+    <view class='content-wrap'>
+
+      <view wx:for="{{ orderList.list }}" wx:key="index" class='list-item'>
+        <!-- 商品信息 -->
+        <view class='wrap-all flex-row-s' catchtap='jumpShopDetail' id="{{item.refund.shop.id}}">
+          <view class='shop-name'>{{item.refund.shop.name}}</view>
+          <image src='/images/small-right.png' class='small-right-img' mode="aspectFill"></image>
+        </view>
+        <view class='order-header flex-row-f' data-id='{{ item.id }}' bindtap='jumpRefundDetail'>
+          <view class='show-image-total'>
+            <image class='order-img' src="{{ item.item_img }}"></image>
+            <view class='small-icon theme-lg-B-{{theme}}' wx:if='{{item.activity_type==1}}'>秒杀</view>
+          </view>
+          <view class='order-content-right'>
+            <view class='order-name text-line1'>
+              <text class='theme-font-A-{{theme}}' wx:if="{{item.is_abroad==1}}">【跨境购】</text>{{ S1.substr(item.spu_name,16) }}</view>
+            <view class='text-one'>{{ item.value_name }}</view>
+            <view class='flex-row-s' style="justify-content:right;text-align:right;position:relative;">
+              <!-- <view class='sku-price theme-font-A-{{theme}}'>¥{{ item.sku_price }}</view> -->
+              <view class='text-two ' style="position:absolute;right:0;">x{{ item.num }}</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="bottom-wrap" style="display:flex;justify-content:space-between;">
+          <view style="display:flex;justify-content:flex-start;margin-top:8rpx;">
+            <view class="status-name">{{item.refund.type==1?'退款':'退货退款'}}</view>
+            <!-- <view class="status-desp">{{(item.refund.status_name=='平台同意退款'&&item.refund.refund_status==2)?'等待买家发货':item.refund.status_name}},{{times[index]>0?F1.dealTimeFour(times[index]):''}}{{times[index]>0?F1.sub(item.refund):''}}</view> -->
+            <view class="status-desp" wx:if="{{item.refund.type==1}}">
+              <text wx:if="{{item.refund.status==0}}">已经取消</text>
+              <text wx:if="{{item.refund.status==1}}">等待商家处理</text>
+              <text wx:if="{{item.refund.status==2}}">退款成功</text>
+              <text wx:if="{{item.refund.status==3}}">商家拒绝退款</text>
+              <text wx:if="{{item.refund.status==4}}">取消申请</text>
+              <text wx:if="{{item.refund.status==5}}">退款失败</text>
+              <block wx:if="{{item.refund.second>0&&times[index]}}">,  {{F1.dealTimeFour(times[index])}}
+               <text wx:if="{{item.refund.status==0}}">内可再次申请</text>
+               <text wx:if="{{item.refund.status==1}}">后自动确认</text>
+               <text wx:if="{{item.refund.status==3}}">内可重新申请</text>
+              <text wx:if="{{item.refund.status==4||item.refund.status==5}}">内可再次申请</text>
+              </block>
+              <block wx:if="{{(item.refund.status==3||item.refund.status==4||item.refund.status==5)&&item.refund.second<=0}}">已经超时</block>
+            </view>
+
+
+            <view class="status-desp" wx:if="{{item.refund.type==2}}">
+              <text wx:if="{{item.refund.refund_status==0}}">已经取消</text>
+              <text wx:if="{{item.refund.refund_status==1}}">等待商家处理</text>
+              <text wx:if="{{item.refund.refund_status==2}}">卖家同意，请填写物流</text>
+              <text wx:if="{{item.refund.refund_status==3}}">已填写物流</text>
+              <text wx:if="{{item.refund.refund_status==4}}">卖家拒绝</text>
+              <text wx:if="{{item.refund.refund_status==5}}">退款成功</text>
+              <block wx:if="{{item.refund.second>0&&times[index]}}">,  {{F1.dealTimeFour(times[index])}}
+               <text wx:if="{{item.refund.refund_status==0}}">内可再次申请</text>
+                <text wx:if="{{item.refund.refund_status==1||item.refund.refund_status==3}}">后自动确认</text>
+               <text wx:if="{{item.refund.refund_status==4}}">内可再次申请</text>
+              </block>
+              <block wx:if="{{(item.refund.refund_status==0||item.refund.refund_status==1||item.refund.refund_status==3||item.refund.refund_status==4)&&item.refund.second<=0}}">已经超时</block>
+            </view>
+          </view>
+          <!-- <view class="service-button">
+            客服
+          </view> -->
+          <view>
+            <button session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{item.params}}|transferAction={{item.transferAction}}" open-type="contact" class='service-button'>
+              客服
+            </button>
+          </view>
+        </view>
+        <!-- <view class='flex-row-s order-status'>
+          <view class='flex-row-f'>
+            <image src="/images/order/refund/refuse-icon.png " class='refund-img' mode="aspectFill "></image>
+            <view class='order-title'>退货退款</view>
+          </view>
+          <view class='order-status-text order-status-fail' wx:if="{{item.refund.status==0}}">已取消</view>
+          <view class='order-status-text order-status-app' wx:elif="{{item.refund.status==1}}">申请中</view>
+          <view class='order-status-text order-status-success' wx:elif="{{item.refund.status==2}}">退款成功</view>
+          <view class='order-status-text order-status-fail' wx:elif="{{item.refund.status==3}}">拒绝退款</view>
+          <view class='order-status-text order-status-fail' wx:elif="{{item.refund.status==4}}">取消申请</view>
+          <view class='order-status-text order-status-fail' wx:elif="{{item.refund.status==5}}">退款失败</view>
+        </view> -->
+        <!-- <view class='order-bottom'>
+          <button session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{item.params}}|transferAction={{item.transferAction}}" open-type="contact" class='border-btn-item'>
+            联系客服
+          </button>
+          <view class='border-btn-item' catchtap='jumpRefundDetail' data-id='{{ item.id }}'>查看详情</view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

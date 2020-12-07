@@ -1,0 +1,69 @@
+<!--pages/personShop/personShop.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <view class='position:relative'>
+    <navbar title="店铺装修" />
+    <view class='shop-title flex-r-b' style='padding-left:40rpx'>
+      <view>店铺美照</view>
+      <view style='padding-right:30rpx' catchtap='open'>分享</view>
+    </view>
+    <view style="height:240rpx;">
+      <row-scroll list="{{picList.banner}}" showType="shopTop"></row-scroll>
+    </view>
+
+    <view style='padding-left:40rpx;padding-right:40rpx'>
+      <view class='shop-title'>店铺介绍</view>
+      <view catchtap='focusInput' class='input-line'>
+        <input value="{{shopRemark}}" data-attr="shopRemark" focus="{{get_focus}}" class='input_container' placeholder="点击编辑文字" bindinput="changeAttr" bindconfirm="changeIntro" confirm-type="send" type="text" />
+      </view>
+      <view class='shop-title2 flex-r-b'>
+        <text>商品推荐</text>
+        <text class='admin ' bindtap='goDetail' data-url="/pages/personShop/shopList/shopList">管理</text>
+      </view>
+
+    </view>
+    <block wx:if="{{goodsList}}">
+      <for-list style="p30" list="{{goodsList.list}}" showType="3" skillType='1' userInfo="{{userInfo}}"></for-list>
+    </block>
+
+    <view class='mask2' catchtouchmove="true" wx:if="{{showInfo!=false&&!step}}">
+      <view class='my-shop' style="top:{{(50*(_ratio/0.5)+barHeight)}}px" wx:if="{{showInfo==1}}">
+        <view class='first-shop' catchtap='choice'>
+          <image class='shop-word-pic' lazy-load='true' mode="aspectFill" src="/images/personShop/add.png"></image>
+          <view class='shop-word-1 '>点击上传图片</view>
+        </view>
+        <view class="zegai-item1-1" wx:if="{{showInfo==1}}">
+          添加店主个人美照
+          <view class="to-top-triangle"></view>
+        </view>
+      </view>
+      <view class='my-shop2' style="top:{{(170*(_ratio/0.5)+barHeight)}}px" wx:if="{{showInfo==2}}">
+        <view class='shop-title'>店铺介绍</view>
+        <view catchtap='focusInput' class='input-line'>
+          <input value="{{shopRemark}}" data-attr="shopRemark" focus="{{get_focus}}" class='input_container' placeholder="点击编辑文字" bindinput="changeAttr" />
+        </view>
+        <view class="zegai-item1-1 item-2-top">
+          添加店主个人简介
+          <view class="to-top-triangle"></view>
+        </view>
+      </view>
+      <view class='my-shop3' style="top:{{(317*(_ratio/0.5)+barHeight)}}px" wx:if="{{showInfo==3}}">
+        <view class='box-shadow-1' catchtap='choice'>
+          <image src="/images/personShop/add.png" class='person-shop-add-1' mode="aspectFill"></image>
+        </view>
+        <view class="zegai-item1-1 item-3-top">
+          添加的商品会展示在店主个人首页哦
+          <a class="to-top-triangle2"></a>
+        </view>
+      </view>
+
+      <button class='show-button theme-lg-A-{{theme}}' catchtap='nextStep'>{{showInfo==3?'进入':'下一步'}}</button>
+    </view>
+  </view>
+  <modal showType="2" img_url="{{share_img}}" isShowModal='{{isShowModalTwo}}' bind:change="close"></modal>
+
+</block>
+<block wx:else>
+  <page-loding></page-loding>
+</block>

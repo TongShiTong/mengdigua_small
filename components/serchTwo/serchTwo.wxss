@@ -1,0 +1,61 @@
+/* components/serchTwo/serchTwo.wxss */
+@import "../../theme/theme-0.wxss";
+@import "../../theme/theme-1.wxss";
+@import "../../theme/theme-2.wxss";
+@import "../../theme/theme-3.wxss";
+@import "../../theme/theme-4.wxss";
+@import "../../theme/theme-5.wxss";
+.super {
+  background-color: #fff;
+  padding: 30rpx 30rpx 60rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  width: 690rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+.serch-wrap {
+  border-radius: 44rpx;
+  background-color: #F2F2F2;
+  height: 68rpx;
+}
+.serch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 68rpx;
+}
+.serch-cancel {
+  font-size: 24rpx;
+  color: #1F1F1E;
+}
+.input {
+  color: #1F1F1E;
+  margin-left: 30rpx;
+  width: 500rpx;
+  font-size: 24rpx;
+}
+.serch-img {
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 20rpx;
+}
+.input-place {
+  color: #999999;
+  font-size: 24rpx;
+}
+.serch-btn {
+  width:108rpx;
+  height:64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  background:rgba(255,255,255,1);
+  color:#111;
+  border-radius:32rpx;
+}

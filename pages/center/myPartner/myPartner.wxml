@@ -1,0 +1,32 @@
+<!--pages/center/myPartner/myPartner.wxml-->
+<!--pages/member/cash/cash.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="我的好友" />
+  <view style="height:10rpx;"></view>
+  <view>
+    <view
+      wx:for="{{friends.list}}"
+      wx:key='index'
+      class="partner-wrap">
+      <view class="flex-r-s top-part">
+        <image src="{{item.head_url}}" style="width:88rpx;height:88rpx;border-radius:50%;"></image>
+        <view style="margin-left:24rpx;">
+          <view class="partner-name">{{item.nickname}}</view>
+          <view class="partner-time">入驻时间：{{item.create_time}}</view>
+        </view>
+      </view>
+      <view class="flex-r-s">
+        <view class="bottom-inner" style="border-right:2rpx solid #a1a1a1;">累计消费：{{item.order_amount}}</view>
+        <view class="bottom-inner">已消费{{item.order_num}}单</view>
+      </view>
+    </view>
+  </view>
+  <view style="height:98rpx;"></view>
+  <view class="bottom-bar">
+    <view style="margin-right:32rpx;">总好友数：{{friends.total_pages || 0}}人</view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

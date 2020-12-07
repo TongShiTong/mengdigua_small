@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "usingComponents": {
+    "message": "/components/messageBox/messageBox",
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "like": "/components/like/like",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

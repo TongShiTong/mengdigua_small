@@ -1,0 +1,46 @@
+/* pages/member/shcoolList/shcoolList.wxss */
+
+.content-total {
+  padding-top: 32rpx;
+}
+
+.each-content {
+  width: 686rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 12rpx;
+  margin: 0 auto 32rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.content-title {
+  font-size: 36rpx;
+  margin-bottom: 8rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(29, 30, 31, 1);
+}
+
+.content-time {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(192, 192, 192, 1);
+  line-height: 34rpx;
+  margin-bottom: 19rpx;
+}
+
+.content-img {
+  width: 638rpx;
+  border-radius: 12rpx;
+  height: 300rpx;
+  margin-bottom: 19rpx;
+}
+
+.content-des {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(85, 85, 85, 1);
+  line-height: 44rpx;
+}

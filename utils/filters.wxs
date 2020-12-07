@@ -1,0 +1,595 @@
+var filter = {
+  toUp: function(stringValue) {
+    return stringValue.toLocaleUpperCase()
+  },
+  stringifyArr: function(arr) {
+    return JSON.stringify(arr)
+  },
+  arrUnshift: function(arr) {
+    var arr = arr.unshift({})
+    return arr
+  },
+  formatText: function(text, length) {
+    if (typeof(text) !== 'string') {
+      return text;
+    }
+    var newText = ''
+    if (text.length > length) {
+      newText = text.substring(0, length - 1);
+      newText = newText + '…';
+    } else {
+      newText = text;
+    }
+    return newText;
+  },
+  formatNumber: function(oldVal) {
+    if (typeof(oldVal) !== 'string') {
+      return oldVal;
+    }
+    var newVal = oldVal;
+    var length = oldVal.length - oldVal.indexOf(".") - 1
+    if (oldVal.indexOf(".") > -1) {
+      for (var i = length; i > 0; i--) {
+        if (newVal.lastIndexOf("0") > -1 && newVal.substring(newVal.length - 1, newVal.length) == 0) {
+          var k = newVal.lastIndexOf("0");
+          if (newVal.charAt(k - 1) == ".") {
+            return newVal.substring(0, k - 1);
+          } else {
+            newVal = newVal.substring(0, k);
+          }
+        } else {
+          return newVal;
+        }
+      }
+    }
+    return oldVal;
+  },
+  parseInt: function(val) {
+    if (typeof(val) !== 'number') {
+      val = parseInt(val);
+    }
+    return val;
+  },
+  toString: function(val) {
+    var result = '';
+    if (typeof(val) === 'object' && val) {
+      for (var i = 0; i < val.length; i++) {
+        result = result.concat(val[i]);
+        if (i < (val.length - 1)) {
+          result = result.concat('、');
+        }
+      }
+    } else {
+      result = val + '';
+    }
+    return result;
+  },
+
+  timeMinute: function(val) {
+    var newTime = (val / 60).toFixed(0)
+    return newTime
+  },
+  // 密文
+  becomeSecrt: function(str) {
+    var reg = getRegExp('^(\d{4})\d*([0-9a-zA-Z]{4})$')
+    if (str.length == 15) {
+      return str.replace(reg, "$1******$2")
+    } else {
+      return str.replace(reg, "$1******$2")
+    }
+  },
+  // 密文姓名
+  becomeSecrtName: function(str) {
+    var newStr = str.substring(0, 1)
+    for (var i = 0; i < str.length - 1; i++) {
+      newStr = newStr + "*"
+    }
+    return newStr
+  },
+
+
+  rich: function(string) {
+    var C2 = string;
+    var re = getRegExp('<img', 'g');
+    C2 = C2.replace(re, '<img style="width: 100%;display: block;"');
+    return C2;
+  },
+  substr: function(string, long) {
+    if ((string + "").length > long) {
+      string = (string + "").substring(0, long) + "...";
+      return string
+    } else {
+      return string
+    }
+  },
+  substrTwo: function(string, long) {
+    if ((string + "").length > long) {
+      string = (string + "").substring(0, long);
+      return string
+    } else {
+      return string
+    }
+  },
+  substrThree: function(string, start) {
+    string = (string + "").substring(start);
+    return string
+  },
+  numberDeal: function(string) {
+    if (string == null) {
+      string = 0
+    }
+    var stringDeal = string;
+    if (parseFloat(string) > 100000000) {
+      stringDeal = (parseFloat(string)) / 100000000;
+      stringDeal = stringDeal.toFixed(1)
+      var unit = "亿"
+      if (parseInt(stringDeal) > 1000) {
+        stringDeal = stringDeal.toFixed(1)
+        stringDeal = stringDeal / 1000 + "," + 000;
+      }
+      return stringDeal + unit;
+
+    } else if (parseFloat(string) > 10000) {
+      stringDeal = (parseFloat(string)) / 10000;
+      stringDeal = stringDeal.toFixed(1)
+
+      var unit = "万"
+      if (parseInt(stringDeal) > 1000) {
+        stringDeal = stringDeal.toFixed(1)
+        stringDeal = stringDeal / 1000 + "," + 000;
+      }
+      return stringDeal + unit;
+    } else {
+      return stringDeal
+    }
+
+  },
+  percentage: function(string1, string2) {
+    var C1 = string1;
+    var C2 = string2;
+    var C3;
+    if (string2 != 0) {
+      C3 = ((string1 / string2) * 100).toFixed(0);
+    } else {
+      C3 = 0
+    }
+    return C3;
+  },
+  timeSub: function(string) {
+    if (string == null) {
+      var stringBack = ""
+      return stringBack
+    }
+    var stringBack = string.substring(0, 10);
+    return stringBack
+  },
+  timeSubTwo: function(string) {
+    if (string == null) {
+      var stringBack = ""
+      return stringBack
+    }
+    var stringBack = string.substring(5, 10);
+    return stringBack
+  },
+  timeSubThree: function(string) {
+    if (string == null) {
+      var stringBack = ""
+      return stringBack
+    }
+    var stringBack = string.substring(11);
+    return stringBack
+  },
+  // 秒变 分和秒
+  dealTime: function(string) {
+    var theTime = parseInt(string); // 秒 
+    var theTime1 = 0; // 分 
+    if (theTime >= 60) {
+      theTime1 = parseInt(theTime / 60);
+      theTime = parseInt(theTime % 60);
+    }
+    if (theTime < 10) {
+      theTime = "0" + theTime
+    }
+    var result = theTime;
+    if (theTime1 <= 0) {
+      theTime1 = "0" + theTime1
+      result = theTime1 + ":" + result;
+    }
+    if (theTime1 > 0 && theTime1 < 10) {
+      result = "0" + theTime1 + ":" + result;
+    } else if (theTime1 >= 10) {
+      result = theTime1 + ":" + result
+    }
+    return result;
+  },
+  // 时间加一天函数
+  addOneDay: function(date) {
+    var data1 = getDate(date);
+    var data2 = data1.getTime() + 1000 * 3600 * 24
+    var data3 = getDate(data2);
+    var year = data3.getFullYear();
+    var month = data3.getMonth() + 1
+    var day = data3.getDate()
+    var hour = data3.getHours()
+    var minute = data3.getMinutes()
+    var second = data3.getSeconds()
+    return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  },
+  dealTimeTwo: function(string) {
+    var theTime = parseInt(string); // 分
+    var theTime1 = 0; // 时 
+    var newTime = 0; //返回时间
+    if (theTime >= 60) {
+      theTime1 = parseInt(theTime / 60);
+      theTime = parseInt((theTime % 60));
+      if (theTime1 != 0) {
+        newTime = theTime1 + "h" + theTime + "min"
+      } else {
+        newTime = theTime1 + "h"
+      }
+    } else if (theTime > 0) {
+      newTime = 0 + "h" + theTime + "min"
+    } else {
+      newTime = 0
+    }
+    return newTime;
+  },
+  dealTimeThree: function(value) {
+    var theTime = parseInt(value); // 秒 
+    var theTime1 = 0; // 分 
+    var theTime2 = 0; // 小时 
+    // alert(theTime); 
+    if (theTime > 60) {
+      theTime1 = parseInt(theTime / 60);
+      theTime = parseInt(theTime % 60);
+      // alert(theTime1+"-"+theTime); 
+      if (theTime1 > 60) {
+        theTime2 = parseInt(theTime1 / 60);
+        theTime1 = parseInt(theTime1 % 60);
+      }
+    }
+    var result = "" + parseInt(theTime) + "秒";
+    if (theTime1 > 0) {
+      result = "" + parseInt(theTime1) + "分" + result;
+    }
+    if (theTime2 > 0) {
+      result = "" + parseInt(theTime2) + "小时" + result;
+    }
+    return result;
+  },
+  // 变天小时分
+  dealTimeFour: function(value1) {
+    var theTime = parseInt(value1); // 秒 
+    //计算出天数
+    var days = Math.floor(theTime / (24 * 3600))
+    var leave1 = theTime % (24 * 3600) //计算天数后剩余的毫秒数
+    //小时
+    var hours = Math.floor(leave1 / 3600)
+    // 分
+    var leave2 = leave1 % 3600
+    var minutes = Math.floor(leave2 / (60))
+    // 秒
+    var leave3 = leave2 % (60)
+    var seconds = Math.round(leave3)
+    var time = days + "天" + hours + "小时" + minutes + "分"
+    return time;
+  },
+  // 变时分秒
+  dealTimeFive: function(value) {
+    var leave1 = parseInt(value); // 秒 
+    //小时
+    var hours = Math.floor(leave1 / 3600)
+    if (hours < 10) {
+      hours = '0' + hours
+    }
+    // 分
+    var leave2 = leave1 % 3600
+    var minutes = Math.floor(leave2 / (60))
+    if (minutes < 10) {
+      minutes = '0' + minutes
+    }
+    // 秒
+    var leave3 = leave2 % (60)
+    var seconds = Math.round(leave3)
+    if (seconds < 10) {
+      seconds = '0' + seconds
+    }
+    var time = hours + ':' + minutes + ':' + seconds
+    return time;
+  },
+
+  // 邮箱验证
+  validateEmail: function(email) {
+    var reg = getRegExp('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+    return reg.test(email)
+  },
+  // 验证手机号码
+  vaildatePhone: function(phone) {
+    var phonereg = getRegExp('^1(2|3|4|5|6|7|8|9)\d{9}$');
+    return phonereg.test(phone)
+  },
+  // 验证身份证
+  vaildateIdentity: function(identityValue) {
+    var identity = getRegExp('^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$');
+    return identity.test(identityValue)
+  },
+  //  金额过滤器
+  moneyFormat: function(num, number = 2, unit = "￥") {
+    if (num == null) {
+      return "￥" + 0.00
+    }
+    num = parseFloat((num + "").replace('/[^\d\.-]/g', "")).toFixed(number) + "";
+    var integ = num.split(".")[0].split("").reverse();
+    deci = num.split(".")[1];
+    var space = "";
+    for (i = 0; i < integ.length; i++) {
+      space += integ[i] + ((i + 1) % 3 == 0 && (i + 1) != integ.length ? "" : "");
+
+    }
+    var text = space.split("").reverse().join("") + "." + deci;
+    text = unit + (text)
+    return text
+  },
+  //  金额过滤器不带单位
+  moneyFormatTwo: function(num, number = 2, unit = "￥") {
+    if (num == null) {
+      return 0.00
+    }
+    num = parseFloat((num + "").replace('/[^\d\.-]/g', "")).toFixed(number) + "";
+    var integ = num.split(".")[0].split("").reverse();
+    deci = num.split(".")[1];
+    var space = "";
+    for (i = 0; i < integ.length; i++) {
+      space += integ[i] + ((i + 1) % 3 == 0 && (i + 1) != integ.length ? "" : "");
+
+    }
+    var text = space.split("").reverse().join("") + "." + deci;
+    // text = unit + (text)
+    return text
+  },
+  // 日期格式化
+  formatDate: function(time, splitStr = '-') {
+    if (!time) return '';
+    var date = getDate(time);
+    var M = date.getMonth() + 1;
+    var y = date.getFullYear();
+    var d = date.getDate();
+    if (M < 10) M = "0" + M;
+    if (d < 10) d = "0" + d;
+
+    return y + splitStr + M + splitStr + d;
+
+  },
+  // 评星 数量返回数组
+  startNumber: function(number) {
+    var arr = []
+    for (var j = 1; j <= 5; j++) {
+      if (j < number) {
+        arr[j] = true
+      } else {
+        arr[j] = false
+      }
+    }
+    return arr
+
+  },
+  // 进度条等主色
+  getMainColor: function(themValue) {
+    var bc = '#222222'
+    switch (themValue) {
+      case -1:
+        bc = '#222222'
+        break;
+      case 0:
+        bc = '#ff688f'
+        break;
+      case 1:
+        bc = '#188939'
+        break;
+      case 2:
+        bc = '#46A1F7'
+        break;
+      case 3:
+        bc = '#D02E34'
+        break;
+      case 4:
+        bc = '#0DCDB1'
+        break;
+      case 5:
+        bc = '#222222'
+        break;
+      default:
+        break;
+    }
+    return bc
+  },
+  // 进度条等主色
+  getSecondColor: function(themValue) {
+    var bc = '#BD9A69'
+    switch (themValue) {
+      case -1:
+        bc = '#BD9A69'
+        break;
+      case 0:
+        bc = '#FFB5B5'
+        break;
+      case 1:
+        bc = '#4D9EF8'
+        break;
+      case 2:
+        bc = '#FED444'
+        break;
+      case 3:
+        bc = '#CBB693'
+        break;
+      case 4:
+        bc = '#84D37B'
+        break;
+      case 5:
+        bc = '#B6B6B6'
+        break;
+      default:
+        break;
+    }
+    return bc
+  },
+  // 比大小
+  compareSize: function(value1, value2) {
+    if (parseFloat(value1) >= parseFloat(value2)) {
+      return true
+    } else {
+      return false
+    }
+  },
+  toFixedTwo: function(value1) {
+    value1 = parseInt(value1)
+    return value1.toFixed(2)
+  },
+  dateDeal: function(time1) {
+    var a = filter.timeSub(time1)
+    var b = filter.timeSubThree(time1)
+    var a1 = a.split("-")
+    var b1 = b.split(":")
+    var bc = getDate(a1[0], a1[1] - 1, a1[2], b1[0], b1[1], b1[2])
+    return bc
+  },
+  compareTime: function(timeStart, timeEnd) {
+    var timeNow = getDate()
+    // var timeStartC = getDate(timeStart) 
+    // var timeEndC = getDate(timeEnd) 
+    var timeStartC = filter.dateDeal(timeStart)
+    var timeEndC = filter.dateDeal(timeEnd)
+    // dateDeal(timeEnd)
+
+    // 未开时
+    var timeStatus //0 未开时 1正秒杀 2秒杀已经结束
+    if (timeNow < timeStartC) {
+
+      timeStatus = 0
+    } else if (timeNow >= timeStartC) {
+      if (timeNow < timeEndC) {
+        // 正在
+        timeStatus = 1
+      } else {
+        timeStatus = 2
+      }
+
+    }
+    return timeStatus
+  },
+  arraryFilter: function(arr, index, munber) {
+    var result = arr.filter(function(x, index1) {
+      return index1 < (index + munber) && index1 >= index
+    })
+    return result
+  },
+  cityFilter: function(cityName) {
+    var temName = cityName.split("-")
+    var temNameTwo = temName[2]
+    var temName1 = temNameTwo.split(" ")
+
+    return temName[1]
+  },
+  cityFilterTwo: function(cityName) {
+    var temName = cityName.split("-")
+    return temName[1]
+  },
+  sub:function(item) {
+    var str = ''
+    switch (+item.refund_status) {
+      case 1:
+        str = '后自动确认'
+        break;
+      case 4:
+        str = '内可重新申请'
+        break;
+      case 2:
+        str = '后自动取消'
+        break;
+      case 3:
+        str= '后自动确认'
+        break;
+      case 5:
+        str = ''
+        break;
+
+      case 10:
+        str =  ''
+      default:
+        
+    } 
+    return str;
+  },
+  subNumber: function (num1,num2){
+    num1 = parseFloat(num1)
+    num2 = parseFloat(num2)
+    var finaly = (num2 - num1).toFixed(2)
+    return finaly
+  },
+  addNumber: function (num1,num2){
+    num1 = parseFloat(num1)
+    num2 = parseFloat(num2)
+    var finaly = (num2 + num1).toFixed(2)
+    return finaly
+  },
+  divisionNumber: function (num1, num2, num3) {
+    num1 = parseFloat(num1)
+    num2 = parseFloat(num2)
+    if (num3) {
+      num3 = parseFloat(num3)
+    }
+    if (num3) {
+      num2 = num2 - num3
+    }
+    var finaly = num1 / num2 * 100
+    return finaly.toFixed(2)
+  }
+
+}
+
+module.exports = {
+  sub: filter.sub,
+  toUp: filter.toUp,
+  formatText: filter.formatText,
+  formatNumber: filter.formatNumber,
+  parseInt: filter.parseInt, //转数字
+  toString: filter.toString, //
+  timeMinute: filter.timeMinute, //秒变分钟
+  rich: filter.rich, //富文本处理
+  substr: filter.substr, //字符串截取1
+  substrTwo: filter.substrTwo, //字符串截取2
+  substrThree: filter.substrThree, //字符串截取3
+  numberDeal: filter.numberDeal, //数字处理
+  percentage: filter.percentage, //百分比处理
+  timeSub: filter.timeSub, //取时间年月日
+  timeSubTwo: filter.timeSubTwo, //取时间时分秒
+  dealTime: filter.dealTime, //秒变分和秒
+  dealTimeTwo: filter.dealTimeTwo, //秒变时分秒
+  dealTimeThree: filter.dealTimeThree, //秒变时分秒
+  dealTimeFour: filter.dealTimeFour, //秒变天时分
+  dealTimeFive: filter.dealTimeFive, //秒变时分秒 00:00:00
+  validateEmail: filter.validateEmail, //邮箱验证
+  vaildatePhone: filter.vaildatePhone, //手机验证
+  addOneDay: filter.addOneDay, //时间加一天函数
+  moneyFormat: filter.moneyFormat, //金额处理函数
+  moneyFormatTwo: filter.moneyFormatTwo, //金额处理函数
+  formatDate: filter.formatDate, //日期格式化
+  startNumber: filter.startNumber, //评星 数量返回数组
+  getMainColor: filter.getMainColor, //评星 进度条等主色
+  getSecondColor: filter.getSecondColor, //评星 进度条等辅色
+  compareSize: filter.compareSize, //评星 进度条等辅色
+  toFixedTwo: filter.toFixedTwo, //数字保留两位
+  arrUnshift: filter.arrUnshift, //數組前面加一項
+  compareTime: filter.compareTime, //时间比较
+  arraryFilter: filter.arraryFilter, //过滤数组
+  vaildateIdentity: filter.vaildateIdentity, //时间比较
+  becomeSecrt: filter.becomeSecrt, // 密文
+  becomeSecrtName: filter.becomeSecrtName, // 密文
+  cityFilter: filter.cityFilter,
+  cityFilterTwo: filter.cityFilterTwo,
+  stringifyArr: filter.stringifyArr, // 转换
+  divisionNumber: filter.divisionNumber, // 转换
+  subNumber: filter.subNumber, // -
+  addNumber: filter.addNumber, // +
+  
+}

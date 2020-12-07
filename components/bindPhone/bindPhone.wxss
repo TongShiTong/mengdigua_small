@@ -1,0 +1,79 @@
+/* components/bindPhone/bindPhone.wxss */
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  left: 0;
+  top: 0;
+}
+
+.bind-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 50rpx 60rpx 72rpx 60rpx;
+  width: 480rpx;
+  height: 800rpx;
+  z-index: 9999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+
+.phone-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.tip-title {
+  color: #4b545c;
+  font-size: 36rpx;
+  margin-top: 50rpx;
+  padding-bottom: 10rpx;
+}
+
+.tip {
+  color: #84929e;
+  text-align: center;
+  line-height: 70rpx;
+  white-space: normal;
+}
+.bind-box {
+  display: flex;
+  align-items: center;
+}
+.bind-know {
+  width: 300rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  color: #fff;
+  background: rgba(181, 41, 2, 1);
+  border-radius: 49rpx;
+  margin-top: 40rpx;
+}
+.bind-know1 {
+  width: 150rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  color: #999;
+  border: 1px solid #bbb;
+  background: #fff;
+  border-radius: 49rpx;
+  margin-top: 40rpx;
+  margin-right: 10rpx;
+}
+
+.relative-style {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}

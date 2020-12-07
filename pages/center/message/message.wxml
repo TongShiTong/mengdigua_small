@@ -1,0 +1,28 @@
+<!--pages/center/message/message.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="消息" />
+  <view 
+    class='wrap-all flex-row-f message-item' 
+    bindtap='jumpPages' 
+    wx:for='{{messageData}}' 
+    wx:key="{{index}}" 
+    data-id="{{item.type}}" 
+    data-type="{{item.type}}">
+    <image src="{{item.logo_url}}" class='icon-img' mode="aspectFill"></image>
+    <view class='message-right flex-column-s'>
+      <view class='flex-row-s' style='width:100%;margin-bottom:10rpx;'>
+        <view class='them {{item.all_no_readnum != 0?"":"them-one" }}'>{{item.name}}</view>
+        <view class='{{item.all_no_readnum != 0?"them-three":"them-two" }}'>{{item.create_time}}</view>
+      </view>
+      <view style='width:100%;' class='text-one' wx:if="{{ item.title }}">{{S1.substr(item.title,20)}}</view>
+      <view style='width:100%;' class='text-one' wx:else>暂无信息</view>
+    </view>
+    <view class='bubble' wx:if="{{item.all_no_readnum != 0}}">{{item.all_no_readnum <= 100 ? item.all_no_readnum: 99}}</view>
+  </view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

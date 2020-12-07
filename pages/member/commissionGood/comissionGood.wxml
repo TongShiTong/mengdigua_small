@@ -1,0 +1,81 @@
+<!--pages/member/commissionGood/comissionGood.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="佣金商品" />
+  <view style="z-index:10000;position:fixed;top:{{barHeight}}px;text-align:center;">
+      <!-- <view
+        class="flex-r search-bar" 
+        style="align-items:center;text-align:center;"
+        bindtap="jumpToSearch">
+        <image src="/images/serch.png" style="width:20rpx;height:20rpx;"></image>
+        <view style="font-size:20rpx;color:#f2f2f2;">搜索</view>
+        <view></view>
+      </view> -->
+
+      <view class='serch flex-row' bindtap='jumpToSearch' style="margin:0 30rpx !important;">
+        <image src="/images/serch.png" class='serch-img' mode="aspectFill"></image>
+        <view class='serch-input'>搜索商品，共2000款好物</view>
+      </view>
+      <view class='banner-wrap' >
+					<swiper
+					 class='swiper'
+					 indicator-dots="{{indicatorDots}}"
+					 indicator-active-color="#fff"
+					 circular="true"
+					 autoplay="true"
+					 interval="3000"
+					>
+						<block
+						 wx:for="{{ banner.list }}"
+						 wx:key="{{ bannerIndex }}"
+						 wx:for-index="bannerIndex"
+						 wx:for-item="bannerItem"
+						>
+							<swiper-item
+							 bindtap="tapFloor"
+							 class="back-swiper"
+							 data-type="{{ bannerItem.type }}"
+							 data-param="{{ bannerItem.param }}"
+               data-showtype="{{bannerItem.show_type}}"
+               data-content='{{bannerItem.content}}'
+							>
+								<image
+								 src="{{ bannerItem.img_url }}"
+								 lazy-load="true"
+								 class="slide-image"
+								 mode="aspectFill"
+								/>
+							</swiper-item>
+						</block>
+					</swiper>
+				</view>
+  </view>
+  <!-- <view class='index-head flex-row' style="top:{{ barHeight}}px;z-index:10000;">
+    <view class='serch-wrap flex-row-s'>
+      <view class='serch flex-row-s' bindtap='jumpSerch'>
+        <view class='serch-input'>搜索您想要的商品</view>
+        <image src="/images/serch.png" class='serch-img' mode="aspectFill"></image>
+      </view>
+      <view class='message-wrap' bindtap='jumpClass'>
+        <image src="/images/class/class.png" class='calss-img' mode="aspectFill"></image>
+        <view class='class-text'>分类</view>
+      </view>
+    </view>
+  </view> -->
+  <list 
+    addTopHeight='250'
+    bind:selectSort="selectSort" 
+    listData="{{ listData }}" 
+    listTopMargin='180'
+    role="{{ userInfo.role }}" 
+    isBaseLine='1' 
+    bind:loadMore="loadMore" 
+    isTop="0" 
+    addGoods="{{add}}" 
+    bind:changeList="changelist"></list>
+  <view style="height:300rpx;position:absolute;top:150%;width:750rpx;"></view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+  <!-- <share showShare="{{ showShare }}" bindshareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}"></share> -->
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

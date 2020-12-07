@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "关于我们",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "rich": "/components/rich/rich",
+    "page-loding": "/components/pageLoding/pageLoding"
+    
+  }
+}

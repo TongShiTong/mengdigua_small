@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的优惠券",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "tab": "/components/tab/tab",
+    "share": "/components/share/share",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

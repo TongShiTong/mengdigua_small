@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "share": "/components/share/share",
+    "list": "/components/listThree/list",
+    "tabbar": "/tabbarComponent/tabbar",
+    "navbar": "/components/navbar/index"
+  }
+}

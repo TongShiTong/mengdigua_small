@@ -1,0 +1,55 @@
+var substr = function (string, long) {
+ 
+  if ((string + "").length > long) {
+    string = (string + "").substring(0, long) + "...";
+    return string
+  } else {
+    return string
+  }
+}
+var substrTwo = function (string, long) {
+
+  if ((string + "").length > long) {
+    string = (string + "").substring(0, long) ;
+    return string
+  } else {
+    return string
+  }
+}
+var substrThree = function (string, start) {
+  string = (string + "").substring(start);
+  return string
+}
+
+var substrFour = function (string, start) {
+  string = (string + "").substring(start,1);
+  return string
+}
+
+var starNum = function (num) {
+  num = Math.round(num/20)
+  return num
+}
+
+var sxstarNum = function (num) {
+  num = 5 - (Math.round(num/20))
+  return num
+}
+
+
+var fixed = function (number) {
+  number = Number(number).toFixed(2)
+  return number
+}
+// string转化number
+var strNumber = function (string) {
+  return Number(string)
+}
+module.exports.substr = substr;
+module.exports.substrTwo = substrTwo;
+module.exports.substrThree = substrThree;
+module.exports.substrFour = substrFour;
+module.exports.fixed = fixed;
+module.exports.strNumber = strNumber;
+module.exports.starNum = starNum;
+module.exports.sxstarNum = sxstarNum;

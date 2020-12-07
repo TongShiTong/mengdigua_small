@@ -1,0 +1,20 @@
+<!--components/helperList/index.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<view class="helper-container" wx:if="{{helpList.length!=0}}">
+  <block>
+    <view wx:for="{{helpList}}" wx:key="index" class="helper-wrap">
+      <view class="helper-inner">
+        <view>
+          <image src="{{item.head_url}}" style="width:64rpx;height:64rpx;" class="helper-avatar"></image>
+
+        </view>
+        <view class="helper-info">
+          <view class="info-left">{{item.nickname}}</view>
+          <view class="info-right">帮砍
+            <text class="bargain-price">{{F1.moneyFormat(item.cut_price)}}</text>元</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>

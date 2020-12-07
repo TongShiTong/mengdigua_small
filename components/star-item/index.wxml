@@ -1,0 +1,13 @@
+<!-- components/star-item/index.wxml -->
+<!-- 评星栏 -->
+<view class="star-item" wx:if="{{showType == 1}}">
+  <view class="icon-star-box" wx:for="{{starArray}}" wx:key="index" style="{{starStyle}}">
+    <image src="../../images/gooddetail/{{stars>=(index+1)?'icon-cur-':'icon-'}}star.png" mode="scaleToFill" class="star-img" />
+  </view>
+</view>
+<view class="star-item" wx:if="{{showType == 2}}">
+  <view class="star-box" wx:for="{{starVal}}" wx:key="{{index}}" style="{{starStyle}}">
+    <image src="../../images/gooddetail/star1.png" mode="scaleToFill" class="star-img" />
+    <!-- <image src="../../../images/{{stars>=(index+1)?'':'n-'}}star1.png" mode="scaleToFill" class="star-img" /> -->
+  </view>
+</view>

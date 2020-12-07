@@ -1,0 +1,42 @@
+/* pages/center/message/message.wxss */
+.message-item {
+  border-top: 1px solid #f4f4f4;
+  position: relative
+}
+.icon-img {
+  width: 72rpx;
+  height: 72rpx;
+}
+.message-right {
+  width: 600rpx;
+  margin-left: 20rpx;
+  height: 72rpx;
+}
+.bubble{
+  height: 36rpx;
+  width: 36rpx;
+  border-radius: 100%;
+  color: #fff;
+  background:linear-gradient(41deg,rgba(215,43,24,1) 0%,rgba(215,24,87,1) 100%);
+  position: absolute;
+  right: 30rpx;
+  top: 70rpx;
+  text-align: center;
+  line-height: 36rpx;
+  font-size: 24rpx;
+}
+.them {
+  font-size: 30rpx;
+}
+.them-one {
+  font-size: 30rpx;
+  color: #777777;
+}
+.them-two {
+  color: #C0C0C0;
+  font-size: 26rpx;
+}
+.them-three {
+  color: #999999;
+  font-size: 26rpx;
+}

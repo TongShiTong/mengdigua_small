@@ -1,0 +1,59 @@
+<!--pages/center/seting/address/addAddress/addAddress.wxml-->
+<wxs src="../../../../../utils/filters.wxs" module="F1"/>
+
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="新增地址" bg_color="#fff"/>
+  <view style="margin-top:48rpx;">
+    <view class='set-item flex-row-f'>
+      <input class='address-input' type='text' bindinput='getUserName' placeholder-class="address-input-p" placeholder='请输入收货人姓名'></input>
+    </view>
+    <view class='set-item flex-row-f'>
+      <input class='address-input' type='number' bindinput='getPhone' maxlength='11' placeholder-class="address-input-p" placeholder='请输入手机号码'></input>
+    </view>
+    <view class='info-item' bindtap='open'>
+      <view class="city flex-row-f">
+        <view class='address' wx:if="{{ cityValue == ''}}">请选择地区</view>
+        <view class="picker-input" wx:else>{{cityValue}}</view>
+      </view>
+      <image class='small-right-img' src="/images/small-right.png"></image>
+    </view>
+    <view class='set-item flex-row-f'>
+      <input class='address-input' bindinput='getDetailAddress' placeholder-class="address-input-p" placeholder='请输入详细地址'></input>
+    </view>
+    <view class='default-address flex-row-s'>
+      <view class='left-text'>设为默认地址</view>
+      <switch color="{{F1.getMainColor(theme)}}" bindchange="switch1Change" />
+    </view>
+    <area-select show="{{condition}}" bind:getArea='getArea'></area-select>
+    <view class='save-btn theme-lg-A-{{theme}}' bindtap='isShow'>保存</view>
+  </view>
+  <!-- 模态框 -->
+  <!-- <view class='mask' wx:if="{{ showConfirm }}"></view> -->
+  <!-- <view class='message-box' wx:if="{{ showConfirm }}">
+  <view class='message-top'>
+    <view class='title'>请再次确认</view>
+  </view>
+  <view class='sub-title'>
+    <view class='left-address'>收货人：</view>
+    <view>{{ userName }}</view>
+  </view>
+  <view class='sub-title'>
+    <view class='left-address'>手机号：</view>
+    <view>{{ phone }}</view>
+  </view>
+  <view class='sub-title'>
+    <view class='left-address'>详细地址：</view>
+    <view class='more-address'>{{ cityValue }}{{ detailAddress }}</view>
+  </view>
+  <view class='message-bottom'>
+    <view class='message-text cancel' bindtap='colse'>取消</view>
+    <view class='message-text confirm' bindtap='addAddress'>确认</view>
+  </view>
+</view> -->
+  <message wx:if="{{ showConfirm }}" title="提示" subTitle="是否添加该收货地址？" confirmText="确认" bind:colse="colse" bind:confirm="addAddress"></message>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

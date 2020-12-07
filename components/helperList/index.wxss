@@ -1,0 +1,31 @@
+/* components/helperList/index.wxss */
+.helper-container{
+  background: white;
+}
+.helper-wrap{
+  width:670rpx;
+  margin: 0 auto;
+}
+.helper-inner{
+  height:112rpx;
+  border-bottom: 2rpx solid #eee;
+  display: flex;
+  justify-content: flex-start;
+}
+.helper-info{
+  display: flex;
+  justify-content: space-between;
+  margin: 42rpx 0;
+  width: 670rpx;
+}
+.info-right{
+  margin-left: auto;
+}
+.helper-avatar{
+  margin: 24rpx 0;
+  margin-right: 24rpx;
+  border-radius: 50%;
+}
+.bargain-price{
+  color: #E50A35;
+}

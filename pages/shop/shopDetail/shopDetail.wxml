@@ -1,0 +1,295 @@
+<!--pages/shop/shopDetail/shopDetail.wxml-->
+<!-- 搜索 -->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+	<view class='top-pic' style="background-image:url({{shopData.logo_url}});padding-top:{{barHeight}}px;">
+    <view style="overflow:hidden;height:{{marginTopValue}}px">
+		  <view class="shadow" style="top:-{{barHeight}}px;height:{{marginTopValue+30}}px" />
+    </view>
+	</view>
+	<view class='shop-total'>
+		<view class='super flex-row-s' style="padding-top:{{barHeight}}px;">
+			<view catchtap='routeBack' wx:if="{{backIcon}}">
+				<image src="/images/shop/back.png" class="serch-back" mode="aspectFill" />
+			</view>
+			<view class='serch-wrap'>
+				<view class='serch flex-row-f' bindtap='jumpSerch'>
+					<image src="/images/serch.png" class="serch-img" mode="aspectFill" />
+					<input
+					 type='text'
+					 class='input'
+					 value='{{ serchValue }}'
+					 bindconfirm="serch"
+					 bindinput='changevalue'
+					 placeholder-class='input-place'
+					 placeholder='输入宝贝关键字'
+					/>
+				</view>
+			</view>
+			<!-- <view class='right-icon' bindtap='jumpGoodClass'>
+        <image src="/images/shop/sort.png" class="class-img" mode="aspectFill"></image>
+        <view class='sort-name'>分类</view>
+      </view> -->
+		</view>
+		<!-- 店铺详情 -->
+		<view class=' flex-row-s shop-detail'>
+			<view class='flex-row-f' style="flex-shrink:0">
+				<image src="{{ shopData.logo_url }}" class="shop-detail-img" mode="aspectFill" />
+				<view class='shop-detail-right flex-column-s'>
+					<view class='shop-detail-name'>{{ shopData.name }}</view>
+					<view class='shop-detail-num'>共{{ shopData.sum_item }}件商品</view>
+					<!-- <view class='shop-detail-time'>{{ shopData.checkin_time }}入驻</view> -->
+					<view class='shop-detail-time '>{{ shopData.sum_collection}}人关注</view>
+				</view>
+			</view>
+			<view class='flex-column'>
+				<button wx:if="{{ isCollect == 0 }}" class='button-style theme-lg-A-{{theme}}' catchtap='collectShop'>
+					<image
+					 src="/images/shop/attention.png"
+					 class='icon-img'
+					 mode="aspectFill"
+					 lazy-load="true"
+					/>
+					<text>收藏</text>
+				</button>
+				<button wx:if="{{ isCollect == 1 }}" class='button-style button-style2 theme-lg-C-{{theme}}' bindtap='cancelCollectShop'>
+					<image
+					 src="/images/shop/attentioned.png"
+					 class='icon-img'
+					 mode="aspectFill"
+					 lazy-load="true"
+					/>
+					<text>已关注</text>
+				</button>
+				<!-- <image wx:if="{{ isCollect == 0 }}" bindtap='collectShop' src="/images/shop/un-collect.png" class="collect-img" mode="aspectFill"></image>
+    <image wx:elif="{{ isCollect == 1 }}" bindtap='cancelCollectShop' src="/images/shop/collect.png" class="collect-img" mode="aspectFill"></image>
+    <view class='collect-num'>{{ shopData.sum_collection}}人收藏</view> -->
+			</view>
+		</view>
+	</view>
+
+  <!-- 子页面切换 -->
+
+  <!-- 首页 -->
+  <block wx:if="{{bottomIndex == 0}}">
+    <!-- tab -->
+    <view>
+      <view class='tab flex-row' style='margin-top:{{marginTopValue}}px'>
+        <view
+        class='tab-view'
+        wx:for="{{ tab }}"
+        wx:key="{{ index }}"
+        data-index='{{ index }}'
+        bindtap='selectTab'
+        >
+          <view class='{{ tabIndex == index?"active-tab theme-color-A-"+theme:"tab-title" }}'>{{ item.title }}</view>
+          <view class='line theme-lg-A-{{theme}}' wx:if="{{ tabIndex == index }}" />
+        </view>
+      </view>
+      <!-- 首页 -->
+      <view class='index-view' wx:if="{{ tabIndex == 0 }}">
+        <floor-total
+          showIndex="{{true}}"
+          show="{{true}}"
+          floorCode="{{ 1 }}"
+          shopId="{{shopId}}"/>
+
+
+        <!-- <view
+        class='{{ item.type ==5?"floor-item":"" }}'
+        wx:for='{{ floorData.content.list }}'
+        wx:key="{{ index }}"
+        style="margin:{{ item.top*2+'rpx'}} 0"
+        >
+          搜索
+          <view class='index-head' wx:if="{{ item.type == 1 }}">
+            <view class='serch-wrap-index flex-row-s'>
+
+              <view class='serch-index flex-row-f' bindtap='jumpSerch'>
+                <image src="/images/serch.png" class="serch-img" mode="aspectFill" />
+                <input class='serch-input' placeholder-class='input-place' placeholder='输入宝贝关键字' />
+              </view>
+              <view class='message-wrap' bindtap='jumpMessage'>
+                <view class='cilcel' wx:if="{{ noticeList.read_data.all_no_readnum != 0 }}" />
+                <image src="/images/class/message-b.png" class='message-img' mode="aspectFill" />
+              </view>
+            </view>
+            <image src="{{ floorData.content.bg_img }}" class="bg-image" mode="aspectFill" />
+          </view>
+
+          banner图
+
+          <swiper
+          class='swiper'
+          indicator-dots="{{indicatorDots}}"
+          wx:if="{{ item.type == 2 }}"
+          circular="true"
+          autoplay="{{autoplay}}"
+          >
+            <block
+            wx:for="{{ item.floor_data }}"
+            wx:key="{{ bannerIndex }}"
+            wx:for-index="bannerIndex"
+            wx:for-item="bannerItem"
+            >
+              <swiper-item bindtap="tapFloor" data-type="{{ bannerItem.type }}" data-param="{{ bannerItem.param }}">
+                <image src="{{ bannerItem.img_url }}" class="slide-image" mode="aspectFill" />
+              </swiper-item>
+            </block>
+          </swiper>
+          导航
+          <view class='flex-row-f nav' style="margin:{{ item.top*2+'rpx'}} 30rpx" wx:if="{{ item.type == 4 }}">
+            <view
+            class='column'
+            wx:for="{{ item.floor_data }}"
+            wx:key="{{ navIndex }}"
+            wx:for-index="navIndex"
+            wx:for-item="navItem"
+            bindtap='tapFloor'
+            data-type="{{ navItem.type }}"
+            data-param="{{ navItem.param }}"
+            >
+              <image src="{{ navItem.img_url }}" class="nav-img" mode="aspectFill" />
+            </view>
+          </view>
+          热门公告
+          <view wx:if="{{ item.type == 3 }}">
+            <advert listData="{{ item.floor_data }}" />
+          </view>
+          店铺优惠券
+          <view class='' wx:if="{{couponListData&&item.type ==11}}" style="background:#fff;">
+            <shop-coupon
+              couponListData="{{couponListData}}"
+              bind:loadNew='getCouponeList'
+              bind:loadMoreCoupon="loadMoreCoupon"
+              catchtouchmove="true"
+            />
+          </view>
+          图层
+          <view
+          wx:if="{{ item.type == 5 }}"
+          class='floor'
+          wx:for="{{ item.floor_data }}"
+          wx:key="{{ navIndex }}"
+          wx:for-index="navIndex"
+          wx:for-item="navItem"
+          bindtap='tapFloor'
+          data-type="{{ navItem.type }}"
+          data-param="{{ navItem.param }}"
+          >
+            <image src="{{ navItem.img_url }}" class="index-img" mode="widthFix" />
+          </view>
+          热门商品
+          <floor-good
+          title="热门商品"
+          wx:if="{{ item.type == 6 && hotData !='' }}"
+          listData="{{ hotData }}"
+          role="{{ userInfo.role }}"
+          bind:jumpDetail="jumpDetail"
+          shopId="{{shopId}}"
+          goodsType="1"
+          />
+          新品推荐
+          <floor-good
+          title="新品推荐"
+          wx:if="{{ item.type == 7 && newData !='' }}"
+          listData="{{ newData }}"
+          role="{{ userInfo.role }}"
+          bind:jumpDetail="jumpDetail"
+          shopId="{{shopId}}"
+          goodsType="2"
+          />
+          <block wx:if="{{ item.type == 10 }}">
+            <floor-good
+            title="{{ item.title }}"
+            listData="{{ cuscomData[index] }}"
+            role="{{ userInfo.role }}"
+            bind:jumpDetail="jumpDetail"
+            />
+          </block>
+        </view> -->
+      </view>
+      <!-- 商品 -->
+      <scroll-view
+      class="scroll-load-panel"
+      scroll-y="true"
+      wx:else
+      bindscrolltolower="loadMoreGood"
+      >
+        <view class='view'>
+          <view
+          class='good {{ index%2 ==1?"right-good":"" }}'
+          wx:for="{{ goodList.list }}"
+          data-id='{{ item.item_id }}'
+          data-shop_id="{{item.shop_id}}"
+          wx:key="{{ index }}"
+          bindtap='jumpDetailTwo'
+          >
+            <image src="{{ item.img_url }}" class='good-img' mode="aspectFill" />
+            <view class='good-info'>
+              <view class='text-line1 good-name'>{{item.title}}</view>
+              <view class='flex-row-s'>
+                <view class='flex-row-f'>
+                  <view>
+                    <text class='yuan theme-color-A-{{theme}}'>¥</text>
+                    <text class='good-price theme-color-A-{{theme}}'>{{ item.price }}</text>
+                  </view>
+                  <view style='margin-left:16rpx'>
+                    <text class='yuan yuan-old'>¥</text>
+                    <text class='good-price good-price-old'>{{ item.old_price }}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view style="height:100rpx;"></view>
+    </view>
+  </block>
+  <block wx:elif="{{bottomIndex == 1}}">
+    <view style="height:200rpx;"></view>
+    <list 
+      showList="2"
+      listTopMargin="200"
+      addTopHeight='{{barHeight + 140}}'
+      bind:selectSort="selectSort" 
+      topNum='{{topNum}}'
+      listData="{{ listData }}" 
+      role="{{ userInfo.role }}" 
+      isBaseLine='1' 
+      bind:loadMore="loadMoreGood" 
+      isTop="0" 
+      addGoods="{{0}}" 
+      bind:changeList="changelist"></list>
+  </block>
+  <!-- 分类 -->
+  <block wx:elif="{{bottomIndex == 2}}">
+    <view style="z-index:10000;">
+      <view style="height:{{marginTopValue+20}}px;"></view>
+    <view class='all-good wrap-all flex-row-s' bindtap='jumpAllGood'>
+      <view class='left-text'>全部商品</view>
+      <image src="/images/small-right.png" class='enter-img' mode="aspectFill"></image>
+    </view>
+    <view class='detail-good wrap-all flex-row-s' data-name='{{ item.name }}' wx:for="{{ classData }}" wx:key="{{ index }}" data-id='{{ item.mcid }}'       bindtap='jumpGoodClass'>
+      <view class='left-text'>{{ item.name }}</view>
+      <image src="/images/small-right.png" class='enter-img' mode="aspectFill"></image>
+    </view>
+    </view>
+  </block>
+
+  <block wx:else>
+
+  </block>
+
+	<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" />
+	<!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"/> -->
+	<!-- <shop-tabbar 
+    isShowTab='true' 
+    shopId='{{shopId }}' 
+    bind:selectTab='selectTabBottom' /> -->
+</block>
+<view wx:else>
+	<page-loding/>
+</view>
+

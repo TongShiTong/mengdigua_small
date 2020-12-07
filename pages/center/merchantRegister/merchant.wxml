@@ -1,0 +1,24 @@
+<!--pages/center/merchantRegister/merchant.wxml-->
+<view>
+  <navbar title='商家入驻' />
+  <view>
+    <rich-text nodes="{{content}}"></rich-text>
+  </view>
+  <view 
+    class="bottom-btn" 
+    bindtap="openMask">商家入驻</view>
+  <van-popup
+    show="{{ isShowMask }}"
+    custom-class="van-dialog"
+    bind:close="closeMask"
+    position='bottom'>
+    <view class="bottom-layer">
+      <view class="hint">提示</view>
+      <view class="mask-text">请用PC端访问<text style="color:#E50A35;">{{webSite}}</text>并录入资料
+      </view>
+      <view 
+        class="mask-btn"
+        bindtap="copy">复制网站</view>
+    </view>
+  </van-popup>
+</view>

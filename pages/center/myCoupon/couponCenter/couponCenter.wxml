@@ -1,0 +1,62 @@
+<!--pages/center/myCoupon/couponCenter/couponCenter.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+	<navbar title="领券中心" />
+	<view wx:if="{{bannerImg}}">
+		<image
+		 src="{{bannerImg}}"
+		 class='top-image'
+		 mode="aspectFill"
+		 lazy-load='true'
+		/>
+	</view>
+
+	<view class='center-title'>领取平台优惠券</view>
+	<view class='coupon-total'>
+		<block wx:for="{{listData.list}}" wx:key="index">
+			<view class='each-content flex-r-b'>
+				<view class='coupon-info '>
+					<view class='coupon-info-top flex-r-s-b' style="align-items:center;">
+						<view class='flex-r-s-b pirce-style' >
+							<view class='theme-font-A-{{theme}}'>￥</view>
+							<view class='spe-pirce theme-font-A-{{theme}}'>{{item.discount_num}}</view>
+						</view>
+						<view style="">
+							<view class="coupon-name flex-r-s">
+                <view>优惠券名称</view>
+                <view class='coupon-type-three theme-border-c-A-{{theme}} coupon-type-four'>
+									{{item.item_type==1?'平台券':item.item_type==2?'店铺券':item.item_type==3?'商品券':'品类券'}}
+								</view>
+              </view>
+							<view class="flex-r-s" style="margin-top:10rpx;">
+								<view class='use-price' style="margin-right:8rpx;">满{{item.condition_num}}元可用</view>
+								
+							</view>
+						</view>
+					</view>
+					<!-- <view class='coupon-info-time'>有效期:{{item.create_time}} - {{item.update_time}}</view> -->
+				</view>
+				<view
+				 class='coupon-type flex-column  theme-lg-A-{{theme}}'
+				 catchtap='getShopCoupon'
+				 id="{{item.id}}"
+				 wx:if="{{item.is_accept==0}}"
+				 data-index="{{index}}"
+				>
+					<view>领取</view>
+					<!-- <view>{{item.item_type==1?'平台':item.item_type==2?'店铺':'商品'}}优惠卷</view> -->
+				</view>
+				<view class='coupon-type coupon-type-two flex-column theme-lg-A-{{theme}}' id="{{item.id}}" wx:if="{{item.is_accept==1}}" style="opacity:0.5;color:#111;">
+					<view>已领取</view>
+					<!-- <view>{{item.item_type==1?'平台':item.item_type==2?'店铺':'商品'}}优惠卷</view> -->
+				</view>
+			</view>
+		</block>
+	</view>
+
+</block>
+
+<view wx:else>
+	<page-loding/>
+</view>
+

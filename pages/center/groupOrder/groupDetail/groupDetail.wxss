@@ -1,0 +1,342 @@
+/* pages/order/orderDetail/orderDetail.wxss */
+
+/* 商品 */
+  .order-detail-total{
+  padding-bottom: 110rpx;
+}
+
+.order-head {
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.order-detail-head {
+  background-color: #f6f6f7;
+  padding: 30rpx;
+}
+
+.log-info {
+  width: 540rpx;
+  color: #333;
+}
+
+.log-no {
+  width: 690rpx;
+  margin-bottom: 10rpx;
+  color: #333;
+}
+
+.peisong-img {
+  width: 25rpx;
+  height: 19rpx;
+}
+
+.good-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 8rpx;
+}
+
+.good-content {
+  background-color: #fff;
+}
+
+.good-info {
+  height: 144rpx;
+  width: 550rpx;
+  margin-left: 20rpx;
+}
+
+.good-name {
+  color: #333;
+}
+
+.guige {
+  font-size: 24rpx;
+  color: #929292;
+}
+
+.good-price {
+  width: 100%;
+}
+
+.bottom-price {
+  color: #b52902;
+}
+
+.count-price {
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.bottom-num {
+  color: #878787;
+  font-weight: 24rpx;
+}
+
+.live-message {
+  width: 646rpx;
+  padding: 20rpx;
+  background: rgba(248, 248, 248, 1);
+  border-radius: 12rpx;
+}
+
+/* 订单信息 */
+
+.order-info {
+  margin-bottom: 16rpx;
+}
+
+.order-left {
+  color: #999;
+}
+
+.order-right {
+  color: #999;
+}
+
+/* 订单信息 价格 优惠等 */
+
+.order-info-item {
+  width: 100%;
+}
+
+.need-price {
+  color: #b52902;
+  font-size: 36rpx;
+  margin-right: 50rpx;
+}
+
+/* 状态文字 */
+
+.order-detail-text {
+  color: #18293a;
+  margin-left: 24rpx;
+  font-size: 32rpx;
+}
+
+.success-img {
+  width: 68rpx;
+  height: 68rpx;
+}
+
+.item1-img {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.detail-item {
+  background-color: #fff;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 30rpx;
+}
+
+.recipient {
+  font-size: 36rpx;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.address-detault {
+  min-height: 124rpx;
+}
+
+.line-img {
+  height: 8rpx;
+  width: 100%;
+}
+
+.confirm-right-img {
+  width: 18rpx;
+  height: 36rpx;
+}
+
+.address-tel {
+  font-size: 36rpx;
+  color: #999;
+  margin-left: 16rpx;
+  font-weight: 700;
+}
+
+.left-address {
+  max-width: 600rpx;
+}
+
+.user-detailaddress {
+  word-break: break-all;
+  font-size: 26rpx;
+  color: #555;
+  margin-top: 10rpx;
+}
+
+.detail-phone {
+  color: #949494;
+  margin-left: 30rpx;
+  font-size: 36rpx;
+}
+
+/* 商品图片价格 */
+
+.bottom-item {
+  background-color: #fff;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 30rpx;
+}
+
+.gobuy-btn {
+  background: rgba(186, 141, 73, 1);
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 0;
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.bottom-item-title {
+  color: #1f1f1f;
+}
+
+.bottom-item-detail {
+  color: #db4239;
+}
+
+.order-time-num {
+  padding: 40rpx 30rpx 200rpx 30rpx;
+}
+
+.detail-order-time {
+  margin-top: 20rpx;
+}
+
+.bottom-btn {
+  width:750rpx;
+  background-color: #fff;
+  font-size: 24rpx;
+  margin-top: 16rpx;
+  /* padding: 20rpx 30rpx; */
+  position: fixed;
+  bottom: 0;
+}
+
+.border-btn-item {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+}
+
+.bottom-btn .delete-btn {
+  border: 1px solid #999;
+  color: #555;
+  margin-right: 10rpx;
+}
+
+.bottom-btn .buy-btn {
+  color: #fff;
+  background: linear-gradient(41deg, rgba(215, 43, 24, 1) 0%, rgba(215, 24, 87, 1) 100%);
+}
+
+.maijia {
+  width: 270rpx;
+  height: 98rpx;
+}
+
+.message-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.maijia-text {
+  margin-left: 20rpx;
+  color: #1d1e1f;
+}
+
+.refund {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #555;
+  border-radius: 30rpx;
+  border: 1px solid rgba(153, 153, 153, 1);
+}
+.moe-service-btn{
+  width:186rpx;
+  height:100rpx;
+}
+.moe-bottom-btn{
+  width:282rpx;
+  height:98rpx;
+  background:rgba(248,218,13,1);
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(52,52,48,1);
+  line-height:98rpx;
+  text-align: center;
+}
+.detail-list {
+  /* border-top: 1px solid #f4f4f4; */
+}
+
+.spe-shop-name {
+  padding: 0;
+  margin-right: 18rpx;
+}
+
+/* 秒杀 */
+
+.show-image-total {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.small-icon {
+  position: absolute;
+  width: 72rpx;
+  height: 36rpx;
+  left: 0;
+  bottom: 0;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #fff;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 0 8rpx;
+}
+/* group */
+.group-total{
+  padding-bottom: 48rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.gruop-button{
+  width: 300rpx;
+  height: 74rpx;
+  margin-top: 48rpx ;
+  border-radius: 41rpx;
+  font-size:28rpx;
+  color:#fff;
+}
+.border-btn-item {
+  width: 156rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  color: #555555;
+  margin-right: 30rpx;
+  margin: 0;
+  padding: 0;
+  font-size: 28rpx;
+}
+.border-btn-item-two{
+  border:1px solid rgba(153,153,153,1);
+
+}

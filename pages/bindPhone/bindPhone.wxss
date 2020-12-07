@@ -1,0 +1,72 @@
+/* pages/bindPhone/bindPhone.wxss */
+page {
+  background-color: #fff;
+}
+.super {
+  padding: 0 30rpx;
+  margin-top: 80rpx;
+}
+.title {
+  font-size: 48rpx;
+  font-weight: 600;
+  padding-bottom: 60rpx;
+}
+.sub-title {
+  color: #555555;
+}
+.user-info {
+  width: 100%;
+  border-top: 1px solid #f4f4f4;
+}
+.head-img {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius:50%;
+  margin-top: 72rpx;
+}
+.nickname {
+  color: #000000;
+  margin-top: 35rpx;
+  font-size: 30rpx;
+}
+.form {
+  margin-top: 80rpx;
+  width: 578rpx;
+}
+.form-item {
+  padding: 20rpx 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+.bind-phone {
+  color: #CCCCCC;
+}
+.send-code {
+  width:186rpx;
+  height:66rpx;
+  line-height: 66rpx;
+  text-align: center;
+  background:rgba(246,246,247,1);
+  border-radius:8rpx;
+}
+.is-bind {
+  background:linear-gradient(41deg,rgba(215,43,24,1) 0%,rgba(215,24,87,1) 100%);
+  border-radius: 39rpx;
+}
+.un-bind {
+  background-color: #B3B5B5;
+}
+.active {
+  color: #999999;
+}
+.bind-btn {
+  width:688rpx;
+  height:100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  text-align: center;
+  margin: 50rpx auto 0;
+  border-radius: 8rpx;
+}
+.good-img{
+  width: 250rpx;
+}

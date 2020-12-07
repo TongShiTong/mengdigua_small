@@ -1,0 +1,98 @@
+/* 生鲜 */
+
+/* 字体颜色 */
+
+.theme-color-A-1 {
+  color: #0f712c !important;
+}
+
+.theme-color-B-1 {
+  color: #02ae26 !important;
+}
+
+.theme-color-C-1 {
+  color: #4d9ef8 !important;
+}
+
+.theme-color-D-1 {
+  color: #ff7516 !important;
+}
+
+/* 背景色 */
+
+.theme-bg-A-1 {
+  background: #0f712c !important;
+}
+
+.theme-bg-B-1 {
+  background: #02ae26 !important;
+}
+
+.theme-bg-C-1 {
+  background: #4d9ef8 !important;
+}
+
+.theme-bg-D-1 {
+  background: #ff7516 !important;
+}
+
+/* 背景渐变 */
+
+.theme-lg-A-1 {
+  background: linear-gradient(270deg, rgba(48, 162, 81, 1) 0%, rgba(24, 137, 57, 1) 100%) !important;
+}
+
+.theme-lg-B-1 {
+  background: linear-gradient(270deg, #ebc77f 0%, #b8a281 100%) !important;
+}
+
+.theme-lg-C-1 {
+  background: linear-gradient(270deg, rgba(32, 220, 72, 1) 0%, rgba(2, 174, 38, 1) 100%) !important;
+}
+
+.theme-lg-D-1 {
+  background: linear-gradient(270deg, #fffafa 0%, #fffa93 100%) !important;
+}
+
+/* 边线颜色 */
+
+.theme-border-A-1 {
+  border-color: #188939 !important;
+}
+
+.theme-border-B-1 {
+  border-color: #02ae26 !important;
+}
+
+.theme-border-C-1 {
+  border-color: #4d9ef8 !important;
+}
+
+.theme-border-D-1 {
+  border-color: #ff7516 !important;
+}
+
+/* 主背景色不透明度40% */
+
+.theme-bgo-A-1 {
+  background: rgba(24, 137, 57, 0.4);
+}
+
+/* 边线颜色+字色 */
+
+.theme-border-c-A-1 {
+  border-color: #0f712c !important;
+  color: #0f712c !important;
+}
+
+.theme-font-A-1 {
+  color: #0f712c !important;
+}
+
+.theme2-color-0{
+  color:#E50A35 !important;
+}
+
+.theme2-bg-color{
+  color:#E50A35 !important;
+}

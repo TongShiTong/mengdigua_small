@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "填写邀请码",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

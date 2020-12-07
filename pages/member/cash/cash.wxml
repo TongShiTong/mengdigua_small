@@ -1,0 +1,64 @@
+<!--pages/member/cash/cash.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="请输入提现信息" />
+  <view class='wrap-all'>
+    <!-- <view class='title'>实名资料</view>
+    <view class='sub-title'>每笔提现不能低于50元，且每日只能提现一次</view>
+    <input type='text' value='{{name}}' placeholder='请输入持卡人真实姓名' class='input-item' placeholder-class='input' bindinput='getName'></input>
+    <picker mode='selector' bindchange="bindPickerChange" value="{{choiceiIndex}}" range="{{bankList}}">
+      <view class='bank' wx:if="{{ bankName == '' }}">请选择银行</view>
+      <view class='bank-name' wx:else>{{ bankName }}</view>
+    </picker>
+    <input type='number' value='{{bankCode}}' placeholder='请输入储蓄卡银行卡卡号' class='input-item' placeholder-class='input' bindinput='getBankCode'></input> -->
+    <view class="main-title">提现金额</view>
+    <view class="flex-r-b">
+      <view class="sub-title">
+        可提现金额<text class="">￥{{allCash || 0}}</text>
+      </view>
+      <view 
+        class="cash-all"
+        bindtap="cashAll">
+        全部提现
+      </view>
+    </view>
+    <input 
+      type='digit' 
+      placeholder='请输入提现金额' 
+      class='input-item' 
+      placeholder-class='input' 
+      bindinput='getAmount'
+      value="{{cashValue}}"></input>
+  </view>
+  <!-- <view class='wrap-all' style='margin-top:16rpx;'>
+    <view class='title'>手机号：{{ phone }}</view>
+    <view class='form-item flex-row-s' catchtap='getPicCode'>
+      <input placeholder='请输入图片验证码' type='number' bindinput='inputCode1' placeholder-class='bind-phone'></input>
+      <image src="{{ url }}" class="good-img" mode="widthFix" />
+    </view>
+    <view class='flex-row-s' style='border-bottom: 1px solid #EEEEEE;'>
+      <input type='number' placeholder='请输入验证码' class='code-item' placeholder-class='input' bindinput='getCode'></input>
+      <view class='code' wx:if="{{ showCode }}">{{ time }}s</view>
+      <view class='code' bindtap='sendCode' wx:else>获取验证码</view>
+    </view>
+  </view> -->
+  <view style="height:20rpx;"></view>
+  <view class="wrap-all">
+    <view class="main-title">提现到支付宝</view>
+    <input type='digit' placeholder='请输入姓名' class='input-item' placeholder-class='input' bindinput='getName'></input>
+    <input type='digit' placeholder='输入支付宝账号' class='input-item' placeholder-class='input' bindinput='getAccount'></input>
+    <view class="under-remind">*务必姓名与支付宝账户一致</view>
+  </view>
+  <view class='tip'>
+    <view wx:if="{{ tip.content }}">
+      <rich-text nodes="{{R1.rich(tip.content)}}"></rich-text>
+    </view>
+  </view>
+  <view 
+    class="cash-record"
+    bindtap="toRecord">提现记录</view>
+  <view class='appli-btn theme-lg-A-{{theme}}' bindtap='confirm'>确定提取</view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

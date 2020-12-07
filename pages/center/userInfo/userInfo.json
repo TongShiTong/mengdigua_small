@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "个人资料",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "bind-phone": "/components/bindPhone/bindPhone"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
+    "van-loading": "/miniprogram_npm/vant-weapp/loading/index"
+  }
+}

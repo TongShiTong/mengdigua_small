@@ -1,0 +1,88 @@
+<!--pages/class/serch/serch.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<!--  -->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar-search bind:selectLabel="selectLabel" hotpos="{{hotpos}}" serchValue="{{serchValue}}"/>
+  <!--  -->
+  <view 
+    class='hot-serch' 
+    bind:tap="handleTap"
+    style="min-height:80vh"
+    wx:if="{{ listData == '' }}">
+    <view class='flex-row-s hot-title' wx:if="{{label.length>0}}">
+      <view class='hot-text' >搜索历史</view>
+      <image bindtap='clearLabel'  src="/images/class/delete.png" class='delete-img' mode="aspectFill"></image>
+    </view>
+    
+    <view 
+      class='serch-label flex-row-f'
+      wx:if="{{label != ''}}"> 
+      <!-- <view class='label' wx:for="{{ label }}" wx:key="index" data-value='{{ item }}' bindlongpress='bindPress' bindtap='selectLabel'>{{ item }}</view> -->
+      <block wx:for="{{label}}" wx:key="placement">
+        <view class='label'>
+          <mp-select-text 
+            show-copy-btn 
+            placement="top" 
+            value="{{item}}" 
+            data-id="{{index}}" 
+            bindcopy="onCopy"
+            data-value='{{ item }}' 
+            bind:selectLabel='selectLabel'
+            on-document-tap="{{evt}}"
+          >
+          </mp-select-text>
+        </view>
+      </block>
+      <!-- <view class="pull-down">
+          <image class="icon-pull-down" src="/images/icon-pull-down.png" mode="aspectFill"/>
+      </view> -->
+    </view>
+    <!-- <view 
+      wx:else
+      class="hurry-search">赶快去搜索心仪商品吧</view> -->
+    <view class='flex-row-s hot-title'>
+      <view class='hot-text'>热门搜索</view>
+    </view>
+    <view class='serch-label flex-row-f'>
+      <view class="label hot"  wx:for="{{ hotLabel }}" wx:key="index" data-value='{{ item.name }}' bindtap='selectLabel'>
+        <image src="/images/icon-hot.png" class="icon-hot" mode="aspectFill"/>
+        {{item.name}}
+      </view>
+      <view class='label' wx:for="{{ noHotLabel }}" wx:key="index" data-value='{{ item.name }}' bindtap='selectLabel'>{{ item.name }}</view>
+      
+      <!-- <view class="pull-down">
+          <image class="icon-pull-down" src="/images/icon-pull-down.png" mode="aspectFill"/>
+      </view> -->
+    </view>
+  </view>
+ 
+  <!-- 搜索结果 -->
+  <list 
+    wx:else 
+    bind:selectSort="selectSort" 
+    listData="{{ listData }}" 
+    isShopList="{{ isShopList }}"
+    topNum="{{topNum}}"
+    role="{{ userInfo.role }}" 
+    isBaseLine='1' 
+    bind:loadMore="loadMore" 
+    bind:getShop="getShop"
+    isTop="1" 
+    addGoods="{{addGoods}}" 
+    bind:changeList="changelist" 
+    showList='{{showListType}}'
+    shopList='{{shopList}}'
+    isMainSearch="{{isMainSearch}}"></list>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" isTopTwo="{{id}}"></modal>
+  <message title="清空确认" subTitle="确定要清空历史记录吗？" confirmText="确认" wx:if="{{ showMask }}" bind:colse="closeModal" bind:confirm="confirmDeleta"></message>
+  <!-- <share showShare="{{ showShare }}" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}"></share> -->
+  <shop-tabbar 
+    isShowTab='{{isShowTab}}'
+    curIndex='1'
+    shopId="{{shopId}}"
+    />
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

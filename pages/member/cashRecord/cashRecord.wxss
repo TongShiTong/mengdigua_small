@@ -1,0 +1,39 @@
+/* pages/member/cashRecord/cashRecord.wxss */
+
+.record-wrap {
+  height: 148rpx;
+  padding: 0 32rpx;
+  background: white;
+  border-bottom: 2rpx solid #f1f1f1;
+  padding-top: 32rpx;
+}
+
+.record-title {
+  height: 34rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(29, 30, 31, 1);
+  line-height: 34rpx;
+}
+
+.record-num {
+  height: 34rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: rgba(229, 10, 53, 1);
+  line-height: 34rpx;
+}
+
+.record-time {
+}
+
+.record-status {
+  height: 34rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(75, 75, 75, 1);
+  line-height: 34rpx;
+}

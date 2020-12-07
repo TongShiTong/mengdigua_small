@@ -1,0 +1,784 @@
+<!--pages/goodDetail/confirmOrder/confirmOrder.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+<!-- 地址 -->
+<block wx:if="{{theme || theme===0}}">
+	<navbar title="确认订单" />
+	<block wx:if="{{!isStore}}">
+		<view class='flex-row-s wrap-all address-detault' wx:if="{{ isEmpty === true }}" bindtap='jumpAddress' style="margin-top: 40rpx;">
+			<view class='left-address'>
+				<view>
+					<text class='address-username text-item'>{{ addressData.name }} ({{ addressData.tel }})</text>
+					<text class='address-user-tel'/>
+				</view>
+				<!-- <view class='user-detailaddress'>{{ addressData.pname }}{{ addressData.cname }}{{ addressData.dname }}{{ detailAddress }}</view> -->
+				<view class='user-detailaddress'>{{addressData.full_name}}</view>
+			</view>
+			<image class='small-right-img' src="/images/small-right.png" mode="aspectFix" />
+		</view>
+
+		<view wx:elif="{{ isEmpty === false }}" class='flex-row-s wrap-all address-detault' bindtap='jumpAddress'>
+			<view style='color:#999999;'>新建收货地址，保证商品顺利送达！</view>
+			<image class='small-right-img' src="/images/small-right.png" mode="aspectFix" />
+		</view>
+	</block>
+	<view class="line-2" />
+	<!-- <image class='line-img' src="/images/confirm/line.png" style='display:block;'></image> -->
+	<!-- 填写身份证 -->
+	<view class='' wx:if="{{is_abroad}}">
+		<view class='bg-white p30 pt20'>根据国家监管部门规定，涉及到境外商品需要对购买人信息实名备案。猎米社交电商将保护消费者隐私信息，请放心填写</view>
+		<view class='bg-white p30'>
+			<van-cell-group>
+				<!-- <van-field value="{{ card_name }}" data-type="card_name" required clearable label="姓名" placeholder="收件人与身份证姓名不一致会导致过不了海关" bind:change='input' /> -->
+
+				<view class="flex-r-s">
+					<view>
+						<image src="/images/confirm/card.png" class="logo-images" />
+					</view>
+					<van-field
+					 class="flex-1"
+					 value="{{ card_no }}"
+					 data-type="card_no"
+					 type="idcard"
+					 placeholder="因海关需要,请输入收货人身份证号"
+					 required
+					 border="{{ false }}"
+					 bind:change="input"
+					 error="{{!F1.vaildateIdentity(card_no)||card_no==''}}"
+					 error-message="{{F1.vaildateIdentity(card_no)||card_no==''?'':'身份证格式错误'}}"
+					/>
+					<van-icon name="question-o" catchtap="showCard" />
+				</view>
+
+			</van-cell-group>
+		</view>
+
+	</view>
+	<!-- 商品详情 -->
+	<view class='good-view' style="margin-top:{{isStore?'40':'0'}}rpx" wx:if="{{ jumpFrom == 'gooddetail' || jumpFrom == 'giftdetail'||jumpFrom == 'bargain' }}">
+		<view>
+			<!-- 不带店铺 -->
+			<!-- <view class='wrap-all order-head'>
+      <view>商品信息</view>
+    </view> -->
+			<!-- 带店铺 -->
+			<view
+			 class='wrap-all flex-r-b order-head'
+			 catchtap='jumpShopDetail'
+			 id="{{oneOrderDetail.shop.id}}"
+			 wx:if="{{jumpFrom != 'bargain' && is_show_shop != 0}}"
+			>
+				<view class='shop-name'>{{ oneOrderDetail.shop.name }}</view>
+				<image src="/images/small-right.png" class="small-right-img" mode="aspectFix" />
+			</view>
+			<view class=' wrap-all good-content'>
+				<view class="no-buy" wx:if="{{oneOrderDetail.is_buy==0&&!isStore}}">
+					该商品不在配送范围内,请重新选择收货地址
+				</view>
+				<!--  -->
+				<view class="flex-row-f box-total">
+					<view class='show-image-total'>
+						<image src="{{ oneOrderDetail.selectData.img_url ||oneOrderDetail.img_url }}" class="good-img" mode="aspectFill" />
+					</view>
+					<view class="right-content flex-1">
+						<view class="order-title text-line2">{{oneOrderDetail.title}}</view>
+						<view class="flex-r-b">
+							<view class="oder-sku text-line2">
+								规格:{{oneOrderDetail.selectData.value_names}}
+							</view>
+							<view class="order-num">
+								x{{ oneOrderDetail.buy_num }}
+							</view>
+						</view>
+						<view class="flex-r-b">
+							<view class="flex-r-s">
+								<view class="show-small-icon " wx:if="{{oneOrderDetail.is_abroad==1}}">跨境购</view>
+								<view class="show-small-icon " wx:if="{{oneOrderDetail.activity_type==1}}">秒杀</view>
+								<view class="show-small-icon " wx:if="{{oneOrderDetail.activity_type==2}}">拼团</view>
+							</view>
+							<view class="each-total-price">{{ F1.moneyFormat(oneOrderDetail.selectData.price) }}</view>
+						</view>
+					</view>
+
+				</view>
+
+			</view>
+
+			<!-- 立即购买 -->
+			<!-- <view class='flex-row-s good-item' bindtap='showCoupon' id="2" data-index="0" data-item="{{oneOrderDetail.shopCouponeList}}" wx:if="{{oneOrderDetail.shopCouponShow}}"> -->
+			<!-- <view
+			 class='flex-row-s good-item'
+			 bindtap='showCoupon'
+			 id="2"
+			 data-index="0"
+			 data-item="{{oneOrderDetail.shopCouponeList}}"
+			 wx:if="{{true}}"
+			> -->
+      <view
+			 class='flex-row-s good-item'
+			 bindtap='openShopCoupon'
+			 id="2"
+			 data-index="0"
+       data-shopIndex='0'
+			 data-item="{{oneOrderDetail.shopCouponeList}}"
+			 wx:if="{{shopCouponShow && moeShopCoupon.length }}"
+			>
+				<view class='item-text'>店铺优惠券</view>
+				<view class='flex-row-f'>
+					<!-- <view class='use-coupon theme-font-A-{{theme}}' wx:if="{{ oneOrderDetail.condition_num }}">满{{ oneOrderDetail.condition_num }}减{{ oneOrderDetail.discount_num }}</view> -->
+					<view class='use-coupon theme-font-A-{{theme}}' wx:if="{{oneOrderDetail.condition_num}}">满{{ oneOrderDetail.condition_num }}减{{ oneOrderDetail.discount_num}}</view>
+					<view class='user-coupon-num theme-lg-A-{{theme}}' wx:else>{{moeShopCoupon[0].coupon.length||0 }}张可用</view>
+					<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+				</view>
+			</view>
+
+			<!-- 看 价格 -->
+			<!-- <view class='flex-row-s good-item'>
+        <view class='item-text'>不希望TA看到带有价格的发货</view>
+        <switch color="{{F1.getMainColor(theme)}}" checked='{{ oneOrderDetail.display_price }}' bindchange="changeSaw" data-index="{{index}}" />
+      </view> -->
+			<view class='flex-row-f good-item'>
+				<view class='item-text' style="margin-right:30rpx;">买家留言</view>
+				<input
+				 placeholder='请输入，最多140字'
+				 class='message-input flex-1'
+				 bindinput='getMessage'
+				 placeholder-style='color:#D6D6D6;'
+				/>
+			</view>
+			
+			<!-- <view class='flex-row-s good-item'>
+        <view class='item-text'>运费</view>
+        <view wx:if="{{oneOrderDetail.is_buy==0}}">不支持配送</view>
+        <block wx:else>
+          <view class='discount' wx:if="{{ oneOrderDetail.shopPostage == 0||oneOrderDetail.shopPostage == null }}">包邮</view>
+          <view class='discount' wx:else>￥{{ oneOrderDetail.shopPostage }}</view>
+        </block>
+
+      </view> -->
+
+			<!-- <view class='flex-row-s wrap-all'>
+        <view>共计{{ oneOrderDetail.buy_num }}件商品</view>
+        <view>
+          <text class='discount' wx:if="{{ selectedCoupon && selectedCoupon.isSelect === false }}">(商品券扣减¥{{ selectedCoupon.discount_num }})</text>
+          <text>小计：</text>
+          <text class='all-price theme-font-A-{{theme}}'>{{ F1.moneyFormat(subtotal+totalPostage) }}</text>
+        </view>
+      </view> -->
+			<!-- <view
+			 class='flex-row-s good-item'
+			 style="margin-top:12rpx;"
+			 bindtap='jumpInvoice'
+			 id="0"
+			>
+				<view class='item-text'>发票</view>
+				<view class='flex-row-f'>
+					<view class='discount discount-other' wx:if="{{ invoiceInfo.invoice_content == 1 }}">点击查看发票信息</view>
+					<view class='discount discount-other' wx:else>不开发票</view>
+					<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+				</view>
+			</view> -->
+      <view style="height:10rpx;"></view>
+			<view
+			 class='flex-row-s good-item'
+			 bindtap='showCoupon'
+			 id="1"
+			>
+				<view class='item-text'>平台优惠券</view>
+				<view class='flex-row-f'>
+					<view 
+            class='use-coupon theme-font-A-{{theme}}' 
+            wx:if="{{ platCouponSelected }}">满{{moePlatCoupon[platCouponNowIndex].condition_num  }}减{{ moePlatCoupon[platCouponNowIndex].discount_num }}</view>
+					<view 
+            class='user-coupon-num theme2-color={{theme}}' 
+            wx:else>{{ moePlatCoupon.length }}张可用</view>
+					<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+				</view>
+			</view>
+
+			<!-- <block wx:if="{{shopCouponShow}}">
+				<view class='flex-row-s good-item' wx:if="{{ yuCouponNum.coin >= 1000 }}">
+					<view class='item-text' wx:if="{{ isUse }}">已用{{ disPrice*1000 }}积分抵扣{{ disPrice }}元</view>
+					<view class='item-text' wx:else>使用{{ disPrice*1000 }}积分抵扣{{ disPrice }}元</view>
+					<switch color="{{F1.getMainColor(theme)}}" checked='{{ isUse }}' bindchange="isUsePrice" />
+				</view>
+				<view class='flex-row-s good-item' wx:else>
+					<view class='item-text'>积分</view>
+					<view class='discount'>共{{ yuCouponNum.coin }}积分，满1000积分可用</view>
+				</view>
+			</block> -->
+      <!-- <view class='flex-row-s good-item' wx:if="{{userInfo.role==1&&spikeBalanceShow}}"> -->
+
+      <view class='flex-row-s good-item' wx:if="{{userInfo.card_balance>0}}">
+				<view class='item-text'>可用购物卡¥{{ userInfo.card_balance || 0}}，可抵扣
+					<text style='color:#B52902;' wx:if="{{Number(userInfo.card_balance) >= Number(card_pay_amount_display)}}">¥{{card_pay_amount_display}}</text>
+					<text style='color:#B52902;' wx:else>¥{{userInfo.card_balance}}</text>
+				</view>
+				<switch
+				 wx:if="{{userInfo.card_balance !=0}}"
+				 color="{{F1.getMainColor(theme)}}"
+				 checked='{{ isUseCard }}'
+				 bindchange="useCard"
+				/>
+			</view>
+			<view class='flex-row-s good-item' wx:if="{{userInfo.is_hand == 1&&spikeBalanceShow}}">
+				<view class='item-text'>余额¥{{ handInfo.balance || 0 }}，抵扣
+					<text style='color:#B52902;'>¥{{pay_amount_display}}</text>
+				</view>
+				<switch
+				 wx:if="{{handInfo.balance != 0}}"
+				 color="{{F1.getMainColor(theme)}}"
+				 checked='{{ isUsePirce }}'
+				 bindchange="useBalance"
+				/>
+			</view>
+
+			<view class='flex-row-s good-item ' style="margin-top:12rpx;">
+				<view class='item-text '>商品金额</view>
+				<view class='item-text2' wx:if="{{inWay!=4}}">{{F1.moneyFormat(totalPrice)}}</view>
+				<view class='item-text2' wx:if="{{inWay==4}}">{{ F1.moneyFormat(startPrice)}}</view>
+			</view>
+			<view class='flex-row-s good-item '>
+				<view class='item-text '>运费</view>
+				<view class='item-text2 '>+{{F1.moneyFormat(totalPostage)}}</view>
+			</view>
+			<!-- 优惠券加积分 -->
+			<view class='flex-row-s good-item '>
+				<view class='item-text '>{{jumpFrom=='bargain'?'砍价减免':'优惠'}}</view>
+				<view class='item-text2 ' wx:if="{{inWay!=4}}">-{{F1.moneyFormat(disPrice+selectedCoupon.discount_num?selectedCoupon.discount_num:0)}}</view>
+				<view class='item-text2 ' wx:if="{{inWay==4}}">-{{F1.moneyFormat(disPrice)}}</view>
+			</view>
+			<view class='flex-row-s good-item' wx:if="{{temporaryCode}}">
+				<view class='item-text '>优惠金额</view>
+
+				<view class='item-text2 '>-{{F1.moneyFormat(oneOrderDetail.discount*oneOrderDetail.buy_num)}}</view>
+			</view>
+      <!-- <view class='flex-row-s good-item' wx:if="{{userInfo.role==1&&spikeBalanceShow && isUseCard}}"> -->
+      <view class='flex-row-s good-item' wx:if="{{ isUseCard}}">
+				<view class='item-text '>购物卡抵扣</view>
+				<view class='item-text2 '>-{{F1.moneyFormat(card_pay_amount)}}</view>
+			</view>
+			<view class='flex-row-s good-item' wx:if="{{userInfo.role==1&&spikeBalanceShow&& isUsePirce }}">
+				<view class='item-text '>余额抵扣</view>
+				<view class='item-text2 '>-{{F1.moneyFormat(pay_amount)}}</view>
+			</view>
+			<view style="height:10rpx;"></view>
+			<view class='flex-row-s good-item'>
+				<view class='item-text' style="margin-right:30rpx;">线下自提</view>
+				<switch
+				 color="#F8DA0D"
+				 checked="{{isStore}}"
+				 bindchange="useStore"
+				/>
+			</view>
+
+			<!-- <view style="height:10rpx;"></view>
+			<view class='flex-row-s good-item'>
+				<view class='item-text' style="margin-right:30rpx;">个人推广码</view>
+				<input type="text" style="text-align: right;" value="{{extension_code}}" placeholder="请输入个人推广码" placeholder-style="#8c8c8c" bindinput="bindCode" />
+			</view>
+			<view style="height:10rpx;"></view>
+			<view class='flex-row-s good-item'>
+				<view class='item-text' style="margin-right:30rpx;">商家推广码</view>
+				<input type="text" style="text-align: right;" value="{{merchant_code}}" placeholder="请输入商家推荐码" placeholder-style="#8c8c8c" bindinput="bindMerchantCode" />
+			</view> -->
+
+			<!-- <view class='flex-row-s good-item' wx:for="{{ pay }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectIndex'>
+        <view class='flex-row-f'>
+          <image src='{{ item.img }}' class='pay-img' mode="aspectFill"></image>
+          <view class='pay-text'>{{ item.title }}</view>
+        </view>
+        <image wx:if="{{ payIndex == index }}" src='/images/shopcar/selected.png' class='select-img' mode="aspectFill"></image>
+        <image wx:else src='/images/shopcar/unselected.png' class='select-img' mode="aspectFill"></image>
+      </view> -->
+		</view>
+	</view>
+
+	<!-- 带店铺 -->
+
+	<!-- 购物车 -->
+	<view class='shopcar-view' wx:elif="{{ jumpFrom == 'shopcar' }}">
+		<view>
+			<view class='shop-item'>
+				<!-- 不带店铺 -->
+				<!-- <view class='wrap-all order-head'>
+        <view>商品信息</view>
+      </view> -->
+
+				<view 
+          wx:for="{{ shopcarOrder.list }}" 
+          wx:key="index">
+					<!-- 带店铺 -->
+					<block wx:if="{{ item.isShow}}">
+						<view
+						 class='wrap-all flex-r-b order-head'
+						 wx:if="{{ item.isShow === true && is_show_shop != 0}}"
+						 catchtap='jumpShopDetail'
+						 id="{{item.shop.id}}"
+						>
+							<view class='shop-name'>{{ item.shop.name }}</view>
+							<image
+							 src="/images/small-right.png"
+							 mode="aspectFill"
+							 class="small-right-img"
+							 mode="aspectFill"
+							/>
+						</view>
+						<view
+						 class=' wrap-all good-content'
+						 wx:if="{{ listItem.isSelect === true }}"
+						 wx:for="{{ item.list }}"
+						 wx:for-item="listItem"
+						 wx:for-index="listIndex"
+						 wx:key="listIndex"
+						>
+							<view class="no-buy" wx:if="{{ listItem.is_buy==0 }}">
+								该商品不在配送范围内,请重新选择收货地址
+							</view>
+
+							<view class="flex-row-f box-total" wx:if="{{ listItem.isSelect }}">
+								<view class='show-image-total'>
+									<image src="{{ listItem.img_url }}" class="good-img" mode="aspectFill" />
+								</view>
+								<view class="right-content flex-1">
+									<view class="order-title text-line2">{{listItem.title}}</view>
+									<view class="flex-r-b">
+										<view class="oder-sku text-line2">
+											规格:{{listItem.value_names}}
+										</view>
+										<view class="order-num">
+											x{{ listItem.num }}
+										</view>
+									</view>
+									<view class="flex-r-b">
+										<view class="flex-r-s">
+											<view class="show-small-icon " wx:if="{{listItem.is_abroad==1}}">跨境购</view>
+											<view class="show-small-icon " wx:if="{{listItem.activity_type==1}}">秒杀</view>
+											<view class="show-small-icon " wx:if="{{listItem.activity_type==2}}">拼团</view>
+										</view>
+										<view class="each-total-price">{{ F1.moneyFormat(listItem.price) }}</view>
+									</view>
+								</view>
+
+							</view>
+
+						</view>
+						<!-- 店铺发票 -->
+						<!-- <view class='flex-row-s good-item' bindtap='jumpInvoice' id="{{index}}">
+              <view class='item-text'>发票</view>
+              <view class='flex-row-f'>
+                <view class='discount discount-other' wx:if="{{item.invoice==false}}">不开发票</view>
+                <view class='discount discount-other' wx:else>点击查看发票信息</view>
+                <image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+              </view>
+            </view> -->
+
+						<!-- 看 价格 -->
+						<!-- <view class='flex-row-s good-item'>
+              <view class='item-text'>不希望TA看到带有价格的发货</view>
+              <switch color="{{F1.getMainColor(theme)}}" checked='{{ item.display_price }}' bindchange="changeSaw" data-index="{{index}}" />
+            </view> -->
+            
+						<!-- 店铺优惠券 -->
+						<block wx:if="{{moeShopCoupon[index].isShow}}">
+              <view 
+                class='flex-row-s good-item ' 
+                bindtap='openShopCoupon' 
+                id="2"
+                data-index="{{index}}" 
+                data-id="{{item.shop.id}}">
+                <view class='item-text '>店铺优惠券</view>
+                <view class='flex-row-f '>
+                  <view 
+                    class='use-coupon theme-font-A-{{theme}} ' 
+                    wx:if="{{ item.condition_num }}"
+                    catchtap="">
+                    满{{ item.condition_num }}减{{ item.discount_num }}
+                  </view>
+                  <view 
+                    class='user-coupon-num theme-lg-A-{{theme}} ' 
+                    wx:else
+                    catchtap="">
+                       {{ moeShopCoupon[index].coupon.length||0 }}张可用
+                    </view>
+                  <image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+                </view>
+              </view>
+            </block>
+            <!-- 店铺优惠券2 -->
+            <!-- <block wx:if="{{item.shopCouponShow}}">
+              <view 
+                class='flex-row-s good-item ' 
+                bindtap='showCoupon' 
+                id="2"
+                data-index="{{index}}" 
+                data-item="{{item.shopCouponeList}}"
+                data-id="{{item.shop.id}}">
+                <view class='item-text '>店铺优惠券</view>
+                <view class='flex-row-f '>
+                  <view 
+                    class='use-coupon theme-font-A-{{theme}} ' 
+                    wx:if="{{ item.condition_num }}"
+                    >
+                    满{{ item.condition_num }}减{{ item.discount_num }}
+                  </view>
+                  <view 
+                    class='user-coupon-num theme-lg-A-{{theme}} ' 
+                    wx:else
+                    >
+                       {{ item.shopCouponeList.length||0 }}张可用
+                    </view>
+                  <image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+                </view>
+              </view>
+            </block> -->
+            <!-- <block wx:if="{{item.shopCouponShow}}">
+              <view 
+                class='flex-row-s good-item ' 
+                bindtap='showCoupon' 
+                id="2"
+                data-index="{{index}}" 
+                data-item="{{item.shopCouponeList}}"
+                data-id="{{item.shop.id}}">
+                <view class='item-text '>店铺优惠券</view>
+                <view class='flex-row-f '>
+                  <view 
+                    class='use-coupon theme-font-A-{{theme}} ' 
+                    wx:if="{{ true }}"
+                    >
+                    满{{ item.condition_num }}减{{ item.discount_num }}
+                  </view>
+                  <view 
+                    class='user-coupon-num theme-lg-A-{{theme}} ' 
+                    wx:else
+                    >
+                       {{ moeShopCoupon.length|| 0 }}张可用
+                    </view>
+                  <image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+                </view>
+              </view>
+            </block> -->
+						<!-- 买家留言 -->
+						<view class='buy-remark good-item'>
+							<view class='item-text'>买家留言</view>
+							<input
+							 placeholder='请输入备注'
+							 class='message-input'
+							 bindinput='getMessage1 '
+							 value='{{item.remark}} '
+							 data-index='{{ index }} '
+							 data-message='{{ item.remark }} '
+							 placeholder-style='color:#111; '
+							/>
+						</view>
+						<!-- 运费 -->
+						<!-- <view class='flex-row-s good-item '>
+              <view class='item-text '>运费</view>
+              <view class='discount ' wx:if="{{ item.is_buy == 0 }}">不支持配送</view>
+              <view wx:else>
+                <view class='discount ' wx:if="{{ item.shopPostage == 0 }}">包邮</view>
+                <view class='discount ' wx:else>￥{{ item.shopPostage }}</view>
+              </view>
+            </view> -->
+
+
+						<!-- 店铺共计 -->
+						<!-- <view class='flex-row-s wrap-all '>
+              <view>共计{{ item.shopNum }}件商品</view>
+              <view>
+                <text class='discount ' wx:if="{{ selectedCoupon && selectedCoupon.isSelect === false }}">(商品券扣减¥{{ selectedCoupon.discount_num }})</text>
+                <text>小计：</text>
+                <text class='all-price theme-font-A-{{theme}} '>{{ F1.moneyFormat((item.shopTotalPrice)+item.shopPostage) }}</text>
+              </view>
+            </view> -->
+					</block>
+
+				</view>
+
+				<!-- <view
+				 class='flex-row-s good-item '
+				 style='margin-top:12rpx; '
+				 bindtap='jumpInvoice'
+				 id="0"
+				>
+					<view class='item-text '>发票</view>
+					<view class='flex-row-f '>
+						<block wx:if="inWay==1">
+							<view class="invoiceInfo.invoice_content == 1 " />
+						</block>
+						<block wx:if="inWay==0">
+
+							<view class='discount discount-other' wx:if="{{ invoiceInfo.invoice_content == 1 }}">点击查看发票信息</view>
+							<view class='discount discount-other' wx:else>不开发票</view>
+						</block>
+
+						<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+					</view>
+				</view> -->
+
+				<!-- <view
+				 class='flex-row-s good-item '
+				 bindtap='showCoupon'
+				 id="1"
+				 wx:if="{{shopCouponShow}}"
+				>
+					<view class='item-text '>平台优惠券</view>
+					<view class='flex-row-f '>
+						<view class='use-coupon theme-font-A-{{theme}} ' wx:if="{{ selectedCoupon && selectedCoupon.isSelect === false }}">满{{ selectedCoupon.condition_num }}减{{ selectedCoupon.discount_num }}</view>
+						<view class='user-coupon-num theme2-color={{theme}}' wx:else>{{ couponListPlat.list.length }}张可用</view>
+						<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+					</view>
+				</view> -->
+        <view
+				 class='flex-row-s good-item '
+				 bindtap='showCoupon'
+				 id="1"
+
+				>
+				<!-- 上面去掉了wx:if="{{platCouponShow}}" -->
+					<view class='item-text '>平台优惠券</view>
+					<view class='flex-row-f '>
+						<!-- 下面 wx:if 去掉了 platCouponShow &&  -->
+						<view class='use-coupon theme-font-A-{{theme}} ' wx:if="{{ platCouponSelected  }}">满{{ moePlatCoupon[platCouponMaxIndex].condition_num }}减{{ moePlatCoupon[platCouponMaxIndex].discount_num }}</view>
+						<view class='user-coupon-num theme2-color={{theme}}' wx:else>{{ moePlatCoupon.length||0 }}张可用</view>
+						<image src="/images/small-right.png" class="small-right-img" mode="aspectFill" />
+					</view>
+				</view>
+<!-- 
+				<block wx:if="{{shopCouponShow}}">
+					<view class='flex-row-s good-item' wx:if="{{ yuCouponNum.coin >= 1000 }}">
+						<view class='item-text ' wx:if="{{ isUse }}">已用{{ disPrice*1000 }}积分抵扣{{ disPrice }}元</view>
+						<view class='item-text ' wx:else>使用{{ disPrice*1000 }}积分抵扣{{ disPrice }}元</view>
+						<switch color="{{F1.getMainColor(theme)}}" checked='{{ isUse }}' bindchange="shopCarIsUsePrice" />
+					</view>
+					<view class='flex-row-s good-item ' wx:else>
+						<view class='item-text '>积分</view>
+						<view class='discount '>共{{ yuCouponNum.coin }}积分，满1000积分可用</view>
+					</view>
+				</block> -->
+        <!-- 购物卡 -->
+        <view class='flex-row-s good-item ' wx:if="{{true}}">
+					<view class='item-text '>购物卡¥{{ userInfo.card_balance }}，可抵扣
+					  <text style='color:#B52902;'>¥{{card_pay_amount_display}}</text>
+					</view>
+					<switch
+					 wx:if="{{true}}"
+					 color="{{F1.getMainColor(theme)}}"
+					 checked='{{ isUseCard }}'
+					 bindchange="useCard"
+					/>
+				</view>
+        <!-- 余额 -->
+				<view class='flex-row-s good-item ' wx:if="{{userInfo.role==1&&spikeBalanceShow}}">
+					<view class='item-text '>余额¥{{ handInfo.balance }}，可抵扣
+					  <text style='color:#B52902;'>¥{{pay_amount_display}}</text>
+					</view>
+					<!-- <switch
+					 wx:if="{{handInfo.balance!=0}}"
+					 color="{{F1.getMainColor(theme)}}"
+					 checked='{{ isUsePirce }}'
+					 bindchange="useBalance"
+					/> -->
+          	<switch
+              wx:if="{{true}}"
+              color="{{F1.getMainColor(theme)}}"
+              checked='{{ isUsePirce }}'
+              bindchange="useBalance"/>
+				</view>
+				<view class='flex-row-s good-item '>
+					<view class='item-text '>商品金额</view>
+					<view class='item-text2 '>{{F1.moneyFormat(subtotal)}}</view> 
+          </view> 
+          <view class='flex-row-s good-item '>
+							<view class='item-text '>运费</view>
+							<view class='item-text2 '>+{{F1.moneyFormat(totalPostage)}}</view>
+					</view>
+					<!-- 优惠券加积分 -->
+					<view class='flex-row-s good-item ' wx:if="{{couponPrice !=0}}">
+						<view class='item-text '>优惠</view>
+
+						<view class='item-text2 '>-{{F1.moneyFormat(couponPrice)}}</view>
+					</view>
+          <view class='flex-row-s good-item' wx:if="{{userInfo.role==1&&spikeBalanceShow && isUseCard}}">
+						<view class='item-text '>购物卡抵扣</view>
+						<view class='item-text2 '>-{{F1.moneyFormat(card_pay_amount)}}</view>
+					</view>
+					<view class='flex-row-s good-item' wx:if="{{userInfo.role==1&&spikeBalanceShow && isUsePirce}}">
+						<view class='item-text '>余额抵扣</view>
+						<view class='item-text2 '>-{{F1.moneyFormat(pay_amount)}}</view>
+					</view>
+          <view style="height:100rpx;"></view>
+					<!-- <view class='flex-row shop-total good-item ' style='margin-bottom:20rpx; '>
+						<view>还需支付：
+							<text class='need-price theme-font-A-{{theme}} '>{{  F1.moneyFormat(totalPrice+totalPostage)}}</text>
+						</view>
+					</view> -->
+
+				</view>
+			</view>
+		</view>
+		<view class="bottom-des">
+			<view class="bottom-des-bg" wx:if="{{temporaryCode}}">
+				已优惠{{F1.moneyFormat(couponPrice+oneOrderDetail.discount*oneOrderDetail.buy_num)}}
+				<!-- <text wx:if="{{userInfo.role==1&&is_commission==1}}">,下单可返{{F1.moneyFormat(rebate)}}</text> -->
+			</view>
+			<view class="bottom-des-bg" wx:else>
+				已优惠{{F1.moneyFormat(couponPrice)}}
+				<!-- <text wx:if="{{userInfo.role==1&&is_commission==1}}">,下单可返{{F1.moneyFormat(rebate)}}</text> -->
+			</view>
+		</view>
+		<view class='bottom '>
+			<view class='flex-r flex-1  '>
+				<text class='total-text '>应付款:</text>
+				<text class="theme2-color={{theme}}" style="font-size:24rpx">￥</text>
+				<text class='total-price theme2-color={{theme}} '>{{F1.moneyFormatTwo(totalPrice+totalPostage)}}</text>
+			</view>
+
+			<view class="flex-1">
+				<form bindsubmit="goBuy" report-submit="true">
+					<button formType="submit" class='bottom-btn  '>确认支付</button>
+				</form>
+			</view>
+
+		</view>
+		<!-- 平台优惠券modal -->
+		<view
+		 class='mask '
+		 catchtouchmove="true"
+		 wx:if="{{ couponModal }}"
+		 bindtap='closeCouponModal'
+		/>
+		<view class='coupon-moadl ' wx:if="{{ couponModal }}">
+			<view class='coupon-content flex-column '>
+				<image
+				 src="/images/message-cancel.png"
+				 class='message-cancel-img '
+				 mode="aspectFill"
+				 bindtap='closeCouponModal'
+				/>
+				<view class='moadl-title '>选择平台优惠券</view>
+				<!-- <scroll-view class="scroll-load-panel scroll" scroll-y="true" bindscrolltolower="loadMoreCoupone"> -->
+				<scroll-view class="scroll-load-panel scroll" scroll-y="true">
+					<view
+					 wx:for="{{ moePlatCoupon}}"
+					 wx:key="index"
+					 class='flex-column-s coupon-item '
+					 data-coupon='{{item}}'
+					 bindtap='selectPlatCoupon'
+					 data-index='{{index}}'
+					>
+						<view class='img-wrap '>
+							<image src="/images/center/pay-coupon.png" class='coupon-img ' mode="aspectFill" />
+							<image
+							 src="/images/shopcar/selected.png"
+							 class='select-coupon-img '
+							 wx:if="{{item.isSelect}}"
+							 mode="aspectFill"
+							/>
+							<image
+							 src="/images/shopcar/unselected.png"
+							 class='select-coupon-img '
+							 wx:elif="{{!item.isSelect}}"
+							 mode="aspectFill"
+							/>
+							<view class='flex-row-f coupon-them '>
+								<view>
+									<text class='coupon-yuan theme-font-A-{{theme}} '>￥</text>
+									<text class='coupon-amount theme-font-A-{{theme}} '>{{ item.discount_num }}</text>
+								</view>
+								<view style='margin-left:50rpx '>
+									<view class='coupon-title '>{{ item.name }}</view>
+									<view class='condition-num '>满{{ item.condition_num }}元可用</view>
+									<view class='text-one '>有效期{{ item.expire }}</view>
+								</view>
+							</view>
+							<view class='invitor flex-row-s '>
+								<view style='color:#555555 ' wx:if="{{ item.invite_name }}">邀请人：{{ item.invite_name }}</view>
+								<view style='color:#C0C0C0 '>{{ item.invite_time }}</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+    <!-- 打开店铺优惠券 -->
+    <view
+		 class='mask '
+		 catchtouchmove="true"
+		 wx:if="{{ shopCouponModal }}"
+		 bindtap='closeShopCouponModal'
+		/>
+		<view class='coupon-moadl ' wx:if="{{ shopCouponModal }}">
+			<view class='coupon-content flex-column '>
+				<image
+				 src="/images/message-cancel.png"
+				 class='message-cancel-img '
+				 mode="aspectFill"
+				 bindtap='closeShopCouponModal'
+				/>
+				<view class='moadl-title '>选择优惠券</view>
+				<!-- <scroll-view class="scroll-load-panel scroll" scroll-y="true" bindscrolltolower="loadMoreCoupone"> -->
+				<scroll-view class="scroll-load-panel scroll" scroll-y="true">
+					<view
+					 wx:for="{{ moeShopCoupon[nowShopIndex].coupon}}"
+					 wx:key="index"
+					 class='flex-column-s coupon-item '
+					 data-coupon='{{ item }}'
+					 data-index='{{index}}'
+					 bindtap='selectShopCoupon'
+					>
+						<view class='img-wrap '>
+							<image src="/images/center/pay-coupon.png" class='coupon-img ' mode="aspectFill" />
+							<image
+							 src="/images/shopcar/selected.png"
+							 class='select-coupon-img '
+							 wx:if="{{  item.isSelect === true }}"
+							 mode="aspectFill"
+							/>
+							<image
+							 src="/images/shopcar/unselected.png"
+							 class='select-coupon-img '
+							 wx:elif="{{ item.isSelect === false }}"
+							 mode="aspectFill"/>
+							<view class='flex-row-f coupon-them '>
+								<view>
+									<text class='coupon-yuan theme-font-A-{{theme}} '>￥</text>
+									<text class='coupon-amount theme-font-A-{{theme}} '>{{ item.discount_num }}</text>
+								</view>
+								<view style='margin-left:50rpx '>
+									<view class='coupon-title '>{{ item.name }}</view>
+									<view class='condition-num '>满{{ item.condition_num }}元可用</view>
+									<view class='text-one '>有效期{{ item.expire }}</view>
+								</view>
+							</view>
+							<view class='invitor flex-row-s '>
+								<view style='color:#555555 ' wx:if="{{ item.invite_name }}">邀请人：{{ item.invite_name }}</view>
+								<view style='color:#C0C0C0 '>{{ item.invite_time }}</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" hasback="{{true}}" haslogin="{{false}}"/>
+		<pay-pwd
+		 bindvalueSix="valueSix"
+		 input_value="{{inputData.input_value}}"
+		 value_length="{{inputData.value_length}}"
+		 isNext="{{inputData.isNext}}"
+		 get_focus="{{inputData.get_focus}}"
+		 focus_class="{{inputData.focus_class}}"
+		 value_num="{{inputData.value_num}}"
+		 show_status="{{show}}"
+		 money="{{pay_amount}}"
+		 height="{{inputData.height}}"
+		 width="{{inputData.width}}"
+		 see="{{inputData.see}}"
+		 interval="{{inputData.interval}}"/>
+		 	<modal1 wx:if="{{ isModel&&!isShowModal }}" isModel="{{ isModel }}" bind:xcFf="xcFf" bind:jumpAddress1="jumpAddress1" />
+</block>
+
+<view wx:else>
+	<page-loding/>
+</view>
+

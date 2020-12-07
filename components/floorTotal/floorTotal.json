@@ -1,0 +1,20 @@
+{
+  "component": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "serch-three": "/components/serchThree/serchThree",
+    "advert": "/components/advert/advert",
+    "goosList": "/components/goosList/index",
+    "category": "/components/category/category",
+    "category-21": "/components/category-for-21/category",
+    "shop": "/components/shop/shop",
+    "navbar": "/components/navbar/index",
+    "look-more": "/components/lookmore/lookmore",
+    "rowscroll": "/components/rowscroll/rowscroll",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "shop-coupon": "/components/shopCoupon/shopCoupon",
+    "shop-23":"/components/shop-for-23/shop",
+    "category-24":"/components/category-for-24/category",
+    "my-swiper": "/components/My-swiper/my-swiper"
+  }
+}

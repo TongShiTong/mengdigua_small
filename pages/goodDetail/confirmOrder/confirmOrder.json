@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "商品结算",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "pay-pwd": "/components/Paypwd/Paypwd",
+    "page-loding": "/components/pageLoding/pageLoding",
+    "van-field": "/miniprogram_npm/vant-weapp/dist/field/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/dist/icon/index",
+    "modal": "/components/modal/modal",
+    "modal1": "/components/modal1/modal",
+    "cell-group": "/miniprogram_npm/vant-weapp/dist/cell-group/index"
+  }
+}

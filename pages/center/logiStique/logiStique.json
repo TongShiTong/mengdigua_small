@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "物流",
+  "usingComponents": {
+    "message": "/components/messageBox/messageBox",
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "forList": "/components/forList/forList",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

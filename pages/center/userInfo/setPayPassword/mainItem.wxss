@@ -1,0 +1,19 @@
+/* pages/center/userInfo/setPayPassword/mainItem.wxss */
+
+.inof-item {
+  height: 100rpx;
+  border-bottom: 1px solid #f4f4f4;
+  color: #222;
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+
+.right-text {
+  color: #999;
+  font-size: 30rpx;
+  margin-right: 16rpx;
+}
+
+.right-item {
+  margin-right: 16rpx;
+}

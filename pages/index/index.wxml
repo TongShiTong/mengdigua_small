@@ -1,0 +1,60 @@
+<block wx:if="{{theme || theme===0}}">
+	<navbar title="萌地瓜" image="{{image}}" />
+	<!-- <view class='user-head flex-row-s bg-white' style="top:{{barHeight/_ratio*2}}rpx"
+		wx:if="{{ (launchOptions.scene == 1047 || launchOptions.scene == 1048 || launchOptions.scene == 1049) || superUser != '' }}">
+		<view class='flex-row-f'>
+			<image src="{{ superUser.head_url }}" wx:if="{{ superUser.head_url }}" class='head-img' mode="aspectFill" />
+			<view class='user-nickname' wx:if="{{ superUser.nickname }}">
+				{{ S1.substr(superUser.nickname,5) }}
+			</view>
+		</view>
+		<view class='flex-1 user-serch flex-row-s' bindtap='jumpSerch'>
+			<view class='serch-text'>搜索商品，共2000款好物!</view>
+			<image src="/images/serch.png" class='serch-img' mode="aspectFill" />
+		</view>
+	</view> -->
+	<!-- 搜索 -->
+	<!-- <view class='serch-wrap flex-row' style="top:{{barHeight/_ratio*2}}rpx" wx:else>
+		<serch-three isRead="{{ showNoRead }}" />
+	</view> -->
+	<!-- tab -->
+	<!-- <view class='tab-wrap flex-row-f ' style="top:{{barHeight/_ratio*2+74}}rpx">
+		<scroll-view class='scroll-load-x flex-row ' scroll-x="true" style='margin-left:10rpx;'>
+			<view
+			 class='tab {{ tabIndex == index?"theme-color-A-"+theme:"white7" }}'
+			 wx:for="{{ tab }}"
+			 wx:key="{{ index }}"
+			 bindtap='selectTab'
+			 data-index='{{ index }}'
+			 data-code='{{ item.position_code }}'
+			>
+				<view>{{ item.name }}</view>
+				<view class='tab-line theme-bg-A-{{theme}}' wx:if="{{ tabIndex == index }}" />
+			</view>
+		</scroll-view>
+		 <view class='class-wrap flex-row theme-lg-A-{{theme}}' bindtap='jumpClass'>
+      <image src="/images/class2.png" class='class-img' mode="aspectFill"></image>
+    </view> 
+	</view> -->
+	<!-- 楼层 -->
+	<block wx:for="{{ tab }}" wx:key="index">
+		<block wx:if="{{item.loading&&floorShow}}">
+			<floor-total id="floor-total-component" showIndex="{{index}}" show="{{item.show}}" floorCode="{{ item.position_code }}"
+				groundTimes="{{groundTimes}}" groupList="{{groupList}}" />
+		</block>
+	</block>
+	<!-- <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal> -->
+	<view class='mask' wx:if="{{ showIndexModel }}" bindtap='colseModal' />
+	<view wx:if="{{ showIndexModel }}" class='modal-amx'>
+		<view class='modal-po'>
+			<image catchtap='jumpModal' src="{{ indexModel.img_url }}" class='modal-img' mode='aspectFit' />
+			<image src="/images/message-cancel.png" bindtap='colseModal' class='index-cancel-img' mode="widthFix" />
+		</view>
+	</view>
+	<!-- <tabbar tabbar="{{tabbar}}" /> -->
+	<platform-coupon showModel='{{showType}}' couponList="{{couponList}}" bind:onchange="close" />
+	<!-- <share showShare="{{ showShare }}" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}"></share> -->
+</block>
+<block wx:else>
+	<page-loding />
+</block>

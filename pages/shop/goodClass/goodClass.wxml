@@ -1,0 +1,26 @@
+<!--pages/shop/goodClass/goodClass.wxml-->
+<!-- 搜索 -->
+<!-- <view class='serch-wrap flex-row'>
+  <view class='serch-class flex-row-f' bindtap='jumpSerch'>
+    <image src="/images/shop/werch-h.png" class='serch-h-img' mode="aspectFill"></image>
+    <input class='serch-input' placeholder-class='input-place' placeholder='输入宝贝关键字'></input>
+  </view>
+</view> -->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="商品分类" />
+<view class='all-good wrap-all flex-row-s' bindtap='jumpAllGood'>
+  <view class='left-text'>全部商品</view>
+  <image src="/images/small-right.png" class='enter-img' mode="aspectFill"></image>
+</view>
+<view class='detail-good wrap-all flex-row-s' data-name='{{ item.name }}' wx:for="{{ classData }}" wx:key="{{ index }}" data-id='{{ item.mcid }}'       bindtap='jumpGoodClass'>
+  <view class='left-text'>{{ item.name }}</view>
+  <image src="/images/small-right.png" class='enter-img' mode="aspectFill"></image>
+</view>
+<shop-tabbar 
+  isShowTab='{{isShowTab}}'
+  curIndex='2'
+  shopId="{{shopId}}"/>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

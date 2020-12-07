@@ -1,0 +1,16 @@
+<!--components/bindPhone/bindPhone.wxml-->
+<!-- <cover-view class='mask'>
+	<cover-view class='relative-style'>
+		<cover-view class='bind-modal'>
+			<cover-image src="/images/login/phone.png" class='phone-img' mode="aspectFill" />
+			<cover-view class='tip-title'>绑定手机号</cover-view>
+			<cover-view class='tip'>根据国家互联网信息办公室发布的《移动互联网应用程序信息服务管理规定》自2016年8月20日起，要求互联网注册用户基于移动电话号码等真实身份信息进行实名认证，所以需要您完成绑定手机号的操作。</cover-view>
+			<cover-view class="bind-box">
+				<cover-view class='bind-know1' bindtap='cloosePhone'>取消</cover-view>
+				<cover-view class='bind-know' bindtap='jumpBindPhone'>绑定</cover-view>
+			</cover-view>
+			
+		</cover-view>
+	</cover-view>
+</cover-view> -->
+

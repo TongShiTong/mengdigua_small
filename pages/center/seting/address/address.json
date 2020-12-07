@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的地址",
+  "usingComponents": {
+    "message": "/components/messageBox/messageBox",
+    "modal": "/components/modal/modal",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

@@ -1,0 +1,97 @@
+/* 百货 */
+
+/* 字体颜色 */
+
+.theme-color-A-3 {
+  color: #b4282d !important;
+}
+
+.theme-color-B-3 {
+  color: #f2992c !important;
+}
+
+.theme-color-C-3 {
+  color: #cbb693 !important;
+}
+
+.theme-color-D-3 {
+  color: #f8efee !important;
+}
+
+/* 背景色 */
+
+.theme-bg-A-3 {
+  background: #b4282d !important;
+}
+
+.theme-bg-B-3 {
+  background: #f2992c !important;
+}
+
+.theme-bg-C-3 {
+  background: #cbb693 !important;
+}
+
+.theme-bg-D-3 {
+  background: #f8efee !important;
+}
+
+/* 背景渐变 */
+
+.theme-lg-A-3 {
+  background: linear-gradient(270deg, rgba(240, 84, 90, 1) 0%, rgba(208, 46, 52, 1) 100%) !important;
+}
+
+.theme-lg-B-3 {
+  background: linear-gradient(270deg, #ebc77f 0%, #b8a281 100%) !important;
+}
+
+.theme-lg-C-3 {
+  background: linear-gradient(270deg, rgba(255, 188, 107, 1) 0%, rgba(242, 153, 44, 1) 100%) !important;
+}
+
+.theme-lg-D-3 {
+  background: linear-gradient(270deg, #fffafa 0%, #fffa93 100%) !important;
+}
+
+/* 边线颜色 */
+
+.theme-border-A-3 {
+  border-color: #d02e34 !important;
+}
+
+.theme-border-B-3 {
+  border-color: #f2992c !important;
+}
+
+.theme-border-C-3 {
+  border-color: #cbb693 !important;
+}
+
+.theme-border-D-3 {
+  border-color: #f8efee !important;
+}
+
+/* 主背景色不透明度40% */
+
+.theme-bgo-A-3 {
+  background: rgba(208, 46, 52, 0.4);
+}
+
+/* 边线颜色+字色 */
+
+.theme-border-c-A-3 {
+  border-color: #b4282d !important;
+  color: #b4282d !important;
+}
+
+.theme-font-A-3 {
+  color: #b4282d !important;
+}
+
+.theme2-color-0{
+  color:#E50A35 !important;
+}
+.theme2-bg-color{
+  color:#E50A35 !important;
+}

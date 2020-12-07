@@ -1,0 +1,42 @@
+<!--components/modal/modal.wxml-->
+<view class='mask' wx:if="{{ isShowModal }}" catchtap='close'></view>
+<view class='mask1' wx:if="{{ islogin&&haslogin }}" catchtap='close1'></view>
+<view class='message-box' wx:if="{{ isShowModal&&showType==1 }}">
+  <view class='message-top'>
+    <view class='title'>温馨提示</view>
+    <view class='sub-title'>授权微信登陆后，可正常使用萌地瓜小程序。</view>
+  </view>
+  <view class='line'></view>
+  <view class='message-bottom'>
+    <button class='confirm-text confirm-text1' catchtap='close'>取消</button>
+    <button class='confirm-text' bindtap="close2">
+      <navigator url="/pages/bandInfo/bandInfo" hover-class="navigator-hover">
+        立即登录
+      </navigator>
+    </button>
+    <!-- <button class='confirm-text' bindgetuserinfo='confirm' open-type="getUserInfo">我知道了</button> -->
+  </view>
+</view>
+
+<view class='message-box2' wx:if="{{ isShowModal&&showType==2 }}" catchtap='close'>
+  <image src="{{img_url}}" class='share-image' mode="aspectFill" lazy-load='true'></image>
+</view>
+
+<view class='share-box' wx:if="{{ isShowModal&&showType==2 }}">
+  <view class='tab'>
+    <button open-type='share' class='share-btn' bindtap='shareSuccess'>
+      <image src='/images/share-wechat.png' class='share-wechat-img' mode="aspectFill"></image>
+      <view class='share-btn-text'>分享给好友</view>
+    </button>
+  </view>
+  <!-- <view class='tab' bindtap='preeSave'>
+    <image src='/images/share-pyq.png' class='share-pyq-img' mode="aspectFill"></image>
+    <view class='share-text'>分享朋友圈</view>
+  </view> -->
+  <view class='tab' bindtap='preeSave'>
+    <image src='/images/share-save.png' class='share-save-img' mode="aspectFill"></image>
+    <view class='share-text'>保存图片</view>
+  </view>
+</view>
+
+<setting bind:onchange="shareSave" isShowModal="{{showsetModel}}" />

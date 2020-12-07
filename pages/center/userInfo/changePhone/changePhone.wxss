@@ -1,0 +1,121 @@
+/* pages/center/userInfo/changePhone/changePhone.wxss */
+/* 验证旧手机 */
+page {
+  background-color: #F9FAFB;
+}
+.tip {
+  height: 70rpx;
+  background-color: #FFF6DF;
+  text-align: center;
+  line-height: 70rpx;
+  color: #D66628;
+}
+.now-phone {
+  background-color: #fff;
+  padding: 40rpx 30rpx 20rpx 30rpx;
+  font-weight: 700;
+  color: #000000;
+}
+.phone-tip {
+  border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 20rpx;
+}
+/* 新手机 */
+.new-phone {
+  margin-top: 20rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+.input-item {
+  /* background-color: #fff; */
+  height: 100rpx;
+  padding-bottom: 60rpx;
+}
+.code-item {
+  width: 590rpx;
+  margin: 0 auto;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #EBEBEB;
+}
+.code-wrap {
+  padding-bottom: 20rpx;
+  /* background-color: #fff; */
+}
+.input-wrap {
+  width: 590rpx;
+  border-radius: 10rpx;
+  border-bottom: 1px solid #EBEBEB;
+  height: 100%;
+  margin: 0 auto;
+  font-size: 32rpx;
+  color: #262626;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.input-wrap text {
+  font-size: 24rpx;
+  color: #8C8C8C;
+  font-weight: 400;
+}
+.jiantou {
+  width: 10rpx;
+  height: 10rpx;
+  border-top: 3rpx solid #8c8c8c;
+  border-right: 3rpx solid #8c8c8c;
+  transform: rotate(45deg);
+  margin: 0 16rpx;
+}
+.input {
+  height: 100%;
+}
+.save {
+  margin-top: 60rpx;
+}
+.get-code {
+  width:186rpx;
+  height:66rpx;
+  line-height: 66rpx;
+  text-align: center;
+  background:#EBEBEB;
+  border-radius:36rpx;
+  color: #8C8C8C;
+  font-size: 24rpx;
+}
+.input-text {
+  color: #1F1F1F;
+}
+.input-code-wrap {
+  border-radius: 10rpx;
+  height: 80rpx;
+}
+.input-code {
+  width: 420rpx;
+  height: 100%;
+  font-size: 28rpx;
+  color: #262626;
+}
+.save-btn {
+  margin: 128rpx auto 0;
+  width:686rpx;
+  height:82rpx;
+  line-height: 82rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #000000;
+  font-weight: bold;
+  background: linear-gradient(90deg, #FFD300 0%, #FFD300 100%);
+  border-radius: 41rpx;
+}
+.good-img{
+  width: 250rpx;
+}
+.input-title{
+  padding-top: 32rpx;
+  padding-left: 32rpx;
+  height:28rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(1,0,1,1);
+  line-height:28rpx;
+}

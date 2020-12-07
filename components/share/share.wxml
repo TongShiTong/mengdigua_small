@@ -1,0 +1,30 @@
+<!--components/share/share.wxml-->
+<view wx:if="{{ showShare }}">
+  <view class='mask' bindtap='close' wx:if="{{shadow}}"></view>
+  <view class='box'>
+    <!-- <view class='head' wx:if="{{ showHeader != 9 }}">
+      <image src='/images/lm.png' class='netmi-img'></image>
+      <view class='compone'>杭州猎米科技网络有限公司</view>
+    </view> -->
+    <image src='{{ shareImg }}' bindtap='preview' class='share-img'></image>
+  </view>
+  <view class='share-box'>
+    <view class='tab'>
+      <button open-type='share' class='share-btn' bindtap='shareSuccess'>
+        <image src='/images/share-wechat.png' class='share-wechat-img' mode="aspectFill"></image>
+        <view class='share-btn-text'>分享给好友</view>
+      </button>
+    </view>
+    <!-- <view class='tab' bindtap='shareSave'>
+      <image src='/images/share-pyq.png' class='share-pyq-img' mode="aspectFill"></image>
+      <view class='share-text'>分享朋友圈</view>
+    </view> -->
+    <view class='tab' bindtap='preeSave'>
+      <image src='/images/share-save.png' class='share-save-img' mode="aspectFill"></image>
+      <view class='share-text'>保存图片</view>
+    </view>
+    <view wx:if="{{showsetModel}}">
+      <setting bindonchange="shareSave" isShowModal="{{showsetModel}}" />
+    </view>
+  </view>
+</view>

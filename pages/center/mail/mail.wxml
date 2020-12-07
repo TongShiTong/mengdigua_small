@@ -1,0 +1,32 @@
+<!--pages/center/mail/mail.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="系统通知" />
+  <view wx:if="{{ listData.total_pages == 0 }}" class="flex-column empty-view">
+    <image class='empty-img' src="/images/center/address-empty.png"></image>
+    <view class='empty-text'>暂无消息</view>
+  </view>
+  <scroll-view class="scroll-load-panel" scroll-y="true" bindscrolltolower="loadMore" wx:else>
+    <view wx:for="{{ listData.list }}" class='system-notice' wx:key="{{ index }}">
+      <!-- <view class='flex-row time-wrap'>
+      <view class='list-time text-one'>{{ item.time }}</view>
+    </view> -->
+      <view class='list flex-row-s wrap-all' wx:for="{{ item.list }}" wx:for-index="{{ listIndex }}" wx:for-item="listItem" wx:key="{{ listIndex }}" bindtap='jumpDetail' data-item='{{ listItem }}'>
+        <view class='flex-row-f {{ listItem.is_read==0?"read":"unread" }}'>
+          <view class='circel' wx:if="{{ listItem.is_read==0 }}"></view>
+          <view class='flex-column-s notice-content'>
+            <view style='width:100%;color:#1f1f1f;' class='text-line1'>{{ listItem.notice.title||listItem.title }}</view>
+            <view style='width:100%;' class='time text-line1 {{ listItem.is_read==0?"time-read":"time-unread" }}'>{{ listItem.notice.create_time||listItem.create_time}}</view>
+          </view>
+        </view>
+        <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+      </view>
+    </view>
+  </scroll-view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

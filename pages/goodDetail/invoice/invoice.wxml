@@ -1,0 +1,62 @@
+<!--pages/goodDetail/invoice/invoice.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="发票信息" />
+  <view class='super'>
+    <view class='wrap-all text-one info' bindtap='showHelp'>发票须知</view>
+    <view class='wrap-all invoice-item'>
+      <view class='left-text'>发票内容</view>
+      <view class='text-one'>发票内容选项已根据税法调整，具体请以展示为准</view>
+      <view class='flex-row-f'>
+        <view bindtap='selectTab' data-index='{{ index }}' class='{{ index == tabIndex?"label  theme-border-c-A-"+theme:"un-active" }}' wx:for="{{ tab }}" wx:key="{{ index }}">{{ item.title }}</view>
+      </view>
+      <view class='text-one'>发票内容将显示详细商品名称与价格信息</view>
+    </view>
+    <view class='wrap-all invoice-item'>
+      <view class='left-text'>发票类型</view>
+      <view class='label theme-border-c-A-{{theme}}'>电子发票</view>
+      <view class='text-one'>电子普通发票与纸质普通发票具备同等法律效力，可支持报销入账</view>
+    </view>
+    <view class='wrap-all invoice-item'>
+      <view class='left-text'>发票抬头</view>
+      <view class='flex-row-f' style='margin-top:40rpx;'>
+        <view class='flex-row-f' bindtap='selectType' style='margin-right:80rpx;' data-index='{{ index }}' wx:for="{{ selectTab }}" wx:key="{{ index }}">
+          <image src="/images/shopcar/selected.png" class="select-img" mode="aspectFill" wx:if="{{ index == selectIndex }}" />
+          <image src="/images/shopcar/unselected.png" class="select-img" mode="aspectFill" wx:else/>
+          <!-- <view class='{{ index == selectIndex }}?"active":"no-active"'>{{ item.title }}</view> -->
+          <view style='margin-left:16rpx;'>{{ item.title }}</view>
+        </view>
+      </view>
+      <view wx:if="{{ selectIndex == 1 }}">
+        <input class='input first-input' placeholder-class="input-place" bindinput='getCompany' value='{{ invoiceInfo.company_name }}' placeholder='请输入单位名称（必填）'></input>
+        <input class='input' placeholder-class="input-place" bindinput='getPersonalCode' value='{{ invoiceInfo.company_code }}' placeholder='请输入纳税人识别号（必填）'></input>
+      </view>
+    </view>
+    <view class='wrap-all invoice-item'>
+      <view class='left-text'>收票人信息</view>
+      <input class='input first-input' placeholder-class="input-place" type='number' value='{{ invoiceInfo.phone }}' bindinput='getPhone' maxlength='11' placeholder='请输入收票人手机号码（必填）'></input>
+      <input class='input' placeholder-class="input-place" bindinput='getMail' value='{{ invoiceInfo.mail }}' placeholder='请输入收票人邮箱（必填）'></input>
+    </view>
+    <view class='main-color btn theme-lg-A-{{theme}}' bindtap='saveInvoice'>确认</view>
+  </view>
+  <view class='mask' bindtap='close' wx:if="{{ isHelp }}"></view>
+  <view class='help' wx:if="{{ isHelp }}">
+    <view class='help-head'>
+      <view>{{ content.title }}</view>
+      <image src="/images/message-cancel.png" class='close-help' mode="aspectFill" bindtap='close'></image>
+    </view>
+    <view class='help-content'>
+      <scroll-view class="scroll-load-panel" style='height:600rpx;' scroll-y="true">
+        <view wx:if="{{ content.content }}" style='padding:0 30rpx;'>
+          <rich-text nodes="{{R1.rich(content.content)}}"></rich-text>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='i-know theme-color-A-{{theme}}' bindtap='close'>我知道了</view>
+  </view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,53 @@
+/* pages/center/userInfo/inviteShop/inviteShop.wxss */
+.head {
+  margin: 150rpx auto 0;
+  width:686rpx;
+  height:660rpx;
+  background:rgba(255,255,255,1);
+  border-radius:8rpx;
+}
+.text {
+  font-size: 28rpx;
+  color: #888888;
+  text-align: center;
+  margin-top: 74rpx;
+}
+.wx-code {
+  color: #333333;
+  font-size: 32rpx;
+}
+.copy-wrap {
+  width:114rpx;
+  height:54rpx;
+  background:#F8F8F8;
+  border-radius:6rpx;
+  color: #777777;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+.copy-img {
+  width: 26rpx;
+  height: 28rpx;
+  padding-right: 4rpx;
+}
+.wx-img-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wx-img {
+  width: 356rpx;
+  height: 356rpx;
+  margin-top: 40rpx
+}
+.sava-code {
+  width:686rpx;
+  height:100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  color: #fff;
+  background:linear-gradient(270deg,rgba(62,64,66,1) 0%,rgba(29,30,31,1) 100%);
+  border-radius:8rpx;
+  margin: 60rpx auto 0;
+}

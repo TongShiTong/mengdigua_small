@@ -1,0 +1,156 @@
+<!--pages/goodDetail/bargainDeatil/bargainDeatil.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+	<navbar isTransparent='true' title="砍价详情" wx:if="{{!showBar}}" />
+	<navbar title="砍价详情" wx:if="{{showBar}}" />
+	<view class="bargain-bg">
+		<image
+		 class="image-flet"
+		 src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/ABFWZMNTK2356789_1568097081.png"
+		 mode="widthFix"
+		 lazy-load="true"
+		/>
+		<image
+		 class="image-right"
+		 src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/AFWXZMNTHK024579_1568096874.png"
+		 mode="widthFix"
+		 lazy-load="true"
+		/>
+		<view class="content-total" style="padding-top:{{totalHeight}}px" />
+		<block wx:if="{{bargainData.status==0}}">
+			<view class="bargain-price" wx:if="{{!launchOptions}}"> {{F1.moneyFormat(bargainData.has_cut_price)}}</view>
+			<view class="bargain-price" wx:if="{{launchOptions}}"> {{bargainPrice!=0?F1.moneyFormat(bargainPrice):'? ? ?'}}</view>
+			<view class="status-change">已砍价 {{F1.moneyFormat(bargainData.has_cut_price)}},还需砍{{F1.moneyFormat(F1.subNumber(bargainData.has_cut_price,F1.subNumber(bargainData.item.end_price,bargainData.item.start_price)))}}</view>
+		</block>
+
+		<view class="bargain-des" wx:if="{{bargainData.status==1||bargainData.status==3}}">砍价成功</view>
+		<view class="bargain-des" wx:if="{{bargainData.status==2}}">砍价失败</view>
+		<block wx:if="{{launchOptions&&!myClick&&bargainData.status==1}}">
+			<view class="status-change">已帮好友砍价，快去发起砍价低价抢购吧～</view>
+		</block>
+
+		<view class="status-change" wx:if="{{(!launchOptions||myClick)&&bargainData.status==1}}">
+			恭喜你已砍至最低价，快去购买吧～
+		</view>
+		<view class="status-change" wx:if="{{(!launchOptions||myClick)&&bargainData.status==3}}">
+			恭喜您将好物收入囊中！
+		</view>
+		<view class="status-change" wx:if="{{(!launchOptions||myClick)&&bargainData.status==2}}">
+			很遗憾！未砍至最低价！
+		</view>
+
+		<progress
+		 stroke-width="12"
+		 border-radius="16"
+		 class="progress"
+		 activeColor="rgba(255,220,0,1)"
+		 backgroundColor="rgba(255,220,0,0.3)"
+		 active="true"
+		 percent="{{F1.divisionNumber(bargainData.has_cut_price,bargainData.item.start_price,bargainData.item.end_price)}}"
+		/>
+		<view class="flex-r time-total" wx:if="{{skillStatus==2&&bargainData.status==0||bargainData.status==1}}">
+			<view class="data-day">{{time.day}}天</view>
+			<view class="data-bg">{{time.hour}}</view>
+			<view class="data-icon">:</view>
+			<view class="data-bg">{{time.minute}}</view>
+			<view class="data-icon">:</view>
+			<view class="data-bg">{{time.second}}</view>
+		</view>
+
+		<view class="success-word" wx:if="{{(!launchOptions||myClick)&&bargainData.status==3}}">
+			本次砍价成功节省{{F1.moneyFormat(bargainData.has_cut_price)}}
+		</view>
+		<view class="success-word" wx:if="{{(!launchOptions||myClick)&&bargainData.status==2}}">
+			已于
+			<text class="word-size">{{bargainData.end_time}}</text>
+			结束
+		</view>
+	</view>
+	<!-- wx:if="{{launchOptions}}" -->
+	<view class="bargain-owner">
+		<view>
+			<image src="{{bargainData.head_url}}" style="" class="owner-avatar" />
+		</view>
+		<view style="margin-left:24rpx;margin-top:42rpx;">
+			<view class="owner-name">{{bargainData.nickname}}</view>
+			<view class="slogan">我发现了一件好货，帮我砍一刀吧~</view>
+		</view>
+	</view>
+
+	<view class="each-content">
+		<view class="flex-r-b" catchtap="goDetail">
+			<image class="image-size" src="{{bargainData.item.img_url}}" mode="widthFix" />
+			<view class="flex-1">
+				<view class="title text-line2 ">{{bargainData.item.title}}</view>
+				<view class="remark text-line1">规格{{bargainData.sku_name}}</view>
+				<view class="flex-r-b">
+					<view class="flex-r">
+						<view class="label-icon">最低砍至</view>
+						<view class="price">{{F1.moneyFormat(bargainData.item.end_price)}}</view>
+					</view>
+					<view class="now-number">仅剩 {{bargainData.item.stock}}件</view>
+				</view>
+			</view>
+		</view>
+
+		<view wx:if="{{!launchOptions&&bargainData.status==0}}" class="help-bargain" catchtap="openModal">
+			<button class="button-color">邀请好友帮忙砍</button>
+		</view>
+
+		<view wx:if="{{(!launchOptions||myClick)&&bargainData.status==1}}" class="help-bargain" catchtap="goOrder">
+			<button class="button-color">立即购买</button>
+		</view>
+
+		<view wx:if="{{(!launchOptions||myClick)&&bargainData.status==2}}" class="help-bargain" catchtap="goback">
+			<button class="button-color">重新砍价</button>
+		</view>
+		<view wx:if="{{(!launchOptions||myClick)&&bargainData.status==3}}" class="help-bargain" catchtap="goOrderDetail">
+			<button class="button-color">查看订单</button>
+		</view>
+		<view wx:if="{{launchOptions}}" style="display:flex;justify-content:center;">
+			<view class="help-bargain-double">
+				<navigator url="/pages/goodDetail/goodDetail?id={{bargainData.item.item_id}}" hover-class="navigator-hover">
+					<button class="button-color">我也要砍价拿</button>
+				</navigator>
+			</view>
+			<view class="help-bargain-double" catchtap="getPrice" wx:if="{{bargainPrice==0}}">
+				<button class="button-color">帮好友砍一刀</button>
+			</view>
+		</view>
+	</view>
+	<view class="line-8" />
+	<view class="helper-list">
+		<helper-list myId="{{id}}" helpList="{{helpList}}" />
+	</view>
+
+	<view class='like-list'>
+		<like title='猜你喜欢' listData="{{ likeData }}" />
+		<view class='base-line'>- 我是有底线的 -</view>
+	</view>
+	<!-- " -->
+	<view class="mask" catchtap="closeModel" wx:if="{{showPrice}}">
+		<view class="show-postage" catchtap="closeModel">
+			<view class="word-des color-white">成功帮好友砍了</view>
+			<view class="has-bargain-price color-white">-{{F1.moneyFormat(bargainPrice)}}</view>
+			<navigator url="/pages/goodDetail/goodDetail?id={{bargainData.item.item_id}}" hover-class="navigator-hover">
+				<view class="has-button">我也要砍价拿</view>
+			</navigator>
+
+		</view>
+	</view>
+
+	<share 
+    showShare="{{ showShare }}" 
+    bind:shareSuccess="shareSuccess" 
+    shareImg="{{ shareImg.share_img }}" 
+    bind:close='closeShare'/>
+	<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}" />
+	<!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"/> -->
+</block>
+
+<view wx:else>
+	<page-loding/>
+</view>
+

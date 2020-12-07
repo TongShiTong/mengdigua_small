@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "floor-good": "/components/floorGood/floorGood"
+  }
+}

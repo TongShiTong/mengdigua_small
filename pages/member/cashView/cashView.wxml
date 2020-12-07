@@ -1,0 +1,13 @@
+<!--pages/member/cashView/cashView.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="提取成功" />
+  <view class='view'>
+    <image src="/images/member/cash-success.png" class='success-img' mode="aspectFill"></image>
+    <view class='title'>提现申请成功</view>
+    <view class='sub-title'>您的提现申请已成功,请耐心等待</view>
+  </view>
+  <view class='btn theme-lg-A-{{theme}}' bindtap='jumpMember'>完成</view>
+</block>
+  <view wx:else>
+    <page-loding></page-loding>
+  </view>

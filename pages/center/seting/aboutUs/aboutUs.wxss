@@ -1,0 +1,81 @@
+/* pages/center/seting/aboutUs/aboutUs.wxss */
+.content {
+  height: 350rpx;
+  width: 100%;
+  background-color: #1D1E1F;
+  color: #fff;
+}
+.logo-img {
+  width: 164rpx;
+  height: 164rpx;
+}
+.logo-name-img {
+  margin-top: 30rpx;
+  width: 238rpx;
+  height: 45rpx;
+}
+.version {
+  font-size: 30rpx;
+  color: #999999;
+  margin-top: 30rpx;
+}
+.compon {
+  font-size: 66rpx;
+}
+.about-subtitle {
+  font-size: 32rpx;
+}
+.about-us {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+.inof-item {
+  height: 234rpx;
+  font-size: 26rpx;
+  width: 50%;
+  background-color: #fff;
+}
+.about-one {
+  width: 59rpx;
+  height: 49rpx;
+}
+.about-two {
+  width: 47rpx;
+  height: 47rpx;
+}
+.about-three {
+  width: 46rpx;
+  height: 36rpx;
+}
+.about-four {
+  width: 48rpx;
+  height: 48rpx;
+}
+.h-line {
+  width:100%;
+  height:1px;
+  background:linear-gradient(180deg,rgba(238,238,238,0) 0%,rgba(238,238,238,1) 48%,rgba(238,238,238,0) 100%);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.s-line {
+  width:1px;
+  height: 100%;
+  background:linear-gradient(180deg,rgba(238,238,238,0) 0%,rgba(238,238,238,1) 48%,rgba(238,238,238,0) 100%);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.copy {
+  color: #999999;
+  font-size: 24rpx;
+  text-align: center;
+}
+.about-text {
+  margin-top: 28rpx;
+}

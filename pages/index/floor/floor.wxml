@@ -1,0 +1,12 @@
+<!--pages/index/floor/floor.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="{{title}}" back="{{back}}" image="{{image}}" show_type="{{show_type}}" bg_color="{{bg_color}}" />
+<!-- 楼层 -->
+ <floor-total showIndex="{{index}}" show="true" floorCode="{{floorCode }}" groundTimes="{{groundTimes}}" groupList="{{groupList}}" marginTop="true" ></floor-total>
+<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

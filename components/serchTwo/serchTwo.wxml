@@ -1,0 +1,11 @@
+<!--components/serchTwo/serchTwo.wxml-->
+<view class='super ' style="top:{{barHeight}}px">
+  <view class='serch-wrap'>
+    <view class='serch'>
+      <!-- <image src="/images/serch.png" class="serch-img" mode="aspectFill"></image> -->
+      <input type='text' class='input' value='{{ serchValue }}' bindconfirm="serch" bindinput='changevalue' placeholder-class='input-place' placeholder='搜索您想要的商品' confirm-type="search"></input>
+    </view>
+  </view>
+  <view class='serch-btn theme-lg-A-{{theme}}' bindtap='serch'>搜索</view>
+  <!-- <image src="/images/class/serch.png" bindtap='serch' class="serch-img" mode="aspectFill"></image> -->
+</view>

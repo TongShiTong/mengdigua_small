@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "隐私协议",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

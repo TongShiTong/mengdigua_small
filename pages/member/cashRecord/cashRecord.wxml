@@ -1,0 +1,23 @@
+<!--pages/member/cashRecord/cashRecord.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="提现记录" />
+  <view class="">
+    <view
+      wx:for="{{recordData.list}}"
+      wx:key="index"
+      class="record-wrap">
+      <view class="flex-r-b">
+        <view class="record-title">{{item.remark}}</view>
+        <view class="record-num">￥{{item.price}}</view>
+      </view>
+      <view class="flex-r-b" style="margin-top:16rpx;">
+        <view class="record-time">{{item.create_time}}</view>
+        <view class="record-status">提现成功</view>
+      </view>
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

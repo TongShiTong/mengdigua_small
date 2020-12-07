@@ -1,0 +1,54 @@
+<!-- <image src="{{data.image}}" mode="widthFix" class="pic" /> -->
+<!-- <view class="flow-card" style="margin:{{marginTop marginRight marginBottom marginLeft}}rpx; background:{{bgColor}}; border-radius:{{borderRadius}}rpx"> -->
+<view class="flow-card">
+  
+    <!-- 视频区域 -->
+  <!-- <block wx:if="{{false}}">
+    <view class="video">
+      <video src="https://www.bilibili.com/video/BV13t411V7DX?from=search&seid=2671278204550748588" autoplay="true"></video>
+      <view class="video-des">
+        特早熟云南迷蜜桔新鲜顺
+      </view>
+    </view>
+    <view class="video-shop">
+       <image src="/images/logo.jpg" class="shop-head" mode="aspectFit"></image>   
+        <view class="shop-name">
+          <view>蓝军旗舰店</view>
+          <view class="text">666万关注</view>
+        </view>
+        <image src="/images/icon-follow.png" class="icon-follow" mode="aspectFit"></image>
+    </view>
+  </block> -->
+
+  <!-- 图片区域 -->
+  <block>
+      <image src="{{data.img_url}}" class="photo" mode="widthFix" bindtap="tap" data-shop_id="{{data.shop_id}}" data-type="{{ 1 }}" data-param="{{ data.item_id }}"></image>
+    <view class="intro-box" bindtap="tap" data-shop_id="{{data.shop_id}}" data-type="{{ 1 }}" data-param="{{ data.item_id }}">
+        <view class="des">
+          <!--tag1--优质果园  tag2--超级工厂   tag3--萌瓜超市   tag4---品牌  -->
+            <!-- <image src="/images/tag1.png" class="pic" mode="aspectFit"></image> -->
+            <image wx:if="{{data.shop_type === 1}}" class="pic pic-tag4" src="/images/tag4.png" mode="aspectFillheightFix" />
+				    <image wx:if="{{data.shop_type === 2}}" class="pic" src="/images/tag1.png" mode="aspectFill" />
+				    <image wx:if="{{data.shop_type === 3}}" class="pic" src="/images/tag2.png" mode="aspectFill" />
+				    <image wx:if="{{data.shop_type === 4}}" class="pic" src="/images/tag3.png" mode="aspectFill" />
+            {{data.good_info.title || data.title}}
+        </view>
+        <view class="tags-box">
+          <view wx:if="{{data.coupon_name}}" class="tags">
+           {{data.coupon_name}}
+          </view>
+          <view wx:for="{{data.natures}}" wx:key="index" class="tags">
+            {{item.name}}
+          </view>
+        </view>
+        
+        <view class="price">
+          <text class="red">￥</text>
+          <text class="red price-num">{{data.price}}</text>
+          已售{{data.deal_num}}件
+        </view>
+      </view>
+  </block>
+
+
+</view>

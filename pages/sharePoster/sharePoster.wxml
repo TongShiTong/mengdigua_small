@@ -1,0 +1,29 @@
+<!--pages/sharePoster/sharePoster.wxml-->
+<wxs src="../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="分享海报" />
+  <view class="back-black">
+    <view class="recommend">
+      推荐给好友
+    </view>
+  </view>
+  <view class="poster-wrap">
+    <image src="" style="width:546rpx;height:738rpx;"></image>
+  </view>
+  <view class="bottom-btn">
+    <button 
+      hover-class="none" 
+      class="btn"
+      open-type='share'>
+      <image src="/images/share-poster/wechat.png" style="width:100rpx;height:100rpx;"></image>
+      <view>微信</view>
+    </button>
+    <view>
+      <image src="/images/share-poster/save.png" style="width:100rpx;height:100rpx;"></image>
+      <view>保存本地</view>
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

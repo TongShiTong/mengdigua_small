@@ -1,0 +1,24 @@
+var number = function (string) {
+  var stringDeal = string;
+  if (parseFloat(string) > 100000000) {
+    stringDeal = (parseFloat(string)) / 100000000;
+    var unit = "亿"
+    if (parseInt(stringDeal)>1000){
+      stringDeal = stringDeal/1000+","+000;
+    }
+    return stringDeal+unit;
+    
+  } else if (parseFloat(string) > 10000) {
+     stringDeal = (parseFloat(string)) / 10000;
+    var unit = "万"
+    if (parseInt(stringDeal) > 1000) {
+      stringDeal = stringDeal / 1000 + "," + 000;
+    }
+    return stringDeal + unit;
+  }else{
+    return stringDeal
+  }
+  
+}
+
+module.exports.number = number;

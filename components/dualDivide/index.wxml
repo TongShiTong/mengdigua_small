@@ -1,0 +1,77 @@
+<!-- components/qualDivide/index.wxml -->
+<view>
+	<!-- <view class="banner-title">123</view> -->
+	<block>
+		<view class="item-total">
+			<!-- <view style="position:absolute;height:600rpx;width:2rpx;top:0;left:50%;border-right:2rpx solid #f2f2f2;" /> -->
+			<view
+			 class="item-wrap"
+			 wx:for="{{listData}}"
+			 wx:key='index'
+			 style="{{index<2 ? 'border-bottom:2rpx solid #f2f2f2;':''}}"
+			>
+				<block
+          wx:if="{{item.kind==1}}">
+					<image 
+            src="{{item.img_url}}" 
+            style="width:100%;height:300rpx;" 
+            data-param='{{item.param}}'
+            data-type='{{item.type}}'
+            bindtap="tapFloor"/>
+					<!-- <view class="goods-wrap">
+						<view class="goods-inner">
+							<image src="" style="border:2rpx solid #f2f2f2;width:100rpx;height:100rpx;" />
+							<view class="price-tag">￥123</view>
+						</view>
+						<view class="goods-inner">
+							<image src="" style="border:2rpx solid #f2f2f2;width:100rpx;height:100rpx;" />
+							<view class="price-tag">￥123</view>
+						</view>
+					</view> -->
+				</block>
+        <block
+          wx:if="{{item.kind==2}}">
+					<image 
+            src="{{item.img_url}}" 
+            style="width:100%;height:120rpx;" 
+            class="back-img"/>
+          <view style="position:absolute;top:0;left:0;z-index:1000;">
+            <view 
+            style="width:100%;height:120rpx;"
+            class="limit-wrap">
+            <view class="limit-buy">
+              限时购
+              <text class="time-capsule">{{dispTime[index].hour}}</text>:
+              <text class="time-capsule">{{dispTime[index].minute}}</text>:
+              <text class="time-capsule">{{dispTime[index].second}}</text>
+            </view>
+            <view class="limit-subtitle">
+              爆款限时限量抢
+            </view>
+          </view>
+					<view class="goods-wrap">
+						<view 
+              class="goods-inner"
+              bindtap="jumpToDetail"
+              data-index='{{secIndex}}'
+              data-code="{{secCode}}">
+							<image src="{{skillData.list[0].seckill_img}}" style="border:2rpx solid #f2f2f2;width:100rpx;height:100rpx;" />
+							<view class="price-tag">￥{{skillData.list[0].price}}</view>
+						</view>
+						<view 
+              wx:if="{{skillData && skillData.list && skillData.list.length > 1}}"
+              class="goods-inner"
+              bindtap="jumpToDetail"
+              data-index='{{secIndex}}'
+              data-code="{{secCode}}">
+							<image src="{{skillData.list[1].seckill_img}}" style="border:2rpx solid #f2f2f2;width:100rpx;height:100rpx;" />
+							<view class="price-tag">￥{{skillData.list[1].price}}</view>
+						</view>
+					</view>
+          </view>
+				</block>
+			</view>
+		</view>
+	</block>
+</view>
+

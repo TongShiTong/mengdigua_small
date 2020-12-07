@@ -1,0 +1,8 @@
+<!--pages/center/seting/aboutUs/aboutUs.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="关于我们" bgColor="#fff" />
+<rich rich="{{AboutContent}}" />
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,63 @@
+<!--pages/center/myAccount/myAccount.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="账户余额" />
+  <view class="top-wrap">
+    <image 
+      src="/images/center/card-bak.png"
+      style="width:750rpx;height:288rpx;" 
+      ></image>
+    <view class="rest-wrap">
+      <view class="rest-title">可提现金额(元)</view>
+      <view class="rest-num">{{handInfo.balance}}</view>
+      <view class="rest-cur">未到账金额（元）：{{handInfo.freeze}}</view>
+    </view>
+  </view>
+  
+    <view class="list-wrap">
+    <view
+      wx:if="{{accountList.list && accountList.list.length != 0}}"
+      wx:for="{{accountList.list}}"
+      wx:key='index'>
+      <view
+        class="list-inner flex-r-b">
+        <view>
+          <view class="item-title">{{item.title}}</view>
+          <view class="item-time">{{item.create_time}}</view>
+        </view>
+        <view class="item-num flex-r-s">
+          <view>{{item.price}}</view>
+          <image 
+            src="/images/small-right.png" 
+            style="margin-left:20rpx;width:10rpx;height:20rpx;"></image>
+        </view>
+      </view>
+    </view>
+    <!-- <view
+      wx:else
+      style="width:750rpx;text-align:center;background:transparent;">
+      暂时没有记录
+    </view> -->
+  </view>
+  <view style="height:80rpx;"></view>
+  <view 
+    class="bottom-btn flex-r-b">
+    <view 
+      class="btn-inner" 
+      style="opacity:0.5;"
+      bindtap="jumpToCash">
+      提现
+    </view>
+    <view 
+      class="btn-inner"
+      bindtap="toUse">
+      去使用
+    </view>
+  </view>
+  
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

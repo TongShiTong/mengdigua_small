@@ -1,0 +1,24 @@
+<!--pages/goodDetail/uploadMaterial/uploadMaterial.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="{{title}}" />
+  <view class='super'>
+    <view class='user-evaluate'>
+      <textarea class='textarea' value='{{ idea }}' placeholder='这一刻的想法' bindinput='getIdea' />
+      <view class='img-list'>
+        <view wx:for="{{ imgList }}" wx:key="{{ index }}" class='img-wrap'>
+          <image class='evaluate-img' mode="aspectFill" src="{{ item }}"></image>
+          <view class='cancel theme-lg-A-{{theme}}' bindtap='deleteImg' data-index='{{ index }}'>X</view>
+        </view>
+        <view class='upload' bindtap='uploadImg'>
+          <image class='upload-img' src="/images/center/upload.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='evaluate-btn theme-lg-A-{{theme}}' bindtap='report'>发表</view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

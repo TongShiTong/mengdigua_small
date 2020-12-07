@@ -1,0 +1,270 @@
+/* pages/personShop/personShop.wxss */
+
+page {
+  height: auto;
+  background: #fff;
+}
+
+.adming-title {
+  text-align: right;
+}
+
+.shop-title {
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: rgba(1, 0, 1, 1);
+  line-height: 100rpx;
+  height: 100rpx;
+}
+
+.input-line {
+  margin-bottom: 32rpx;
+}
+
+.shop-title2 {
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: rgba(1, 0, 1, 1);
+  height: 108rpx;
+  line-height: 108rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.admin {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(187, 187, 187, 1);
+}
+
+.earn {
+  position: absolute;
+  width: 34rpx;
+  height: 34rpx;
+  color: #fff;
+  background-color: #c80000;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  font-size: 22rpx;
+  transform: translateY(-50%);
+}
+
+.earn-price {
+  margin-left: 26rpx;
+  height: 29rpx;
+  line-height: 29rpx;
+  padding: 0 12rpx 0 20rpx;
+  border-radius: 0 18rpx 18rpx 0;
+}
+
+.button-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 98rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 0 0 #eee;
+  border-top: 2rpx solid #eee;
+}
+
+.delate {
+  width: 212rpx;
+  text-align: center;
+  height: 98rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: #fff;
+  line-height: 98rpx;
+}
+
+.shop-list-choice-1 {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: #fff;
+  border: 2rpx solid #1d1e1f;
+  position: relative;
+}
+
+.shop-list-choiced-1 {
+  border: 0;
+}
+
+.center-circle-1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8rpx 0 rgba(0, 0, 0, 0.2);
+}
+
+.choice-left {
+  margin-left: 32rpx;
+}
+
+.choice-all {
+  margin-left: 16rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: #333;
+}
+
+/*  */
+
+.shop-word-1 {
+  font-size: 24rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #000;
+}
+
+.shop-word-pic {
+  width: 80rpx;
+  height: 72rpx;
+}
+
+.first-shop {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.mask2 {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+}
+
+.my-shop {
+  width: 240rpx;
+  height: 240rpx;
+  /* top: 225rpx; */
+  left: 40rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  position: relative;
+}
+
+.my-shop2 {
+  width: 730rpx;
+  position: relative;
+  padding: 0 30rpx;
+  height: 152rpx;
+  box-sizing: border-box;
+  left: 10rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.my-shop3 {
+  width: 320rpx;
+  position: relative;
+  height: 320rpx;
+  left: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.box-shadow-1 {
+  width: 320rpx;
+  height: 320rpx;
+  background: #eee;
+  border-radius: 8px;
+  position: relative;
+}
+
+.person-shop-add-1 {
+  width: 80rpx;
+  height: 72rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show-button {
+  left: 50%;
+  border-radius: 8rpx;
+  transform: translateX(-50%);
+  width: 686rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 32rpx;
+  color: #fff;
+}
+
+.zegai-item1-1 {
+  position: absolute;
+  padding: 0 9px;
+  height: 70rpx;
+  font-size: 14px;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  line-height: 70rpx;
+  background: #bbb;
+  border: 1px solid white;
+  border-radius: 4px;
+  top: 280rpx;
+  left: -20rpx;
+  width: 260rpx;
+}
+
+.to-top-triangle {
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  margin: -5px 0 0 -9px;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  color: white;
+  background: #bbb;
+}
+
+.to-top-triangle2 {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  margin: -5px 0 0 -9px;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  width: 10px;
+  height: 10px;
+  transform: rotate(225deg);
+  color: white;
+  background: #bbb;
+}
+
+.item-2-top {
+  top: 200rpx;
+}
+
+.item-3-top {
+  width: 480rpx;
+  top: -100rpx;
+  left: 10rpx;
+}
+
+.item-3-top .to-top-triangle2 {
+  left: 15%;
+}

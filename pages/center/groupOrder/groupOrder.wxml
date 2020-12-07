@@ -1,0 +1,218 @@
+<!--pages/order/order.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+  <block class="flex-column">
+    <navbar title="{{title}}" bgColor="#fff" />
+    <view class='tab-wrap flex-row' style="top:{{barHeight}}px;background:#fff;color:black;">
+      <view 
+        class='tab {{ tabIndex == index?"tab-active":"" }}' 
+        wx:for="{{ tab }}" 
+        wx:key="{{ index }}" 
+        data-index='{{ index }}' 
+        bindtap='selectTab'
+        style="color:black;">{{ item.name }}
+        <view wx:if="{{ tabIndex == index }}" class='line'></view>
+      </view>
+    </view>
+    <!-- 拼团 普通 -->
+    <block wx:if="{{type==1}}">
+      <view>
+        <view class='content-wrap empty-wrap' wx:if="{{ isEmpty }}">
+          <image class='empty-img' src="/images/order/empty.png"></image>
+          <view class='empty-text'>暂无内容</view>
+          <view class='go-look' bindtap='jumpHome'>逛逛今日特卖</view>
+          <view>
+            <view class='bg16'></view>
+            <view style='' class='bg-white like-title '>——猜你喜欢——</view>
+            <forList list="{{allGroupList.list}}" showType="2" skillType='1' userInfo="{{userInfo}}"></forList>
+          </view>
+        </view>
+        <view class='content-wrap' wx:else>
+          <view class='order-content' wx:for="{{ orderList.list }}" wx:key="index">
+            <view class='order-top flex-row-s'>
+              <!-- <view class='order-no' wx:if="{{ item.order_no }}">订单编号：{{ item.order_no }}</view> -->
+              <!-- <view wx:else></view> -->
+              <view class='shop-name' wx:if="{{ item.status == 0|| item.status == 8}}">{{shop_name||'NETMI 猎米社交电商'}}</view>
+              <view class='flex-row-f' wx:else catchtap='jumpShopDetail' id="{{item.MainOrders[0].shop.id}}">
+                <view class='shop-name'>{{item.MainOrders[0].shop.name}}</view>
+                <image src='/images/small-right.png' class='small-right-img' mode="aspectFill"></image>
+              </view>
+              <view class='status-one' style="{{item.MainOrders[0].team_info.status == 1 ? 'color:#b52902;':''}}">{{item.MainOrders[0].status_name}}</view>
+
+            </view>
+            <view wx:for="{{ item.MainOrders }}" wx:for-index="{{ mainIndex }}" wx:for-item="mainItem" wx:key="{{ mainIndex }}">
+              <!-- <view class='shop-name'>{{mainItem.shop.name}}</view> -->
+              <view class='order-header flex-row-f' wx:for="{{ mainItem.orderSkus }}" wx:for-index="{{ skuIndex }}" wx:for-item="skuItem" data-groupId="{{skuItem.team_info.group_team_id}}" wx:key="{{ skuIndex }}" data-id='{{ item.main_order_id }}' bindtap='jumpOrderDetail'>
+                <view class='show-image-total'>
+                  <image class='order-img' src="{{ skuItem.img_url }}"></image>
+                  <view class='small-icon theme-lg-B-{{theme}}' wx:if="{{skuItem.activity_type==1}}">秒杀</view>
+                </view>
+                <view class='order-content-right flex-column-s'>
+                  <view style="position:relative;width:100%;">
+                    <view class='order-name text-line1'>
+                      {{S1.substr(skuItem.spu_name,16)}}</view>
+                      <view class="flex-r-b">
+                        <view class='order-num'>{{S1.substr(skuItem.value_names,20)}}</view>
+                        <view style="line-height:30rpx;margin-top:30rpx;">x{{skuItem.num}}</view>
+                      </view>
+                  </view>
+                  <view class='flex-row-s' style='width:100%;'>
+                    <!-- <view>
+                      <text class='order-price theme-font-A-{{theme}}'>{{ F1.moneyFormat(skuItem.sku_price)}}</text>
+                    </view> -->
+                    <!-- <view class='order-num'>x{{ skuItem.num }}</view> -->
+                    <view style="display:flex;justify-content:flex-start;width:100%;position:relative;">
+                      <view style="display:flex;position:relative;" wx:if="{{skuItem.is_abroad==1||skuItem.activity_type==2}}">
+                        <view class="tag-abroad" wx:if="{{skuItem.is_abroad==1}}">跨境购</view>
+                        <view class="tag-group" wx:if="{{skuItem.activity_type==2}}">拼团</view>
+                        <view class="tag-seckill" wx:if="{{skuItem.activity_type==1}}">秒杀</view>
+                      </view>
+                      <view wx:else style="height:26rpx;" />
+                      <view style="display:flex;overflow:hidden;position:absolute;right:0;">
+                        <view class="refund-type" wx:if="{{skuItem.status==4||skuItem.status==5||skuItem.status==6||skuItem.status==7}}">退款中</view>
+                        <view class='order-price' style="color:#000;">{{ F1.moneyFormat(skuItem.sku_price)}}</view>
+										</view>
+									</view>
+
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class='flex-row-s' style='padding-left:32rpx;'>
+              <!-- <view class='num-price'>共{{ item.goods_num }}件商品</view> -->
+              <view>
+                <text>共{{item.goods_num}}件商品</text>
+                <text class='order-price theme-font-A-{{theme}}'>{{ F1.moneyFormat(item.order_amount) }}</text>
+              </view>
+               <view class='status-btn flex-r-e'>
+              <block wx:if="{{item.group_status!=2}}">
+                <view class='order-bottom' wx:if="{{ item.status == 0 || item.status == 10 }}">
+                  <view class='border-btn-item delete-btn theme-border-c-A-{{theme}}' catchtap='showCancel' data-id='{{ item.main_order_id }}'>取消订单</view>
+                  <!-- <view class='border-btn-item buy-btn' catchtap='goBuy' data-item='{{ item.MainOrders }}' data-id="{{item.main_order_id}}">去付款</view> -->
+                  <form bindsubmit="goBuy" report-submit="true" data-item='{{ item.MainOrders }}' data-id="{{item.main_order_id}}">
+                    <button formType="submit" class='border-btn-item buy-btn theme-lg-A-{{theme}}'>去付款</button>
+                  </form>
+                </view>
+                <view class='order-bottom' wx:if="{{ item.status == 1&& item.group_status!=0 }}">
+                  <!-- <view class='border-btn-item delete-btn' catchtap='showCancel' data-id='{{ item.id }}'>取消订单</view> -->
+                  <!-- <view class='border-btn-item delete-btn'>申请售后</view> -->
+                  <!-- <view class='border-btn-item delete-btn' data-id='{{ item.order_id }}' catchtap='remindDeliver' data-status="{{ item.is_remind }}">提醒发货</view> -->
+                  <form bindsubmit="remindDeliver" report-submit="true" data-status="{{ item.is_remind }}" data-id="{{item.order_id}}">
+                    <button formType="submit" class='border-btn-item  theme-border-c-A-{{theme}}  border-btn-item delete-btn '>提醒发货</button>
+                  </form>
+                </view>
+                <view class='order-bottom' wx:if="{{ item.status == 2 }}">
+                  <view class='border-btn-item delete-btn theme-border-c-A-{{theme}}' catchtap='jumpLog' data-lognumber='{{ item.order_no }}'>查看物流</view>
+                  <!-- <form catch:submit="confirmRemind" report-submit="true"> -->
+                  <view catchtap='confirmRemind' class='border-btn-item buy-btn theme-lg-A-{{theme}}' data-id='{{ item.order_id }}'>确认收货</view>
+                  <!-- </form> -->
+                </view>
+                <view class='order-bottom' wx:if="{{ item.status == 3 }}">
+                  <view class='border-btn-item theme-border-c-A-{{theme}} delete-btn' catchtap='jumpGoEvaluate' data-id='{{ item.main_order_id }}'>我要评价</view>
+                </view>
+                <view class='order-bottom' wx:if="{{ item.status == 8 || item.status == 9 }}">
+                  <view class='border-btn-item theme-border-c-A delete-btn' data-id='{{ item.main_order_id }}' catchtap='showDelete'>删除订单</view>
+                </view>
+                <view class='order-bottom' wx:if="{{ item.status !=0 && item.group_status==0 }}">
+                  <view class='border-btn-item theme-border-c-A-{{theme}} buy-btn' data-groupId="{{item.MainOrders[0].orderSkus[0].team_info.group_team_id}}" catchtap='openModel'>邀请好友</view>
+
+                </view>
+              </block>
+              <block wx:if="{{item.group_status==2}}">
+                <view class='order-bottom'>
+                  <view class='border-btn-item delete-btn' data-id='{{ item.main_order_id }}' catchtap='showDelete'>删除订单</view>
+                </view>
+              </block>
+
+            </view>
+
+            </view>
+           
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 拼团 推广 -->
+    <block wx:if="{{type==2}}">
+      <view >
+        <view class='content-wrap empty-wrap' wx:if="{{ isEmpty }}">
+          <image class='empty-img' src="/images/order/empty.png"></image>
+          <view class='empty-text'>暂无内容</view>
+          <view class='go-look' bindtap='jumpHome'>逛逛今日特卖</view>
+          <view>
+            <view class='bg16'></view>
+            <view style='' class='bg-white like-title '>——猜你喜欢——</view>
+            <forList list="{{allGroupList.list}}" showType="2" skillType='1' userInfo="{{userInfo}}"></forList>
+          </view>
+        </view>
+
+        <view class='content-wrap' wx:else>
+          <view class='order-content' wx:for="{{ orderList.list }}" wx:key="index">
+            <view class='order-top flex-row-s'>
+              <!-- <view class='order-no' wx:if="{{ item.order_no }}">订单编号：{{ item.order_no }}</view> -->
+              <!-- <view wx:else></view> -->
+              <view class='flex-row-f' catchtap='jumpShopDetail' id="{{item.item.shop.id}}">
+                <view class='shop-name'>{{item.item.shop.name}}</view>
+                <image src='/images/small-right.png' class='small-right-img' mode="aspectFill"></image>
+              </view>
+              <view class='status-name'>{{item.status_name}}</view>
+
+            </view>
+            <view>
+              <!-- <view class='shop-name'>{{mainItem.shop.name}}</view> -->
+              <view class='order-header flex-row-f' data-url="/pages/assemble/joinGroup/joinGroup?type=3&group_team_id={{item.group_team_id}}&listIn=true" bindtap='goPushRoute'>
+                <view class='show-image-total'>
+                  <image class='order-img' src="{{ item.item.img_url }}"></image>
+                </view>
+                <view class='order-content-right flex-column-s'>
+                  <view>
+                    <view class='order-name text-line1'>
+                      <text class='theme-font-A-{{theme}}'>【拼团】</text>
+                      <text class='theme-font-A-{{theme}}' wx:if="{{item.item.is_abroad==1}}">【跨境购】</text>{{S1.substr(item.item.title,16)}}</view>
+                    <!-- <view class='order-num'>{{S1.substr(item.item.remark,20)}}</view> -->
+                  </view>
+                  <view class='flex-row-s' style='width:100%;'>
+                    <view>
+                      <text class='order-price theme-font-A-{{theme}}'>{{ F1.moneyFormat(item.item.price)}}</text>
+                      <text class='order-price-th ' wx:if="{{ item.item.old_price }}">{{ F1.moneyFormat(item.item.old_price) }}</text>
+                    </view>
+                    <!-- <view class='order-num'>x{{ item.num }}</view> -->
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- <view class='flex-row-s' style='padding: 20rpx 30rpx;'>
+              <view class='num-price'>共{{ item.goods_num }}件商品</view>
+              <view>
+                <text>小计：</text>
+                <text class='order-price theme-font-A-{{theme}}'>{{ F1.moneyFormat(item.order_amount) }}</text>
+              </view>
+            </view> -->
+            <view class='status-btn flex-r-e'>
+              <view class='order-bottom' wx:if="{{ item.status ==0}}">
+                <view class='border-btn-item buy-btn theme-border-c-A-{{theme}}' data-groupId="{{item.group_team_id}}" catchtap='openModel'>邀请好友</view>
+              </view>
+              <view class='order-bottom' wx:if="{{ item.status ==1|item.status ==2 }}">
+                <view class='border-btn-item delete-btn' data-id='{{ item.group_team_id }}' catchtap='showDelete'>删除订单</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+  </block>
+  <!-- 取消订单 -->
+  <message wx:if="{{ cancelModal }}" title="取消提醒" subTitle="是否确定？" confirmText="确定" bind:colse="closeModal" bind:confirm="confirmCancel"></message>
+  <!-- 删除订单 -->
+  <message wx:if="{{ deleteModal }}" title="删除提醒" subTitle="是否确定？" confirmText="确定" bind:colse="closeDeleteModal" bind:confirm="confirmDelete"></message>
+  <!-- 确认收货-->
+  <message wx:if="{{ remindModal }}" title="收货提醒" subTitle="是否确认收货？" confirmText="确定" bind:colse="closeRemindModal" bind:confirm="confirmDelivery"></message>
+  <!-- <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal> -->
+  <modal showType="2" img_url="{{share_img}}" isShowModal='{{isShowModal}}' bind:change="close"></modal>
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

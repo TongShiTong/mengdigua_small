@@ -1,0 +1,18 @@
+<!--components/timeSelect/timeSelect.wxml-->
+<view wx-if="{{show}}" class="citypicker">
+  <picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 500rpx;" value="{{value}}" bindchange="bindChange" class="citybody">
+    <view class="cityheader">
+      <view bindtap="closePanel" class="city-cancel">取消</view>
+      <view bindtap="surePanel" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{years}}" wx:key="name" style="line-height: 68rpx;" class="picker-item">{{item}}年</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" wx:key="name" style="line-height: 68rpx;" class="picker-item">{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" wx:key="name" style="line-height: 68rpx;" class="picker-item">{{item}}日</view>
+    </picker-view-column>
+  </picker-view>
+</view>

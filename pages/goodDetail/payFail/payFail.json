@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "支付失败",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

@@ -1,0 +1,78 @@
+<!--pages/order/barList/barList.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="我的砍价" />
+  <view class='tab-wrap flex-row ' style="top:{{barHeight}}px">
+    <view class='tab {{ tabIndex == index?"tab-active":"" }}' wx:for="{{ tab }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectTab'>{{ item.name }}
+      <view wx:if="{{ tabIndex == index }}" class='line'></view>
+    </view>
+  </view>
+  <view class="list-total">
+    <view class="each-total" wx:for="{{ bargainList.list }}" wx:key="{{ index }}" data-id="{{item.id}}" catchtap="goDetail">
+      <view class="box-top flex-r-s">
+        <image class="each-image " src="{{item.item.img_url}}" mode="aspectFill"></image>
+        <view style="height:200rpx;align-items:flex-start" class="flex-1 flex-column-s-b">
+          <view class="title text-line1">{{item.item.title}}</view>
+          <view class="remark text-line1 {{item.status==2?'gray':''}}">规格:{{item.sku_name}}</view>
+          <view class="des" wx:if="{{item.status==0}}">已砍价
+            <text class="word-color">{{F1.moneyFormat(item.has_cut_price)}}</text> ,还需砍
+            <text class="word-color" wx:if="{{item.status==0}}" >{{F1.moneyFormat(F1.subNumber(item.has_cut_price,F1.subNumber(item.item.end_price,item.item.start_price)))}}</text>
+            <text class="word-color" wx:if="{{item.status==1}}" >已砍至最低价，快去购买</text>
+          </view>
+
+          <view class="des grat" wx:if="{{item.status==2}}">
+            {{F1.divisionNumber(item.has_cut_price,item.item.start_price,item.item.end_price)>=100?'很遗憾！未完成支付!':'很遗憾！未砍至最低价'}}
+          </view>
+
+          <view class="des title2" wx:if="{{item.status==3}}">砍价成功，好物到手！</view>
+          <block wx:if="{{item.status==0||item.status==1}}">
+            <progress border-radius="16" class="progress-width" stroke-width="14" activeColor="#E50A35" backgroundColor="rgba(229,10,53,0.3)" percent="{{F1.divisionNumber(item.has_cut_price,item.item.start_price,item.item.end_price)}}">
+              <view class="progress-value">
+                {{F1.divisionNumber(item.has_cut_price,item.item.start_price,item.item.end_price)}}%
+              </view>
+
+            </progress>
+          </block>
+          <block wx:if="{{item.status==2}}">
+            <progress border-radius="16" class="progress-width progress-width2" stroke-width="14" activeColor="#B3B3B3" backgroundColor="rgba(179,179,179,0.3)" percent="{{F1.divisionNumber(item.has_cut_price,item.item.start_price,item.item.end_price)}}">
+              <view class="progress-value">
+                {{F1.divisionNumber(item.has_cut_price,item.item.start_price,item.item.end_price)}}%
+              </view>
+            </progress>
+          </block>
+
+        </view>
+
+
+      </view>
+      <view class="box-bottom flex-r-b" wx:if="{{skillStatus[index]==2&&(item.status==0||item.status==1)}}">
+        <view class="flex-r-s word-style">
+          <view class="mr12">{{time[index].day}}天</view>
+          <view class="bg-box">{{time[index].hour}}</view>
+          <view class="time-des">:</view>
+          <view class="bg-box">{{time[index].minute}}</view>
+          <view class="time-des">:</view>
+          <view class="bg-box mr12">{{time[index].second}}</view>
+          <view>后活动结束</view>
+        </view>
+        <view class="box-bottom-gray flex-r-b" wx:if="{{item.status==2}}">结束时间:{{item.end_time}}</view>
+
+        <button class="bar-button theme-lg-A-{{theme}}"  style="color:#fff!important;" wx:if="{{item.status==0}}">继续砍价</button>
+      </view>
+
+      <view wx:if="{{item.status==1}}" class="box-bottom flex-r-e">
+        <button class="bar-button theme-lg-A-{{theme}}" style="color:#fff!important;" data-item="{{item}}" catchtap="goOrder">立即购买</button>
+      </view>
+      <view wx:if="{{item.status==2}}" class="box-bottom flex-r-e">
+        <button class="bar-button theme-lg-A-{{theme}}" style="color:#fff!important;">查看详情</button>
+      </view>
+      <view wx:if="{{item.status==3}}" class="box-bottom flex-r-e">
+        <button class="bar-button theme-lg-A-{{theme}}" style="color:#fff!important;"data-id="{{item.main_order_id}}" catchtap="goOrderDetail">查看订单</button>
+      </view>
+
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,38 @@
+<!--pages/center/welfareCard/welfareCard.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="购物卡" bg_color="#fff"/>
+  <view class="top-wrap">
+    <image 
+      src="/images/center/card-bak.png"
+      style="width:750rpx;height:288rpx;" 
+      ></image>
+    <view class="rest-wrap">
+      <view class="rest-title">当前购物卡余额(元)</view>
+      <view class="rest-num">{{userInfo.card_balance || 0}}</view>
+    </view>
+  </view>
+  <view class="list-wrap">
+    <view
+      wx:for="{{recordList}}"
+      wx:key='index'>
+      <view
+        class="list-inner flex-r-b">
+        <view>
+          <view class="item-title">{{item.title}}</view>
+          <view class="item-time">{{item.create_time}}</view>
+        </view>
+        <view class="item-num">{{item.price}}</view>
+      </view>
+    </view>
+  </view>
+  <view style="height:100rpx;"></view>
+  <view 
+    class="bottom-btn"
+    bindtap="jumpToExchange">点击兑换</view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

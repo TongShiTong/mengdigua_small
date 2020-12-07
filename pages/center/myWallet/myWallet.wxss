@@ -1,0 +1,155 @@
+/* pages/center/myWallet/myWallet.wxss */
+page {
+  background-color: #D1BC9D;
+}
+.t-img {
+  height: 60rpx;
+  width: 68rpx;
+}
+.icon-moore{
+  width: 24rpx;
+  height: 16rpx;
+}
+.tip-img{
+  height: 44rpx;
+  width: 44rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+}
+.t-circular-text {
+  margin: 20rpx 0 32rpx 0;
+  font-size: 30rpx;
+  color: #fff;
+}
+.wallet-wrap {
+  width:670rpx;
+  height:208rpx;
+  background:rgba(255,255,255,1);
+  border-radius:16rpx;
+}
+.wallet-num {
+  font-size: 68rpx;
+  color: #B59F80;
+  margin-top: 10rpx;
+  font-weight: 700;
+}
+.wallet-list {
+  width: 570rpx;
+  padding: 40rpx 40rpx 120rpx 40rpx;
+  background:rgba(255,255,255,1);
+  border-radius:16rpx;
+  margin-top: 32rpx;
+}
+.wallet-list-title {
+  color: #999999;
+  text-align: center;
+}
+.msl-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+.msl-text {
+  margin-left: 22rpx;
+  font-size: 30rpx;
+  color: #555555;
+}
+.msl-r {
+  color: #B59F80;
+  font-size: 40rpx;
+}
+.list-item {
+  padding: 20rpx 0;
+}
+.line {
+  height:1px;
+  background-color:#eee;
+  flex:1;
+  margin:0 32rpx;
+}
+.wallet-detail {
+  width: 750rpx;
+  padding: 30rpx 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 8888;
+  background-color: #fff;
+  border-radius:24rpx 24rpx 0px 0px;
+  box-shadow:0px -16rpx 20rpx 0px rgba(0,0,0,0.1);
+  max-height: 500rpx;
+}
+.wallet-detail-title {
+  color: #999999;
+  font-size: 30rpx;
+  text-align: left;
+  padding: 0 30rpx;
+}
+.msr-title {
+  color: #999999;
+  font-size: 30rpx;
+}
+.list-scroll {
+  padding: 0 30rpx 30rpx 30rpx;
+  margin-top: 30rpx;
+}
+.msr {
+  border-bottom: 1px solid #EEEEEE;
+  padding: 30rpx 0;
+}
+.msr-lt {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.msr-r {
+  color: #B59F80;
+  font-size: 48rpx;
+}
+.help {
+  width: 600rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 102222;
+  background-color: #fff;
+}
+.help-head {
+  position: relative;
+  font-size: 28rpx;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #f4f4f4;
+  border-top-left-radius:10rpx;
+  border-top-right-radius:10rpx;
+}
+.close-help {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+.help-content {
+  border-bottom-left-radius:10rpx;
+  border-bottom-right-radius:10rpx;
+  background-color: #fff;
+  height: 600rpx;
+  padding: 30rpx;
+}
+.mask-wallet {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 8888;
+  left: 0;
+  top: 0;
+}
+
+
+
+
+

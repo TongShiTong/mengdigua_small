@@ -1,0 +1,51 @@
+<!--pages/fq/fq.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="发圈" bgColor="theme" />
+  <wxs src="../../utils/rich.wxs" module="R1" />
+  <view class='tab flex-row-f theme-lg-A-{{theme}}' style="top:{{barHeight}}px;" >
+    <view class='tab-item' wx:for="{{ tab }}"   wx:key="{{ index }}" bindtap='selectTab' data-index='{{ index }}'>
+      <view class='{{ tabIndex==index?"active-tab":"un-tab" }}'>{{ item.title }}</view>
+      <view class='tab-line' wx:if="{{ tabIndex==index }}"></view>
+    </view>
+  </view>
+  <scroll-view class="scroll-load-panel list {{!isIphoneX?'index-scroll-three':''}}" style="top:{{barHeight+48}}px" scroll-y="true" scroll-top="{{scrollTop}}" bindscrolltolower="loadMore">
+    <view class='list-item' wx:for="{{ listData.list }}" wx:key="{{ index }}">
+      <view class='flex-row-s'>
+        <view class='flex-row-f'>
+          <image src="{{ item.head_url }}" class='head-img' mode="aspectFill"></image>
+          <view class='flex-column-s info'>
+            <view class='info-name'>{{ item.nickname }}</view>
+            <view class='text-one'>{{ item.create_time }}</view>
+          </view>
+        </view>
+        <view class='flex-row copy-wrap' bindtap='copyInfo' data-index='{{ index }}'>
+          <image src="/images/copy.png" class='copy-img' mode="aspectFill"></image>
+          <view class='coyp'>复制整段话</view>
+        </view>
+      </view>
+      <view class='rich' wx:if="{{ item.rich_text }}">
+        <rich-text nodes="{{R1.rich(item.rich_text)}}"></rich-text>
+      </view>
+      <view class='img-wrap' wx:if="{{ item.imgs != '' }}">
+        <image wx:for="{{ item.imgs }}" wx:for-item="imgItem" wx:for-index="imgIndex" src="{{ imgItem }}" wx:key="{{ imgIndex }}" class='img' mode="aspectFill" data-index='{{ index }}' data-imgindex='{{ imgIndex }}' bindtap='preview'></image>
+      </view>
+      <view class='flex-row-s list-bottom'>
+        <view wx:if="{{item.is_related_item==1}}">
+          <text class='earn-text theme-color-A-{{theme}}'>预估赚</text>
+          <text class='earn theme-font-A-{{theme}}'>¥{{ item.share }}</text>
+        </view>
+        <view class='flex-row share-wrap' bindtap='showTip' wx:if="{{item.is_related_item==1}}" data-id="{{item.item_id}}"  bindtap='extension'>
+          <image src="/images/fq/fq.png" class='fq-img' mode="aspectFill"></image>
+          <view class='coyp-share'>一键分享</view>
+        </view>
+      </view>
+    </view>
+    <view class='no-list'>没有更多了</view>
+  </scroll-view>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+  <share showShare="{{ showShare }}" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.share_img }}"></share>
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

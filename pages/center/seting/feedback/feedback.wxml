@@ -1,0 +1,29 @@
+<!--pages/center/seting/feedback/feedback.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="意见反馈" />
+  <view class='super'>
+    <view class='user-evaluate'>
+      <view>您有什么问题或建议想对我说？</view>
+      <textarea class='textarea' value='{{ idea }}' placeholder='请输入您的问题或建议' bindinput='getIdea' />
+      <view class='img-list'>
+      <view wx:for="{{ imgList }}" wx:key="{{ index }}" class='img-wrap'>
+        <image class='evaluate-img' mode="aspectFill" src="{{ item }}"></image>
+        <view class='cancel theme-bg-A-{{theme}}'  bindtap='deleteImg' data-index='{{ index }}'>X</view>
+      </view>
+      <view class='upload' bindtap='uploadImg'>
+        <image class='upload-img' src="/images/center/upload.png"></image>
+      </view>
+    </view>
+    </view>
+    <view class='input-item'>
+      <input class='input' type='text' value='{{ nickname }}' bindinput='getNickname' placeholder-style="color:#999999" placeholder='请输入联系人'></input>
+    </view>
+    <view class='input-item'>
+      <input class='input' type='number' value='{{ phone }}' bindinput='getPhone' maxlength='11' placeholder-style="color:#999999" placeholder='请输入联系方式'></input>
+    </view>
+  </view>
+  <view class='evaluate-btn theme-lg-A-{{theme}}' bindtap='saveIdea'>提交</view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

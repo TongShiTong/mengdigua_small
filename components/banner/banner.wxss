@@ -1,0 +1,10 @@
+/* components/banner/banner.wxss */
+
+.banner-two{
+  margin:  0 auto;
+  overflow: hidden;
+}
+.slide-image{
+  width: 100%;
+  height: 300rpx;
+}

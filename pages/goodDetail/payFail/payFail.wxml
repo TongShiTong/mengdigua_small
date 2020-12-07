@@ -1,0 +1,80 @@
+<!--pages/goodDetail/payFail/payFail.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="支付失败" />
+  <view class='flex-column empty'>
+    <image src="/images/gooddetail/fail.png" class="fail-img" mode="aspectFill" />
+    <view class='fail-text'>订单支付失败</view>
+  </view>
+  <view class='order' wx:if="{{ detailData != '' }}">
+    <view style='background:#F6F6F7;' wx:for="{{ detailData.MainOrders }}" wx:key="{{ index }}">
+      <view class='flex-row-f' catchtap='godetail' style="padding: 10rpx 24rpx" id="{{item.shop.id}}">
+        <view class='shop-name'>{{ item.shop.name }}</view>
+        <image src="/images/small-right.png" class='small-right-img' mode="aspectFill"></image>
+      </view>
+      <view class='flex-row-f order-detail' wx:for="{{ item.orderSkus }}" wx:for-item="skuItem" wx:for-index="skuIndex" wx:key="{{ skuIndex }}">
+        <image src="{{ skuItem.img_url }}" class="good-img" mode="aspectFill" />
+        <view class='right-order flex-column-s'>
+          <view>{{ S1.substr(skuItem.spu_name,16) }}</view>
+          <view class='order-value'>{{ S1.substr(skuItem.value_names,16) }}</view>
+          <view class='flex-row-s' style='width:100%;'>
+            <view class='order-price'>￥{{ skuItem.sku_price }}</view>
+            <view class='order-num'>×{{ skuItem.num }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='order' wx:elif="{{ oneOrderInfo != '' }}">
+    <view style='background:#F6F6F7;'>
+      <view class='flex-row-f' style="padding: 10rpx 24rpx" catchtap='godetail' id="{{oneOrderInfo.shop.id}}">
+        <view class='shop-name'>{{ oneOrderInfo.shop.name }}</view>
+        <image src="/images/small-right.png" class='small-right-img' mode="aspectFill"></image>
+      </view>
+      <view class='flex-row-f order-detail'>
+        <image src="{{ oneOrderInfo.img_url }}" class="good-img" mode="aspectFill" />
+        <view class='right-order flex-column-s'>
+          <view>{{ S1.substr(oneOrderInfo.title,16) }}</view>
+          <view class='order-value'>{{ S1.substr(oneOrderInfo.selectData.value_names,16) }}</view>
+          <view class='flex-row-s' style='width:100%;'>
+            <view class='order-price'>￥{{ oneOrderInfo.selectData.price }}</view>
+            <view class='order-num'>×{{ oneOrderInfo.buy_num }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='order' wx:elif="{{ shopcarOrder != '' }}">
+    <view style='background:#F6F6F7;' wx:for="{{ shopcarOrder.list }}" wx:key="{{ index }}">
+      <view class='flex-row-f' catchtap='godetail' id="{{item.shop.id}}">
+        <view class='shop-name'>{{ item.shop.name }}</view>
+        <image src="/images/small-right.png" class='small-right-img' mode="aspectFill"></image>
+      </view>
+      <view class='flex-row-f order-detail' wx:for="{{ item.list }}" wx:for-item="skuItem" wx:for-index="skuIndex" wx:key="{{ skuIndex }}">
+        <image src="{{ skuItem.img_url }}" class="good-img" mode="aspectFill" />
+        <view class='right-order flex-column-s'>
+          <view>{{ S1.substr(skuItem.title,16) }}</view>
+          <view class='order-value'>{{ S1.substr(skuItem.value_names,16) }}</view>
+          <view class='flex-row-s' style='width:100%;'>
+            <view class='order-price'>￥{{ skuItem.price }}</view>
+            <view class='order-num'>×{{ skuItem.num }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='btn look theme-lg-A-{{theme}}' bindtap='jumpDetail'>查看订单</view>
+  <view class='btn back-home' bindtap='back'>回首页</view>
+  <view class='wanner'>
+    <view class='red-text' style='margin-left:10rpx;'>安全提醒</view>
+    <view class='bottom-text'>
+      <text class='text-one'>本平台不会以订单异常，系统升级等理由，通过任何方式发送给您退款链接。请您谨防</text>
+      <text class='other-text'>钓鱼链接或诈骗电话！</text>
+    </view>
+  </view>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

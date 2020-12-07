@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "share": "/components/share/share",
+    "list": "/components/list/list",
+    "tabbar": "/tabbarComponent/tabbar",
+    "navbar": "/components/navbar/index"
+  }
+}

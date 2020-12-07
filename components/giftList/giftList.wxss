@@ -1,0 +1,135 @@
+/* components/giftList/giftList.wxss */
+@import "../../theme/theme-0.wxss";
+@import "../../theme/theme-1.wxss";
+@import "../../theme/theme-2.wxss";
+@import "../../theme/theme-3.wxss";
+@import "../../theme/theme-4.wxss";
+@import "../../theme/theme-5.wxss";
+.flex-row-s {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-row-f {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.scroll-load-panel {
+  width: 100;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+.good-info {
+  margin-left: 24rpx;
+  display: flex;
+  height: 260rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 400rpx;
+}
+.sub-title {
+  font-size: 24rpx;
+  color: #C0C0C0;
+}
+.good {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding: 30rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+.good-img {
+  width: 260rpx;
+  height: 260rpx;
+  border-radius: 6rpx;
+}
+.good-name {
+  color: #1D1E1F;
+}
+.yuan {
+  color: #B52902;
+}
+.good-price {
+  font-size: 30rpx;
+  color: #B52902;
+}
+.good-num {
+  color: #999999;
+  font-size: 24rpx;
+}
+.ys-price {
+  font-size: 24rpx;
+  flex-wrap: wrap;
+}
+.share-price {
+  position: relative;
+  height: 29rpx;
+  background:#F5F6F7;
+  border-radius: 15rpx;
+}
+.earn {
+  position: absolute;
+  width: 34rpx;
+  height: 34rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  font-size: 22rpx;
+  transform: translateY(-50%);
+}
+.earn-price {
+  margin-left: 26rpx;
+  height: 29rpx;
+  line-height: 29rpx;
+  padding: 0 10rpx 0 20rpx;
+  color: #1D1E1F;
+}
+.list-btn {
+  padding: 0 20rpx;
+  height:56rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  line-height: 56rpx;
+  background: #EBC77F
+}
+.buy {
+  color: #fff;
+  background:linear-gradient(41deg,rgba(189,168,140,1) 0%,rgba(184,162,129,1) 100%);
+  border-radius:8rpx;
+}
+.extend {
+  color: #fff;
+  background:linear-gradient(270deg,rgba(62,64,66,1) 0%,rgba(29,30,31,1) 100%);
+  margin-left: 10rpx;
+}
+.empty {
+  width: 100%;
+  height: 100%;
+}
+.serch-empty-img {
+  width: 360rpx;
+  height: 224rpx;
+}
+.base-line {
+  height: 130rpx;
+  text-align: center;
+  line-height: 130rpx;
+  background-color: #f4f4f4;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

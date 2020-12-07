@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "VIP专享区",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "share": "/components/share/share",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

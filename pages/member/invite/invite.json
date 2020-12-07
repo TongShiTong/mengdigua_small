@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "邀请好友",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "setting": "/components/setting/setting",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

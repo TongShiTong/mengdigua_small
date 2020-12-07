@@ -1,0 +1,79 @@
+<!--pages/center/myCollection/myCollection.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+
+      <navbar title="我的关注" />
+<!-- <view class='tab flex-row'>
+  <view class='tab-view' wx:for="{{ tab }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectTab'>
+    <view class='{{ tabIndex == index?"active-tab":"tab-title" }}'>{{ item.title }}</view>
+    <view class='line' wx:if="{{ tabIndex == index }}"></view>
+  </view>
+</view>
+<view class='good-edit' wx:if="{{ showGoodDelete === true && tabIndex == 0 }}" bindtap='showGoodEdit'>完成</view>
+<view class='good-edit' wx:elif="{{ showGoodDelete === false && tabIndex == 0 }}" bindtap='showGoodEdit'>编辑</view>
+<view class='good-edit' wx:if="{{ showShopDelete === true && tabIndex == 1 }}" bindtap='showShopEdit'>完成</view>
+<view class='good-edit' wx:elif="{{ showShopDelete === false && tabIndex == 1 }}" bindtap='showShopEdit'>编辑</view> -->
+<scroll-view class="scroll-load-panel" scroll-y="true" wx:if="{{ tabIndex == 0 }}" bindscrolltolower="loadMoreGood" style='height:{{pageHeight}}px'>
+  <view class='view' >
+    <view class='good {{ index%2 ==1?"right-good":"" }}' wx:for="{{ goodList.list }}" wx:key="{{ index }}" data-shop_id="{{item.shop_id}}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class='good-info'>
+        <view class='good-name'>{{S1.substr(item.title,10)}}</view>
+        <view class='flex-row-s'>
+          <view>
+            <text class='yuan'>¥</text>
+            <text class='good-price'>{{ item.price }}</text>
+          </view>
+          <view class='good-num'>销量{{ item.deal_num }}笔</view>
+        </view>
+      </view>
+      <view class='un-circel' data-index='{{ index }}' data-select='{{ item.isSelect }}' catchtap='selectGood' wx:if="{{ showGoodDelete && item.isSelect === false }}"></view>
+      <view class='circel' data-index='{{ index }}' data-select='{{ item.isSelect }}' catchtap='selectGood' wx:elif="{{ showGoodDelete && item.isSelect === true }}"></view>
+    </view>
+  </view>
+  <view class='delete flex-row-s' wx:if="{{ showGoodDelete }}">
+    <view class='delete-left flex-row-f'>
+      <view class='circel-good' bindtap='selectGoodAdd' wx:if="{{ goodCheckAll }}"></view>
+      <view class='un-circel-good' bindtap='selectGoodAdd' wx:else></view>
+      <view class='all-text'>全选</view>
+    </view>
+    <view class='delete-text' bindtap='deleteGood'>删除</view>
+  </view>
+</scroll-view>
+<scroll-view class="scroll-load-panel" scroll-y="true" wx:else bindscrolltolower="loadMoreShop" style='height:{{pageHeight}}px'>
+  <view class='shop'>
+    <view class='shop-list' wx:for="{{ shopList.list }}" wx:key="{{ index }}" data-id='{{ item.id }}' bindtap='jumpShop'>
+      <view class='flex-row-s each-collect'>
+        <view class='flex-row-f'>
+          <image src="{{ item.logo_url }}" class='shop-img' mode="aspectFill"></image>
+          <view class='shop-right'>
+            <view class='shop-name'>{{ item.name }}</view>
+            <view class='good-num'>共{{ item.sum_item }}件商品</view>
+          </view>
+        </view>
+        <!-- <view class='un-shop-circel' data-index='{{ index }}' data-select='{{ item.isSelect }}' catchtap='selectShop' wx:if="{{ showShopDelete && item.isSelect === false }}"></view>
+        <view class='shop-circel' data-index='{{ index }}' data-select='{{ item.isSelect }}' catchtap='selectShop' wx:elif="{{ showShopDelete && item.isSelect === true }}"></view> -->
+        <button  class='button-style button-style2 theme-lg-C-{{theme}}' catchtap='cancelCollectShop'  data-index="{{index}}" id="{{item.id}}">
+          <image src="/images/shop/attentioned.png" class='icon-img' mode="aspectFill" lazy-load="true"></image>
+          <text>已关注</text>
+        </button>
+      </view>
+      <view class='line1'></view>
+    </view>
+  </view>
+  <view class='delete flex-row-s' wx:if="{{ showShopDelete }}">
+    <view class='delete-left flex-row-f'>
+      <view class='shop-circel' wx:if="{{ shopCheckAll }}" bindtap='selectShopAdd'></view>
+      <view class='un-shop-circel' wx:else bindtap='selectShopAdd'></view>
+      <view class='all-text'>全选</view>
+    </view>
+    <view class='delete-text' bindtap='deleteShop'>删除</view>
+  </view>
+</scroll-view>
+<modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

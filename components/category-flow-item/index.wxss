@@ -1,0 +1,124 @@
+
+.flow-card{
+  width: 340rpx !important;
+  padding: 0 0 20rpx 0 !important;
+box-shadow: 0px 0px 8px 2px rgba(17, 17, 17, 0.05);
+border-radius: 16rpx;
+background-color: #fff;
+overflow: hidden;
+  margin-bottom: 20rpx;
+}
+/* 视频介绍 */
+.video{
+  width: 340rpx;
+  height: 560rpx;
+  position: relative;
+}
+.video video{
+  width: 340rpx;
+  height: 560rpx;
+}
+.video-des{
+  position: absolute;
+  bottom: 0 ;
+  left:0;
+   width: 100%;
+   font-size: 28rpx;
+   line-height: 56rpx;
+   color: #fff;
+   text-align:center;
+   overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.video-shop{
+  display: flex;
+  align-items: center;
+  margin: 20rpx 20rpx 0 20rpx;
+  position: relative;
+}
+.shop-head{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.icon-follow{
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 0rpx;
+  top: 10rpx;
+}
+.shop-name{
+  margin: 0 10rpx;
+color: #111111;
+font-size: 20rpx;
+font-weight: bold;
+}
+.shop-name .text{
+  
+color: #747576;
+font-weight: normal;
+}
+
+
+/* 图片介绍 */
+
+.photo{
+  width: 340rpx;
+  border-radius: 16rpx 16rpx 0 0;
+}
+.intro-box{
+  padding: 0 20rpx;
+}
+.intro-box .des .pic{
+  width: 100rpx;
+  height: 28rpx;
+  vertical-align: middle;
+}
+.intro-box .des .pic-tag4{
+  width: 60rpx;
+}
+.intro-box .des {
+  font-size: 28rpx;
+  color: #111111;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tags-box {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+.intro-box .tags{
+  font-size: 18rpx;
+  color: #FF2B2B;
+  padding:0 5rpx;
+  margin-right: 5rpx;
+  background: #FFF4F4;
+  border-radius: 6rpx;
+  border: 1px solid #FFA0A2;
+  flex-shrink: 0;
+}
+.intro-box .price{
+  font-size: 24rpx;
+  color: #747576;
+  margin-top:40rpx;
+}
+.intro-box .price .red{
+  font-weight: bold;
+color: #FF2B2B;
+}
+.intro-box .price .price-num{
+  font-size: 34rpx;
+  
+}

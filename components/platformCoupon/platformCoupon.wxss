@@ -1,0 +1,134 @@
+/* components/platformCoupon/platformCoupon.wxss */
+
+.fixed-model {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 500;
+}
+
+.bg-color {
+  background: #fff;
+  border-radius:16rpx;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 500;
+  transform: translate(-50%, -50%);
+  border-radius: 16rpx;
+}
+
+.each-coupon {
+  max-height: 588rpx;
+  overflow: hidden;
+  margin-top: 42rpx;
+  margin-bottom: 50rpx;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 0 4rpx 10rpx 0 rgba(218, 218, 218, 1);
+}
+
+.coupon-pic {
+  width: 600rpx;
+  height: 312rpx;
+  display: block;
+}
+
+.each-content {
+  margin: 0 auto 20rpx;
+  width: 536rpx;
+  height: 168rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4rpx 18rpx 0 rgba(218, 218, 218, 1);
+}
+
+.coupon-info {
+  flex: 1;
+  padding-left: 40rpx;
+}
+
+.coupon-type {
+  height: 168rpx;
+  width: 152rpx;
+  background: linear-gradient(41deg, rgba(215, 43, 24, 1) 0%, rgba(215, 24, 87, 1) 100%);
+  border-radius: 0px 8px 8px 0px;
+  line-height: 152rpx;
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+}
+
+.flex-r-b {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-r-s {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-r-s-b {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+.coupon-info-top {
+  margin-bottom: 20rpx;
+}
+
+.pirce-style {
+  margin-right: 20rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: rgba(196, 13, 0, 1);
+}
+
+.spe-pirce {
+  font-size: 60rpx;
+  line-height: 80rpx;
+}
+
+.use-price {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 600;
+  color: rgba(51, 51, 51, 1);
+  line-height: 34rpx;
+}
+
+.coupon-info-time {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 28rpx;
+}
+
+.OneClick {
+  width: 240rpx;
+  height: 76rpx;
+  font-size: 28rpx;
+  font-family: JLinXin;
+  color: rgba(255, 255, 255, 1);
+  line-height: 76rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  background: #FF6161;
+  margin: 70rpx auto 40rpx;
+}

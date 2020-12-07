@@ -1,0 +1,68 @@
+/* pages/order/logisticsInfo/logisticsInfo.wxss */
+.scroll-load-panel {
+  background-color: #fff;
+}
+.logistics-title {
+  padding: 30rpx 0;
+  margin: 0 40rpx;
+  border-bottom: 1px solid #CAD5DE;
+}
+.logistics-company {
+  margin-bottom: 40rpx;
+}
+.copy {
+  color: #B52902;
+  font: 24rpx;
+}
+.img-box {
+  position: relative;
+}
+.line-item {
+  height: 120rpx;
+  position: absolute;
+  top: 58rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  border:1px solid rgba(202,213,222,1);
+}
+.line-red {
+  border:1px dashed #DB4239;
+}
+.logistics-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 40rpx;
+  margin-bottom: 70rpx;
+}
+.log-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.log-day {
+  font-size: 32rpx;
+  color: #555555;
+  margin-top: 6rpx;
+  width: 240rpx;
+}
+.log-time {
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+.log-status {
+  font-size: 32rpx;
+  color: #1B252D;
+}
+.log-title {
+  font-size: 24rpx;
+  width: 450rpx;
+}
+.log-img {
+  width: 52rpx;
+  height: 52rpx;
+  padding: 0 22rpx;
+}

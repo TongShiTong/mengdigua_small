@@ -1,0 +1,12 @@
+<!--pages/center/userInfo/changeName/changeName.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="修改昵称" />
+  <view class='nickname' style="margin-top:40rpx">
+    <input class='input ' bindinput='changeName' value='{{ nickName }}' placeholder-class="input-place" placeholder='该处为旧昵称'></input>
+  </view>
+  <view class='btn theme-lg-A-{{theme}}' bindtap='sava'>提交</view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

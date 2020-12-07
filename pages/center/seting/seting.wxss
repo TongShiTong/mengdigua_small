@@ -1,0 +1,22 @@
+/* pages/center/seting/seting.wxss */
+.list {
+  border-top: 1px solid #f4f4f4;
+}
+.inof-item:first-child {
+  height: 140rpx;
+  border-top: 1px solid #f4f4f4;
+}
+.inof-item {
+  height: 100rpx;
+  border-bottom: 1px solid #f4f4f4;
+  color: #222222;
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+.head-img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 2px solid rgba(204, 204, 204, 0.5);
+  margin-right: 20rpx;
+}

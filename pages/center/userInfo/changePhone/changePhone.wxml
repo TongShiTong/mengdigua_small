@@ -1,0 +1,35 @@
+<!--pages/center/userInfo/changePhone/changePhone.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="{{title}}" />
+  <view style="margin-top:200rpx">
+    <view class='input-item' >
+      <!-- <view class="input-title">手机号</view> -->
+      <view class='input-wrap'>
+        <text>+86</text>
+        <view class="jiantou"></view>
+        <input class='input'  disabled="{{check==1?true:false}}" value="{{phone}}" type='number' bindinput='getPhone' maxlength='11' placeholder-style='color:#8C8C8C' placeholder='请输入新手机号码'></input>
+      </view>
+    </view>
+    <!-- <view  style='background:#fff;' >
+      <view class='input-wrap flex-row-s' >
+        <input class='input' type='number'bindinput='inputCode1' maxlength='11' placeholder-style='color:#999999' placeholder='请输入图片验证码'></input>
+        <image src="{{ url }}" class="good-img" mode="widthFix"  catchtap='getPicCode'/>
+      </view>
+    </view> -->
+    <view class='code-wrap'>
+      <!-- <view class="input-title">验证码</view> -->
+      <view class='flex-row-s code-item'>
+        <view class='input-code-wrap'>
+          <input type='numer' class='input-code' placeholder='请输入验证码' bindinput='inputCode' placeholder-style='color:#8C8C8C'></input>
+        </view>
+        <view class='get-code' bindtap='getCode' wx:if="{{ showCodeTime === false }}">获取验证码</view>
+        <view class='get-code' wx:if="{{ showCodeTime === true }}">{{ codeText }}s</view>
+      </view>
+    </view>
+    <view class='save-btn theme-lg-A-{{theme}}' bindtap='savePhone'>提 交</view>
+  </view>
+	<!-- <bind-phone wx:if="{{ isBindPhone }}" /> -->
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

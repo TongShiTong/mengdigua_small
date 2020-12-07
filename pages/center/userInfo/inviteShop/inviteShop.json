@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的邀请店铺",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

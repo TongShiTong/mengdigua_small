@@ -1,0 +1,26 @@
+<!--components/shop/shop.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<view class='wrap'>
+	<view class='flex head'>
+		<view class='title theme-color-A-{{theme}}'>{{ title }}</view>
+		<!-- <view class='flex' bindtap='jumpRecommend'>
+      <view class='look-all'>查看全部</view>
+      <image src="/images/small-right.png" class='small-right-img' mode="aspectFill"></image>
+    </view> -->
+		<view class='line theme-color-A-{{theme}}' />
+	</view>
+	<view class='list' wx:for="{{ listData }}" wx:key="{{ index }}">
+		<view class='header'>
+			<view class='head-left'>
+				<image src="{{ item.logo_url }}" class='logo-img' mode="aspectFill" />
+				<view class='shop-info'>
+					<view class='shop-nmae'>{{ item.name }}</view>
+					<view class='shop-num'>{{ item.sum_item }}件商品</view>
+				</view>
+			</view>
+			<view class='jindian theme-color-A-{{theme}} theme-border-A-{{theme}}' bindtap='jumpShop' data-id='{{ item.id }}'>进店</view>
+		</view>
+		<image src="{{ item.img_url }}" class='shop-img' mode="aspectFill" />
+	</view>
+</view>
+

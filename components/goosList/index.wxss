@@ -1,0 +1,97 @@
+/* components/goosList/index.wxss */
+
+/* 自定义商品 */
+.zdy-box {
+  display: flex;
+  padding:20rpx 16rpx;
+}
+
+.zdy-box .zdy-good-img {
+  flex-shrink: 0;
+  width: 252rpx;
+  height: 242rpx;
+  border-radius: 20rpx;
+  margin-right: 16rpx;
+  overflow: hidden;
+}
+.zdy-box .zdy-good-img image {
+  width: 100%;
+  height: 100%;
+}
+.good-detail-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.good-title {
+  display: flex;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #0A0E11;
+}
+.good-title image {
+  width: 122rpx;
+  height: 44rpx;
+  /* margin-right: 10rpx; */
+  vertical-align: middle;
+}
+
+.tags-box {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+.tags{
+  font-size: 18rpx;
+  color: #A65E07;
+  padding:0 5rpx;
+  margin-right: 5rpx;
+  /* background: #FFF4F4; */
+  border-radius: 6rpx;
+  border: 0.5px solid #C08E51;
+  flex-shrink: 0;
+}
+.disc-info {
+  font-size: 22rpx;
+  color: #68696D;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; 
+}
+.good-num {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20rpx;
+  color: #8c8c8c;
+  font-size: 400;
+  position: absolute;
+  bottom: 0;
+}
+.price-box {
+  font-size: 36rpx;
+  color: #F43900;
+  font-weight: bold;
+}
+.price-box .fh {
+  font-size: 20rpx;
+}
+.price-box .old-price {
+  font-size: 20rpx;
+  color: #8C8C8C;
+  font-weight: 400;
+  margin-left: 2rpx;
+  text-decoration: line-through;
+}

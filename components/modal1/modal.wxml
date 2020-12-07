@@ -1,0 +1,19 @@
+<!--components/modal/modal.wxml-->
+<view class='mask' wx:if="{{ isModel }}" catchtap='close1'></view>
+<view class='message-box' wx:if="{{ isModel }}">
+  <view class='message-top'>
+    <view class='title'>提示</view>
+    <view class='sub-title'>当前账户未设置收货地址，请选择门店自提或添加收货地址。</view>
+  </view>
+  <view class='line'></view>
+  <view class='message-bottom'>
+    <button class='confirm-text confirm-text1' catchtap='close'>线下自提</button>
+     <button class='confirm-text' catchtap='addAdress'>添加地址</button>
+    <!-- <button class='confirm-text'>
+      <navigator url="/pages/center/seting/address/addAddress/addAddress" hover-class="navigator-hover">
+        添加地址
+      </navigator>
+    </button> -->
+    <!-- <button class='confirm-text' bindgetuserinfo='confirm' open-type="getUserInfo">我知道了</button> -->
+  </view>
+</view>

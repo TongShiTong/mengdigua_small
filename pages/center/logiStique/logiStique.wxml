@@ -1,0 +1,10 @@
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+    <navbar title="物流通知" />
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

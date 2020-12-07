@@ -1,0 +1,5 @@
+/* components/rich/rich.wxss */
+.font-style{
+  font-size: 30rpx;
+  line-height: 45rpx;
+}

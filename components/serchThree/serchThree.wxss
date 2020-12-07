@@ -1,0 +1,88 @@
+/* components/serchThree/serchThree.wxss */
+@import "../../theme/theme-0.wxss";
+@import "../../theme/theme-1.wxss";
+@import "../../theme/theme-2.wxss";
+@import "../../theme/theme-3.wxss";
+@import "../../theme/theme-4.wxss";
+@import "../../theme/theme-5.wxss";
+
+.index-head {
+  /* background-color: #1D1E1F; */
+  /* background-color: rgba(79, 167, 230, 1); */
+  /* padding: 0 30rpx; */
+  padding: 0 30rpx;
+  width: 690rpx;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-row-s {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.serch-wrap {
+  width: 100%;
+}
+
+.serch {
+  height: 76rpx;
+  background: #fff;
+  border-radius: 36rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* flex: 1; */
+  /* margin-left: 30rpx; */
+}
+
+.serch-input {
+  margin-left: 16rpx;
+  color: #B9B9B9;
+  font-size: 28rpx;
+}
+
+.message-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-left: 10rpx;
+}
+
+.cilcel {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background-color: #b52902;
+  position: absolute;
+  right: 0;
+  top: 2rpx;
+}
+
+.serch-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.message-img {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.netmi-img {
+  max-width: 140rpx;
+  height: 60rpx;
+}

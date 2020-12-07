@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "请输入提现信息",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

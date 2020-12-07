@@ -1,0 +1,7 @@
+<!--components/tab/tab.wxml-->
+<view class='tab-head flex-row theme-lg-A-{{theme}}' style="top:{{barHeight}}px">
+  <view class='tab {{ index == activeIndex?"active-tab":"" }}' wx:for="{{ tab }}" wx:key="{{ index }}" bindtap='selectTab' data-index='{{ index }}'>
+    <view class='tab-text'>{{ item.title }}</view>
+    <view class='line' wx:if="{{ index == activeIndex }}"></view>
+  </view>
+</view>

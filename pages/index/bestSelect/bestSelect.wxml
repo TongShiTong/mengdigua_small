@@ -1,0 +1,41 @@
+<!--pages/index/bestSelect/bestSelect.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="品牌精选" />
+  <scroll-view scroll-y='{{true}}' bindscrolltolower="loadMore" class='bs-scroll'>
+    <view class='back main-color' wx:if="{{ shareCode }}" bindtap='jumpBack'>返回</view>
+    <view class='share-wrap flex-row' bindtap='shareView'>
+      <image class='vip-share' src='/images/index/share.png'></image>
+    </view>
+    <view wx:for="{{list}}" wx:for-item="i" wx:key="{{index}}">
+      <view class='top_title flex-row-s'>
+        <view>
+          <text class='top-title'>推荐</text>
+          <text class='text-item'>{{i.recommen_date}}</text>
+        </view>
+        <view class='title-num'>{{ i.item_list.length }}</view>
+      </view>
+      <view class='card' wx:for="{{ i.item_list }}" bindtap='jumpDetail' wx:key="j{{ index }}" wx:for-item="j" data-id='{{ j.item_id }}'>
+        <image src="{{j.img_url}}" class='select-img' mode="aspectFill"></image>
+        <view class='wrap-all list-content'>
+          <view class='title'>{{ j.title }}</view>
+          <view class='text-one' style='margin-top:20rpx;'>{{ j.remark }}</view>
+        </view>
+        <view class='flex-row-s list-content'>
+          <view>
+            <text class='yuan text-strong theme-font-A-{{theme}}'>￥</text>
+            <text class='all-price text-strong theme-font-A-{{theme}}'>{{ j.price }}</text>
+            <text class='price-th' wx:if="{{ j.old_price != null }}">￥{{ j.old_price }}</text>
+          </view>
+          <!-- <view class='buy-now'>立即购买</view> -->
+          <view class='num text-one'>已售{{ j.deal_num }}件</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <share showShare="{{ showShare }}" shareImg="{{ shareData.img_url }}"></share>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

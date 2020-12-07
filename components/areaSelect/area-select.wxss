@@ -1,0 +1,39 @@
+.citypicker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  font-size: 28rpx;
+}
+
+.citybody {
+  position: fixed;
+  background-color: #fff;
+  bottom: 0rpx;
+}
+
+.cityheader {
+  position: absolute;
+  top: 0rpx;
+  width: 100%;
+  z-index: 9999;
+}
+
+.city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #818181;
+}
+
+.city-true {
+  float: right;
+  margin: 20rpx;
+  color: #2fb42e;
+}
+
+.picker-item {
+  text-align: center;
+}

@@ -1,0 +1,46 @@
+<!--components/groupInfo/groupInfo.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<view class="bg-white member flex-r-b" hover-class="none" hover-stop-propagation="false">
+  <view>
+    <!-- <view class="member-left f12 " wx:if="{{team_info.status==0}}">已有{{team_info.now_number}}人参团,</view> -->
+    <!-- 不从订单列表进 -->
+    <block wx:if="{{!listIn&&showType==1}}">
+      <view class="member-left f12" wx:if="{{team_info.left_number==0}}">已有{{team_info.now_number}}人参团,</view>
+      <view wx:if="{{team_info.left_number!=0}}">还差{{team_info.left_number}}人拼团成功</view>
+      <view class="member-left f12" wx:if="{{team_info.left_number==0}}">恭喜拼团成功</view>
+    </block>
+    <block wx:if="{{listIn&&showType==1}}">
+      <view class="member-left f12"  wx:if="{{team_info.status==0}}">已有{{team_info.now_number}}人参团,</view>
+      <view class="member-left f12" wx:if="{{team_info.status==0}}">还差{{team_info.left_number}}人拼团成功</view>
+      <view class="member-left f12" wx:if="{{team_info.status==1}}">恭喜拼团成功</view>
+      <view class="member-left f12" wx:if="{{team_info.status==2}}">很遗憾,</view>
+      <view class="member-left f12" wx:if="{{team_info.status==2}}">您未满足拼团条件!</view>
+    </block>
+
+    <block wx:if="{{showType==2}}">
+      <view wx:if="{{team_info.status==0&&showTime&&showStatus!=0}}">剩余{{F1.dealTimeFive(showTime)}}</view>
+      <view wx:if="{{team_info.status==1}}">拼团成功</view>
+      <view wx:if="{{team_info.status==2}}">
+        <view>拼团失败</view>
+        <view>{{team_info.end_time}}结束</view>
+      </view>
+    </block>
+  </view>
+
+
+  <view class="member-right flex-r-s">
+    <block wx:for="{{user_list}}" wx:key="{{index}}">
+      <view class="member-person">
+        <image wx:if="{{index==0}}" class="crown" src="/images/center/vip.png" />
+        <image class="member-image" src="{{item.head_url}}" />
+      </view>
+    </block>
+    <block wx:if="{{team_info.left_number!=0}}">
+      <block wx:for="1" wx:key="{{index}}">
+        <view class="member-person" hover-class="none" hover-stop-propagation="false" catchtap='showModel'>
+          <image class="member-image" src="/images/shopcar/add1.png" />
+        </view>
+      </block>
+    </block>
+  </view>
+</view>

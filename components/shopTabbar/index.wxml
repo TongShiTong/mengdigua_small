@@ -1,0 +1,26 @@
+<!--components/shopTabbar/index.wxml-->
+<view 
+  class="tabbar-wrap"
+  wx:if="{{isShowTab}}"
+  style="z-index:10000;">
+  <view
+    wx:for="{{tabList}}"
+    wx:key='index'
+    class="tabbar-item"
+    bindtap="{{curIndex != item.tabIndex ? 'selectTab':''}}"
+    data-index='{{item.tabIndex}}'
+    data-url='{{item.url}}'>
+    <block>
+      <image 
+        wx:if="{{curIndex == item.tabIndex}}"
+        src="/images/shop/{{item.icon}}-s.png" 
+        style="width:40rpx;height:40rpx;margin-top:10rpx;"/>
+      <image 
+        wx:else
+        src="/images/shop/{{item.icon}}-u.png" 
+        style="width:40rpx;height:40rpx;margin-top:10rpx;"/>
+    </block>
+    <view class="tab-name {{curIndex == item.tabIndex ? 'yellow':''}}">{{item.name}}</view>
+  </view>
+</view>
+

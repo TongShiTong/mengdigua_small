@@ -1,0 +1,85 @@
+<!--pages/center/userInfo/userInfo.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1" />
+
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="个人资料" />
+  <view class='super' style="margin-top:40rpx;background: #fff;">
+    <view class='flex-row-s inof-item' bindtap='changeHeadImg'>
+      <view class='left-text'>头像</view>
+      <view class='flex-row-f'>
+        <image src="{{ userInfo.head_url }}" class="head-img right-item" mode="aspectFill"></image>
+        <!-- <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image> -->
+      </view>
+    </view>
+    <view class='flex-row-s inof-item' bindtap='jumpChangeName'>
+      <view class='left-text'>昵称</view>
+      <view class='flex-row-f'>
+        <view class='right-text'>{{ userInfo.nickname }}</view>
+        <image src="/images/center/user/right1.png" class="common-right-img1" mode="aspectFill"></image>
+      </view>
+    </view>
+    <view class='flex-row-s inof-item' bindtap='jumpChangePhone'>
+      <view class='left-text'>手机号</view>
+      <view class='flex-row-f'>
+        <view class='right-text'>{{ userInfo.phone }}</view>
+        <image src="/images/center/user/right1.png" class="common-right-img1" mode="aspectFill"></image>
+      </view>
+    </view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class='flex-row-s inof-item' style="height: 158rpx;">
+        <view class='left-text'>性别</view>
+        <view class='flex-row-f'>
+          <view class='right-text' wx:if="{{ userInfo.sex == 1 }}">男</view>
+          <view class='right-text' wx:elif="{{ userInfo.sex == 2 }}">女</view>
+          <view class='right-text' wx:if="{{ userInfo.sex == 3 }}">未知</view>
+          <image src="/images/center/user/right1.png" class="common-right-img1" mode="aspectFill"></image>
+        </view>
+      </view>
+    </picker>
+
+    <!-- <view class='flex-row-s inof-item'>
+    <view class='left-text'>生日</view>
+    <view class='flex-row'>
+      <view class='right-text'>
+        <picker mode="date" value="{{ userInfo.date_birth }}" start="{{ userInfo.date_birth }}" end="{{ endTime }}" bindchange="bindDateChange">
+          {{ userInfo.date_birth }}      
+        </picker>
+      </view>
+      <image src="/images/small-right.png" class="small-right-img" mode="aspectFill"></image>
+    </view>
+  </view> -->
+
+
+    <view class='flex-row-s inof-item' catchtap='jumpCard' wx:if="{{isDistr==1}}">
+      <view class='left-text'>微信名片</view>
+      <view class='flex-row-f'>
+        <image src="/images/center/user/right1.png" class="common-right-img1" mode="aspectFill"></image>
+      </view>
+    </view>
+
+    <!-- <view class='flex-row-s inof-item' style='margin-top:16rpx;' data-status="{{userInfo.is_set_paypassword}}" bindtap="setPassword" wx:if="{{userInfo.role==1&&isDistr==1}}"> -->
+     <view class='flex-row-s inof-item' style='margin-top:16rpx;border:none;' data-status="{{userInfo.is_set_paypassword}}" bindtap="setPassword" wx:if="{{true}}">
+      <view class='left-text'>支付密码</view>
+      <view class='flex-row-f'>
+        <view class='right-text' wx:if="{{userInfo.is_set_paypassword==1}}">已设置</view>
+        <view class='right-text theme-color-A-{{theme}}' wx:else>未设置</view>
+        <image src="/images/center/user/right1.png" class="common-right-img1" mode="aspectFill"></image>
+      </view> 
+    </view>
+    <!-- <view class='flex-row-s inof-item' style='margin-top:16rpx;' wx:if="{{ userInfo.is_invited == 1 &&isDistr==1}}" bindtap='jumpInvite'> -->
+    <!-- <view class='flex-row-s inof-item' style='margin-top:16rpx;' wx:if="{{ true}}" bindtap='jumpInvite'>
+      <view class='left-text'>我的邀请人</view>
+      <view class='flex-row-f'>
+        <view class='right-text' wx:if="{{ userInfo.up_nickname == null || userInfo.up_nickname == '' }}"></view>
+        <view class='right-text' wx:else>{{ userInfo.up_nickname }}</view>
+        <image src="/images/center/user/right.png" class="common-right-img" mode="aspectFill"></image>
+      </view>
+    </view> -->
+  </view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+	<!-- <bind-phone wx:if="{{ isBindPhone }}" bind:cloosePhone="cloosePhone"/> -->
+  
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,25 @@
+.swipedelete-wrapper {
+  transition: all .4s ease;
+}
+.swipedelete-btn {
+  position:absolute;
+  top:0;
+  right:-116rpx;
+  text-align:center;
+  background:linear-gradient(41deg,rgba(215,43,24,1) 0%,rgba(215,24,87,1) 100%);
+  color:#fff;
+  width:116rpx;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.delete-img {
+  width: 30rpx;
+  height: 30rpx;
+  margin-bottom: 10rpx;
+}

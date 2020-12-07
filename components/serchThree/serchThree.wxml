@@ -1,0 +1,18 @@
+<!--components/serchThree/serchThree.wxml-->
+<view class='index-head'>
+  <view class='serch-wrap flex-row-s'>
+    <!-- <image src="{{logo_url}}" class='netmi-img' mode="aspectFit"></image> -->
+    <view class='serch' bindtap='jumpSerch'>
+      <image src="/images/icon-search.png" class='serch-img' mode="aspectFill"></image>
+      <text class='serch-input'>{{hotpos}}</text>
+    </view>
+    <!-- <view class='message-wrap' bindtap='jumpToCert'>
+      <view class='cilcel theme-bg-A-{{theme}}' wx:if="{{ isRead }}"></view>
+      <image src="/images/certificate.png" class='message-img ' mode="aspectFill"></image>
+    </view> -->
+    <!-- <view class='message-wrap' bindtap='jumpMail'>
+      <view class='cilcel theme-bg-A-{{theme}}' wx:if="{{ isRead }}"></view>
+      <image src="/images/class.png" class='message-img ' mode="aspectFill"></image>
+    </view> -->
+  </view>
+</view>

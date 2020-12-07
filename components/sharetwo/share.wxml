@@ -1,0 +1,53 @@
+<!--components/share/share.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<view class='mask' bindtap='close' wx:if="{{ showShare }}">
+  <view class="botttom-share-word" style="padding-bottom:{{homePage?100:0}}rpx">
+    <view class="top">
+      <view class="title-name">分享给好友</view>
+      <image src="/images/message-cancel.png" class='close-help' mode="aspectFill" bindtap='close'></image>
+    </view>
+    <view class="center-content">
+      <view class="flex-r-s">
+        <icon type="success" size="16" color='{{F1.getMainColor(theme)}}' />
+        <view class="word">文案已复制到手机剪切板</view>
+      </view>
+      <view class="flex-r-s">
+        <icon type="success" size="16" color='{{F1.getMainColor(theme)}}' />
+
+        <view class="word">因受微信限制需要自行保存素材图噢</view>
+      </view>
+      <view class="flex-r-s">
+        <icon type="success" size="16" color='{{F1.getMainColor(theme)}}' />
+        <view class="word">营销海报点击下方按钮即可保存</view>
+      </view>
+      <view class="save-end theme-border-c-A-{{theme}}" catchtap='preeSave'> 保存营销海报</view>
+    </view>
+    <view>
+    </view>
+  </view>
+
+  <setting bind:onchange="shareSave" isShowModal="{{showsetModel}}" />
+</view>
+<!-- <view wx:if="{{ showShare }}">
+  <view class='mask' bindtap='close'></view>
+  <view class='box'>
+
+    <image src='{{ shareImg }}' bindtap='preview' class='share-img'></image>
+  </view>
+  <view class='share-box'>
+    <view class='tab'>
+      <button open-type='share' class='share-btn' bindtap='shareSuccess'>
+        <image src='/images/share-wechat.png' class='share-wechat-img' mode="aspectFill"></image>
+        <view class='share-btn-text'>分享给好友</view>
+      </button>
+    </view>
+    <view class='tab' bindtap='shareSave'>
+      <image src='/images/share-pyq.png' class='share-pyq-img' mode="aspectFill"></image>
+      <view class='share-text'>分享朋友圈</view>
+    </view>
+    <view class='tab' bindtap='shareSave'>
+      <image src='/images/share-save.png' class='share-save-img' mode="aspectFill"></image>
+      <view class='share-text'>保存图片</view>
+    </view>
+  </view>
+</view> -->

@@ -1,0 +1,12 @@
+<!--pages/test/test.wxml-->
+<view style="height:200rpx;"></view>
+<!-- <custom-horizon 
+  showType='1'/> -->
+
+<custom-horizon 
+  showType='2'/>
+
+<shop-tabbar 
+  isShowTab="true"
+  bind/>
+<qual-divide />

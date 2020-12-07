@@ -1,0 +1,62 @@
+/* pages/center/merchantRegister/merchant.wxss */
+
+.bottom-btn {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 98rpx;
+  background: rgba(248, 218, 13, 1);
+  text-align: center;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(52, 52, 48, 1);
+  line-height: 98rpx;
+}
+
+.bottom-layer {
+  width: 750rpx;
+  height: 414rpx;
+  background: rgba(255, 255, 255, 1);
+}
+
+.van-dialog {
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.mask-btn {
+  margin: 0 auto;
+  width: 688rpx;
+  height: 100rpx;
+  background: rgba(248, 218, 13, 1);
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(52, 52, 48, 1);
+  margin-top: 90rpx;
+
+}
+.mask-text{
+  width:630rpx;
+  height:80rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(31,31,31,1);
+  line-height:40rpx;
+  margin: 0 auto;
+}
+.hint{
+  text-align: center;
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(31,31,31,1);
+  line-height:44rpx;
+  margin: 32rpx 0;
+
+}

@@ -1,0 +1,205 @@
+/* pages/center/refund/refund.wxss */
+
+.order-header {
+  padding: 30rpx;
+  background: #fff;
+}
+
+.empty-text {
+  padding: 40rpx 0 10rpx;
+  color: #999;
+  font-size: 32rpx;
+}
+
+.empty-img {
+  width: 228rpx;
+  height: 204rpx;
+  margin-top: 150rpx;
+}
+
+.order-img {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 6rpx;
+}
+
+.list-item {
+  margin-bottom: 16rpx;
+}
+
+.order-content-right {
+  width: 490rpx;
+  margin-left: 30rpx;
+  height: 144rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sku-price {
+  color: #b52902;
+}
+
+.order-title {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  padding-right: 50rpx;
+  color: #999;
+}
+
+.order-status {
+  padding: 30rpx;
+  background-color: #fff;
+  border-top: 1px solid #f4f4f4;
+}
+
+.order-status-text {
+  font-size: 28rpx;
+}
+
+.order-status-fail {
+  color: #b52902;
+}
+
+.order-status-app {
+  color: #999;
+}
+
+.order-status-success {
+  color: #1eb090;
+}
+
+.shop-name {
+  color: #1d1e1f;
+  margin-right: 12rpx;
+}
+
+.shop-name-new {
+  height: 40rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC;
+  font-weight: 500;
+  color: rgba(57, 57, 57, 1);
+  line-height: 40rpx;
+}
+
+.order-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20rpx 0 30rpx 0;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.border-btn-item {
+  width: 156rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border: 1px solid rgba(153, 153, 153, 1);
+  border-radius: 30rpx;
+  color: #555;
+  margin-right: 30rpx;
+  margin: 0;
+  padding: 0;
+  font-size: 28rpx;
+}
+
+.border-btn-item:nth-last-child(1) {
+  margin: 0 20rpx;
+}
+
+.text-two {
+  font-size: 24rpx;
+  font-family: DIN;
+  font-weight: bold;
+  color: rgba(57, 57, 57, 1);
+  line-height: 20rpx;
+}
+
+.refund-img {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.zhichi-btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border: 1px solid rgba(153, 153, 153, 1);
+  border-radius: 30rpx;
+  margin-right: 30rpx;
+  padding: 0;
+  color: #555;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+
+.show-image-total {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.small-icon {
+  position: absolute;
+  width: 72rpx;
+  height: 36rpx;
+  left: 0;
+  bottom: 0;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #fff;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 0 8rpx;
+}
+
+.status-name {
+  height: 26rpx;
+  background: rgba(229, 10, 53, 1);
+  border-radius: 8rpx;
+  font-size: 16rpx;
+  font-family: PingFangSC;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  padding: 4rpx 6rpx;
+  line-height: 22rpx;
+  margin-top: 2rpx;
+}
+
+.status-desp {
+  height: 34rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC;
+  font-weight: 500;
+  color: rgba(57, 57, 57, 1);
+  line-height: 34rpx;
+  margin-left: 6rpx;
+}
+
+.bottom-wrap {
+  background: white;
+  padding: 0 40rpx;
+  padding-bottom: 32rpx;
+}
+
+.service-button {
+  width: 120rpx;
+  height: 50rpx;
+  background: rgba(231, 12, 42, 1);
+  border-radius: 25rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: 50rpx;
+  text-align: center;
+}
+.content-wrap{
+  margin-top: 58rpx;
+}

@@ -1,0 +1,12 @@
+<!--pages/center/seting/privacy/privacy.wxml-->
+<wxs src="../../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+
+  <navbar title="隐私协议" />
+  <view wx:if="{{ privacy }}">
+    <rich-text nodes="{{R1.rich(privacy.content)}}"></rich-text>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

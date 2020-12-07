@@ -1,0 +1,29 @@
+<!--components/goosList/index.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<block>
+  <view class="zdy-box" wx:for="{{goodsList}}" wx:key="index11" wx:for-item="zdyItem" bindtap="tapFloor" data-type="1"
+    data-param="{{ zdyItem.item_id }}" data-shop_id="{{zdyItem.shop_id}}">
+    <view class="zdy-good-img"><image src="{{zdyItem.img_url}}" mode="aspectFill"></image> </view>
+    <view class="good-detail-box">
+      <view class="good-title">
+        <image wx:if="{{zdyItem.quality=='a' || zdyItem.quality=='A'}}" src="./image/ag.png"></image>
+        <image wx:if="{{zdyItem.quality=='b' || zdyItem.quality=='B'}}" src="./image/bg.png"></image>
+        <text style="vertical-align: middle;">{{zdyItem.title}}</text>
+      </view>
+      <view class="tags-box" wx:if="{{zdyItem.natures.length>0}}">
+        <!-- <view wx:if="{{zdyItem.good_info.coupon_name}}" class="tags">
+        {{zdyItem.good_info.coupon_name}}
+        </view> -->
+        <view wx:for="{{zdyItem.natures}}" wx:key="index3" wx:for-item="tagItem" class="tags">
+          {{tagItem.name}}
+        </view>
+      </view>
+      <view class="disc-info" style="margin-top: 6rpx;" wx:if="{{zdyItem.place_origin}}">产地：{{zdyItem.place_origin}} </view>
+      <view class="disc-info" wx:if="{{zdyItem.scale}}">规模：{{zdyItem.scale}} <text style="margin-left:10rpx;" wx:if="{{zdyItem.yield}}">产量：{{zdyItem.yield}}</text></view>
+      <view class="good-num">
+        <view class="price-box"><text class="fh">￥</text>{{zdyItem.price}}<text class="old-price">￥{{zdyItem.old_price}}</text></view>
+        <view>已售{{F1.numberDeal(zdyItem.deal_num)}}</view>
+      </view>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "绑定手机",
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

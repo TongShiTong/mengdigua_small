@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "店铺",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "shop-coupon": "/components/shopCoupon/shopCoupon",
+    "advert": "/components/advert/advert",
+    "floor-good": "/components/floorGood/floorGood",
+    "floor-total":"/components/floorTotal/floorTotal",
+    "shop-tabbar": "/components/shopTabbar/index",
+    "list": "/components/list/list"
+  }
+}

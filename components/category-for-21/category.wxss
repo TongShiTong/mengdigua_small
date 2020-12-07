@@ -1,0 +1,85 @@
+.category-wrap{
+
+}
+/* .category-scroll{
+
+  margin-bottom: 35rpx;
+  width: 100%;
+} */
+.ccategory-scroll{
+  white-space:nowrap;
+}
+.category-tab{
+  height: 92rpx;
+  line-height: 92rpx;
+  /* background-color: #fff; */
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 35rpx;
+  /* border-bottom: 2rpx solid rgba(203, 205, 208, 1); */
+}
+
+.category-tab{
+  height: 92rpx;
+  line-height: 92rpx;
+  /* display: flex;
+  align-items: center;
+  justify-content:space-around; */
+  
+  
+}
+.category-tab .tab-item {
+  width: 25%;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  font-size: 28rpx;
+color: #3D3D3D;
+overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+
+.category-tab .tab-item.cur{
+  font-weight: bold;
+}
+
+.category-tab .tab-item.cur::after{
+  content: '';
+  width: 36rpx;
+  height: 6rpx;
+  border-radius: 6rpx;
+background: #FFD300;
+position: absolute;
+left: 50%;
+bottom: 18rpx;
+transform: translate(-50%,0);
+/* margin-left: -70rpx;
+margin-top: 9rpx; */
+}
+.pannel-content{
+  min-height: 96vh;
+  padding: 0 20rpx;
+}
+.fall-wrap{
+  column-count: 2;    
+    column-gap: 10rpx;
+    width: 100%;
+}
+.fall-paths{
+  background: #999;
+    width: 350rpx;
+    display: inline-block; /*内部卡片需要设置为inline-block,否则会截断显示，如图一*/
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 20rpx 15rpx; */
+    margin-bottom: 10rpx;
+}
+.no-more{
+  text-align: center;
+color: #98999A;
+font-size: 24rpx;
+padding-bottom: 40rpx;
+}

@@ -1,0 +1,186 @@
+<scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" enable-back-to-top="true" enable-flex="true" bindscroll="scrollTop"  class="floor-scroll" scroll-top="{{toView}}" scroll-y="{{ isScroll }}" style="background:{{floorData.content.bg_color}};">
+	<!-- 楼层 -->
+	<view class='floor-content'>
+
+		<block wx:for="{{floorData.content.list}}" wx:key="index">
+
+			<!-- search -->
+			<block wx:if="{{ item.type == 1 }}">
+					<view class="search-wrap" style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '#fff':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+						<serch-three isRead="{{ false }}" hotpos="{{hotpos}}"/>
+					</view>
+			</block>
+
+			<!-- banner -->
+			<block wx:if="{{ item.type == 2 }}">
+					<view wx:if="{{item.show_type != 1}}" class='banner-wrap' style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+						<swiper class='swiper' indicator-dots="{{item.floor_data.length > 1}}" indicator-color="#fff" indicator-active-color="#ffd300" circular="true"
+							autoplay="true" interval="3000">
+							<block wx:for="{{ item.floor_data }}" wx:key="bannerIndex" wx:for-index="bannerIndex"
+								wx:for-item="bannerItem">
+								<swiper-item bindtap="tapFloor" class="back-swiper" data-type="{{ bannerItem.type }}" data-param="{{ bannerItem.param }}" data-shop_id="{{bannerItem.good_info.shop_id}}">
+									<image src="{{ bannerItem.img_url }}" lazy-load="true" class="slide-image" mode="aspectFill" />
+								</swiper-item>
+							</block>
+						</swiper>
+					</view>
+
+					<!-- banner 另一种风格，图片高度比较高 -->
+					<!-- <view wx:else class="banner-wrap type1">
+						<swiper class='swiper' next-margin="30px" bindchange="onImageSwiperChanged">
+							<block wx:for="{{ item.floor_data }}" wx:key="{{ bannerIndex }}" wx:for-index="bannerIndex"
+								wx:for-item="bannerItem">
+								<swiper-item bindtap="tapFloor" class="back-swiper" data-type="{{ bannerItem.type }}"
+									data-param="{{ bannerItem.param }}">
+									<image src="{{ bannerItem.img_url }}" lazy-load="true" class="slide-image" mode="aspectFit" />
+								</swiper-item>
+							</block>
+						</swiper>
+						<view class="num">{{imageSwiperCurrentIndex + 1}}/{{item.floor_data.length}}</view>
+
+					</view> -->
+
+					<view style="text-align:center;" wx:else>
+						<view class="carousel1">
+							<!-- <view wx:for="{{arrayImg}}" bindtouchstart='test' data-index="{{index}}"  wx:key="item" data-value="{{allimg[index]}}" class="img {{allimg[index]}}" >
+								<image src="{{item.img_url}}" mode="aspectFill" bindtap="tapFloor" data-type="{{ item.type }}" data-param="{{ item.param }}" data-shop_id="{{item.good_info.shop_id}}"></image>
+								<image src="{{item.img_url}}" mode="aspectFill"></image>
+							</view>
+							<view class="pore">
+										{{img_index}}/{{arrayImg.length}}
+							</view> -->
+							<my-swiper source="{{arrayImg}}" direction="left" delay="{{3000}}" bind:touch="touch"></my-swiper>
+						</view>
+					</view>
+			</block>
+
+			<!-- 导航 -->
+			<block wx:if="{{ item.type == 4 }}">
+					<view class='nav1' style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ');background-size:cover;background-repeat: no-repeat;background-position: center;'}};padding-bottom:{{item.floor_data.length>5?'54rpx':'34rpx'}}">
+						<view wx:if="{{item.show_type==1}}" class='column' wx:for="{{ item.floor_data }}" wx:key="navIndex"
+							wx:for-index="navIndex" wx:for-item="navItem" bindtap='tapFloor' data-type="{{ navItem.type }}"
+							data-title="{{ navItem.title }}" data-param="{{ navItem.param }}" data-shop_id="{{navItem.good_info.shop_id}}">
+							<image src="{{ navItem.img_url }}" class="nav-img" mode="aspectFill" lazy-load="true" />
+							<view class='nav-title'>{{ navItem.title }}</view>
+						</view>
+
+						<view wx:if="{{item.show_type==0}}" style="width:100%">
+							<scroll-view bindscroll="lineScroll" scroll-x="true" class="scroll-view">
+								<view style="display:flex;">
+									<view class='column1' wx:for="{{ item.floor_data }}" wx:key="navIndex"
+										wx:for-index="navIndex" wx:for-item="navItem" bindtap='tapFloor' data-type="{{ navItem.type }}"
+										data-title="{{ navItem.title }}" data-param="{{ navItem.param }}" data-shop_id="{{navItem.good_info.shop_id}}">
+										<image src="{{ navItem.img_url }}" class="nav-img" mode="aspectFill" lazy-load="true" />
+										<view class='nav-title'>{{ navItem.title }}</view>
+									</view>
+								</view>
+							</scroll-view>
+							<view class="scroll-tiao" wx:if="{{item.floor_data.length>5}}">
+								<view class="lm-line" style="left:{{x_scroll}}rpx;"></view>
+							</view>
+							<!-- <view class="scroll-tiao" wx:else>
+								<view class="lm-line" style="width:62rpx;left:{{x_scroll}}rpx;"></view>
+							</view> -->
+						</view>
+						
+						
+					</view>
+			</block>
+
+			<block wx:if="{{ item.type == 5 }}">
+				<view class="good-floor" style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<view class='floor' wx:for="{{ item.floor_data }}" wx:key="navIndex"
+						wx:for-index="navIndex" wx:for-item="navItem" bindtap='tapFloor' data-type="{{ navItem.type }}"
+						data-param="{{ navItem.param }}" data-shop_id="{{navItem.good_info.shop_id}}">
+						<image src="{{ navItem.img_url }}" class="good-img" mode="widthFix" lazy-load="true" />
+					</view>
+				</view>
+			</block>
+
+			<!-- 运营 -->
+			<block wx:if="{{ item.type == 3 }}">
+				<view class="box-shadow"
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<advert advertInfo="{{item}}" />
+				</view>
+			</block>
+
+			<!-- 自定义商品 -->
+			<block wx:if="{{ item.type == 10 }}">
+				<view
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<goosList	gooddata='{{item.goods_list}}'></goosList>
+				</view>
+			</block>
+
+			<block wx:if="{{ item.type == 11 }}">
+				<view
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<shop-coupon couponInfo="{{item}}" />
+				</view>
+			</block>
+
+			<!-- 店铺 -->
+			<block wx:if="{{ item.type == 22 }}">
+				<view class="box-shadow hidden"
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+
+					<shop shopInfo="{{ item }}" />
+				</view>
+			</block>
+
+			<!-- 店铺23 -->
+			<block wx:if="{{ item.type == 23 }}">
+				<view class="box-shadow hidden"
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<shop-23 id="shop23-component" shopInfo="{{ item }}" />
+				</view>
+			</block>
+
+			<!-- 分类 -->
+			<block wx:if="{{ item.type == 19 }}">
+				<view class="category-wrap"
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+
+					<category id="category-component" categoryInfo="{{ item }}" />
+				</view>
+			</block>
+
+			<!-- 21分类 -->
+			<block wx:if="{{ item.type == 21 }}">
+				<view class="category-wrap"
+					style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<category-21 id="category21-component" categoryInfo="{{ item }}" />
+				</view>
+			</block>
+			
+			<!-- 24分类 -->
+			<block wx:if="{{ item.type == 24 }}">
+				<view class="category-wrap">
+					<category-24 id="category24-component" categoryInfo="{{ item }}" bgcolor="{{item.bgcolor}}"></category-24>
+				</view>
+			</block>
+
+				<!-- 25轮播图加优惠券 -->
+			<block wx:if="{{ item.type == 25 }}">
+				<view class='banner-wrap' style="margin:{{item.top}}rpx {{item.right}}rpx {{item.bottom}}rpx {{item.left}}rpx; border-radius:{{item.borderRadius}}rpx; background-color:{{item.bgcolor === ''? '':item.bgcolor}}; {{item.shadow === 1 ? 'box-shadow:' + boxShadow + ';':''}} {{item.bgurl === '' ? '':'background-image:url(' + item.bgurl + ')'}}">
+					<swiper class='swiper' indicator-dots="{{item.floor_data.length > 1}}" indicator-color="#fff" indicator-active-color="#ffd300" circular="true"
+						autoplay="true" interval="3000">
+						<block wx:for="{{ item.floor_data }}" wx:key="{{ bannerIndex }}" wx:for-index="bannerIndex"
+							wx:for-item="bannerItem">
+							<swiper-item class="back-swiper1">
+								<image src="{{ bannerItem.img_url }}" lazy-load="true" class="slide-image1" mode="aspectFill" />
+								<shop-coupon class="coupon-tu" couponInfo="{{bannerItem}}" tu_coupon="1"/>
+							</swiper-item>
+						</block>
+					</swiper>
+				</view>
+			</block>
+
+		</block>
+	
+	</view>
+</scroll-view>
+<view class="back-to-top" wx:if="{{isIndex1&&scrollHeight}}">
+	<image src="/images/icon-to-top.png" class="icon-to-top" mode="aspectFit" bindtap="scrollToTop"></image>	
+</view>

@@ -1,0 +1,39 @@
+<!--components/bargainHelperList/index.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+
+<view class="helper-wrap" wx:if="{{helpList.length!=0}}">
+  <view class="helper-header">
+    <view class="helper-header-left">砍价记录</view>
+    <view 
+      class="helper-header-right flex-r-s"
+      catchtap="toDetail"
+      >
+      
+       <view style="color:#999;margin-right:8rpx">查看全部</view>
+      <image src="/images/small-right.png" style="width:9rpx;height:20rpx;" class="right-arrow" />
+    </view>
+  </view>
+  <view class="helper-body">
+    <block 
+      wx:if="{{helpList.length}}" 
+      wx:for="{{helpList}}" 
+      wx:key="index" 
+      wx:for-item="helper" 
+      wx:for-index="helpIdx">
+      <view class="helper-container">
+        <view>
+          <image 
+          class="helper-icon" 
+          src="{{helper.head_url}}" 
+          style="" />
+        </view>
+        <view>
+          <view class="helper-name">{{helper.nickname}}</view>
+        </view>
+        <view class="help-price">帮砍
+          <text class="bargain-price">{{F1.moneyFormat(helper.cut_price)}}</text>
+        元</view>
+      </view>
+    </block>
+  </view>
+</view>

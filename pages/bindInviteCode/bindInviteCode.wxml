@@ -1,0 +1,21 @@
+<!--pages/bindInviteCode/bindInviteCode.wxml-->
+<block wx:if="{{theme || theme===0}}">
+
+<!-- <navbar title="填写邀请码" /> -->
+  <view>
+    <image src="{{banner}}" style="width:750rpx;height:800rpx;background:black;"></image>
+  </view>
+  <view class='super'>
+    <view class='title'>填写邀请码</view>
+    <view class='sub-title'>邀请码</view>
+    <input class='input' bindinput='getInviteCode' placeholder='请填写邀请码' placeholder-class='pl-input' type='text'></input>
+    <view class='tip'>邀请码规则：</view>
+    <view class='text-one' style='padding: 16rpx 0;'>1.可联系你的好友获取邀请码;</view>
+    <view class='text-one'>2.一个用户只能绑定一个邀请码，绑定后不得修改。</view>
+    <view class='bind-btn theme-lg-A-{{theme}}' bindtap='bindCode'>立即绑定</view>
+    <view class="skip-btn" bindtap="skip">暂无邀请码，先跳过</view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

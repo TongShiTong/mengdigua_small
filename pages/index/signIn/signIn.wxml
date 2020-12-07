@@ -1,0 +1,111 @@
+<!--pages/index/signIn/signIn.wxml-->
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="签到领币" bgColor="rgba(255,186,47,1)" />
+  <view class='signIn' wx:if="{{signFlag}}">
+    <image class='sj-top-tips' src='/images/center/other/tip.png' bindtap="showHelp"></image>
+    <image class='sign-bg' src='https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/ABWZMNTH01245789_1568103441.png'></image>
+    <view class='flex-column' style='width: 100%'>
+      <image class='sg-coupon-img' src='https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/ABFZMNTK01245789_1568103486.png'></image>
+      <view class='sg-c-b'>{{coupon.name}}</view>
+      <view class='sg-c-t'>
+        <text class='sg-ct1'>￥</text>
+        <view class='sg-ct2'>{{coupon.value}}</view>
+        <text class='sg-ct3'>元优惠券</text>
+      </view>
+      <view class='sg-text1'>— 连续签到{{config_day}}天得{{coupon.value}}元优惠券，累计签到有更多惊喜！—</view>
+      <view class='sg-num'>
+        <view class='sg-num-c'>
+          <view class='sg-num-v' wx:for='{{sgData}}' wx:key='{{index}}'>
+            <view class='sg-num-title'>{{item.title}}</view>
+            <image class='sj-c-1' src='/images/index/sign.png' wx:if='{{item.state == 1}}'></image>
+            <image class='sj-c-1' src='/images/index/un-sign.png' wx:else></image>
+          </view>
+        </view>
+        <view class='sg-text2'>已连签
+          <text class='sp-text'>{{ continue_day }}</text> 天，在签
+          <text class='sp-text'>{{ recordInfo.rest_days }}</text>天{{coupon.value}}元优惠券自动到账</view>
+        <view class='sign-now-wrap flex-row' wx:if="{{ is_sign == 0 }}">
+          <image class='sign-now-img' src='/images/index/sign-now.png'></image>
+          <view class='sign-now-btn' bindtap='signIn'>立即签到</view>
+        </view>
+        <view class='sign-now-wrap flex-row' wx:else>
+          <image class='sign-now-img' src='/images/index/sign-un-btn.png'></image>
+          <view class='sign-now-btn'>今日已领取{{ receive_coin }}积分</view>
+        </view>
+        <view 
+          class="sign-in-record"
+          bindtap="toSignRecord">签到记录</view>
+      </view>
+      <view class='sj-content'>
+        <view class='flex-row'>
+          <image class='sign-left' src='/images/index/sign-left.png'></image>
+          <view class='sj-c-title'>累计签到</view>
+          <image class='sign-left' src='/images/index/sign-right.png'></image>
+        </view>
+        <view class='sj-c-content'>
+          <view class='sj-c-day {{item.status == 1 ? "sj-c-active" : ""}}' wx:for='{{lastMonthNum}}' wx:key="{{index}}">
+          </view>
+          <view class='sj-c-day {{item.status == 1 ? "sj-c-active" : ""}}' wx:for='{{recordInfo.list}}' wx:key="{{index}}">{{item.day}}
+          </view>
+        </view>
+      </view>
+      <!-- <view class='my-sign flex-row-s'>
+        <view class='sign-item flex-row-s'>
+          <view>
+            <view class='sign-item-text'>成长值</view>
+            <view class='sign-item-num'>{{ recordInfo.growth }}</view>
+          </view>
+          <image class='sign-item-img' src='/images/index/grow.png'></image>
+        </view>
+        <view class='sign-item flex-row-s'>
+          <view>
+            <view class='sign-item-text'>积分</view>
+            <view class='sign-item-num'>{{ recordInfo.coin }}</view>
+          </view>
+          <image class='sign-item-img' src='/images/index/source.png'></image>
+        </view>
+      </view>
+      <view class='sj-content'>
+        <view class='flex-row'>
+          <image class='sign-left' src='/images/index/sign-left.png'></image>
+          <view class='sj-c-title'>签到任务</view>
+          <image class='sign-left' src='/images/index/sign-right.png'></image>
+        </view>
+        <view class='sg-bottom-2'>快速增加成长值</view>
+        <view class='sg-task'>
+          <view class='flex-row-s' style='margin-top:30rpx;' wx:for="{{task}}" wx:key="{{index}}">
+            <view class='flex-row-f'>
+              <image class='team1-img' wx:if="{{ index == 0 }}" src='/images/index/team1.png'></image>
+              <image class='team2-img' wx:elif="{{ index == 1 }}" src='/images/index/team2.png'></image>
+              <view class='sg-t-o-v1'>{{item.name}}</view>
+            </view>
+            <view class='list-line'></view>
+            <view class='sg-t-o-v2'>+ {{item.score}}</view>
+          </view>
+        </view>
+      </view> -->
+      <view style="height:50rpx;"></view>
+       <like  
+        title='为您推荐' 
+        listData="{{ likeData }}" 
+        subTitle="琳琅宝贝等你挑选"
+        pay='1' />
+    </view>
+    <view class='mask' bindtap='close' wx:if="{{ isHelp }}"></view>
+    <view class='help' wx:if="{{ isHelp }}">
+      <view class='wrap-all help-head'>
+        <view>{{helpTitle}}</view>
+        <image src="/images/message-cancel.png" class='close-help' mode="aspectFill" bindtap='close'></image>
+      </view>
+      <scroll-view class="scroll-load-panel help-content" scroll-y="true">
+        <view wx:if="{{ helpContent }}" class='text-one'>
+          <rich-text nodes="{{R1.rich(helpContent)}}"></rich-text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

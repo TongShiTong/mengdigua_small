@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "VIP礼包",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "gift": "/components/gift/gift",
+    "share": "/components/share/share",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}   

@@ -1,0 +1,47 @@
+<!--pages/shop/goodList/goodList.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="商品列表" />
+  <view class='mask' wx:if="{{ showSort }}" bindtap='closeModal'></view>
+  <view class='sort flex-row-f'>
+    <!-- <view class='wrap-all flex-row-s' bindtap='showSelect'>
+    <view class='sort-text'>{{ tab[tabIndex].title }}</view>
+    <image src="/images/down.png" class='down-img' mode="aspectFill"></image>
+  </view> -->
+    <view>人气</view>
+    <view>返利</view>
+    <view>销量</view>
+    <view>价格</view>
+  </view>
+  <view class='sort-modal' wx:if="{{ showSort }}">
+    <view class='wrap-all flex-row-s' wx:for="{{ tab }}" wx:key="{{ index }}" data-index='{{ index }}' bindtap='selectTab'>
+      <view class='{{ index == tabIndex?"soer-active":"sort-text" }}'>{{ item.title }}</view>
+      <image wx:if="{{ index == tabIndex }}" src="/images/sort-select.png" class='select-img' mode="aspectFill"></image>
+    </view>
+  </view>
+  <scroll-view class='scroll-load-panel' scroll-y="true" bindscrolltolower="loadMore">
+    <view class='list'>
+      <!-- <view class='good' wx:for="{{ listData.list }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class='good-title'>{{S1.substr(item.title,10)}}</view>
+      <view class='label-box flex-row-f' wx:if="{{ item.meLabels != '' }}">
+        <view class='label' wx:for="{{ item.meLabels }}"  wx:for-item="label" wx:for-index="labelIndex" wx:key="{{ labelIndex }}">{{ label.name }}</view>
+      </view>
+      <view class='good-bottom flex-row-s'>  
+        <view class='price'>
+          <view class='red-price'>￥</view>
+          <view class='red-big-price'>{{ item.price }}</view>
+        </view>
+        <view class='sale-num' wx:if="{{ item.deal_num }}">销量{{ item.deal_num }}笔</view>
+      </view>
+    </view> -->
+
+      <floor-good listData="{{ listData }}" role="{{ userInfo.role }}" bind:jumpDetail="jumpDetail">
+      </floor-good>
+    </view>
+  </scroll-view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

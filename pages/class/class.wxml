@@ -1,0 +1,27 @@
+<!--pages/class/class.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="分类" />
+  <view class='serch flex-row ' style="top:{{barHeight}}px">
+    <serch isRead="{{ showNoRead }}" addGoods="{{add}}"></serch>
+  </view>
+  <view class='super'>
+    <scroll-view class='box scroll-load-panel' style="top:{{barHeight+50}}px;height:{{pageHeight-50}}px" scroll-y="true">
+      <view class='category {{ index==listIndex?"actice theme-color-A-"+theme:"" }}' data-index='{{ index }}' bindtap='selectTab' wx:for="{{ category.list }}" wx:key="{{ index }}">
+        <view>{{ item.name }}</view>
+        <view class='line theme-bg-A-{{theme}}' wx:if="{{ index==listIndex }}"></view>
+      </view>
+    </scroll-view>
+    <scroll-view class='right-box' style="top:{{barHeight+50}}px;height:{{pageHeight-50}}px" scroll-y="true">
+      <view class='{{ index%2 ==0?"detail":"detail-tow" }} {{ secondLevel.length%2 ==0 && (index ==secondLevel.length-1 || index ==secondLevel.length-2)?"detail-one":"" }} {{ secondLevel.length%2 == 1 && index ==secondLevel.length-1?"detail-three":"" }} {{ secondLevel.length == 1?"detail-four":"" }}'
+        data-name='{{ item.name }}' bindtap='jumpDetail' data-mcid='{{ item.mcid }}' wx:for="{{ secondLevel }}" wx:key="{{ index }}">
+        <image src="{{ item.img_url }}" lazy-load="true" class="good-img" mode="aspectFill"></image>
+        <view class='detail-name'>{{ item.name }}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <modal wx:if="{{ isShowModal }}" isShowModal="{{ isShowModal }}"></modal>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

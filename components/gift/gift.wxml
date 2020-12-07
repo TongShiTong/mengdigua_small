@@ -1,0 +1,17 @@
+<!--components/gift/gift.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<view class='wrap'>
+  <view class='list'>
+    <view class='good' wx:for="{{ listData.list }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class='good-title'>{{ S1.substr(item.title,10) }}</view>
+      <view class='good-bottom'>
+        <view class='price'>
+          <view class='red-price theme-font-A-{{theme}}'>￥</view>
+          <view class='red-big-price theme-font-A-{{theme}}'>{{ item.price }}</view>
+        </view>
+        <!-- <view class='price-th' wx:if="{{ item.old_price != null }}">¥{{ item.old_price==0||parseInt(item.price)>parseInt(item.old_price)?item.price:item.old_price }}</view> -->
+      </view>
+    </view>
+  </view>
+</view>

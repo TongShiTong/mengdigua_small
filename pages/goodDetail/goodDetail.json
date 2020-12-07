@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "share": "/components/sharetwo/share",
+    "navbar": "/components/navbar/index",
+    "stars": "/components/star-item/index",
+    "ingroup": "/components/ingroup/ingroup",
+    "look-more": "/components/lookmore/lookmore",
+    "rich": "/components/rich/rich",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

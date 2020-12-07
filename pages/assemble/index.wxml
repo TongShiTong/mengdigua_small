@@ -1,0 +1,75 @@
+<!--pages/assemble/index.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="{{title}}"  bgColor='#F8DA0D' titleColor='#111'/>
+  <view class='tab-head' style='top:{{totalHeight}}px;'>
+    <block wx:if="{{type==1}}">
+      <rowscroll style="width:100%;" list="{{groundTimes.list}}" activeShow="groupIndex" showType="group" userInfo="{{userInfo}}" bind:navChange="changeGroupTop" bgColor="true" />
+    </block>
+    <block wx:else>
+      <view >
+        <scroll-view class='scroll-load-x flex-row skill-scroll ' scroll-x="true">
+          <view 
+            class='skill-tab flex-column {{ skillContentIndex == 0?"skillActive":"" }}' 
+            bindtap='slectSkillContent' 
+            data-index='0' 
+            enable-flex="true">
+            <view class='skill-time {{ skillContentIndex == 0?"skill-title-two":"" }}'>昨日精选</view>
+            <view class='skill-title {{ skillContentIndex == 0?"skill-title-two":"" }}'>已结束</view>
+            <view class='skill-line theme-lg-A-{{theme}}' wx:if="{{ skillContentIndex == 0 }}"></view>
+          </view>
+          <view 
+            class='skill-tab {{ skillIndex == index?"skillActive":"" }}' 
+            wx:for="{{ skillData.list }}" 
+            wx:key="{{ index }}" 
+            bindtap='selectSkill' 
+            data-index='{{ index }}' 
+            data-code='{{ item.seckill_scene_id }}'>
+            <view class='skill-time {{ skillIndex == index?"skill-title-two":"" }}'>{{ item.s_time }}</view>
+            <view class='skill-title {{ skillIndex == index?"skill-title-two":"" }}'>
+              <text>{{item.status == 0?'即将开始':item.status == 1?'正在秒杀':'已结束'}}</text>
+              
+            </view>
+            <view class='skill-line theme-lg-A-{{theme}}' wx:if="{{ skillIndex == index }}"></view>
+          </view>
+          <view class='skill-tab flex-column {{ skillContentIndex == 1?"skillActive":"" }}' bindtap='slectSkillContent' data-index='1'>
+            <view class='skill-time {{ skillContentIndex == 1?"skill-title-two":"" }}'>明日预告</view>
+            <view class='skill-title {{ skillContentIndex == 1?"skill-title-two":"" }}'>敬请期待</view>
+            <view class='skill-line theme-lg-A-{{theme}}' wx:if="{{ skillContentIndex == 1 }}"></view>
+          </view>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+  <view class="flex-column ">
+    <view class='flex-1' wx:if="{{type==1}}">
+      <forList bind:statusChange="changeList" groupType='2' list="{{groupList.list}}" showType="1" userInfo="{{userInfo}}"></forList>
+    </view>
+    <block wx:else>
+      <view wx:if="{{ skillContentIndex == 0||skillContentIndex == 1 }}">
+        <view>
+          <view>
+            <forList list="{{skillContentIndex == 0?yesterdayData.list:skillContentIndex == 1?tomorrowData.list:''}}" showType="1" skillType='1' userInfo="{{userInfo}}"></forList>
+          </view>
+
+        </view>
+      </view>
+
+      <view wx:else>
+        <view>
+          <view>
+            <forList list="{{listData.list}}" showType="1" skillType='1' userInfo="{{userInfo}}"></forList>
+          </view>
+
+        </view>
+      </view>
+
+    </block>
+  </view>
+  
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>
+
+
+

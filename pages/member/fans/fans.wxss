@@ -1,0 +1,226 @@
+/* pages/member/fans/fans.wxss */
+
+.intive-head {
+  width: 690rpx;
+  padding: 30rpx;
+  background-color: #fff;
+}
+
+.intice-code {
+  font-size: 36rpx;
+}
+
+.text {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.copy-img {
+  width: 22rpx;
+  height: 26rpx;
+}
+
+.coyp {
+  font-size: 24rpx;
+  color: #777;
+  margin-left: 16rpx;
+}
+
+.copy-wrap {
+  width: 186rpx;
+  height: 60rpx;
+  background: #f8f8f8;
+  border-radius: 6rpx;
+}
+
+/* 粉丝 */
+
+.tab {
+  margin-top: 16rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.tab-wrap:first-child {
+  border-right: 1px solid #eee;
+}
+
+.tab-wrap {
+  flex: 1;
+  height: 98rpx;
+  font-size: 30rpx;
+  position: relative;
+}
+
+.tab-active {
+  color: #b72e08;
+}
+
+.un-active {
+  color: #555;
+}
+
+.ver-line {
+  margin: 0 16rpx;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  bottom: 2rpx;
+  width: 100%;
+  background-color: #b72e08;
+  height: 4rpx;
+}
+
+.income {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 87;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  height: 98rpx;
+  font-size: 32rpx;
+  color: #fff;
+}
+
+/* 列表 */
+
+.content {
+  background-color: #fff;
+  width: 100%;
+  padding-bottom: 98rpx;
+}
+
+.fans-content {
+  background-color: #fff;
+  width: 100%;
+}
+
+.list {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.list-right {
+  margin-left: 24rpx;
+  width: 578rpx;
+  height: 144rpx;
+  align-items: flex-start;
+}
+
+.head-img {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+}
+
+.list-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-right: 16rpx;
+}
+
+.list-num {
+  color: #b72e08;
+  font-size: 30rpx;
+}
+
+.word-total {
+  text-align: center;
+  background: #fff;
+  padding-top: 30rpx;
+  box-sizing: border-box;
+  height: 158rpx;
+}
+
+.count-word {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #b2b2b2;
+  margin-right: 8rpx;
+}
+
+.count-number {
+  font-size: 52rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: rgba(85, 85, 85, 1);
+}
+
+.question {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.center-word {
+  width: 590rpx;
+  height: 316rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.top-memer {
+  text-align: center;
+  font-size: 40rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #1d1e1f;
+  padding: 62rpx;
+}
+
+.remark-word {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  padding: 0 72rpx;
+  text-align: center;
+}
+
+.ready-open {
+  padding: 0 12rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  color: #fff;
+  background: #ebc77f;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+}
+
+.ready-open2 {
+  background: #fff;
+  color: #ebc77f;
+  border:1rpx solid #ebc77f;
+}
+.earn-word-total{
+  padding-top: 30rpx;
+  padding-bottom: 46rpx;
+  border-bottom:1rpx solid #EEEEEE; 
+}
+
+.earn-word {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: #6E6E6E;
+}
+
+.no-list{
+  width: 160rpx;
+  height: 166rpx;
+  margin: 100rpx  auto 0;
+}

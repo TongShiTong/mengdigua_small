@@ -1,0 +1,56 @@
+<!--pages/member/promote/promote.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="升级VIP" bgColor="#FEE4A8" />
+  <view class='promote-bg '>
+    <view class='top-style flex-r-b'>
+      <view class='buy-word flex-1'>
+        <view style='margin-top:72rpx;'>
+          <text>购买以下任意一款礼包</text>
+          <text>即可加入会员</text>
+        </view>
+
+        <view class='vip-wrap'>
+          <view class='flex-row-f' style='margin-top:30rpx;'>
+            <view class='vip-power  '>VIP权益</view>
+            <image src="/images/member/vip.png" class='vip-img' mode="aspectFill"></image>
+          </view>
+          <view class='flex-row-s' style='margin:10rpx 0 0 0;'>
+            <view class='vip-subtitle '>为生活日常消费节省大额消费支出</view>
+            <view class='flex-row-f' style='margin-right:30rpx;'>
+              <view class='{{ index == scrollIndex?"circel-active theme-bg-C-"+theme:"circel-benner" }}' wx:for="{{ bannerList }}" wx:key="{{ index }}"></view>
+            </view>
+          </view>
+
+        </view>
+
+      </view>
+      <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/ABFMNTHK12345678_1568614136.png" class='update-level' mode="aspectFill" lazy-load='true'></image>
+    </view>
+    <!-- vip权益 -->
+
+    <!-- 代理商礼包 -->
+    <!-- <view class='vip-title'>
+      <view class='vip-text'>购买以下任意商品成为VIP</view>
+      <view class='s-line'></view>
+    </view> -->
+  </view>
+  <!-- 礼包列表 -->
+  <view class="gift-list {{ userInfo.role == 1?'vip-list':'' }}">
+    <gift listData="{{ giftData }}" userInfo="{{ userInfo }}" handInfo="{{ handInfo }}" handInfo="{{ handInfo }}"></gift>
+  </view>
+  <button class='share-btn theme-lg-A-{{theme}}' open-type='share' wx:if="{{ userInfo.role == 1 }}">立即分享</button>
+  <view class='mask' wx:if="{{ explainMask }}" bindtap='closeExplain'></view>
+  <view class='explain-modal' wx:if="{{ explainMask }}">
+    <view class='explain-content'>
+      <view class='flex-row-s explain-title'>
+        <view>{{ vipTitle }}</view>
+        <image src="/images/message-cancel.png" class='message-cancel-img' bindtap='closeExplain' mode="aspectFill"></image>
+      </view>
+      <view class='explain-subtitle'>{{ vipText }}</view>
+    </view>
+    <view class='close-btn main-color theme-lg-A-{{theme}}' bindtap='closeExplain'>我知道了</view>
+  </view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

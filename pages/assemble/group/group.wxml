@@ -1,0 +1,19 @@
+<!--pages/assemble/group/group.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <block wx:if="{{theme || theme===0}}">
+
+    <navbar title="正在拼团"></navbar>
+    <ingroup bind:saveId="saveId" userInfo="{{userInfo}}" data-alone="0" listData="{{gropTeamList.list}}" wx:if="{{gropTeamList}}"></ingroup>
+  </block>
+  <view wx:else>
+    <page-loding></page-loding>
+  </view>
+
+  <block wx:if="{{goodId}}">
+    <shop-format showMoadl="{{showformat}}" group_team_id="{{group_team_id}}" goodId='{{goodId}}' detailData="{{goodDeatil}}" />
+  </block>
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

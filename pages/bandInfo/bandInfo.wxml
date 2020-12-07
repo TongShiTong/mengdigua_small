@@ -1,0 +1,27 @@
+<!--pages/bandInfo/bandInfo.wxml-->
+<navbar isTransparent="true" />
+
+<view class="page-total" style="overflow:hidden;height:{{pageHeight+totalHeight}}px">
+  <!-- <image class="image-bg" lazy-load="true" mode="widthFix" src="https://koali.oss-cn-hangzhou.aliyuncs.com/WechatIMG22.png"></image> -->
+
+  <view style="text-align:center;position:absolute;top:65%;width:100%;">
+    <!-- <image src="/images/logo.png" style="border-radius:50%;width:80rpx;height:80rpx;"></image>
+    <view style="font-size:36rpx;">萌地瓜</view> -->
+  </view>
+  <image src="/images/login-logo.png"  mode="aspectFit" class="login-logo"></image>
+  <!-- <button class='confirm-text flex-r' bindgetuserinfo='confirm' open-type="getUserInfo">
+  微信用户一键登录
+  </button> -->
+  <button class='confirm-text flex-r' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+  微信用户一键登录
+  </button>
+
+  <view class="button-text flex-r">
+   <text style="color:#222">注册/登录即代表同意</text> 
+    <navigator url="/pages/rich/rich?viewId=1&title=注册协议" class="navigator" >
+      用户协议
+    </navigator>
+    <text style="color:#222">和</text>
+    <navigator url="/pages/rich/rich?viewId=33&title=隐私协议" class="navigator">隐私协议</navigator>
+  </view>
+</view>

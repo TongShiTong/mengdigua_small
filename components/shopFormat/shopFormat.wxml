@@ -1,0 +1,52 @@
+<!--components/shopFormat/shopFormat.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+  <view class='mask' catchtouchmove="true" wx:if="{{ showMoadl }}" catchtap='closeModal'></view>
+ <view class='select-moadl' wx:if="{{showMoadl == true}}">
+    <view class='detail'>
+      <view class='detail-spec'>
+        <image wx:if="{{ selectData.img_url }}" src="{{ selectData.img_url }}" class='good-img' mode="aspectFill"></image>
+        <image wx:else src="{{ detailData.img_url }}" class='good-img' mode="aspectFill"></image>
+        <view class='detail-spec-right'>
+          <view class='price-stock flex-row-s'>
+            <view>
+              <text class='yuan'>¥</text>
+              <text class='price theme-font-A-{{theme}}' wx:if="{{ selectData.price }}">{{ selectData.price }}</text>
+              <text class='price theme-font-A-{{theme}}' wx:else>{{ detailData.price }}</text>
+            </view>
+            <!-- <view class='stock' wx:if="{{ selectData.stock }}">库存：{{ selectData.stock }}</view>
+          <view class='stock' wx:else>库存：{{ detailData.stock }}</view> -->
+          </view>
+          <view class='selected-subtitle'>{{ F1.substr(selectData.value_names||selectData.title,16) }}</view>
+          <view class='selected'>{{ F1.substr(detailData.title,24) }}</view>
+        </view>
+        <image src="/images/gooddetail/close.png" class='good-close-img' mode="aspectFill" bindtap='closeModal'></image>
+      </view>
+      <scroll-view class="spec-scroll-view scroll-load-panel" scroll-y="true">
+        <view class='property' wx:for="{{ property }}" wx:key="{{ index }}">
+          <view>{{ item.prop_name }}</view>
+          <view class='specific'>
+            <view class='{{ childrenItem.isSelect===true?"actived theme-border-c-A-"+theme:"specific-item" }}' wx:for="{{ item.children }}" wx:for-item="childrenItem" wx:for-index="childrenIndex" wx:key="{{ childrenIndex }}" bindtap='selectValue' data-index='{{ index }}'
+              data-childrenindex='{{ childrenIndex }}'>{{ childrenItem.value_name }}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class='flex-row-s buy-num'>
+        <view>购买数量</view>
+        <view class='flex-row-f'>
+          <view class='change-num un-change' wx:if="{{ buyNum == 1 || buyNum == 0 }}">-</view>
+          <view class='change-num' bindtap='reduce' wx:else>-</view>
+          <view class='buy-number'>{{ buyNum }}</view>
+          <view class='change-num un-change' wx:if="{{ selectData.stock == 0 || buyNum >= selectData.stock }}">+</view>
+          <view class='change-num' bindtap='addNum' wx:else>+</view>
+          <!-- <image src="/images/gooddetail/un-reduce.png" class='change-img' mode="aspectFill" wx:if="{{ buyNum == 1 || buyNum == 0 }}"></image>
+        <image src="/images/gooddetail/reduce.png" class='change-img' mode="aspectFill" bindtap='reduce' wx:else></image> -->
+          <!-- <input type='number' class='change-num' bindinput="changeNum" value='{{ buyNum }}'></input> -->
+          <!-- <view class='change-num'>{{ buyNum }}</view>
+        <image src="/images/gooddetail/un-add.png" class='change-img' mode="aspectFill" bindtap='addNum' wx:if="{{ selectData.stock == 0 || buyNum >= selectData.stock }}"></image>
+        <image src="/images/gooddetail/add.png" class='change-img' mode="aspectFill" bindtap='addNum' wx:else></image> -->
+        </view>
+      </view>
+    </view>
+    <view class='service-btn main-color theme-lg-A-{{theme}}' wx:if="{{ showBuyBtn }}" bindtap='confirmBuy'>立即支付</view>
+    <view class='service-btn main-color theme-lg-A-{{theme}}' wx:else bindtap='addShopCar' bindtap='confirmAdd'>加入购物车</view>
+  </view>

@@ -1,0 +1,207 @@
+<!--components/list/list.wxml-->
+<wxs src="../../utils/filters.wxs" module="F1" />
+<view class=" ">
+  <!-- 排序 -->
+  <view class=" fiexd">
+    <view class="flex-row-s">
+      <view 
+        class='sort-title flex-row' 
+        wx:for="{{ sortTab }}" 
+        wx:key="index" 
+        data-index='{{ index }}' 
+        data-status='{{ item.status }}' 
+        bindtap='selectSort' 
+        data-show='{{ item.showType }}'>
+        <view class='{{ item.status == 1 || item.status == 2?"":"un-active" }}'>{{ item.title }}</view>
+        <block wx:if="{{item.showType==2}}">
+          <image src="/images/class/{{item.status == 2?'sort-down':item.status == 1?'sort-top':'sort'}}.png" class='sort-img' mode="aspectFill"></image>
+        </block>
+        <block wx:if="{{item.showType==1}}">
+          <image src="/images/class/sort1.png" class='sort-img' mode="aspectFill" style="transform:{{item.status ==2?' rotate(0deg)':'rotate(180deg)'}} "></image>
+        </block>
+      </view>
+      <view 
+        wx:if="{{isMainSearch == 0 }}"
+        class="sort-title flex-row" 
+        style="{{isShopList ? 'color:#222;':'color:#f2f2f2;'}}"
+        bindtap="changeShopStatus">
+        店铺</view>
+    </view>
+
+    <view style="position: relative;">
+      <view class="show-content" animation="{{animationData}}">
+        <block wx:for="{{ sortTabTwo }}" wx:key="index" data-index='{{ index }}'>
+          <view wx:if="{{ index < 2 || index > 1 && userInfo.role == 1}}" class="flex-r-b each-content" catchtap="choiceValue" data-value="{{item.value}}" data-index="{{index}}">
+            <view class="word-normal {{item.choice?'theme-font-A-'+theme:''}}">{{item.title}}</view>
+            <view wx:if="{{item.choice}}">
+              <!-- <icon type="success_no_circle" color="{{F1.getMainColor(theme)}}" size="12px" /> -->
+              <image src="/images/log.png" style="width:36rpx;height:36rpx;"></image>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+  
+  <!-- 商品列表 -->
+  <view 
+    wx:if="{{!isShopList}}">
+    <block wx:if='{{showList==1}}'>
+    <scroll-view class="" scroll-y="true" bindscrolltolower="loadMore" lower-threshold="200" scroll-top="{{topNum}}" wx:if="{{ listData.list != ''}}" style="height:{{pageHeight}}px;padding-bottom:{{addGoods==1?'98rpx':'0'}};box-sizing:border-box;margin-top:200rpx" >
+    <view class='good' wx:for="{{ listData.list }}" wx:key="index" data-id='{{ item.item_id }}' bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class='good-info'>
+        <view class='good-name'>
+          <text class='theme-font-A-{{theme}}' wx:if="{{item.is_abroad==1}}">【跨境购】</text>{{ F1.substr(item.title,22) }}</view>
+        <view class='sub-title'>{{ F1.substr(item.remark,14) }}</view>
+        <view class='ys-price flex-row-f'>
+          <view style='padding-right: 20rpx;'>
+            <text class='yuan theme-font-A-{{theme}}'>¥</text>
+            <text class='good-price theme-font-A-{{theme}}'>{{ F1.moneyFormatTwo(item.price) }}</text>
+          </view>
+          <view class='share-price theme-color-A-{{theme}}' wx:if="{{ role == 1 }}">
+            <view class='earn-price theme-bgo-A-{{theme}} theme-color-A-{{theme}}'>¥{{ F1.moneyFormatTwo(item.share) }}</view>
+            <view class='earn theme-lg-A-{{theme}}'>赚</view>
+          </view>
+        </view>
+        <view class='flex-row-s' style='width:100%;'>
+          <view class='good-num'>已售{{ F1.numberDeal(item.deal_num)}}件</view>
+          <block wx:if="{{addGoods==0}}">
+            <view class='flex-row-f'>
+              <view class="list-btn buy theme-border-c-A-{{theme}}" wx:if="{{role == 1}}">抢购</view>
+              <view class="list-btn buy theme-border-c-A-{{theme}}" wx:else>抢购</view>
+              <view class='list-btn extend theme-lg-A-{{theme}}' wx:if="{{ role == 1 && item.is_bonus==1}}" data-id='{{ item.item_id }}' catchtap='share'>推广</view>
+            </view>
+          </block>
+
+          <block wx:if="{{addGoods==1}}" catchtap="">
+            <view class="list-btn  theme-lg-A-{{theme}} }" catchtap="changeStatus" data-index="{{index}}" id="{{item.item_id}}" data-stautus="{{item.is_hand_shop}}" wx:if="{{item.is_hand_shop==0}}">添加</view>
+            <view class="list-btn buy theme-border-A-{{theme}} theme-color-A-{{theme}}" catchtap="changeStatus" data-index="{{index}}" id="{{item.item_id}}" data-stautus="{{item.is_hand_shop}}" wx:if="{{item.is_hand_shop==1}}">移除</view>
+          </block>
+
+        </view>
+      </view>
+    </view>
+
+    <view class='base-line' wx:if="{{ listData.list.length == listData.total_pages }}">- 我是有底线的 -</view>
+  </scroll-view>
+  <view class='empty' wx:elif="{{ listData.list == ''}}">
+    <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/BXZMNHK012456789_1568103074.png" class='serch-empty-img' mode="aspectFill"></image>
+    <view class='empty-etxt' wx:if="{{ isTop==1 }}">并没有搜索到相关内容，请更换关键字试试</view>
+    <view class='empty-etxt' wx:elif="{{ isTop==0 }}">未找到该类商品</view>
+  </view>
+  </block>
+  <block wx:if="{{showList == 2}}">
+    <scroll-view
+      class=" {{ isTop==1?'scroll':'un-scroll' }} {{isTopTwo!=null?'scroll-two':''}}"
+      scroll-y="true"
+      bindscrolltolower="loadMore"
+      lower-threshold="200"
+      scroll-top="{{topNum}}"
+      wx:if="{{ listData.list != ''}}"
+      style="top:300rpx;height:81.5vh;box-sizing:border-box;padding-bottom: 0rpx;"
+      >
+      <view 
+        class="list2-wrap"
+        >
+        <view
+          wx:for="{{listData.list}}"
+          wx:key='index'
+          class="list2-inner"
+          bindtap="jumpDetail"
+          data-shop_id="{{item.shop_id}}"
+          data-id='{{item.item_id}}'>
+          <view
+            class="list2-inner-wrap">
+            <view style="text-align:center;">
+              <image 
+              src="{{item.img_url}}" 
+              style=""
+              class="list2-img"/>
+            </view>
+            <view class="list2-title">
+              <!-- <text class="is-organic" wx:if="{{item.item_label !=''}}">{{item.item_label}}</text> -->
+              {{item.title}}
+            </view>
+            <view style="width:325rpx;margin:0 auto;margin-top:16rpx;">
+              <text class="list2-tag">￥</text>
+              <text class="list2-now-price">{{ F1.moneyFormatTwo(item.price) }}</text>
+              <text class="list2-old-price">￥{{F1.moneyFormatTwo(item.old_price)}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- <view style="height:200rpx;"></view> -->
+        <view class='base-line' wx:if="{{ listData.list.length == listData.total_pages  }}">- 我是有底线的-</view>
+      </view>
+	
+	  </scroll-view>
+	  <view class='empty' wx:elif="{{ listData.list == ''}}">
+      <image src="https://social-shop.oss-cn-hangzhou.aliyuncs.com/__liemi__/image/png/BXZMNHK012456789_1568103074.png" class='serch-empty-img' mode="aspectFill" />
+      <view class='empty-etxt' wx:if="{{ isTop==1 }}">并没有搜索到相关内容，请更换关键字试试</view>
+      <view class='empty-etxt' wx:elif="{{ isTop==0 }}">未找到该类商品</view>
+	  </view>
+  </block>
+  </view>
+
+  <block wx:else>
+    <scroll-view
+    class=" {{ isTop==1?'scroll':'un-scroll' }} {{isTopTwo!=null?'scroll-two':''}}"
+    scroll-y="true"
+    bindscrolltolower="loadMore1"
+    lower-threshold="200"
+    scroll-top="{{topNum}}"
+    style="top:{{barHeight+50}}px;height:{{pageHeight-40}}px;">
+    <view
+      wx:if="{{shopList && shopList.length >0 }}"
+      wx:for="{{shopList}}"
+      wx:key= 'index'
+      class="shop-list-wrap">
+      <view class="flex-r-b shop-list-inner">
+        <view class="flex-r-s">
+          <view>
+            <image src="{{item.logo_url}}" style="height:144rpx;width:144rpx;border-radius:16rpx;border:2rpx solid #f2f2f2;" mode="aspectFit"></image>
+          </view>
+          <view style="margin-left:24rpx;max-width:390rpx;">
+            <view class="shop-title">{{item.name}}</view>
+            <view class="shop-collect" style="margin-top:16rpx;">共{{item.sum_item}}件商品</view>
+          </view>
+        </view>
+        <view 
+          class="to-shop"
+          data-id='{{item.id}}'
+          bindtap="jumpToShop">进店</view>
+      </view>
+      <view
+        wx:if="{{item.itemList && item.itemList.length}}" 
+        class="item-list-wrap">
+        <view
+          wx:for="{{item.itemList}}"
+          wx:key='index' 
+          class="item-list-inner"
+          wx:for-item="sonItem"
+          bindtap="jumpDetail"
+          data-id='{{sonItem.item_id}}'>
+        
+          <view>
+            <image src="{{sonItem.img_url}}" style="height:200rpx;width:200rpx;"></image>
+          </view>
+          <view class="item-list-title">
+              {{sonItem.title}}
+          </view>
+          <view class="item-list-price">
+              ￥{{sonItem.price}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+      
+		<!-- <view class='base-line' wx:if="{{ listData.list.length == listData.total_pages  }}">- 我是有底线的-</view> -->
+	</scroll-view>
+
+  </block>
+</view>
+<view class='fixed-end flex-r-e' wx:if="{{addGoods==1}}" data-url="/pages/personShop/shopList/shopList" catchtap='goPushRoute'>
+  <view class='theme-lg-B-{{theme}} button-shop'>商品篮({{listNumber}})</view>
+</view>

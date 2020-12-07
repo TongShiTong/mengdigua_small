@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "升级VIP",
+  "usingComponents": {
+    "gift": "/components/giftList/giftList",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

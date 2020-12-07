@@ -1,0 +1,21 @@
+<!--pages/center/userInfo/inviteShop/inviteShop.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="我的邀请店铺" />
+<view class='head'> 
+  <view class='wx-img-wrap'>
+    <view class='text'>微信号</view>
+    <view class='flex-row' style='margin-top:10rpx;'>
+      <view class='wx-code'>{{ wexin.wechat }}</view>
+      <view class='flex-row copy-wrap' bindtap='copyInfo'>
+        <image src="/images/center/copy.png" class='copy-img' mode="aspectFill"></image>
+        <view>复制</view>
+      </view>
+    </view>
+    <image src="{{ wexin.wechat_img }}" class='wx-img' mode="aspectFill"></image>
+  </view>
+</view>
+<view class='sava-code theme-lg-A-{{theme}}' bindtap='saveImg'>保存二维码</view>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

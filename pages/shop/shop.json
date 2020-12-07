@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "店铺",
+  "usingComponents": {
+    "serch": "/components/serch/serch",
+    "modal": "/components/modal/modal"
+  }
+}

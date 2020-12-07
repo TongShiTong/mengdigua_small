@@ -1,0 +1,46 @@
+var formatNumber = function(n) {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+var timeSub = function(string) {
+  if (string == null) {
+    var stringBack = ""
+    return stringBack
+  }
+  var stringBack = string.substring(0, 10);
+  return stringBack
+}
+var timeSubTwo = function(string) {
+  if (string == null) {
+    var stringBack = ""
+    return stringBack
+  }
+  var stringBack = string.substring(5, 10);
+  return stringBack
+}
+// 时间加一天函数
+var timeSubThree = function(date) {
+  var data1 = getDate(date);
+  var data2 = data1.getTime() + 1000 * 3600 * 24
+  var data3 = getDate(data2);
+  var year = data3.getFullYear();
+  var month = data3.getMonth() + 1
+  var day = data3.getDate()
+  var hour = data3.getHours()
+  var minute = data3.getMinutes()
+  var second = data3.getSeconds()
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+var timeChange = function(time) {
+  var month = time.substring(5, 7);
+  var day = time.substring(8, 10);
+  var clock = time.substring(11, 13);
+  var text = month + '月' + day + '日' + clock + '点开团'
+  return text;
+}
+module.exports.timeSub = timeSub;
+module.exports.timeSubTwo = timeSubTwo;
+module.exports.timeSubThree = timeSubThree;
+module.exports.timeChange = timeChange;

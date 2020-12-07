@@ -1,0 +1,28 @@
+/* pages/center/exchangeCard/exchangeCard.wxss */
+
+.top-input {
+  height: 100rpx;
+  background: white;
+  padding: 32rpx;
+  margin-top: 48rpx;
+}
+
+.exchange-input {
+  border-bottom: 2rpx solid #f2f2f2;
+  padding-bottom: 32rpx;
+}
+
+.exchange-btn {
+  width: 688rpx;
+  height: 100rpx;
+  background: rgba(248, 218, 13, 1);
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(52, 52, 48, 1);
+  line-height: 100rpx;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 100rpx;
+}

@@ -1,0 +1,75 @@
+<!--pages/member/community/community.wxml-->
+<wxs src="../../../utils/filters.wxs" module="F1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="社群会员" />
+
+  <view class="flex-row-s {{ isTop==1?'sort':'top-sort' }} {{isTopTwo!=null?'top-sort-two':''}}" wx:if="{{ goodList != '' }}" style="top:{{barHeight}}px">
+    <view class='sort-title flex-row' wx:for="{{ sortTab }}" wx:key="{{ index }}" data-index='{{ index }}' data-status='{{ item.status }}' bindtap='selectSort'>
+      <view class='{{ item.status == 1 || item.status == 2?"":"un-active" }}'>{{ item.title }}</view>
+      <image src="/images/member/downTwo.png" class='sort-img' mode="aspectFill"></image>
+    </view>
+  </view>
+
+  <view style='padding-bottom:98rpx;height:{{pageHeight}}px;box-sizing:border-box;padding-top:80rpx;'>
+    <block wx:for="{{goodsList.list}}" wx:key="index">
+      <view class='flex-r-b' style='padding:30rpx;'>
+        <view>
+          <image src="{{item.head_url}}" class='header-url' mode="aspectFill" lazy-load='true'></image>
+        </view>
+        <view class='flex-1'>
+          <view class='flex-r-b flex-1'>
+            <view class='flex-r-s'>
+              <view class='name mr16'>{{item.nickname}}</view>
+              <view class='invite'>邀请</view>
+            </view>
+            <view style='padding:20rpx 10rpx' catchtap='changeSatus' data-status="{{item.select}}" data-index="{{index}}" data-id="{{item.uid}}">
+              <view class='{{item.select?"cirlre-active":""}} cirlre'></view>
+            </view>
+          </view>
+          <view class='flex-r-b flex-1'>
+            <view class='invite-people flex-1'> 推荐人:{{item.p_nickname}}</view>
+            <view class='time'>升级时间：{{item.become_vip_time}}</view>
+          </view>
+        </view>
+
+      </view>
+      <view class='flex-r-a' style='padding:0 30rpx 40rpx 30rpx;border-bottom:1rpx solid #EEE '>
+        <view class='income'>收入总金额：{{item.income}}</view>
+        <view class=''>|</view>
+        <view class='income'>社群会员数：{{item.team_num}}</view>
+      </view>
+    </block>
+    <view wx:if="{{goodsList.list.length==0}}" style='text-align:center'>
+        <image src="/images/member/noList.png" class='no-list' mode="aspectFill"></image>
+      </view>
+  </view>
+
+
+  <view class='bottom-button'>
+    <view class='button-info' catchtap='send'>全部会员推送</view>
+    <!-- <navigator url="/pages/goodDetail/uploadMaterial/uploadMaterial?info=1&params={{F1.stringifyArr(params)}}"> -->
+      <view class='button-info button-info2' catchtap='sendTwo' >发通知</view>
+    <!-- </navigator> -->
+  </view>
+  <van-transition show="{{showModel}}" name="fade">
+    <view class='mask' catchtap='close'>
+    </view>
+    <view class='center-input'>
+      <view class='flex-r-s' style='margin-bottom:30rpx;'>
+        <view class='mr16'>最小值:</view>
+        <input type='number' class='change-num flex-1' placeholder='请输入最小值' bindinput="changeNum" value='{{ min_income }}'></input>
+      </view>
+      <view class='flex-r-s'>
+        <view class='mr16'>最大值:</view>
+        <input type='number' class='change-num flex-1' placeholder='请输入最大值' bindinput="changeNum1" value='{{ max_income }}'></input>
+      </view>
+      <view class='theme-lg-A-{{theme}} comfirm-income' catchtap='confirmValue'>
+        确定
+      </view>
+    </view>
+  </van-transition>
+
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

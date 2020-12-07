@@ -1,0 +1,26 @@
+<!--components/floorGood/floorGood.wxml-->
+<wxs src="../../utils/substr.wxs" module="S1" />
+<view class='wrap'>
+  <view wx:if="{{ pay == 1 }}" class='flex-row'>
+    <view class='flex-row-f'>
+      <image src="/images/gooddetail/team1.png" class="team-img" mode="aspectFill"/>
+      <view class='pay-title'>{{ title }}</view>
+      <image src="/images/gooddetail/team2.png" class="team-img" mode="aspectFill"/>
+    </view>
+  </view>
+  <view wx:if="{{ pay == 1 }}" class='sub-title'>{{ subTitle }}</view>
+  <view wx:else class='title'>{{ title }}</view>
+  <view class='list'>
+    <view class='good' wx:for="{{ listData }}" wx:key="{{ index }}" data-id='{{ item.item_id }}' data-shop_id="{{item.shop_id}}" bindtap='jumpDetail'>
+      <image src="{{ item.img_url }}" class='good-img' mode="aspectFill"></image>
+      <view class='good-title'>{{ S1.substr(item.title,10) }}</view>
+      <view class='good-bottom'>  
+        <view class='price'>
+          <view class='red-price theme-font-A-{{theme}}'>￥</view>
+          <view class='red-big-price theme-font-A-{{theme}}'>{{ item.price }}</view>
+        </view>
+        <view class='price-th' wx:if="{{ item.old_price != null }}">¥{{ item.old_price }}</view>
+      </view>
+    </view>
+  </view>
+</view>

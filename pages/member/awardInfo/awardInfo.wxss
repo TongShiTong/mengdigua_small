@@ -1,0 +1,80 @@
+/* pages/member/awardInfo/awardInfo.wxss */
+.user {
+  height: 136rpx;
+  padding: 0 30rpx;
+}
+.head-img {
+  width:72rpx;
+  height:72rpx;
+  border:1px solid rgba(255,255,255,1);
+  border-radius: 50%;
+}
+.user-right {
+  height: 72rpx;
+  margin-left: 24rpx;
+}
+.info {
+  padding: 30rpx;
+  border-top: 1px solid #EEEEEE;
+  background-color: #fff;
+}
+.good-img {
+  width:144rpx;
+  height:144rpx;
+  border-radius:8rpx;
+}
+.info-right {
+  flex: 1;
+  margin-left: 24rpx;
+  height: 144rpx;
+}
+.good-price {
+  color: #B52902;
+}
+.inof-item {
+  height: 100rpx;
+  background-color: #fff;
+  padding: 0 30rpx;
+  border-bottom: 1px solid #EEEEEE;
+}
+.text-right {
+  color: #999999
+}
+.bottom {
+  height: 114rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+.total {
+  color: #C40D00;
+}
+.order-info {
+  background-color: #fff;
+  padding: 30rpx;
+  margin-top: 16rpx;
+}
+.order-text {
+  font-size: 26rpx;
+  color: #555555;
+  padding-bottom: 8rpx;
+}
+.copy-img {
+  width: 22rpx;
+  height: 26rpx;
+}
+.coyp {
+  font-size: 24rpx;
+  color: #777777;
+  margin-left: 8rpx;
+}
+.copy-wrap {
+  width:114rpx;
+  height:42rpx;
+  border-radius:6rpx;
+  margin-left: 16rpx;
+  border:1px solid rgba(187,187,187,1);
+}

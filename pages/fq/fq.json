@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "发圈",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bind-phone": "/components/bindPhone/bindPhone",
+    "share": "/components/sharetwo/share",
+    "tabbar": "/tabbarComponent/tabbar",
+    "navbar": "/components/navbar/index",
+    "page-loding": "/components/pageLoding/pageLoding"
+  }
+}

@@ -1,0 +1,4 @@
+/* pages/assemble/group/group.wxss */
+.scroll-view {
+  background-color: white;
+}

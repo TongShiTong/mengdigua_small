@@ -1,0 +1,12 @@
+<!--pages/index/certificate/certificate.wxml-->
+<wxs src="../../../utils/substr.wxs" module="S1" />
+<wxs src="../../../utils/rich.wxs" module="R1" />
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="经营执照" />
+  <rich-text nodes="{{certificate.content}}"></rich-text>
+
+</block>
+
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,116 @@
+<wxs src="../../utils/filters.wxs" module="F1" />
+<wxs src="../../utils/time.wxs" module="T1" />
+<!-- 横向滚动 -->
+<scroll-view scroll-x="true" class='scoll-style {{bgColor?"theme-lg-A-"+theme:""}}' style="margin-bottom:{{mb}}rpx" bindscrolltolower="loadMore" scroll-into-view="{{toId}}">
+  <block wx:if="{{listLength!=0}}">
+    <block wx:for="{{list}}" wx:key="index" id="to{{item.id}}">
+      <template is="{{showType}}" data="{{...item,index,activeShow,listLength,theme,groupType,userInfo,listLength}}">
+      </template>
+    </block>
+  </block>
+  <block wx:if="{{listLength==0&&showType=='shopTop'}}">
+    <template is="{{showType}}" data="{{listLength,activeShow,listLength,theme,groupType,userInfo}}">
+    </template>
+  </block>
+</scroll-view>
+
+<!-- 头像模块 1-->
+
+<template name="header">
+  <view class='each-person' bindtap='goPersonDetail' id="{{tea_uid}}">
+    <view class='portrait-total'>
+      <image class='portrait' src='{{head_url}}' mode="aspectFill" lazy-load='true'></image>
+      <!-- <view class='portrait-identity'>{{item.teacherIdentity.name}}</view> -->
+      <view class='portrait-identity' wx:if="{{name!=null}}">{{name}}</view>
+      <view class='portrait-identity' wx:if="{{name==null}}"></view>
+    </view>
+    <view class='person-name text-line1'>{{nickname}}</view>
+    <text class='person-identity text-line1' wx:if="{{teacherIdentity!=null}}">{{F1.substr(teacherIdentity.name,14)}}</text>
+    <text decode="{{true}}" class='person-identity text-line1' wx:if="{{teacherIdentity==null}}">&ensp;</text>
+  </view>
+</template>
+
+<!-- 拼团头部 2-->
+<template name="nav">
+  <block wx:if="{{F1.compareTime(start_time,end_time)==1}}"></block>
+  <view class='skill-tab {{ activeShow == index?"theme-lg-A-"+theme:"" }}' bindtap='changeIndex' data-index='{{ index }}' data-id='{{id}}'>
+    <view class='skill-title {{ activeShow == index?"skill-title-active":"" }}'>{{name}}</view>
+    <view class='skill-line theme-lg-A-{{theme}}' wx:if="{{ activeShow == index }}"></view>
+  </view>
+</template>
+
+<!-- 拼团头部 21-->
+<template name="group">
+  <view class='tab2   {{ index == activeShow?"active-tab2":"" }}' style='min-width:{{listLength<5?"25":"20"}}%' bindtap='changeIndex' data-index='{{ index }}' data-id='{{id}}'>
+    <view class='tab-text2'>{{ name }}</view>
+    <view class='line2' wx:if="{{ index == activeShow }}"></view>
+  </view>
+</template>
+
+<!-- skill -->
+<template name="skill">
+  <view class='skill' bindtap='jumpGoodDetail' data-id="{{item_id}}">
+    <view class='flex-r-b ' style='width:100%'>
+      <view class='left-pic-1 mr24'>
+        <image src="{{ seckill_img||group_img }}" lazy-load='true' class="skill-img-1" mode="aspectFill" />
+        <view class='top-earn-1 theme-lg-B-{{theme}}' wx:if="{{userInfo.role==1}}">赚{{F1.moneyFormat(share||group_share)}}</view>
+      </view>
+      <view class='right-content-1 flex-1 flex-b'>
+        <view class='text-line2 title-style-1'>
+          <text class='theme-font-A-{{theme}}' wx:if="{{is_abroad==1}}">【跨境购】</text> {{title}}</view>
+        <view class='sign-icon-1 flex-r-s'>
+          <view class='sign-word-1 theme-border-c-A-{{theme}} mr16'>{{groupType==1?'秒杀价':number+"人团"}}</view>
+          <view class='theme-font-A-{{theme}} price-font-1' style="color:#E50A35 !important;">{{F1.moneyFormat(price)}}</view>
+        </view>
+        <view class='remark1 text-line1' wx:if="{{groupType==1}}">{{remark}}</view>
+        <view class='remark1 theme-color-B-{{theme}}' wx:else>
+          <text wx:if="{{is_start==0}}">{{F1.numberDeal(item_buy_item)}}人已拼团</text>
+          <text wx:else>{{T1.timeChange(start_time)}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<!-- 个人店铺头部 -->
+<template name="shopTop">
+  <block wx:if="{{listLength==0||index==0}}">
+    <view class='shopTop-1'>
+      <view class='first-shop' catchtap='choice'>
+        <image class='shop-word-pic' lazy-load='true' mode="aspectFill" src="/images/personShop/add.png"></image>
+        <view class='shop-word-1'>点击上传图片</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{listLength!=0}}">
+    <view class='shopTop-1' bindtap='changeIndex' data-index='{{ index }}' data-id='{{id}}'>
+      <image src="{{img_url}}" lazy-load='true' class="shopTop-img-1" mode="aspectFill" />
+      <view class='shopTop-delate-1 theme-lg-A-{{theme}}' data-index='{{ index }}' catchtap='delateNumber' id="{{banner_id}}">删除</view>
+    </view>
+  </block>
+</template>
+
+
+
+<!-- bargain 砍价 -->
+<template name="bargain">
+  <view class='skill' bindtap='jumpGoodDetail' data-id="{{item_id}}">
+    <view class='flex-r-b ' style='width:100%'>
+      <view class='left-pic-1 mr24'>
+        <image src="{{ img_url }}" lazy-load='true' class="skill-img-1" mode="aspectFill" />
+        <view class='top-earn-1 theme-lg-B-{{theme}}' wx:if="{{userInfo.role==1}}">赚{{F1.moneyFormat(share)}}</view>
+      </view>
+      <view class='right-content-1 flex-1 flex-b'>
+        <view class='text-line2 title-style-1'>
+          <text class='theme-font-A-{{theme}}' wx:if="{{is_abroad==1}}">【跨境购】</text> {{title}}</view>
+        <view class='remark1 text-line1'>{{remark}}</view>
+        <view class='sign-icon-1 flex-r-s'>
+          <view class='theme2-bg-color active-choice2   mr8'>最低砍至</view>
+          <view class='theme-font-A-{{theme}} price-font-1' style="color:#E50A35 !important;">{{F1.moneyFormat(price)}}</view>
+        </view>
+       
+      </view>
+    </view>
+  </view>
+</template>

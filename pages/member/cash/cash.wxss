@@ -1,0 +1,126 @@
+/* pages/member/cash/cash.wxss */
+.title {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.sub-title {
+  color: #C0C0C0;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+}
+.input {
+  color: #999999;
+  font-size: 30rpx;
+}
+.input-item {
+  color: #1D1E1F;
+  font-size: 30rpx;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+.bank {
+  color: #999999;
+  font-size: 30rpx;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+.bank-name {
+  font-size: 30rpx;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+.code {
+  width:186rpx;
+  height:66rpx;
+  background:rgba(246,246,247,1);
+  border-radius:8rpx;
+  font-size: 30rpx;
+  color: #333333;
+  line-height: 66rpx;
+  text-align: center;
+}
+.code-item {
+  color: #1D1E1F;
+  font-size: 30rpx;
+  padding: 24rpx 0;
+}
+.tip {
+  padding: 30rpx;
+}
+.tip-title {
+  color: #999999;
+  margin-bottom: 12rpx;
+}
+.tip-text {
+  font-size: 24rpx;
+  color: #999999;
+  padding: 4rpx 0;
+}
+.appli-btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 88;
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  background:linear-gradient(41deg,rgba(215,43,24,1) 0%,rgba(215,24,87,1) 100%);
+}
+.mask-view {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  font-size: 28rpx;
+}
+.good-img{
+  width: 250rpx;
+}
+.main-title{
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:rgba(29,30,31,1);
+  line-height:44rpx;
+}
+.sub-title2{
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(192,192,192,1);
+  line-height:34rpx;
+}
+.cash-all{
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(229,10,53,1);
+  line-height:34rpx;
+}
+.under-remind{
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(88,88,88,1);
+  line-height:34rpx;
+  margin-top: 22rpx;
+}
+.cash-record{
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(52,52,48,1);
+  line-height:34rpx;
+  text-align: center;
+}

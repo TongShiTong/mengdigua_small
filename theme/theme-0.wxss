@@ -1,0 +1,99 @@
+/* 美妆 */
+
+/* 字体颜色 */
+
+.theme-color-A-5 {
+  color: #ff688f !important;
+}
+
+.theme-color-B-5 {
+  color: #ebc77f !important;
+}
+
+.theme-color-C-5 {
+  color: #ffb5b5 !important;
+}
+
+.theme-color-D-5 {
+  color: #fffafa !important;
+}
+
+/* 背景色 */
+
+.theme-bg-A-5 {
+  background: #ff688f !important;
+}
+
+.theme-bg-B-5 {
+  background: #ebc77f !important;
+}
+
+.theme-bg-C-5 {
+  background: #ffb5b5 !important;
+}
+
+.theme-bg-D-5 {
+  background: #fffafa !important;
+}
+
+/* 背景渐变 */
+
+.theme-lg-A-5 {
+  background: linear-gradient(270deg, #ff97b2 0%, #ff688f 100%) !important;
+}
+
+.theme-lg-B-5 {
+  background: linear-gradient(270deg, #ebc77f 0%, #ffdc95 100%) !important;
+}
+
+.theme-lg-C-5 {
+  background: linear-gradient(270deg, #ffb5b5 0%, #ffb4d9 100%) !important;
+}
+
+.theme-lg-D-5 {
+  background: linear-gradient(270deg, #fffafa 0%, #fffa93 100%) !important;
+}
+
+/* 边线颜色 */
+
+.theme-border-A-5 {
+  border-color: #ff688f !important;
+}
+
+.theme-border-B-5 {
+  border-color: #ebc77f !important;
+}
+
+.theme-border-C-5 {
+  border-color: #ffb5b5 !important;
+}
+
+.theme-border-D-5 {
+  border-color: #fffafa !important;
+}
+
+/* 主背景色不透明度40% */
+
+.theme-bgo-A-5 {
+  background: rgba(255, 104, 143, 0.4);
+}
+
+/* 边线颜色+字色 */
+
+.theme-border-c-A-5 {
+  border-color: #ff688f !important;
+  color: #ff688f !important;
+}
+
+.theme-font-A-5 {
+  color: #ff688f !important;
+}
+
+
+.theme2-color-5{
+  color:#E50A35 !important;
+}
+
+.theme2-bg-color{
+  color:#E50A35 !important;
+}

@@ -1,0 +1,8 @@
+<!--pages/member/shareIncome/shareIncome.wxml-->
+<block wx:if="{{theme || theme===0}}">
+  <navbar title="分享收入" />
+  <share showShare="{{ showShare }}" bind:shareSuccess="shareSuccess" shareImg="{{ shareImg.img_url }}" showHeader="9" shadow="{{shadow}}"></share>
+</block>
+<view wx:else>
+  <page-loding></page-loding>
+</view>

@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "搜索",
+  "usingComponents": {
+    "serch-two": "/components/serchTwo/serchTwo",
+    "modal": "/components/modal/modal",
+    "list": "/components/listTwo/list",
+    "share": "/components/share/share",
+    "message": "/components/messageBox/messageBox",
+    "tabbar": "/tabbarComponent/tabbar",
+    "navbar-search": "/components/navbarSearch/index",
+    "shop-tabbar": "/components/shopTabbar/index",
+    "mp-select-text": "/components/select-text/index"
+  }
+}

@@ -1,0 +1,51 @@
+<!--pages/goodReviews/goodReviews.wxml-->
+<!-- <wxs src="../../utils/filters.wxs" module="F1" /> -->
+
+<block>
+  <navbar title="商品评价" />
+  <view class="reviews-wrap">
+    <view class="top">
+        <label class="radio">
+          <!-- <radio value="{{onlyImage}}" /> -->
+           <switch type="checkbox" checked="{{onlyImage}}" bindchange="switchOnlyImage" class="wx-switch-input"/>只看有图
+        </label>
+        <text class="text">{{totalLevel}}%好评率</text>
+    </view>
+    <view class="reviews-list">
+        <view class="detail-box" wx:for="{{commentList}}" wx:for-index = "bindex" wx:key="commet_id">
+            <view class="user-info">
+                <view class="user-name">
+                    <image src="{{item.u.head_url}}" mode="aspectFill" class="pic"></image>
+                    <text>{{item.u.nickname}}</text>
+                </view>
+                <view class="time">{{item.create_time}}</view>
+            </view>
+            <view class="goods-info">
+                <stars starVal="{{item.level}}" />
+                <view class="line">｜</view>
+                <view class="goods-title">
+                  {{item.value_names}}
+                </view>
+            </view>
+            <view class="reviews-content">
+              <view class="des">
+                  {{item.content}}
+              </view>
+              <view class="img-box">
+                <view class="reviews-pic" wx:for="{{item.meCommetImgs}}" wx:for-item="imageItem">
+                  <image data-index="{{index}}" data-bindex="{{bindex}}" bindtap='previewImg' src="{{imageItem}}" mode="aspectFill" class="pic"></image>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{item.to_commet}}" class="reply-content">
+              <view class="title">商家回复：</view>
+              <view class="des">
+                {{item.to_commet}}
+              </view>
+            </view>
+        </view>
+
+    </view>
+  </view>
+
+</block>
